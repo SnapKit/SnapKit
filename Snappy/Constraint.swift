@@ -13,78 +13,49 @@ import UIKit
     func constraint(constraint: Constraint?, addConstraintWithLayoutAttribute layoutAttribute: NSLayoutAttribute) -> Constraint
 }
 
-class Constraint: Equatable {
-    weak var delegate: ConstraintDelegate?
-    
-    init() {
-        
-    }
-    
-    var left: Constraint { return Constraint() }
-    var top: Constraint { return Constraint() }
-    var right: Constraint { return Constraint() }
-    var bottom: Constraint { return Constraint() }
-    var leading: Constraint { return Constraint() }
-    var trailing: Constraint { return Constraint() }
-    var width: Constraint { return Constraint() }
-    var height: Constraint { return Constraint() }
-    var centerX: Constraint { return Constraint() }
-    var centerY: Constraint { return Constraint() }
-    var baseline: Constraint { return Constraint() }
-    
-    var and: Constraint { return self }
-    var with: Constraint { return self }
-    
-    func equalTo(attr: Any) -> Constraint {
-        return self
-    }
-    
-    func greaterThanOrEqualTo(attr: Any) -> Constraint {
-        return self
-    }
-    
-    func lessThanOrEqualTo(attr: Any) -> Constraint {
-        return self
-    }
-    
-    func insets(insets: Any) -> Constraint {
-        return self
-    }
-    
-    func offset(offset: Any) -> Constraint {
-        return self
-    }
-    
-    func multipliedBy(multiplier: Float) -> Constraint {
-        return self
-    }
-    
-    func dividedBy(divider: Float) -> Constraint {
-        return self
-    }
-    
-    func priority(priority: UILayoutPriority) -> Constraint {
-        return self
-    }
-    
-    func priorityLow() -> Constraint {
-        return self
-    }
-    
-    func priorityMedium() -> Constraint {
-        return self
-    }
-    
-    func priorityHigh() -> Constraint {
-        return self
-    }
-    
-    func install() {
-        
-    }
-}
+typealias Delegate = ConstraintDelegate?
 
+@class_protocol protocol Constraint {
+    weak var delegate: Delegate { get set }
 
-@infix func ==(lhs: Constraint, rhs: Constraint) -> Bool {
-    return lhs === rhs;
+    var left: Constraint { get }
+    var top: Constraint { get }
+    var right: Constraint { get }
+    var bottom: Constraint { get }
+    var leading: Constraint { get }
+    var trailing: Constraint { get }
+    var width: Constraint { get }
+    var height: Constraint { get }
+    var centerX: Constraint { get }
+    var centerY: Constraint { get }
+    var baseline: Constraint { get }
+    
+    var and: Constraint { get }
+    var with: Constraint { get }
+    
+    func addConstraint(NSLayoutAttribute) -> Constraint
+    
+    func equalTo(attr: Any) -> Constraint
+    
+    func greaterThanOrEqualTo(attr: Any) -> Constraint
+    
+    func lessThanOrEqualTo(attr: Any) -> Constraint
+    
+    func insets(insets: Any) -> Constraint
+    
+    func offset(offset: Any) -> Constraint
+    
+    func multipliedBy(multiplier: Float) -> Constraint
+    
+    func dividedBy(divider: Float) -> Constraint
+    
+    func priority(priority: UILayoutPriority) -> Constraint
+    
+    func priorityLow() -> Constraint
+    
+    func priorityMedium() -> Constraint
+    
+    func priorityHigh() -> Constraint
+    
+    func install()
 }

@@ -59,7 +59,13 @@ class ConstraintMaker: ConstraintDelegate {
     }
     
     func constraint(constraint: Constraint, shouldBeReplacedWithConstraint replacementConstraint: Constraint) {
-        var index = find(self.constraints, constraint)
+        var index: Int?
+        for (i, c) in enumerate(self.constraints) {
+            if (c === constraint) {
+                index = i
+            }
+        }
+        
         if (index) {
             self.constraints[index!] = replacementConstraint
         }
