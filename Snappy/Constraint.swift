@@ -41,7 +41,7 @@ typealias Delegate = ConstraintDelegate?
     
     func lessThanOrEqualTo(attr: Any) -> Constraint
     
-    func insets(insets: Any) -> Constraint
+    func insets(insets: UIEdgeInsets) -> Constraint
     
     func offset(offset: Any) -> Constraint
     

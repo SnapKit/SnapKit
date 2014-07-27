@@ -35,35 +35,35 @@ class ViewController: UIViewController {
         
         let padding = UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 10)
         
-        view1.mas_makeConstraints({ make in
-            make.top.and.left.greaterThanOrEqualTo(superview).insets(padding);
+        view1.mas_makeConstraints { make in
+            make.top.and.left.greaterThanOrEqualTo(superview).insets(padding)
             
-            make.bottom.equalTo(view3.mas_top).insets(padding);
-            make.right.equalTo(view2.mas_left).insets(padding);
-            make.width.equalTo(view2.mas_width);
+            make.bottom.equalTo(view3.mas_top).insets(padding)
+            make.right.equalTo(view2.mas_left).insets(padding)
+            make.width.equalTo(view2.mas_width)
             
-            make.height.equalTo([view2, view3]);
-        });
+            make.height.equalTo([view2, view3])
+        }
         
-        view2.mas_makeConstraints({ make in
+        view2.mas_makeConstraints { make in
             // chain attributes
-            make.top.and.right.equalTo(superview).insets(padding);
+            make.top.and.right.equalTo(superview).insets(padding)
             
-            make.left.equalTo(view1.mas_right).insets(padding);
-            make.bottom.equalTo(view3.mas_top).insets(padding);
-            make.width.equalTo(view1.mas_width);
+            make.left.equalTo(view1.mas_right).insets(padding)
+            make.bottom.equalTo(view3.mas_top).insets(padding)
+            make.width.equalTo(view1.mas_width)
             
-            make.height.equalTo([view1, view3]);
-        });
+            make.height.equalTo([view1, view3])
+        }
         
-        view3.mas_makeConstraints({ make in
-            make.top.equalTo(view1.mas_bottom).insets(padding);
+        view3.mas_makeConstraints { make in
+            make.top.equalTo(view1.mas_bottom).insets(padding)
             
             // chain attributes
-            make.left.right.and.bottom.equalTo(superview).insets(padding);
+            make.left.right.and.bottom.equalTo(superview).insets(padding)
             
-            make.height.equalTo([view1, view2]);
-        });
+            make.height.equalTo([view1, view2])
+        }
         
     }
 

@@ -70,12 +70,12 @@ class CompositeConstraint: Constraint, ConstraintDelegate {
         return self
     }
     
-    func insets(insets: Any) -> Constraint {
+    func offset(offset: Any) -> Constraint {
         return self
     }
     
-    func offset(offset: Any) -> Constraint {
-        return self
+    func insets(insets: UIEdgeInsets) -> Constraint {
+        return self;
     }
     
     func multipliedBy(multiplier: Float) -> Constraint {
