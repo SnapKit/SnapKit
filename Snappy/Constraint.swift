@@ -384,7 +384,6 @@ class Constraint {
     private var multiplier: Float = 1.0
     private var priority: Float = 1000.0
     private var offset: Any?
-    private var insets: UIEdgeInsets = UIEdgeInsetsZero
     
     private weak var installedOnView: View?
     
