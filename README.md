@@ -153,8 +153,6 @@ make.edges.snp_equalTo(UIEdgeInsetsMake(10, 0, 10, 0))
 make.left.snp_equalTo(view).offset(UIEdgeInsetsMake(10, 0, 10, 0))
 ```
 
-````
-
 ## Learn to prioritize
 
 > `.prority` allows you to specify an exact priority
