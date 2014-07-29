@@ -1,7 +1,6 @@
 # Snappy
 
 Snappy is a light-weight layout framework which wraps AutoLayout with a nicer syntax. Snappy has its own layout DSL which provides a chainable way of describing your NSLayoutConstraints which results in layout code that is more concise and readable.
-Snappy supports iOS and Mac OS X.
 
 > Snappy uses some Swift only features like function overloading it cannot be used from Objective-C. Because of this we’ve chosen to swap prefixes from Masonry’s `mas_` to `snp_` so you can use both Masonry and Snappy in the same project.
 
@@ -265,3 +264,4 @@ func changeButtonPosition() {
 * Eye candy
 * Example projects
 * Tests
+* Mac OS X support.
