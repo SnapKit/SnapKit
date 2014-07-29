@@ -2,50 +2,80 @@
 //  View.swift
 //  Snappy
 //
-//  Created by Jonas Budelmann on 25/07/14.
-//  Copyright (c) 2014 Jonas Budelmann. All rights reserved.
+//  Copyright (c) 2011-2014 Masonry Team - https://github.com/Masonry
 //
-
-import Foundation
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 import UIKit
-typealias View = UIView
 
+typealias View = UIView
 extension View {
-    var mas_left: ViewAttribute { return ViewAttribute(view: self, layoutAttribute: .Left) }
-    var mas_top: ViewAttribute { return ViewAttribute(view: self, layoutAttribute: .Top) }
-    var mas_right: ViewAttribute { return ViewAttribute(view: self, layoutAttribute: .Right) }
-    var mas_bottom: ViewAttribute { return ViewAttribute(view: self, layoutAttribute: .Bottom) }
-    var mas_leading: ViewAttribute { return ViewAttribute(view: self, layoutAttribute: .Leading) }
-    var mas_trailing: ViewAttribute { return ViewAttribute(view: self, layoutAttribute: .Trailing) }
-    var mas_width: ViewAttribute { return ViewAttribute(view: self, layoutAttribute: .Width) }
-    var mas_height: ViewAttribute { return ViewAttribute(view: self, layoutAttribute: .Height) }
-    var mas_centerX: ViewAttribute { return ViewAttribute(view: self, layoutAttribute: .CenterX) }
-    var mas_centerY: ViewAttribute { return ViewAttribute(view: self, layoutAttribute: .CenterY) }
-    var mas_baseline: ViewAttribute { return ViewAttribute(view: self, layoutAttribute: .Baseline) }
+#if SNP_SHORTHAND
+    var left: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Left) }
+    var top: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Top) }
+    var right: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Right) }
+    var bottom: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Bottom) }
+    var leading: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Leading) }
+    var trailing: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Trailing) }
+    var width: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Width) }
+    var height: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Height) }
+    var centerX: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.CenterX) }
+    var centerY: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.CenterY) }
+    var baseline: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Baseline) }
     
-    func mas_makeConstraints(block: (make: ConstraintMaker) -> ()) {
-        self.setTranslatesAutoresizingMaskIntoConstraints(false)
-        let constraintMaker: ConstraintMaker = ConstraintMaker(view: self)
-        block(make: constraintMaker)
-        constraintMaker.install()
+    var edges: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Edges) }
+    var size: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Size) }
+    var center: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Center) }
+    
+    func makeConstraints(block: (maker: ConstraintMaker) -> ()) {
+        ConstraintMaker.makeConstraints(self, block: block)
     }
     
-    func mas_closestCommonSuperview(view: View) -> View {
-        var closestCommonSuperview: View? = nil
-        
-        var secondViewSuperview: View = view
-        while (!closestCommonSuperview && secondViewSuperview != nil) {
-            var firstViewSuperview: View = self
-            while (!closestCommonSuperview && firstViewSuperview != nil) {
-                if (secondViewSuperview == firstViewSuperview) {
-                    closestCommonSuperview = secondViewSuperview
-                }
-                firstViewSuperview = firstViewSuperview.superview
-            }
-            secondViewSuperview = secondViewSuperview.superview
-        }
-        return closestCommonSuperview!
+    func remakeConstraints(block: (maker: ConstraintMaker) -> ()) {
+        ConstraintMaker.remakeConstraints(self, block: block)
     }
+    
+#else
+    var snp_left: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Left) }
+    var snp_top: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Top) }
+    var snp_right: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Right) }
+    var snp_bottom: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Bottom) }
+    var snp_leading: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Leading) }
+    var snp_trailing: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Trailing) }
+    var snp_width: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Width) }
+    var snp_height: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Height) }
+    var snp_centerX: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.CenterX) }
+    var snp_centerY: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.CenterY) }
+    var snp_baseline: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Baseline) }
+    
+    var snp_edges: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Edges) }
+    var snp_size: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Size) }
+    var snp_center: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Center) }
+    
+    func snp_makeConstraints(block: (maker: ConstraintMaker) -> ()) {
+        ConstraintMaker.makeConstraints(self, block: block)
+    }
+    
+    func snp_remakeConstraints(block: (maker: ConstraintMaker) -> ()) {
+        ConstraintMaker.remakeConstraints(self, block: block)
+    }
+    
+#endif
 }
 

@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         
         let superview: UIView = self.view
         
-        let view1 = UIView()
+        let view1 = UIView(frame: CGRectZero)
         view1.backgroundColor = UIColor.greenColor()
         view1.layer.borderColor = UIColor.blackColor().CGColor
         view1.layer.borderWidth = 2
@@ -35,34 +35,23 @@ class ViewController: UIViewController {
         
         let padding = UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 10)
         
-        view1.mas_makeConstraints { make in
-            make.top.and.left.greaterThanOrEqualTo(superview).insets(padding)
-            
-            make.bottom.equalTo(view3.mas_top).insets(padding)
-            make.right.equalTo(view2.mas_left).insets(padding)
-            make.width.equalTo(view2.mas_width)
-            
-            make.height.equalTo([view2, view3])
+        
+        view1.snp_makeConstraints { make in
+            make.top.and.left.equalTo(CGPointZero).insets(padding)
+            make.size.equalTo(CGSizeMake(100, 50))
         }
         
-        view2.mas_makeConstraints { make in
-            // chain attributes
-            make.top.and.right.equalTo(superview).insets(padding)
-            
-            make.left.equalTo(view1.mas_right).insets(padding)
-            make.bottom.equalTo(view3.mas_top).insets(padding)
-            make.width.equalTo(view1.mas_width)
-            
-            make.height.equalTo([view1, view3])
+        view2.snp_makeConstraints { make in
+            make.centerX.equalTo(view1.snp_centerX).offset(CGPointMake(50, 0))
+            make.top.equalTo(view1.snp_bottom).offset(50)
+            make.width.equalTo(view1.snp_height)
+            make.height.equalTo(view1.snp_width)
         }
         
-        view3.mas_makeConstraints { make in
-            make.top.equalTo(view1.mas_bottom).insets(padding)
-            
-            // chain attributes
-            make.left.right.and.bottom.equalTo(superview).insets(padding)
-            
-            make.height.equalTo([view1, view2])
+        view3.snp_makeConstraints { make in
+            make.width.height.greaterThanOrEqualTo(view1)
+            make.width.height.greaterThanOrEqualTo(view2)
+            make.center.equalTo(superview)
         }
         
     }
