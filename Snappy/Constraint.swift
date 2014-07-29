@@ -287,7 +287,7 @@ class Constraint {
     // MARK: insets
     
     func insets(amount: UIEdgeInsets) -> Constraint {
-        self.insets = amount
+        self.offset = amount
         return self
     }
     
