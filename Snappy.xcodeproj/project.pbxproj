@@ -10,13 +10,11 @@
 		DD03E3151981B52F00E0DE94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03E30F1981B52F00E0DE94 /* AppDelegate.swift */; };
 		DD03E3171981B52F00E0DE94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD03E3121981B52F00E0DE94 /* Images.xcassets */; };
 		DD03E3191981B52F00E0DE94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03E3141981B52F00E0DE94 /* ViewController.swift */; };
-		DD03E3201981B70D00E0DE94 /* CompositeConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03E31F1981B70D00E0DE94 /* CompositeConstraint.swift */; };
 		DD03E3221981B71C00E0DE94 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03E3211981B71C00E0DE94 /* Constraint.swift */; };
 		DD03E3241981B72A00E0DE94 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03E3231981B72A00E0DE94 /* ConstraintMaker.swift */; };
-		DD03E3261981B78D00E0DE94 /* ViewAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03E3251981B78D00E0DE94 /* ViewAttribute.swift */; };
-		DD03E3281981B79C00E0DE94 /* ViewConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03E3271981B79C00E0DE94 /* ViewConstraint.swift */; };
 		DD03E32A1981B7BF00E0DE94 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03E3291981B7BF00E0DE94 /* View.swift */; };
 		DDC9FDAE1981B4DD009612C7 /* SnappyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC9FDAD1981B4DD009612C7 /* SnappyTests.swift */; };
+		EEC6EB4E1985370500C27B12 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6EB4D1985370500C27B12 /* LayoutConstraint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,15 +46,13 @@
 		DD03E3121981B52F00E0DE94 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DD03E3131981B52F00E0DE94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD03E3141981B52F00E0DE94 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DD03E31F1981B70D00E0DE94 /* CompositeConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeConstraint.swift; sourceTree = "<group>"; };
 		DD03E3211981B71C00E0DE94 /* Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
 		DD03E3231981B72A00E0DE94 /* ConstraintMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMaker.swift; sourceTree = "<group>"; };
-		DD03E3251981B78D00E0DE94 /* ViewAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAttribute.swift; sourceTree = "<group>"; };
-		DD03E3271981B79C00E0DE94 /* ViewConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewConstraint.swift; sourceTree = "<group>"; };
 		DD03E3291981B7BF00E0DE94 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		DDC9FD951981B4DD009612C7 /* Snappy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snappy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDC9FDA71981B4DD009612C7 /* SnappyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnappyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDC9FDAD1981B4DD009612C7 /* SnappyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappyTests.swift; sourceTree = "<group>"; };
+		EEC6EB4D1985370500C27B12 /* LayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutConstraint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,11 +87,9 @@
 		DD03E31A1981B62D00E0DE94 /* Snappy */ = {
 			isa = PBXGroup;
 			children = (
-				DD03E31F1981B70D00E0DE94 /* CompositeConstraint.swift */,
+				EEC6EB4D1985370500C27B12 /* LayoutConstraint.swift */,
 				DD03E3211981B71C00E0DE94 /* Constraint.swift */,
 				DD03E3231981B72A00E0DE94 /* ConstraintMaker.swift */,
-				DD03E3251981B78D00E0DE94 /* ViewAttribute.swift */,
-				DD03E3271981B79C00E0DE94 /* ViewConstraint.swift */,
 				DD03E3291981B7BF00E0DE94 /* View.swift */,
 			);
 			path = Snappy;
@@ -230,12 +224,10 @@
 			files = (
 				DD03E32A1981B7BF00E0DE94 /* View.swift in Sources */,
 				DD03E3221981B71C00E0DE94 /* Constraint.swift in Sources */,
+				EEC6EB4E1985370500C27B12 /* LayoutConstraint.swift in Sources */,
 				DD03E3241981B72A00E0DE94 /* ConstraintMaker.swift in Sources */,
 				DD03E3191981B52F00E0DE94 /* ViewController.swift in Sources */,
-				DD03E3281981B79C00E0DE94 /* ViewConstraint.swift in Sources */,
-				DD03E3201981B70D00E0DE94 /* CompositeConstraint.swift in Sources */,
 				DD03E3151981B52F00E0DE94 /* AppDelegate.swift in Sources */,
-				DD03E3261981B78D00E0DE94 /* ViewAttribute.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

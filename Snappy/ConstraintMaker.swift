@@ -2,91 +2,89 @@
 //  ConstraintMaker.swift
 //  Snappy
 //
-//  Created by Jonas Budelmann on 25/07/14.
-//  Copyright (c) 2014 Jonas Budelmann. All rights reserved.
+//  Copyright (c) 2011-2014 Masonry Team - https://github.com/Masonry
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 import UIKit
 
-class ConstraintMaker: ConstraintDelegate {
-    var constraints = [Constraint]()
-    weak var view: View?
+/**
+ * ConstraintMaker is the maker in snappy that gets all constraints kickstarted
+ */
+class ConstraintMaker {
+    var left: Constraint { return addConstraint(ConstraintAttributes.Left) }
+    var top: Constraint { return addConstraint(ConstraintAttributes.Top) }
+    var right: Constraint { return addConstraint(ConstraintAttributes.Right) }
+    var bottom: Constraint { return addConstraint(ConstraintAttributes.Bottom) }
+    var leading: Constraint { return addConstraint(ConstraintAttributes.Leading) }
+    var trailing: Constraint { return addConstraint(ConstraintAttributes.Trailing) }
+    var width: Constraint { return addConstraint(ConstraintAttributes.Width) }
+    var height: Constraint { return addConstraint(ConstraintAttributes.Height) }
+    var centerX: Constraint { return addConstraint(ConstraintAttributes.CenterX) }
+    var centerY: Constraint { return addConstraint(ConstraintAttributes.CenterY) }
+    var baseline: Constraint { return addConstraint(ConstraintAttributes.Baseline) }
+    
+    var edges: Constraint { return addConstraint(ConstraintAttributes.Edges) }
+    var size: Constraint { return addConstraint(ConstraintAttributes.Size) }
+    var center: Constraint { return addConstraint(ConstraintAttributes.Center) }
     
     init(view: View) {
         self.view = view
     }
     
-    var left: Constraint { return addConstraint(.Left) }
-    var top: Constraint { return addConstraint(.Top) }
-    var right: Constraint { return addConstraint(.Right) }
-    var bottom: Constraint { return addConstraint(.Bottom) }
-    var leading: Constraint { return addConstraint(.Leading) }
-    var trailing: Constraint { return addConstraint(.Trailing) }
-    var width: Constraint { return addConstraint(.Width) }
-    var height: Constraint { return addConstraint(.Height) }
-    var centerX: Constraint { return addConstraint(.CenterX) }
-    var centerY: Constraint { return addConstraint(.CenterY) }
-    var baseline: Constraint { return addConstraint(.Baseline) }
+    internal weak var view: View?
+    internal var constraints = Array<Constraint>()
     
-    //TODO
-    var edges: Constraint { return addConstraints(.Top, .Left, .Bottom, .Right) }
-    var size: Constraint { return addConstraints(.Width, .Height) }
-    var center: Constraint { return addConstraints(.CenterX, .CenterY) }
-    
-    func install() {
-        for constraint in constraints {
-            constraint.install()
-        }
-        self.constraints.removeAll(keepCapacity: true)
-    }
-    
-    func addConstraint(layoutAttribute: NSLayoutAttribute) -> Constraint {
-        return constraint(nil, addConstraintWithLayoutAttribute: layoutAttribute)
-    }
-    
-    
-    func addConstraints(layoutAttributes: NSLayoutAttribute...) -> Constraint {
-        var children = layoutAttributes.map({ (attr: NSLayoutAttribute) -> Constraint in
-            var viewAttribute = ViewAttribute(view: self.view, layoutAttribute: attr)
-            return ViewConstraint(view: self.view!, firstViewAttribute: viewAttribute)
-        })
-        
-        var constraint = CompositeConstraint(children: children)
-        constraint.delegate = self
+    internal func addConstraint(attributes: ConstraintAttributes) -> Constraint {
+        let item = ConstraintItem(view: self.view, attributes: attributes)
+        let constraint = Constraint(fromItem: item)
         self.constraints.append(constraint)
-        
         return constraint
     }
     
-    func constraint(constraint: Constraint, shouldBeReplacedWithConstraint replacementConstraint: Constraint) {
-        var index: Int?
-        for (i, c) in enumerate(self.constraints) {
-            if (c === constraint) {
-                index = i
-            }
-        }
+    internal class func makeConstraints(view: View, block: (make: ConstraintMaker) -> ()) {
+        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let maker = ConstraintMaker(view: view)
+        block(make: maker)
         
-        if (index) {
-            self.constraints[index!] = replacementConstraint
+        var layoutConstraints: Array<LayoutConstraint> = []
+        for constraint in maker.constraints {
+            layoutConstraints += constraint.install()
         }
+        LayoutConstraint.setLayoutConstraints(layoutConstraints, installedOnView: view)
     }
     
-    func constraint(constraint: Constraint?, addConstraintWithLayoutAttribute layoutAttribute: NSLayoutAttribute) -> Constraint {
-        var viewAttribute = ViewAttribute(view: self.view, layoutAttribute: layoutAttribute)
-        var newConstraint = ViewConstraint(view: self.view!, firstViewAttribute: viewAttribute)
+    internal class func remakeConstraints(view: View, block: (make: ConstraintMaker) -> ()) {
+        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let maker = ConstraintMaker(view: view)
+        block(make: maker)
         
-        if let viewConstraint = constraint as? ViewConstraint  {
-            //replace with composite constraint
-            var children = [viewConstraint, newConstraint]
-            var compositeConstraint = CompositeConstraint(children: children)
-            compositeConstraint.delegate = self
-            self.constraint(viewConstraint, shouldBeReplacedWithConstraint:compositeConstraint);
-            return compositeConstraint
+        var layoutConstraints: Array<LayoutConstraint> = LayoutConstraint.layoutConstraintsInstalledOnView(view)
+        for existingLayoutConstraint in layoutConstraints {
+            existingLayoutConstraint.constraint?.uninstall()
         }
-        if (!constraint) {
-            newConstraint.delegate = self
-            self.constraints.append(newConstraint)
+        layoutConstraints = []
+        
+        for constraint in maker.constraints {
+            layoutConstraints += constraint.install()
         }
-        return newConstraint
+        LayoutConstraint.setLayoutConstraints(layoutConstraints, installedOnView: view)
     }
 }
+
