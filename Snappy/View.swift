@@ -22,9 +22,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(iOS)
 import UIKit
-
 typealias View = UIView
+#else
+import AppKit
+typealias View = NSView
+#endif
+
 extension View {
 #if SNP_SHORTHAND
     var left: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Left) }
@@ -50,7 +55,6 @@ extension View {
     func remakeConstraints(block: (maker: ConstraintMaker) -> ()) {
         ConstraintMaker.remakeConstraints(self, block: block)
     }
-    
 #else
     var snp_left: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Left) }
     var snp_top: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Top) }

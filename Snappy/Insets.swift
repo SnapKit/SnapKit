@@ -1,5 +1,5 @@
 //
-//  LayoutConstraint.swift
+//  Insets.swift
 //  Snappy
 //
 //  Copyright (c) 2011-2014 Masonry Team - https://github.com/Masonry
@@ -22,31 +22,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+
 #if os(iOS)
 import UIKit
+typealias EdgeInsets = UIEdgeInsets
+func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
+    return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
+}
+let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 #else
 import AppKit
-#endif
-
-/**
- * LayoutConstraint is a subclass of NSLayoutConstraint to assist Snappy and also provide better debugging
- */
-class LayoutConstraint: NSLayoutConstraint {
-    
-    // internal
-    
-    internal var constraint: Constraint?
-    
-    internal class func layoutConstraintsInstalledOnView(view: View) -> Array<LayoutConstraint> {
-        var constraints = objc_getAssociatedObject(view, &layoutConstraintsInstalledOnViewKey) as? Array<LayoutConstraint>
-        if constraints {
-            return constraints!
-        }
-        return []
-    }
-    internal class func setLayoutConstraints(layoutConstraints: Array<LayoutConstraint>, installedOnView view: View) {
-        objc_setAssociatedObject(view, &layoutConstraintsInstalledOnViewKey, layoutConstraints, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
-    }
+struct EdgeInsets {
+    var top: CGFloat // specify amount to inset (positive) for each of the edges. values can be negative to 'outset'
+    var left: CGFloat
+    var bottom: CGFloat
+    var right: CGFloat
 }
-
-private var layoutConstraintsInstalledOnViewKey = ""
+func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
+    return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
+}
+let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+#endif

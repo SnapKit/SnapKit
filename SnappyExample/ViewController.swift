@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         view3.layer.borderWidth = 2
         superview.addSubview(view3)
         
-        let padding = UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 10)
+        let padding = EdgeInsets(top: 15, left: 10, bottom: 15, right: 10)
         
         
         view1.snp_makeConstraints { make in

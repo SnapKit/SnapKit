@@ -22,7 +22,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(iOS)
 import UIKit
+#else
+import AppKit
+#endif
 
 /**
  * ConstraintAttributes is an options set that maps to NSLayoutAttributes.
@@ -182,7 +186,7 @@ class Constraint {
     func equalTo(other: CGPoint) -> Constraint {
         return constrainTo(other, relation: .Equal)
     }
-    func equalTo(other: UIEdgeInsets) -> Constraint {
+    func equalTo(other: EdgeInsets) -> Constraint {
         return constrainTo(other, relation: .Equal)
     }
     
@@ -206,7 +210,7 @@ class Constraint {
     func lessThanOrEqualTo(other: CGPoint) -> Constraint {
         return constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    func lessThanOrEqualTo(other: UIEdgeInsets) -> Constraint {
+    func lessThanOrEqualTo(other: EdgeInsets) -> Constraint {
         return constrainTo(other, relation: .LessThanOrEqualTo)
     }
     
@@ -230,7 +234,7 @@ class Constraint {
     func greaterThanOrEqualTo(other: CGPoint) -> Constraint {
         return constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    func greaterThanOrEqualTo(other: UIEdgeInsets) -> Constraint {
+    func greaterThanOrEqualTo(other: EdgeInsets) -> Constraint {
         return constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     
@@ -279,14 +283,14 @@ class Constraint {
         self.offset = amount
         return self
     }
-    func offset(amount: UIEdgeInsets) -> Constraint {
+    func offset(amount: EdgeInsets) -> Constraint {
         self.offset = amount
         return self
     }
     
     // MARK: insets
     
-    func insets(amount: UIEdgeInsets) -> Constraint {
+    func insets(amount: EdgeInsets) -> Constraint {
         self.offset = amount
         return self
     }
@@ -359,7 +363,11 @@ class Constraint {
     
     func uninstall() {
         if let view = self.installedOnView {
+            #if os(iOS)
             var installedConstraints = view.constraints()
+            #else
+            var installedConstraints = view.constraints
+            #endif
             var constraintsToRemove: Array<LayoutConstraint> = []
             for installedConstraint in installedConstraints {
                 if let layoutConstraint = installedConstraint as? LayoutConstraint {
@@ -425,7 +433,7 @@ class Constraint {
         self.constant = other
         return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
-    private func constrainTo(other: UIEdgeInsets, relation: ConstraintRelation) -> Constraint {
+    private func constrainTo(other: EdgeInsets, relation: ConstraintRelation) -> Constraint {
         self.constant = other
         return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
@@ -454,15 +462,15 @@ private extension NSLayoutAttribute {
         if let float = value as? Float {
             return CGFloat(float)
         }
-            // Int
+        // Int
         else if let int = value as? Int {
             return CGFloat(int)
         }
-            // CGFloat
+        // CGFloat
         else if let float = value as? CGFloat {
             return float
         }
-            // CGSize
+        // CGSize
         else if let size = value as? CGSize {
             if self == .Width {
                 return size.width
@@ -470,7 +478,7 @@ private extension NSLayoutAttribute {
                 return size.height
             }
         }
-            // CGPoint
+        // CGPoint
         else if let point = value as? CGPoint {
             if self == .Left || self == .CenterX {
                 return point.x
@@ -482,8 +490,8 @@ private extension NSLayoutAttribute {
                 return -point.y
             }
         }
-            // UIEdgeInsets
-        else if let insets = value as? UIEdgeInsets {
+        // EdgeInsets
+        else if let insets = value as? EdgeInsets {
             if self == .Left {
                 return insets.left
             } else if self == .Top {
@@ -531,8 +539,8 @@ private extension NSLayoutAttribute {
                 return point.y
             }
         }
-        // UIEdgeInsets
-        else if let insets = value as? UIEdgeInsets {
+        // EdgeInsets
+        else if let insets = value as? EdgeInsets {
             if self == .Left {
                 return insets.left
             } else if self == .Top {

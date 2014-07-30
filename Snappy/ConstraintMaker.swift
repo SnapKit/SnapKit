@@ -22,7 +22,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(iOS)
 import UIKit
+#else
+import AppKit
+#endif
 
 /**
  * ConstraintMaker is the maker in snappy that gets all constraints kickstarted
@@ -59,7 +63,11 @@ class ConstraintMaker {
     }
     
     internal class func makeConstraints(view: View, block: (make: ConstraintMaker) -> ()) {
+        #if os(iOS)
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        #else
+        view.translatesAutoresizingMaskIntoConstraints = false
+        #endif
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         
@@ -71,7 +79,11 @@ class ConstraintMaker {
     }
     
     internal class func remakeConstraints(view: View, block: (make: ConstraintMaker) -> ()) {
+        #if os(iOS)
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        #else
+        view.translatesAutoresizingMaskIntoConstraints = false
+        #endif
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         
