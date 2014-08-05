@@ -21,27 +21,26 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS)
-    
-import UIKit
-typealias EdgeInsets = UIEdgeInsets
-func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
-    return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
-}
-let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    
-#else
-    
-import AppKit
-struct EdgeInsets {
-    var top: CGFloat // specify amount to inset (positive) for each of the edges. values can be negative to 'outset'
-    var left: CGFloat
-    var bottom: CGFloat
-    var right: CGFloat
-}
-func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
-    return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
-}
-let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+#import <Foundation/Foundation.h>
 
-#endif
+@class SNPConstraint;
+
+@interface SNPConstraintMaker : NSObject
+
+@property (nonatomic, strong, readonly) SNPConstraint *left;
+@property (nonatomic, strong, readonly) SNPConstraint *top;
+@property (nonatomic, strong, readonly) SNPConstraint *right;
+@property (nonatomic, strong, readonly) SNPConstraint *bottom;
+@property (nonatomic, strong, readonly) SNPConstraint *leading;
+@property (nonatomic, strong, readonly) SNPConstraint *trailing;
+@property (nonatomic, strong, readonly) SNPConstraint *width;
+@property (nonatomic, strong, readonly) SNPConstraint *height;
+@property (nonatomic, strong, readonly) SNPConstraint *centerX;
+@property (nonatomic, strong, readonly) SNPConstraint *centerY;
+@property (nonatomic, strong, readonly) SNPConstraint *baseline;
+
+@property (nonatomic, strong, readonly) SNPConstraint *edges;
+@property (nonatomic, strong, readonly) SNPConstraint *size;
+@property (nonatomic, strong, readonly) SNPConstraint *center;
+
+@end

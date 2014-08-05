@@ -1,5 +1,4 @@
 //
-//  View.swift
 //  Snappy
 //
 //  Copyright (c) 2011-2014 Masonry Team - https://github.com/Masonry
@@ -72,11 +71,11 @@ extension View {
     var snp_size: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Size) }
     var snp_center: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Center) }
     
-    func snp_makeConstraints(block: (maker: ConstraintMaker) -> ()) {
+    func snp_makeConstraints(block: ((ConstraintMaker!) -> Void)!) {
         ConstraintMaker.makeConstraints(self, block: block)
     }
     
-    func snp_remakeConstraints(block: (maker: ConstraintMaker) -> ()) {
+    func snp_remakeConstraints(block: ((ConstraintMaker!) -> Void)!) {
         ConstraintMaker.remakeConstraints(self, block: block)
     }
     

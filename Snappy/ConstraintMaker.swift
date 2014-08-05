@@ -1,5 +1,4 @@
 //
-//  ConstraintMaker.swift
 //  Snappy
 //
 //  Copyright (c) 2011-2014 Masonry Team - https://github.com/Masonry
@@ -31,22 +30,22 @@ import AppKit
 /**
  * ConstraintMaker is the maker in snappy that gets all constraints kickstarted
  */
-class ConstraintMaker {
-    var left: Constraint { return addConstraint(ConstraintAttributes.Left) }
-    var top: Constraint { return addConstraint(ConstraintAttributes.Top) }
-    var right: Constraint { return addConstraint(ConstraintAttributes.Right) }
-    var bottom: Constraint { return addConstraint(ConstraintAttributes.Bottom) }
-    var leading: Constraint { return addConstraint(ConstraintAttributes.Leading) }
-    var trailing: Constraint { return addConstraint(ConstraintAttributes.Trailing) }
-    var width: Constraint { return addConstraint(ConstraintAttributes.Width) }
-    var height: Constraint { return addConstraint(ConstraintAttributes.Height) }
-    var centerX: Constraint { return addConstraint(ConstraintAttributes.CenterX) }
-    var centerY: Constraint { return addConstraint(ConstraintAttributes.CenterY) }
-    var baseline: Constraint { return addConstraint(ConstraintAttributes.Baseline) }
+class ConstraintMaker: SNPConstraintMaker {
+    override var left: Constraint { return addConstraint(ConstraintAttributes.Left) }
+    override var top: Constraint { return addConstraint(ConstraintAttributes.Top) }
+    override var right: Constraint { return addConstraint(ConstraintAttributes.Right) }
+    override var bottom: Constraint { return addConstraint(ConstraintAttributes.Bottom) }
+    override var leading: Constraint { return addConstraint(ConstraintAttributes.Leading) }
+    override var trailing: Constraint { return addConstraint(ConstraintAttributes.Trailing) }
+    override var width: Constraint { return addConstraint(ConstraintAttributes.Width) }
+    override var height: Constraint { return addConstraint(ConstraintAttributes.Height) }
+    override var centerX: Constraint { return addConstraint(ConstraintAttributes.CenterX) }
+    override var centerY: Constraint { return addConstraint(ConstraintAttributes.CenterY) }
+    override var baseline: Constraint { return addConstraint(ConstraintAttributes.Baseline) }
     
-    var edges: Constraint { return addConstraint(ConstraintAttributes.Edges) }
-    var size: Constraint { return addConstraint(ConstraintAttributes.Size) }
-    var center: Constraint { return addConstraint(ConstraintAttributes.Center) }
+    override var edges: Constraint { return addConstraint(ConstraintAttributes.Edges) }
+    override var size: Constraint { return addConstraint(ConstraintAttributes.Size) }
+    override var center: Constraint { return addConstraint(ConstraintAttributes.Center) }
     
     init(view: View) {
         self.view = view

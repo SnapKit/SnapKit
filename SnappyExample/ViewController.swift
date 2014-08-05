@@ -35,19 +35,18 @@ class ViewController: UIViewController {
         
         let padding = EdgeInsets(top: 15, left: 10, bottom: 15, right: 10)
         
-        
         view1.snp_makeConstraints { make in
             make.top.and.left.equalTo(CGPointZero).insets(padding)
             make.size.equalTo(CGSizeMake(100, 50))
         }
-        
+
         view2.snp_makeConstraints { make in
             make.centerX.equalTo(view1.snp_centerX).offset(CGPointMake(50, 0))
             make.top.equalTo(view1.snp_bottom).offset(50)
             make.width.equalTo(view1.snp_height)
             make.height.equalTo(view1.snp_width)
         }
-        
+
         view3.snp_makeConstraints { make in
             make.width.height.greaterThanOrEqualTo(view1)
             make.width.height.greaterThanOrEqualTo(view2)

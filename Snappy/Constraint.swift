@@ -1,5 +1,4 @@
 //
-//  Constraint.swift
 //  Snappy
 //
 //  Copyright (c) 2011-2014 Masonry Team - https://github.com/Masonry
@@ -113,7 +112,7 @@ func -= (inout left: ConstraintAttributes, right: ConstraintAttributes) {
  * ConstraintRelation is an Int enum that maps to NSLayoutRelation.
  */
 enum ConstraintRelation: Int {
-    case Equal = 1, LessThanOrEqualTo, GreaterThanOrEqualTo
+    case Equal = 0, LessThanOrEqualTo, GreaterThanOrEqualTo
     
     var layoutRelation: NSLayoutRelation {
         get {
@@ -132,7 +131,7 @@ enum ConstraintRelation: Int {
 /**
  * ConstraintItem is a class that is used while building constraints.
  */
-class ConstraintItem {
+class ConstraintItem: SNPConstraintItem {
     
     init(view: View?, attributes: ConstraintAttributes) {
         self.view = view
@@ -146,21 +145,21 @@ class ConstraintItem {
 /**
  * Constraint is a single item that defines all the properties for a single ConstraintMaker chain
  */
-class Constraint {
-    var left: Constraint { return addConstraint(ConstraintAttributes.Left) }
-    var top: Constraint { return addConstraint(ConstraintAttributes.Top) }
-    var right: Constraint { return addConstraint(ConstraintAttributes.Right) }
-    var bottom: Constraint { return addConstraint(ConstraintAttributes.Bottom) }
-    var leading: Constraint { return addConstraint(ConstraintAttributes.Leading) }
-    var trailing: Constraint { return addConstraint(ConstraintAttributes.Trailing) }
-    var width: Constraint { return addConstraint(ConstraintAttributes.Width) }
-    var height: Constraint { return addConstraint(ConstraintAttributes.Height) }
-    var centerX: Constraint { return addConstraint(ConstraintAttributes.CenterX) }
-    var centerY: Constraint { return addConstraint(ConstraintAttributes.CenterY) }
-    var baseline: Constraint { return addConstraint(ConstraintAttributes.Baseline) }
+class Constraint: SNPConstraint {
+    override var left: Constraint { return addConstraint(ConstraintAttributes.Left) }
+    override var top: Constraint { return addConstraint(ConstraintAttributes.Top) }
+    override var right: Constraint { return addConstraint(ConstraintAttributes.Right) }
+    override var bottom: Constraint { return addConstraint(ConstraintAttributes.Bottom) }
+    override var leading: Constraint { return addConstraint(ConstraintAttributes.Leading) }
+    override var trailing: Constraint { return addConstraint(ConstraintAttributes.Trailing) }
+    override var width: Constraint { return addConstraint(ConstraintAttributes.Width) }
+    override var height: Constraint { return addConstraint(ConstraintAttributes.Height) }
+    override var centerX: Constraint { return addConstraint(ConstraintAttributes.CenterX) }
+    override var centerY: Constraint { return addConstraint(ConstraintAttributes.CenterY) }
+    override var baseline: Constraint { return addConstraint(ConstraintAttributes.Baseline) }
     
-    var and: Constraint { return self }
-    var with: Constraint { return self }
+    override var and: Constraint { return self }
+    override var with: Constraint { return self }
     
     // MARK: initializer
     
@@ -389,26 +388,26 @@ class Constraint {
         self.installedOnView = nil
     }
     
-    // MARK: private
+    // MARK: internal
     
-    private let fromItem: ConstraintItem
-    private var toItem: ConstraintItem
-    private var relation: ConstraintRelation?
-    private var constant: Any?
-    private var multiplier: Float = 1.0
-    private var priority: Float = 1000.0
-    private var offset: Any?
+    internal let fromItem: ConstraintItem
+    internal var toItem: ConstraintItem
+    internal var relation: ConstraintRelation?
+    internal var constant: Any?
+    internal var multiplier: Float = 1.0
+    internal var priority: Float = 1000.0
+    internal var offset: Any?
     
-    private weak var installedOnView: View?
+    internal weak var installedOnView: View?
     
-    private func addConstraint(attributes: ConstraintAttributes) -> Constraint {
+    internal func addConstraint(attributes: ConstraintAttributes) -> Constraint {
         if self.relation == nil {
             self.fromItem.attributes += attributes
         }
         return self
     }
     
-    private func constrainTo(other: ConstraintItem, relation: ConstraintRelation) -> Constraint {
+    internal func constrainTo(other: ConstraintItem, relation: ConstraintRelation) -> Constraint {
         if other.attributes != ConstraintAttributes.None {
             var toLayoutAttributes = other.attributes.layoutAttributes
             if toLayoutAttributes.count > 1 {
@@ -424,27 +423,27 @@ class Constraint {
         self.relation = relation
         return self
     }
-    private func constrainTo(other: View, relation: ConstraintRelation) -> Constraint {
+    internal func constrainTo(other: View, relation: ConstraintRelation) -> Constraint {
         return constrainTo(ConstraintItem(view: other, attributes: ConstraintAttributes.None), relation: relation)
     }
-    private func constrainTo(other: Float, relation: ConstraintRelation) -> Constraint {
+    internal func constrainTo(other: Float, relation: ConstraintRelation) -> Constraint {
         self.constant = other
         return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
-    private func constrainTo(other: CGSize, relation: ConstraintRelation) -> Constraint {
+    internal func constrainTo(other: CGSize, relation: ConstraintRelation) -> Constraint {
         self.constant = other
         return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
-    private func constrainTo(other: CGPoint, relation: ConstraintRelation) -> Constraint {
+    internal func constrainTo(other: CGPoint, relation: ConstraintRelation) -> Constraint {
         self.constant = other
         return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
-    private func constrainTo(other: EdgeInsets, relation: ConstraintRelation) -> Constraint {
+    internal func constrainTo(other: EdgeInsets, relation: ConstraintRelation) -> Constraint {
         self.constant = other
         return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
     
-    private class func closestCommonSuperviewFromView(fromView: View?, toView: View?) -> View? {
+    internal class func closestCommonSuperviewFromView(fromView: View?, toView: View?) -> View? {
         var closestCommonSuperview: View?
         var secondViewSuperview: View? = toView
         while closestCommonSuperview == nil && secondViewSuperview != nil {

@@ -21,27 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS)
-    
-import UIKit
-typealias EdgeInsets = UIEdgeInsets
-func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
-    return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
-}
-let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    
-#else
-    
-import AppKit
-struct EdgeInsets {
-    var top: CGFloat // specify amount to inset (positive) for each of the edges. values can be negative to 'outset'
-    var left: CGFloat
-    var bottom: CGFloat
-    var right: CGFloat
-}
-func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
-    return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
-}
-let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+#import "SNPConstraintItem.h"
 
-#endif
+@implementation SNPConstraintItem
+@end

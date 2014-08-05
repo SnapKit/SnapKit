@@ -16,6 +16,12 @@
 		DDC9FDAE1981B4DD009612C7 /* SnappyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC9FDAD1981B4DD009612C7 /* SnappyTests.swift */; };
 		EE1004CB198879AD006CC759 /* Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1004CA198879AD006CC759 /* Insets.swift */; };
 		EEC6EB4E1985370500C27B12 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6EB4D1985370500C27B12 /* LayoutConstraint.swift */; };
+		EEDA594B1990EB3D001A0BFC /* SNPConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDA594A1990EB3D001A0BFC /* SNPConstraint.m */; };
+		EEDA594E1990EB66001A0BFC /* SNPConstraintItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDA594D1990EB66001A0BFC /* SNPConstraintItem.m */; };
+		EEDA59511990EB76001A0BFC /* SNPConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDA59501990EB76001A0BFC /* SNPConstraintMaker.m */; };
+		EEDA59581990EC19001A0BFC /* SNPConstraint+SNPCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDA59571990EC19001A0BFC /* SNPConstraint+SNPCompatibility.m */; };
+		EEDA595D1990F0C8001A0BFC /* Constraint+SNPCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDA595C1990F0C8001A0BFC /* Constraint+SNPCompatibility.swift */; };
+		EEDA59601990F273001A0BFC /* SNPUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDA595F1990F273001A0BFC /* SNPUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +60,21 @@
 		DDC9FDA71981B4DD009612C7 /* SnappyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnappyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDC9FDAD1981B4DD009612C7 /* SnappyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappyTests.swift; sourceTree = "<group>"; };
 		EE1004CA198879AD006CC759 /* Insets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Insets.swift; sourceTree = "<group>"; };
+		EE72B5181990B81D0069CF58 /* Snappy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Snappy-Bridging-Header.h"; sourceTree = "<group>"; };
 		EEC6EB4D1985370500C27B12 /* LayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutConstraint.swift; sourceTree = "<group>"; };
+		EEDA59491990EB3D001A0BFC /* SNPConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPConstraint.h; sourceTree = "<group>"; };
+		EEDA594A1990EB3D001A0BFC /* SNPConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPConstraint.m; sourceTree = "<group>"; };
+		EEDA594C1990EB66001A0BFC /* SNPConstraintItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPConstraintItem.h; sourceTree = "<group>"; };
+		EEDA594D1990EB66001A0BFC /* SNPConstraintItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPConstraintItem.m; sourceTree = "<group>"; };
+		EEDA594F1990EB76001A0BFC /* SNPConstraintMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPConstraintMaker.h; sourceTree = "<group>"; };
+		EEDA59501990EB76001A0BFC /* SNPConstraintMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPConstraintMaker.m; sourceTree = "<group>"; };
+		EEDA59531990EC0A001A0BFC /* SNPView+SNPCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SNPView+SNPCompatibility.h"; sourceTree = "<group>"; };
+		EEDA59561990EC19001A0BFC /* SNPConstraint+SNPCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SNPConstraint+SNPCompatibility.h"; sourceTree = "<group>"; };
+		EEDA59571990EC19001A0BFC /* SNPConstraint+SNPCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SNPConstraint+SNPCompatibility.m"; sourceTree = "<group>"; };
+		EEDA595C1990F0C8001A0BFC /* Constraint+SNPCompatibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Constraint+SNPCompatibility.swift"; sourceTree = "<group>"; };
+		EEDA595E1990F273001A0BFC /* SNPUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPUtilities.h; sourceTree = "<group>"; };
+		EEDA595F1990F273001A0BFC /* SNPUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPUtilities.m; sourceTree = "<group>"; };
+		EEDA59611990F325001A0BFC /* SNPPlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SNPPlatform.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,11 +109,14 @@
 		DD03E31A1981B62D00E0DE94 /* Snappy */ = {
 			isa = PBXGroup;
 			children = (
+				EEDA59521990EBEE001A0BFC /* Objective-C Compatibility */,
+				EEDA59481990EB32001A0BFC /* Objective-C */,
 				EE1004CA198879AD006CC759 /* Insets.swift */,
 				EEC6EB4D1985370500C27B12 /* LayoutConstraint.swift */,
 				DD03E3211981B71C00E0DE94 /* Constraint.swift */,
 				DD03E3231981B72A00E0DE94 /* ConstraintMaker.swift */,
 				DD03E3291981B7BF00E0DE94 /* View.swift */,
+				EE72B5181990B81D0069CF58 /* Snappy-Bridging-Header.h */,
 			);
 			path = Snappy;
 			sourceTree = "<group>";
@@ -123,6 +146,33 @@
 				DDC9FDAD1981B4DD009612C7 /* SnappyTests.swift */,
 			);
 			path = SnappyTests;
+			sourceTree = "<group>";
+		};
+		EEDA59481990EB32001A0BFC /* Objective-C */ = {
+			isa = PBXGroup;
+			children = (
+				EEDA594C1990EB66001A0BFC /* SNPConstraintItem.h */,
+				EEDA594D1990EB66001A0BFC /* SNPConstraintItem.m */,
+				EEDA59491990EB3D001A0BFC /* SNPConstraint.h */,
+				EEDA594A1990EB3D001A0BFC /* SNPConstraint.m */,
+				EEDA594F1990EB76001A0BFC /* SNPConstraintMaker.h */,
+				EEDA59501990EB76001A0BFC /* SNPConstraintMaker.m */,
+			);
+			name = "Objective-C";
+			sourceTree = "<group>";
+		};
+		EEDA59521990EBEE001A0BFC /* Objective-C Compatibility */ = {
+			isa = PBXGroup;
+			children = (
+				EEDA59611990F325001A0BFC /* SNPPlatform.h */,
+				EEDA595E1990F273001A0BFC /* SNPUtilities.h */,
+				EEDA595F1990F273001A0BFC /* SNPUtilities.m */,
+				EEDA59531990EC0A001A0BFC /* SNPView+SNPCompatibility.h */,
+				EEDA59561990EC19001A0BFC /* SNPConstraint+SNPCompatibility.h */,
+				EEDA59571990EC19001A0BFC /* SNPConstraint+SNPCompatibility.m */,
+				EEDA595C1990F0C8001A0BFC /* Constraint+SNPCompatibility.swift */,
+			);
+			name = "Objective-C Compatibility";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,13 +275,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEDA594B1990EB3D001A0BFC /* SNPConstraint.m in Sources */,
+				EEDA59581990EC19001A0BFC /* SNPConstraint+SNPCompatibility.m in Sources */,
 				DD03E32A1981B7BF00E0DE94 /* View.swift in Sources */,
 				DD03E3221981B71C00E0DE94 /* Constraint.swift in Sources */,
 				EEC6EB4E1985370500C27B12 /* LayoutConstraint.swift in Sources */,
 				EE1004CB198879AD006CC759 /* Insets.swift in Sources */,
+				EEDA594E1990EB66001A0BFC /* SNPConstraintItem.m in Sources */,
 				DD03E3241981B72A00E0DE94 /* ConstraintMaker.swift in Sources */,
+				EEDA59601990F273001A0BFC /* SNPUtilities.m in Sources */,
 				DD03E3191981B52F00E0DE94 /* ViewController.swift in Sources */,
+				EEDA595D1990F0C8001A0BFC /* Constraint+SNPCompatibility.swift in Sources */,
 				DD03E3151981B52F00E0DE94 /* AppDelegate.swift in Sources */,
+				EEDA59511990EB76001A0BFC /* SNPConstraintMaker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,9 +404,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = SnappyExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Snappy/Snappy-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -359,9 +419,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = SnappyExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Snappy/Snappy-Bridging-Header.h";
 			};
 			name = Release;
 		};
