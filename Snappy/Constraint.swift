@@ -323,9 +323,6 @@ class Constraint {
         // get layout from
         let layoutFrom: View? = self.fromItem.view
         
-        // get layout to
-        let layoutTo: View? = self.toItem.view
-        
         // get layout relation
         let layoutRelation: NSLayoutRelation = (self.relation != nil) ? self.relation!.layoutRelation : .Equal
         
@@ -336,6 +333,12 @@ class Constraint {
             // get layout constant
             var layoutConstant: CGFloat = layoutToAttribute.snp_constantForValue(self.constant)
             layoutConstant += layoutToAttribute.snp_offsetForValue(self.offset)
+            
+            // get layout to
+            var layoutTo: View? = self.toItem.view
+            if layoutTo == nil && layoutToAttribute != .Width && layoutToAttribute != .Height {
+                layoutTo = installOnView
+            }
             
             // create layout constraint
             let layoutConstraint = LayoutConstraint(
