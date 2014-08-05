@@ -31,9 +31,12 @@ import AppKit
 /**
  * ConstraintAttributes is an options set that maps to NSLayoutAttributes.
  */
-struct ConstraintAttributes: RawOptionSet {
+struct ConstraintAttributes: RawOptionSetType {
 
     var value: UInt
+    var boolValue: Bool {
+        return self.value != 0
+    }
 
     init(_ value: UInt) {
         self.value = value
@@ -84,7 +87,7 @@ struct ConstraintAttributes: RawOptionSet {
         if (self & ConstraintAttributes.Width) {
             attrs.append(.Width)
         }
-        if (self & ConstraintAttributes.Height ){
+        if (self & ConstraintAttributes.Height) {
             attrs.append(.Height)
         }
         if (self & ConstraintAttributes.CenterX) {
@@ -99,11 +102,11 @@ struct ConstraintAttributes: RawOptionSet {
         return attrs
     }
 }
-@assignment func += (inout left: ConstraintAttributes, right: ConstraintAttributes) {
+func += (inout left: ConstraintAttributes, right: ConstraintAttributes) {
     left = (left | right)
 }
-@assignment func -= (inout left: ConstraintAttributes, right: ConstraintAttributes) {
-    left = ConstraintAttributes(left.toRaw() & ~right.toRaw())
+func -= (inout left: ConstraintAttributes, right: ConstraintAttributes) {
+    left = left & ~right
 }
 
 /**
@@ -299,15 +302,15 @@ class Constraint {
     
     func install() -> Array<LayoutConstraint> {
         var installOnView: View? = nil
-        if self.toItem.view {
+        if self.toItem.view != nil {
             installOnView = Constraint.closestCommonSuperviewFromView(self.fromItem.view, toView: self.toItem.view)
-            if !installOnView {
+            if installOnView == nil {
                 NSException(name: "Cannot Install Constraint", reason: "No common superview between views", userInfo: nil).raise()
                 return []
             }
         } else {
             installOnView = self.fromItem.view?.superview
-            if !installOnView {
+            if installOnView == nil {
                 NSException(name: "Cannot Install Constraint", reason: "Missing superview", userInfo: nil).raise()
                 return []
             }
@@ -324,7 +327,7 @@ class Constraint {
         let layoutTo: View? = self.toItem.view
         
         // get layout relation
-        let layoutRelation: NSLayoutRelation = (self.relation) ? self.relation!.layoutRelation : .Equal
+        let layoutRelation: NSLayoutRelation = (self.relation != nil) ? self.relation!.layoutRelation : .Equal
         
         for layoutFromAttribute in layoutFromAttributes {
             // get layout to attribute
@@ -396,7 +399,7 @@ class Constraint {
     private weak var installedOnView: View?
     
     private func addConstraint(attributes: ConstraintAttributes) -> Constraint {
-        if !self.relation {
+        if self.relation == nil {
             self.fromItem.attributes += attributes
         }
         return self
@@ -441,9 +444,9 @@ class Constraint {
     private class func closestCommonSuperviewFromView(fromView: View?, toView: View?) -> View? {
         var closestCommonSuperview: View?
         var secondViewSuperview: View? = toView
-        while !closestCommonSuperview && secondViewSuperview {
+        while closestCommonSuperview == nil && secondViewSuperview != nil {
             var firstViewSuperview = fromView
-            while !closestCommonSuperview && firstViewSuperview {
+            while closestCommonSuperview == nil && firstViewSuperview != nil {
                 if secondViewSuperview == firstViewSuperview {
                     closestCommonSuperview = secondViewSuperview
                 }
