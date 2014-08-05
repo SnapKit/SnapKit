@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         
         
         view1.snp_makeConstraints { make in
-            make.top.and.left.equalTo(CGPointZero).insets(padding)
+            make.top.and.left.equalTo(superview).insets(padding)
             make.size.equalTo(CGSizeMake(100, 50))
         }
         
