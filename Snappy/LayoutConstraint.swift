@@ -39,7 +39,7 @@ class LayoutConstraint: NSLayoutConstraint {
     
     internal class func layoutConstraintsInstalledOnView(view: View) -> Array<LayoutConstraint> {
         var constraints = objc_getAssociatedObject(view, &layoutConstraintsInstalledOnViewKey) as? Array<LayoutConstraint>
-        if constraints {
+        if constraints != nil {
             return constraints!
         }
         return []
