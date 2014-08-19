@@ -17,7 +17,6 @@
 		EE1004CB198879AD006CC759 /* Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1004CA198879AD006CC759 /* Insets.swift */; };
 		EEC6EB4E1985370500C27B12 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6EB4D1985370500C27B12 /* LayoutConstraint.swift */; };
 		EEDA594B1990EB3D001A0BFC /* SNPConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDA594A1990EB3D001A0BFC /* SNPConstraint.m */; };
-		EEDA594E1990EB66001A0BFC /* SNPConstraintItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDA594D1990EB66001A0BFC /* SNPConstraintItem.m */; };
 		EEDA59511990EB76001A0BFC /* SNPConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDA59501990EB76001A0BFC /* SNPConstraintMaker.m */; };
 		EEDA59581990EC19001A0BFC /* SNPConstraint+SNPCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDA59571990EC19001A0BFC /* SNPConstraint+SNPCompatibility.m */; };
 		EEDA595D1990F0C8001A0BFC /* Constraint+SNPCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDA595C1990F0C8001A0BFC /* Constraint+SNPCompatibility.swift */; };
@@ -64,8 +63,6 @@
 		EEC6EB4D1985370500C27B12 /* LayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutConstraint.swift; sourceTree = "<group>"; };
 		EEDA59491990EB3D001A0BFC /* SNPConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPConstraint.h; sourceTree = "<group>"; };
 		EEDA594A1990EB3D001A0BFC /* SNPConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPConstraint.m; sourceTree = "<group>"; };
-		EEDA594C1990EB66001A0BFC /* SNPConstraintItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPConstraintItem.h; sourceTree = "<group>"; };
-		EEDA594D1990EB66001A0BFC /* SNPConstraintItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPConstraintItem.m; sourceTree = "<group>"; };
 		EEDA594F1990EB76001A0BFC /* SNPConstraintMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPConstraintMaker.h; sourceTree = "<group>"; };
 		EEDA59501990EB76001A0BFC /* SNPConstraintMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPConstraintMaker.m; sourceTree = "<group>"; };
 		EEDA59531990EC0A001A0BFC /* SNPView+SNPCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SNPView+SNPCompatibility.h"; sourceTree = "<group>"; };
@@ -151,8 +148,6 @@
 		EEDA59481990EB32001A0BFC /* Objective-C */ = {
 			isa = PBXGroup;
 			children = (
-				EEDA594C1990EB66001A0BFC /* SNPConstraintItem.h */,
-				EEDA594D1990EB66001A0BFC /* SNPConstraintItem.m */,
 				EEDA59491990EB3D001A0BFC /* SNPConstraint.h */,
 				EEDA594A1990EB3D001A0BFC /* SNPConstraint.m */,
 				EEDA594F1990EB76001A0BFC /* SNPConstraintMaker.h */,
@@ -281,7 +276,6 @@
 				DD03E3221981B71C00E0DE94 /* Constraint.swift in Sources */,
 				EEC6EB4E1985370500C27B12 /* LayoutConstraint.swift in Sources */,
 				EE1004CB198879AD006CC759 /* Insets.swift in Sources */,
-				EEDA594E1990EB66001A0BFC /* SNPConstraintItem.m in Sources */,
 				DD03E3241981B72A00E0DE94 /* ConstraintMaker.swift in Sources */,
 				EEDA59601990F273001A0BFC /* SNPUtilities.m in Sources */,
 				DD03E3191981B52F00E0DE94 /* ViewController.swift in Sources */,

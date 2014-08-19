@@ -22,11 +22,10 @@
 //  THE SOFTWARE.
 
 #import "SNPConstraint+SNPCompatibility.h"
-#import "SNPConstraintItem.h"
 
 @interface SNPConstraint (SNPCompatibilitySwift)
 
-- (void)snp_objc_setRelationToConstraintItem:(SNPConstraintItem *)value layoutRelation:(NSLayoutRelation)layoutRelation;
+- (void)snp_objc_setRelationToConstraintItem:(id)value layoutRelation:(NSLayoutRelation)layoutRelation;
 - (void)snp_objc_setRelationToView:(SNPView *)value layoutRelation:(NSLayoutRelation)layoutRelation;
 - (void)snp_objc_setRelationToCGFloat:(CGFloat)value layoutRelation:(NSLayoutRelation)layoutRelation;
 - (void)snp_objc_setRelationToCGPoint:(CGPoint)value layoutRelation:(NSLayoutRelation)layoutRelation;
@@ -54,9 +53,7 @@
 @dynamic lessThanOrEqualTo;
 
 - (void)setRelationToValue:(id)value layoutRelation:(NSLayoutRelation)layoutRelation {
-    if([value isKindOfClass:[SNPConstraintItem class]]) {
-        [self snp_objc_setRelationToConstraintItem:value layoutRelation:layoutRelation];
-    } else if([value isKindOfClass:[SNPView class]]) {
+    if([value isKindOfClass:[SNPView class]]) {
         [self snp_objc_setRelationToView:value layoutRelation:layoutRelation];
     } else if([value isKindOfClass:NSNumber.class]) {
         CGFloat primitiveValue = [value doubleValue];
@@ -73,6 +70,8 @@
         SNPEdgeInsets primitiveValue;
         [value getValue:&primitiveValue];
         [self snp_objc_setRelationToEdgeInsets:primitiveValue layoutRelation:layoutRelation];
+    } else if([NSStringFromClass([value class]) hasSuffix:@"ConstraintItem"]) {
+        [self snp_objc_setRelationToConstraintItem:value layoutRelation:layoutRelation];
     } else {
         NSAssert(NO, @"attempting to set layout constant(s) or right hand side with unsupported value: %@", value);
     }

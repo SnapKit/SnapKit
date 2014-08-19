@@ -24,48 +24,47 @@
 #import "SNPPlatform.h"
 
 @class SNPConstraintMaker;
-@class SNPConstraintItem;
 
 @interface SNPView (SNPCompatibility)
 
 #if SNP_SHORTHAND
 
-@property (nonatomic, strong, readonly) SNPConstraintItem *left;
-@property (nonatomic, strong, readonly) SNPConstraintItem *top;
-@property (nonatomic, strong, readonly) SNPConstraintItem *right;
-@property (nonatomic, strong, readonly) SNPConstraintItem *bottom;
-@property (nonatomic, strong, readonly) SNPConstraintItem *leading;
-@property (nonatomic, strong, readonly) SNPConstraintItem *trailing;
-@property (nonatomic, strong, readonly) SNPConstraintItem *width;
-@property (nonatomic, strong, readonly) SNPConstraintItem *height;
-@property (nonatomic, strong, readonly) SNPConstraintItem *centerX;
-@property (nonatomic, strong, readonly) SNPConstraintItem *centerY;
-@property (nonatomic, strong, readonly) SNPConstraintItem *baseline;
+@property (nonatomic, strong, readonly) id left;
+@property (nonatomic, strong, readonly) id top;
+@property (nonatomic, strong, readonly) id right;
+@property (nonatomic, strong, readonly) id bottom;
+@property (nonatomic, strong, readonly) id leading;
+@property (nonatomic, strong, readonly) id trailing;
+@property (nonatomic, strong, readonly) id width;
+@property (nonatomic, strong, readonly) id height;
+@property (nonatomic, strong, readonly) id centerX;
+@property (nonatomic, strong, readonly) id centerY;
+@property (nonatomic, strong, readonly) id baseline;
 
-@property (nonatomic, strong, readonly) SNPConstraintItem *edges;
-@property (nonatomic, strong, readonly) SNPConstraintItem *size;
-@property (nonatomic, strong, readonly) SNPConstraintItem *center;
+@property (nonatomic, strong, readonly) id edges;
+@property (nonatomic, strong, readonly) id size;
+@property (nonatomic, strong, readonly) id center;
 
 - (void)makeConstraints:(void (^)(SNPConstraintMaker *make))block;
 - (void)remakeConstraints:(void (^)(SNPConstraintMaker *make))block;
 
 #else
 
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_left;
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_top;
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_right;
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_bottom;
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_leading;
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_trailing;
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_width;
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_height;
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_centerX;
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_centerY;
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_baseline;
+@property (nonatomic, strong, readonly) id snp_left;
+@property (nonatomic, strong, readonly) id snp_top;
+@property (nonatomic, strong, readonly) id snp_right;
+@property (nonatomic, strong, readonly) id snp_bottom;
+@property (nonatomic, strong, readonly) id snp_leading;
+@property (nonatomic, strong, readonly) id snp_trailing;
+@property (nonatomic, strong, readonly) id snp_width;
+@property (nonatomic, strong, readonly) id snp_height;
+@property (nonatomic, strong, readonly) id snp_centerX;
+@property (nonatomic, strong, readonly) id snp_centerY;
+@property (nonatomic, strong, readonly) id snp_baseline;
 
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_edges;
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_size;
-@property (nonatomic, strong, readonly) SNPConstraintItem *snp_center;
+@property (nonatomic, strong, readonly) id snp_edges;
+@property (nonatomic, strong, readonly) id snp_size;
+@property (nonatomic, strong, readonly) id snp_center;
 
 - (void)snp_makeConstraints:(void (^)(SNPConstraintMaker *make))block;
 - (void)snp_remakeConstraints:(void (^)(SNPConstraintMaker *make))block;

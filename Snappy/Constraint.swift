@@ -30,11 +30,15 @@ import AppKit
 /**
  * ConstraintAttributes is an options set that maps to NSLayoutAttributes.
  */
-struct ConstraintAttributes: RawOptionSetType {
+struct ConstraintAttributes: RawOptionSetType, BooleanType {
 
     var value: UInt
     var boolValue: Bool {
         return self.value != 0
+    }
+
+    static var allZeros: ConstraintAttributes {
+        return ConstraintAttributes(UInt.allZeros)
     }
 
     init(_ value: UInt) {
@@ -101,6 +105,18 @@ struct ConstraintAttributes: RawOptionSetType {
         return attrs
     }
 }
+func &(lhs: ConstraintAttributes, rhs: ConstraintAttributes) -> ConstraintAttributes {
+    return ConstraintAttributes(lhs.toRaw() & rhs.toRaw())
+}
+func |(lhs: ConstraintAttributes, rhs: ConstraintAttributes) -> ConstraintAttributes {
+    return ConstraintAttributes(lhs.toRaw() | rhs.toRaw())
+}
+func ^(lhs: ConstraintAttributes, rhs: ConstraintAttributes) -> ConstraintAttributes {
+    return ConstraintAttributes(lhs.toRaw() ^ rhs.toRaw())
+}
+prefix func ~(lhs: ConstraintAttributes) -> ConstraintAttributes {
+    return ConstraintAttributes(~lhs.toRaw())
+}
 func += (inout left: ConstraintAttributes, right: ConstraintAttributes) {
     left = (left | right)
 }
@@ -131,15 +147,15 @@ enum ConstraintRelation: Int {
 /**
  * ConstraintItem is a class that is used while building constraints.
  */
-class ConstraintItem: SNPConstraintItem {
+class ConstraintItem {
     
     init(view: View?, attributes: ConstraintAttributes) {
         self.view = view
         self.attributes = attributes
     }
     
-    internal weak var view: View?
-    internal var attributes: ConstraintAttributes
+    weak var view: View?
+    var attributes: ConstraintAttributes
 }
 
 /**
