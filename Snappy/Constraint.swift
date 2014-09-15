@@ -340,7 +340,7 @@ class Constraint {
             
             // create layout constraint
             let layoutConstraint = LayoutConstraint(
-                item: layoutFrom,
+                item: layoutFrom!,
                 attribute: layoutFromAttribute,
                 relatedBy: layoutRelation,
                 toItem: layoutTo,
