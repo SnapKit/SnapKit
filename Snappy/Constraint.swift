@@ -523,7 +523,18 @@ private extension NSLayoutAttribute {
                 return -insets.bottom
             }
         }
-        
+        // EdgeOutsets
+        else if let outsets = value as? EdgeInsets {
+            if self == .Left {
+                return -outsets.left
+            } else if self == .Top {
+                return -outsets.top
+            } else if self == .Right {
+                return outsets.right
+            } else if self == .Bottom {
+                return outsets.bottom
+            }
+        }
         return CGFloat(0)
     }
     
