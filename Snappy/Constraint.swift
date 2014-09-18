@@ -31,7 +31,7 @@ import AppKit
 /**
  * ConstraintAttributes is an options set that maps to NSLayoutAttributes.
  */
-struct ConstraintAttributes: RawOptionSetType {
+struct ConstraintAttributes: RawOptionSetType, BooleanType {
 
     var value: UInt
     var boolValue: Bool {
@@ -43,6 +43,7 @@ struct ConstraintAttributes: RawOptionSetType {
     }
     func toRaw() -> UInt { return self.value }
     func getLogicValue() -> Bool { return self.value != 0 }
+    static var allZeros: ConstraintAttributes { return self(0) }
     static func fromRaw(raw: UInt) -> ConstraintAttributes? { return self(raw) }
     static func fromMask(raw: UInt) -> ConstraintAttributes { return self(raw) }
     static func convertFromNilLiteral() -> ConstraintAttributes { return self(0) }
