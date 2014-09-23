@@ -1,5 +1,4 @@
 //
-//  Constraint.swift
 //  Snappy
 //
 //  Copyright (c) 2011-2014 Masonry Team - https://github.com/Masonry
@@ -29,279 +28,163 @@ import AppKit
 #endif
 
 /**
- * ConstraintAttributes is an options set that maps to NSLayoutAttributes.
- */
-struct ConstraintAttributes: RawOptionSetType, BooleanType {
-
-    var value: UInt
-    var boolValue: Bool {
-        return self.value != 0
-    }
-
-    init(_ value: UInt) {
-        self.value = value
-    }
-    func toRaw() -> UInt { return self.value }
-    func getLogicValue() -> Bool { return self.value != 0 }
-    static var allZeros: ConstraintAttributes { return self(0) }
-    static func fromRaw(raw: UInt) -> ConstraintAttributes? { return self(raw) }
-    static func fromMask(raw: UInt) -> ConstraintAttributes { return self(raw) }
-    static func convertFromNilLiteral() -> ConstraintAttributes { return self(0) }
-    
-    static var None: ConstraintAttributes { return self(0) }
-    static var Left: ConstraintAttributes { return self(1) }
-    static var Top: ConstraintAttributes {  return self(2) }
-    static var Right: ConstraintAttributes { return self(4) }
-    static var Bottom: ConstraintAttributes { return self(8) }
-    static var Leading: ConstraintAttributes { return self(16) }
-    static var Trailing: ConstraintAttributes { return self(32) }
-    static var Width: ConstraintAttributes { return self(64) }
-    static var Height: ConstraintAttributes { return self(128) }
-    static var CenterX: ConstraintAttributes { return self(256) }
-    static var CenterY: ConstraintAttributes { return self(512) }
-    static var Baseline: ConstraintAttributes { return self(1024) }
-    
-    static var Edges: ConstraintAttributes { return self(15) }
-    static var Size: ConstraintAttributes { return self(192) }
-    static var Center: ConstraintAttributes { return self(768) }
-    
-    var layoutAttributes:Array<NSLayoutAttribute> {
-        var attrs: Array<NSLayoutAttribute> = []
-        if (self & ConstraintAttributes.Left) {
-            attrs.append(.Left)
-        }
-        if (self & ConstraintAttributes.Top) {
-            attrs.append(.Top)
-        }
-        if (self & ConstraintAttributes.Right) {
-            attrs.append(.Right)
-        }
-        if (self & ConstraintAttributes.Bottom) {
-            attrs.append(.Bottom)
-        }
-        if (self & ConstraintAttributes.Leading) {
-            attrs.append(.Leading)
-        }
-        if (self & ConstraintAttributes.Trailing) {
-            attrs.append(.Trailing)
-        }
-        if (self & ConstraintAttributes.Width) {
-            attrs.append(.Width)
-        }
-        if (self & ConstraintAttributes.Height) {
-            attrs.append(.Height)
-        }
-        if (self & ConstraintAttributes.CenterX) {
-            attrs.append(.CenterX)
-        }
-        if (self & ConstraintAttributes.CenterY) {
-            attrs.append(.CenterY)
-        }
-        if (self & ConstraintAttributes.Baseline) {
-            attrs.append(.Baseline)
-        }
-        return attrs
-    }
-}
-func += (inout left: ConstraintAttributes, right: ConstraintAttributes) {
-    left = (left | right)
-}
-func -= (inout left: ConstraintAttributes, right: ConstraintAttributes) {
-    left = left & ~right
-}
-
-/**
- * ConstraintRelation is an Int enum that maps to NSLayoutRelation.
- */
-enum ConstraintRelation: Int {
-    case Equal = 1, LessThanOrEqualTo, GreaterThanOrEqualTo
-    
-    var layoutRelation: NSLayoutRelation {
-        get {
-            switch(self) {
-            case .LessThanOrEqualTo:
-                return .LessThanOrEqual
-            case .GreaterThanOrEqualTo:
-                return .GreaterThanOrEqual
-            default:
-                return .Equal
-            }
-        }
-    }
-}
-
-/**
- * ConstraintItem is a class that is used while building constraints.
- */
-class ConstraintItem {
-    
-    init(view: View?, attributes: ConstraintAttributes) {
-        self.view = view
-        self.attributes = attributes
-    }
-    
-    internal weak var view: View?
-    internal var attributes: ConstraintAttributes
-}
-
-/**
  * Constraint is a single item that defines all the properties for a single ConstraintMaker chain
  */
-class Constraint {
-    var left: Constraint { return addConstraint(ConstraintAttributes.Left) }
-    var top: Constraint { return addConstraint(ConstraintAttributes.Top) }
-    var right: Constraint { return addConstraint(ConstraintAttributes.Right) }
-    var bottom: Constraint { return addConstraint(ConstraintAttributes.Bottom) }
-    var leading: Constraint { return addConstraint(ConstraintAttributes.Leading) }
-    var trailing: Constraint { return addConstraint(ConstraintAttributes.Trailing) }
-    var width: Constraint { return addConstraint(ConstraintAttributes.Width) }
-    var height: Constraint { return addConstraint(ConstraintAttributes.Height) }
-    var centerX: Constraint { return addConstraint(ConstraintAttributes.CenterX) }
-    var centerY: Constraint { return addConstraint(ConstraintAttributes.CenterY) }
-    var baseline: Constraint { return addConstraint(ConstraintAttributes.Baseline) }
+public class Constraint {
+    public var left: Constraint { return addConstraint(ConstraintAttributes.Left) }
+    public var top: Constraint { return addConstraint(ConstraintAttributes.Top) }
+    public var right: Constraint { return addConstraint(ConstraintAttributes.Right) }
+    public var bottom: Constraint { return addConstraint(ConstraintAttributes.Bottom) }
+    public var leading: Constraint { return addConstraint(ConstraintAttributes.Leading) }
+    public var trailing: Constraint { return addConstraint(ConstraintAttributes.Trailing) }
+    public var width: Constraint { return addConstraint(ConstraintAttributes.Width) }
+    public var height: Constraint { return addConstraint(ConstraintAttributes.Height) }
+    public var centerX: Constraint { return addConstraint(ConstraintAttributes.CenterX) }
+    public var centerY: Constraint { return addConstraint(ConstraintAttributes.CenterY) }
+    public var baseline: Constraint { return addConstraint(ConstraintAttributes.Baseline) }
     
-    var and: Constraint { return self }
-    var with: Constraint { return self }
+    public var and: Constraint { return self }
+    public var with: Constraint { return self }
     
     // MARK: initializer
     
-    init(fromItem: ConstraintItem) {
+    internal init(fromItem: ConstraintItem) {
         self.fromItem = fromItem
         self.toItem = ConstraintItem(view: nil, attributes: ConstraintAttributes.None)
     }
     
     // MARK: equalTo
     
-    func equalTo(other: ConstraintItem) -> Constraint {
+    public func equalTo(other: ConstraintItem) -> Constraint {
         return constrainTo(other, relation: .Equal)
     }
-    func equalTo(other: View) -> Constraint {
+    public func equalTo(other: View) -> Constraint {
         return constrainTo(other, relation: .Equal)
     }
-    func equalTo(other: Float) -> Constraint {
+    public func equalTo(other: Float) -> Constraint {
         return constrainTo(other, relation: .Equal)
     }
-    func equalTo(other: Int) -> Constraint {
+    public func equalTo(other: Int) -> Constraint {
         return constrainTo(Float(other), relation: .Equal)
     }
-    func equalTo(other: CGSize) -> Constraint {
+    public func equalTo(other: CGSize) -> Constraint {
         return constrainTo(other, relation: .Equal)
     }
-    func equalTo(other: CGPoint) -> Constraint {
+    public func equalTo(other: CGPoint) -> Constraint {
         return constrainTo(other, relation: .Equal)
     }
-    func equalTo(other: EdgeInsets) -> Constraint {
+    public func equalTo(other: EdgeInsets) -> Constraint {
         return constrainTo(other, relation: .Equal)
     }
     
     // MARK: lessThanOrEqualTo
     
-    func lessThanOrEqualTo(other: ConstraintItem) -> Constraint {
+    public func lessThanOrEqualTo(other: ConstraintItem) -> Constraint {
         return constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    func lessThanOrEqualTo(other: View) -> Constraint {
+    public func lessThanOrEqualTo(other: View) -> Constraint {
         return constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    func lessThanOrEqualTo(other: Float) -> Constraint {
+    public func lessThanOrEqualTo(other: Float) -> Constraint {
         return constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    func lessThanOrEqualTo(other: Int) -> Constraint {
+    public func lessThanOrEqualTo(other: Int) -> Constraint {
         return constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
-    func lessThanOrEqualTo(other: CGSize) -> Constraint {
+    public func lessThanOrEqualTo(other: CGSize) -> Constraint {
         return constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    func lessThanOrEqualTo(other: CGPoint) -> Constraint {
+    public func lessThanOrEqualTo(other: CGPoint) -> Constraint {
         return constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    func lessThanOrEqualTo(other: EdgeInsets) -> Constraint {
+    public func lessThanOrEqualTo(other: EdgeInsets) -> Constraint {
         return constrainTo(other, relation: .LessThanOrEqualTo)
     }
     
     // MARK: greaterThanOrEqualTo
     
-    func greaterThanOrEqualTo(other: ConstraintItem) -> Constraint {
+    public func greaterThanOrEqualTo(other: ConstraintItem) -> Constraint {
         return constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     func greaterThanOrEqualTo(other: View) -> Constraint {
         return constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    func greaterThanOrEqualTo(other: Float) -> Constraint {
+    public func greaterThanOrEqualTo(other: Float) -> Constraint {
         return constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    func greaterThanOrEqualTo(other: Int) -> Constraint {
+    public func greaterThanOrEqualTo(other: Int) -> Constraint {
         return constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
-    func greaterThanOrEqualTo(other: CGSize) -> Constraint {
+    public func greaterThanOrEqualTo(other: CGSize) -> Constraint {
         return constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    func greaterThanOrEqualTo(other: CGPoint) -> Constraint {
+    public func greaterThanOrEqualTo(other: CGPoint) -> Constraint {
         return constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    func greaterThanOrEqualTo(other: EdgeInsets) -> Constraint {
+    public func greaterThanOrEqualTo(other: EdgeInsets) -> Constraint {
         return constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     
     // MARK: multiplier
     
-    func multipliedBy(amount: Float) -> Constraint {
+    public func multipliedBy(amount: Float) -> Constraint {
         self.multiplier = amount
         return self
     }
-    func dividedBy(amount: Float) -> Constraint {
+    public func dividedBy(amount: Float) -> Constraint {
         self.multiplier = 1.0 / amount;
         return self
     }
     
     // MARK: priority
     
-    func priority(priority: Float) -> Constraint {
+    public func priority(priority: Float) -> Constraint {
         self.priority = priority
         return self
     }
-    func priorityRequired() -> Constraint {
+    public func priorityRequired() -> Constraint {
         return priority(1000.0)
     }
-    func priorityHigh() -> Constraint {
+    public func priorityHigh() -> Constraint {
         return priority(750.0)
     }
-    func priorityLow() -> Constraint {
+    public func priorityLow() -> Constraint {
         return priority(250.0)
     }
     
     // MARK: offset
     
-    func offset(amount: Float) -> Constraint {
+    public func offset(amount: Float) -> Constraint {
         self.offset = amount
         return self
     }
-    func offset(amount: Int) -> Constraint {
+    public func offset(amount: Int) -> Constraint {
         self.offset = amount
         return self
     }
-    func offset(amount: CGPoint) -> Constraint {
+    public func offset(amount: CGPoint) -> Constraint {
         self.offset = amount
         return self
     }
-    func offset(amount: CGSize) -> Constraint {
+    public func offset(amount: CGSize) -> Constraint {
         self.offset = amount
         return self
     }
-    func offset(amount: EdgeInsets) -> Constraint {
+    public func offset(amount: EdgeInsets) -> Constraint {
         self.offset = amount
         return self
     }
     
     // MARK: insets
     
-    func insets(amount: EdgeInsets) -> Constraint {
+    public func insets(amount: EdgeInsets) -> Constraint {
         self.offset = amount
         return self
     }
     
     // MARK: install
     
-    func install() -> Array<LayoutConstraint> {
+    public func install() -> Array<LayoutConstraint> {
         var installOnView: View? = nil
         if self.toItem.view != nil {
             installOnView = Constraint.closestCommonSuperviewFromView(self.fromItem.view, toView: self.toItem.view)
@@ -343,7 +226,7 @@ class Constraint {
             
             // create layout constraint
             let layoutConstraint = LayoutConstraint(
-                item: layoutFrom,
+                item: layoutFrom!,
                 attribute: layoutFromAttribute,
                 relatedBy: layoutRelation,
                 toItem: layoutTo,
@@ -368,12 +251,12 @@ class Constraint {
     
     // MARK: uninstall
     
-    func uninstall() {
+    public func uninstall() {
         if let view = self.installedOnView {
             #if os(iOS)
-            var installedConstraints = view.constraints()
-            #else
-            var installedConstraints = view.constraints
+                var installedConstraints = view.constraints()
+                #else
+                var installedConstraints = view.constraints
             #endif
             var constraintsToRemove: Array<LayoutConstraint> = []
             for installedConstraint in installedConstraints {
@@ -464,20 +347,20 @@ class Constraint {
 
 private extension NSLayoutAttribute {
     
-    func snp_offsetForValue(value: Any?) -> CGFloat {
+    private func snp_offsetForValue(value: Any?) -> CGFloat {
         // Float
         if let float = value as? Float {
             return CGFloat(float)
         }
-        // Int
+            // Int
         else if let int = value as? Int {
             return CGFloat(int)
         }
-        // CGFloat
+            // CGFloat
         else if let float = value as? CGFloat {
             return float
         }
-        // CGSize
+            // CGSize
         else if let size = value as? CGSize {
             if self == .Width {
                 return size.width
@@ -485,7 +368,7 @@ private extension NSLayoutAttribute {
                 return size.height
             }
         }
-        // CGPoint
+            // CGPoint
         else if let point = value as? CGPoint {
             if self == .Left || self == .CenterX {
                 return point.x
@@ -497,7 +380,7 @@ private extension NSLayoutAttribute {
                 return -point.y
             }
         }
-        // EdgeInsets
+            // EdgeInsets
         else if let insets = value as? EdgeInsets {
             if self == .Left {
                 return insets.left
@@ -513,20 +396,20 @@ private extension NSLayoutAttribute {
         return CGFloat(0)
     }
     
-    func snp_constantForValue(value: Any?) -> CGFloat {
+    private func snp_constantForValue(value: Any?) -> CGFloat {
         // Float
         if let float = value as? Float {
             return CGFloat(float)
         }
-        // Int
+            // Int
         else if let int = value as? Int {
             return CGFloat(int)
         }
-        // CGFloat
+            // CGFloat
         else if let float = value as? CGFloat {
             return float
         }
-        // CGSize
+            // CGSize
         else if let size = value as? CGSize {
             if self == .Width {
                 return size.width
@@ -534,7 +417,7 @@ private extension NSLayoutAttribute {
                 return size.height
             }
         }
-        // CGPoint
+            // CGPoint
         else if let point = value as? CGPoint {
             if self == .Left || self == .CenterX {
                 return point.x
@@ -546,7 +429,7 @@ private extension NSLayoutAttribute {
                 return point.y
             }
         }
-        // EdgeInsets
+            // EdgeInsets
         else if let insets = value as? EdgeInsets {
             if self == .Left {
                 return insets.left

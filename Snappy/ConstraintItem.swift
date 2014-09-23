@@ -28,24 +28,15 @@ import AppKit
 #endif
 
 /**
-* LayoutConstraint is a subclass of NSLayoutConstraint to assist Snappy and also provide better debugging
-*/
-public class LayoutConstraint: NSLayoutConstraint {
+ * ConstraintItem is a class that is used while building constraints.
+ */
+public class ConstraintItem {
     
-    // internal
-    
-    internal var constraint: Constraint?
-    
-    internal class func layoutConstraintsInstalledOnView(view: View) -> Array<LayoutConstraint> {
-        var constraints = objc_getAssociatedObject(view, &layoutConstraintsInstalledOnViewKey) as? Array<LayoutConstraint>
-        if constraints != nil {
-            return constraints!
-        }
-        return []
+    internal init(view: View?, attributes: ConstraintAttributes) {
+        self.view = view
+        self.attributes = attributes
     }
-    internal class func setLayoutConstraints(layoutConstraints: Array<LayoutConstraint>, installedOnView view: View) {
-        objc_setAssociatedObject(view, &layoutConstraintsInstalledOnViewKey, layoutConstraints, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
-    }
+    
+    internal weak var view: View?
+    internal var attributes: ConstraintAttributes
 }
-
-private var layoutConstraintsInstalledOnViewKey = ""

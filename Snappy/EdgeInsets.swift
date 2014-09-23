@@ -23,29 +23,21 @@
 
 #if os(iOS)
 import UIKit
+public typealias EdgeInsets = UIEdgeInsets
+public func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
+    return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
+}
+public let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 #else
 import AppKit
-#endif
-
-/**
-* LayoutConstraint is a subclass of NSLayoutConstraint to assist Snappy and also provide better debugging
-*/
-public class LayoutConstraint: NSLayoutConstraint {
-    
-    // internal
-    
-    internal var constraint: Constraint?
-    
-    internal class func layoutConstraintsInstalledOnView(view: View) -> Array<LayoutConstraint> {
-        var constraints = objc_getAssociatedObject(view, &layoutConstraintsInstalledOnViewKey) as? Array<LayoutConstraint>
-        if constraints != nil {
-            return constraints!
-        }
-        return []
-    }
-    internal class func setLayoutConstraints(layoutConstraints: Array<LayoutConstraint>, installedOnView view: View) {
-        objc_setAssociatedObject(view, &layoutConstraintsInstalledOnViewKey, layoutConstraints, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
-    }
+public struct EdgeInsets {
+    public var top: CGFloat // specify amount to inset (positive) for each of the edges. values can be negative to 'outset'
+    public var left: CGFloat
+    public var bottom: CGFloat
+    public var right: CGFloat
 }
-
-private var layoutConstraintsInstalledOnViewKey = ""
+public func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
+    return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
+}
+public let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+#endif

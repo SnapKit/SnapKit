@@ -7,65 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DD03E3151981B52F00E0DE94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03E30F1981B52F00E0DE94 /* AppDelegate.swift */; };
-		DD03E3171981B52F00E0DE94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD03E3121981B52F00E0DE94 /* Images.xcassets */; };
-		DD03E3191981B52F00E0DE94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03E3141981B52F00E0DE94 /* ViewController.swift */; };
-		DD03E3221981B71C00E0DE94 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03E3211981B71C00E0DE94 /* Constraint.swift */; };
-		DD03E3241981B72A00E0DE94 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03E3231981B72A00E0DE94 /* ConstraintMaker.swift */; };
-		DD03E32A1981B7BF00E0DE94 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03E3291981B7BF00E0DE94 /* View.swift */; };
-		DDC9FDAE1981B4DD009612C7 /* SnappyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC9FDAD1981B4DD009612C7 /* SnappyTests.swift */; };
-		EE1004CB198879AD006CC759 /* Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1004CA198879AD006CC759 /* Insets.swift */; };
-		EEC6EB4E1985370500C27B12 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6EB4D1985370500C27B12 /* LayoutConstraint.swift */; };
+		EEBCC9F019CC64F80083B827 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9EF19CC64F70083B827 /* EdgeInsets.swift */; };
+		EEBCC9F219CC65050083B827 /* View+Snappy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F119CC65040083B827 /* View+Snappy.swift */; };
+		EEBCC9F419CC65110083B827 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F319CC65110083B827 /* ConstraintAttributes.swift */; };
+		EEBCC9F619CC65200083B827 /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F519CC65200083B827 /* ConstraintRelation.swift */; };
+		EEBCC9F819CC65260083B827 /* ConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F719CC65260083B827 /* ConstraintItem.swift */; };
+		EEBCC9FC19CC65430083B827 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9FB19CC65430083B827 /* ConstraintMaker.swift */; };
+		EEBCC9FE19CC65510083B827 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9FD19CC65510083B827 /* LayoutConstraint.swift */; };
+		EEBCCA0019CC66020083B827 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9FF19CC66020083B827 /* Constraint.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		DD03E31B1981B66800E0DE94 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DDC9FD8D1981B4DD009612C7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DDC9FD941981B4DD009612C7;
-			remoteInfo = Snappy;
-		};
-		DD03E31D1981B66800E0DE94 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DDC9FD8D1981B4DD009612C7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DDC9FD941981B4DD009612C7;
-			remoteInfo = Snappy;
-		};
-		DDC9FDA81981B4DD009612C7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DDC9FD8D1981B4DD009612C7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DDC9FD941981B4DD009612C7;
-			remoteInfo = Snappy;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		DD03E30F1981B52F00E0DE94 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DD03E3121981B52F00E0DE94 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DD03E3131981B52F00E0DE94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DD03E3141981B52F00E0DE94 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DD03E3211981B71C00E0DE94 /* Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
-		DD03E3231981B72A00E0DE94 /* ConstraintMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMaker.swift; sourceTree = "<group>"; };
-		DD03E3291981B7BF00E0DE94 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		DDC9FD951981B4DD009612C7 /* Snappy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snappy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDC9FDA71981B4DD009612C7 /* SnappyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnappyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDC9FDAD1981B4DD009612C7 /* SnappyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappyTests.swift; sourceTree = "<group>"; };
-		EE1004CA198879AD006CC759 /* Insets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Insets.swift; sourceTree = "<group>"; };
-		EEC6EB4D1985370500C27B12 /* LayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutConstraint.swift; sourceTree = "<group>"; };
+		EE91728119CB304E007888CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE91728219CB304E007888CF /* Snappy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Snappy.h; sourceTree = "<group>"; };
+		EE91728B19CB304E007888CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE91728C19CB304E007888CF /* SnappyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappyTests.swift; sourceTree = "<group>"; };
+		EEBCC9D819CC627D0083B827 /* Snappy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Snappy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEBCC9E219CC627E0083B827 /* SnappyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnappyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEBCC9EF19CC64F70083B827 /* EdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
+		EEBCC9F119CC65040083B827 /* View+Snappy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Snappy.swift"; sourceTree = "<group>"; };
+		EEBCC9F319CC65110083B827 /* ConstraintAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintAttributes.swift; sourceTree = "<group>"; };
+		EEBCC9F519CC65200083B827 /* ConstraintRelation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintRelation.swift; sourceTree = "<group>"; };
+		EEBCC9F719CC65260083B827 /* ConstraintItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintItem.swift; sourceTree = "<group>"; };
+		EEBCC9FB19CC65430083B827 /* ConstraintMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMaker.swift; sourceTree = "<group>"; };
+		EEBCC9FD19CC65510083B827 /* LayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutConstraint.swift; sourceTree = "<group>"; };
+		EEBCC9FF19CC66020083B827 /* Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		DDC9FD921981B4DD009612C7 /* Frameworks */ = {
+		EEBCC9D419CC627D0083B827 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DDC9FDA41981B4DD009612C7 /* Frameworks */ = {
+		EEBCC9DF19CC627D0083B827 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -75,35 +52,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DD03E30E1981B52F00E0DE94 /* SnappyExample */ = {
-			isa = PBXGroup;
-			children = (
-				DD03E30F1981B52F00E0DE94 /* AppDelegate.swift */,
-				DD03E3121981B52F00E0DE94 /* Images.xcassets */,
-				DD03E3131981B52F00E0DE94 /* Info.plist */,
-				DD03E3141981B52F00E0DE94 /* ViewController.swift */,
-			);
-			path = SnappyExample;
-			sourceTree = "<group>";
-		};
-		DD03E31A1981B62D00E0DE94 /* Snappy */ = {
-			isa = PBXGroup;
-			children = (
-				EE1004CA198879AD006CC759 /* Insets.swift */,
-				EEC6EB4D1985370500C27B12 /* LayoutConstraint.swift */,
-				DD03E3211981B71C00E0DE94 /* Constraint.swift */,
-				DD03E3231981B72A00E0DE94 /* ConstraintMaker.swift */,
-				DD03E3291981B7BF00E0DE94 /* View.swift */,
-			);
-			path = Snappy;
-			sourceTree = "<group>";
-		};
 		DDC9FD8C1981B4DD009612C7 = {
 			isa = PBXGroup;
 			children = (
-				DD03E31A1981B62D00E0DE94 /* Snappy */,
-				DD03E30E1981B52F00E0DE94 /* SnappyExample */,
-				DDC9FDAA1981B4DD009612C7 /* SnappyTests */,
+				EE91727F19CB304E007888CF /* Snappy */,
+				EE91728919CB304E007888CF /* SnappyTests */,
 				DDC9FD961981B4DD009612C7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -111,30 +64,75 @@
 		DDC9FD961981B4DD009612C7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DDC9FD951981B4DD009612C7 /* Snappy.app */,
-				DDC9FDA71981B4DD009612C7 /* SnappyTests.xctest */,
+				EEBCC9D819CC627D0083B827 /* Snappy.framework */,
+				EEBCC9E219CC627E0083B827 /* SnappyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DDC9FDAA1981B4DD009612C7 /* SnappyTests */ = {
+		EE91727F19CB304E007888CF /* Snappy */ = {
 			isa = PBXGroup;
 			children = (
-				DDC9FDAD1981B4DD009612C7 /* SnappyTests.swift */,
+				EE91728219CB304E007888CF /* Snappy.h */,
+				EEBCC9F119CC65040083B827 /* View+Snappy.swift */,
+				EEBCC9FB19CC65430083B827 /* ConstraintMaker.swift */,
+				EEBCC9FF19CC66020083B827 /* Constraint.swift */,
+				EEBCC9F719CC65260083B827 /* ConstraintItem.swift */,
+				EEBCC9F319CC65110083B827 /* ConstraintAttributes.swift */,
+				EEBCC9F519CC65200083B827 /* ConstraintRelation.swift */,
+				EEBCC9FD19CC65510083B827 /* LayoutConstraint.swift */,
+				EEBCC9EF19CC64F70083B827 /* EdgeInsets.swift */,
+				EE91728019CB304E007888CF /* Supporting Files */,
+			);
+			path = Snappy;
+			sourceTree = "<group>";
+		};
+		EE91728019CB304E007888CF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EE91728119CB304E007888CF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EE91728919CB304E007888CF /* SnappyTests */ = {
+			isa = PBXGroup;
+			children = (
+				EE91728C19CB304E007888CF /* SnappyTests.swift */,
+				EE91728A19CB304E007888CF /* Supporting Files */,
 			);
 			path = SnappyTests;
 			sourceTree = "<group>";
 		};
+		EE91728A19CB304E007888CF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EE91728B19CB304E007888CF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		EEBCC9D519CC627D0083B827 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		DDC9FD941981B4DD009612C7 /* Snappy */ = {
+		EEBCC9D719CC627D0083B827 /* Snappy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DDC9FDB11981B4DD009612C7 /* Build configuration list for PBXNativeTarget "Snappy" */;
+			buildConfigurationList = EEBCC9E819CC627E0083B827 /* Build configuration list for PBXNativeTarget "Snappy" */;
 			buildPhases = (
-				DDC9FD911981B4DD009612C7 /* Sources */,
-				DDC9FD921981B4DD009612C7 /* Frameworks */,
-				DDC9FD931981B4DD009612C7 /* Resources */,
+				EEBCC9D319CC627D0083B827 /* Sources */,
+				EEBCC9D419CC627D0083B827 /* Frameworks */,
+				EEBCC9D519CC627D0083B827 /* Headers */,
+				EEBCC9D619CC627D0083B827 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -142,27 +140,24 @@
 			);
 			name = Snappy;
 			productName = Snappy;
-			productReference = DDC9FD951981B4DD009612C7 /* Snappy.app */;
-			productType = "com.apple.product-type.application";
+			productReference = EEBCC9D819CC627D0083B827 /* Snappy.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		DDC9FDA61981B4DD009612C7 /* SnappyTests */ = {
+		EEBCC9E119CC627D0083B827 /* SnappyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DDC9FDB41981B4DD009612C7 /* Build configuration list for PBXNativeTarget "SnappyTests" */;
+			buildConfigurationList = EEBCC9EB19CC627E0083B827 /* Build configuration list for PBXNativeTarget "SnappyTests" */;
 			buildPhases = (
-				DDC9FDA31981B4DD009612C7 /* Sources */,
-				DDC9FDA41981B4DD009612C7 /* Frameworks */,
-				DDC9FDA51981B4DD009612C7 /* Resources */,
+				EEBCC9DE19CC627D0083B827 /* Sources */,
+				EEBCC9DF19CC627D0083B827 /* Frameworks */,
+				EEBCC9E019CC627D0083B827 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DDC9FDA91981B4DD009612C7 /* PBXTargetDependency */,
-				DD03E31C1981B66800E0DE94 /* PBXTargetDependency */,
-				DD03E31E1981B66800E0DE94 /* PBXTargetDependency */,
 			);
 			name = SnappyTests;
 			productName = SnappyTests;
-			productReference = DDC9FDA71981B4DD009612C7 /* SnappyTests.xctest */;
+			productReference = EEBCC9E219CC627E0083B827 /* SnappyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -174,12 +169,11 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Jonas Budelmann";
 				TargetAttributes = {
-					DDC9FD941981B4DD009612C7 = {
+					EEBCC9D719CC627D0083B827 = {
 						CreatedOnToolsVersion = 6.0;
 					};
-					DDC9FDA61981B4DD009612C7 = {
+					EEBCC9E119CC627D0083B827 = {
 						CreatedOnToolsVersion = 6.0;
-						TestTargetID = DDC9FD941981B4DD009612C7;
 					};
 				};
 			};
@@ -196,22 +190,21 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DDC9FD941981B4DD009612C7 /* Snappy */,
-				DDC9FDA61981B4DD009612C7 /* SnappyTests */,
+				EEBCC9D719CC627D0083B827 /* Snappy */,
+				EEBCC9E119CC627D0083B827 /* SnappyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		DDC9FD931981B4DD009612C7 /* Resources */ = {
+		EEBCC9D619CC627D0083B827 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD03E3171981B52F00E0DE94 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DDC9FDA51981B4DD009612C7 /* Resources */ = {
+		EEBCC9E019CC627D0083B827 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -221,47 +214,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		DDC9FD911981B4DD009612C7 /* Sources */ = {
+		EEBCC9D319CC627D0083B827 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD03E32A1981B7BF00E0DE94 /* View.swift in Sources */,
-				DD03E3221981B71C00E0DE94 /* Constraint.swift in Sources */,
-				EEC6EB4E1985370500C27B12 /* LayoutConstraint.swift in Sources */,
-				EE1004CB198879AD006CC759 /* Insets.swift in Sources */,
-				DD03E3241981B72A00E0DE94 /* ConstraintMaker.swift in Sources */,
-				DD03E3191981B52F00E0DE94 /* ViewController.swift in Sources */,
-				DD03E3151981B52F00E0DE94 /* AppDelegate.swift in Sources */,
+				EEBCC9F019CC64F80083B827 /* EdgeInsets.swift in Sources */,
+				EEBCC9F619CC65200083B827 /* ConstraintRelation.swift in Sources */,
+				EEBCC9F419CC65110083B827 /* ConstraintAttributes.swift in Sources */,
+				EEBCC9FE19CC65510083B827 /* LayoutConstraint.swift in Sources */,
+				EEBCC9FC19CC65430083B827 /* ConstraintMaker.swift in Sources */,
+				EEBCC9F219CC65050083B827 /* View+Snappy.swift in Sources */,
+				EEBCCA0019CC66020083B827 /* Constraint.swift in Sources */,
+				EEBCC9F819CC65260083B827 /* ConstraintItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DDC9FDA31981B4DD009612C7 /* Sources */ = {
+		EEBCC9DE19CC627D0083B827 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDC9FDAE1981B4DD009612C7 /* SnappyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DD03E31C1981B66800E0DE94 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DDC9FD941981B4DD009612C7 /* Snappy */;
-			targetProxy = DD03E31B1981B66800E0DE94 /* PBXContainerItemProxy */;
-		};
-		DD03E31E1981B66800E0DE94 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DDC9FD941981B4DD009612C7 /* Snappy */;
-			targetProxy = DD03E31D1981B66800E0DE94 /* PBXContainerItemProxy */;
-		};
-		DDC9FDA91981B4DD009612C7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DDC9FD941981B4DD009612C7 /* Snappy */;
-			targetProxy = DDC9FDA81981B4DD009612C7 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		DDC9FDAF1981B4DD009612C7 /* Debug */ = {
@@ -298,7 +273,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -335,7 +310,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -343,32 +318,51 @@
 			};
 			name = Release;
 		};
-		DDC9FDB21981B4DD009612C7 /* Debug */ = {
+		EEBCC9E919CC627E0083B827 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = SnappyExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Snappy/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		DDC9FDB31981B4DD009612C7 /* Release */ = {
+		EEBCC9EA19CC627E0083B827 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = SnappyExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Snappy/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		DDC9FDB51981B4DD009612C7 /* Debug */ = {
+		EEBCC9EC19CC627E0083B827 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Snappy.app/Snappy";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -377,23 +371,24 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				INFOPLIST_FILE = SnappyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Debug;
 		};
-		DDC9FDB61981B4DD009612C7 /* Release */ = {
+		EEBCC9ED19CC627E0083B827 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Snappy.app/Snappy";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				INFOPLIST_FILE = SnappyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
 		};
@@ -409,23 +404,21 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DDC9FDB11981B4DD009612C7 /* Build configuration list for PBXNativeTarget "Snappy" */ = {
+		EEBCC9E819CC627E0083B827 /* Build configuration list for PBXNativeTarget "Snappy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DDC9FDB21981B4DD009612C7 /* Debug */,
-				DDC9FDB31981B4DD009612C7 /* Release */,
+				EEBCC9E919CC627E0083B827 /* Debug */,
+				EEBCC9EA19CC627E0083B827 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
-		DDC9FDB41981B4DD009612C7 /* Build configuration list for PBXNativeTarget "SnappyTests" */ = {
+		EEBCC9EB19CC627E0083B827 /* Build configuration list for PBXNativeTarget "SnappyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DDC9FDB51981B4DD009612C7 /* Debug */,
-				DDC9FDB61981B4DD009612C7 /* Release */,
+				EEBCC9EC19CC627E0083B827 /* Debug */,
+				EEBCC9ED19CC627E0083B827 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

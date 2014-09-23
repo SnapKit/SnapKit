@@ -21,31 +21,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS)
-import UIKit
-#else
-import AppKit
-#endif
+#import <UIKit/UIKit.h>
 
-/**
-* LayoutConstraint is a subclass of NSLayoutConstraint to assist Snappy and also provide better debugging
-*/
-public class LayoutConstraint: NSLayoutConstraint {
-    
-    // internal
-    
-    internal var constraint: Constraint?
-    
-    internal class func layoutConstraintsInstalledOnView(view: View) -> Array<LayoutConstraint> {
-        var constraints = objc_getAssociatedObject(view, &layoutConstraintsInstalledOnViewKey) as? Array<LayoutConstraint>
-        if constraints != nil {
-            return constraints!
-        }
-        return []
-    }
-    internal class func setLayoutConstraints(layoutConstraints: Array<LayoutConstraint>, installedOnView view: View) {
-        objc_setAssociatedObject(view, &layoutConstraintsInstalledOnViewKey, layoutConstraints, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
-    }
-}
+//! Project version number for Snappy.
+FOUNDATION_EXPORT double SnappyVersionNumber;
 
-private var layoutConstraintsInstalledOnViewKey = ""
+//! Project version string for Snappy.
+FOUNDATION_EXPORT const unsigned char SnappyVersionString[];

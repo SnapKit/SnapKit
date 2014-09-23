@@ -2,7 +2,7 @@
 //  SnappyTests.swift
 //  SnappyTests
 //
-//  Created by Jonas Budelmann on 25/07/14.
+//  Created by Robert Payne on 20/09/14.
 //  Copyright (c) 2014 Jonas Budelmann. All rights reserved.
 //
 
