@@ -64,7 +64,16 @@ public class Constraint {
     public func equalTo(other: Float) -> Constraint {
         return constrainTo(other, relation: .Equal)
     }
+    public func equalTo(other: Double) -> Constraint {
+        return constrainTo(Float(other), relation: .Equal)
+    }
+    public func equalTo(other: CGFloat) -> Constraint {
+        return constrainTo(Float(other), relation: .Equal)
+    }
     public func equalTo(other: Int) -> Constraint {
+        return constrainTo(Float(other), relation: .Equal)
+    }
+    public func equalTo(other: UInt) -> Constraint {
         return constrainTo(Float(other), relation: .Equal)
     }
     public func equalTo(other: CGSize) -> Constraint {
@@ -88,7 +97,16 @@ public class Constraint {
     public func lessThanOrEqualTo(other: Float) -> Constraint {
         return constrainTo(other, relation: .LessThanOrEqualTo)
     }
+    public func lessThanOrEqualTo(other: Double) -> Constraint {
+        return constrainTo(Float(other), relation: .LessThanOrEqualTo)
+    }
+    public func lessThanOrEqualTo(other: CGFloat) -> Constraint {
+        return constrainTo(Float(other), relation: .LessThanOrEqualTo)
+    }
     public func lessThanOrEqualTo(other: Int) -> Constraint {
+        return constrainTo(Float(other), relation: .LessThanOrEqualTo)
+    }
+    public func lessThanOrEqualTo(other: UInt) -> Constraint {
         return constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
     public func lessThanOrEqualTo(other: CGSize) -> Constraint {
@@ -112,7 +130,16 @@ public class Constraint {
     public func greaterThanOrEqualTo(other: Float) -> Constraint {
         return constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
+    public func greaterThanOrEqualTo(other: Double) -> Constraint {
+        return constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
+    }
+    public func greaterThanOrEqualTo(other: CGFloat) -> Constraint {
+        return constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
+    }
     public func greaterThanOrEqualTo(other: Int) -> Constraint {
+        return constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
+    }
+    public func greaterThanOrEqualTo(other: UInt) -> Constraint {
         return constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
     public func greaterThanOrEqualTo(other: CGSize) -> Constraint {
@@ -131,9 +158,34 @@ public class Constraint {
         self.multiplier = amount
         return self
     }
+    public func multipliedBy(amount: Double) -> Constraint {
+        return self.multipliedBy(Float(amount))
+    }
+    public func multipliedBy(amount: CGFloat) -> Constraint {
+        return self.multipliedBy(Float(amount))
+    }
+    public func multipliedBy(amount: Int) -> Constraint {
+        return self.multipliedBy(Float(amount))
+    }
+    public func multipliedBy(amount: UInt) -> Constraint {
+        return self.multipliedBy(Float(amount))
+    }
+    
     public func dividedBy(amount: Float) -> Constraint {
         self.multiplier = 1.0 / amount;
         return self
+    }
+    public func dividedBy(amount: Double) -> Constraint {
+        return self.dividedBy(Float(amount))
+    }
+    public func dividedBy(amount: CGFloat) -> Constraint {
+        return self.dividedBy(Float(amount))
+    }
+    public func dividedBy(amount: Int) -> Constraint {
+        return self.dividedBy(Float(amount))
+    }
+    public func dividedBy(amount: UInt) -> Constraint {
+        return self.dividedBy(Float(amount))
     }
     
     // MARK: priority
@@ -142,14 +194,26 @@ public class Constraint {
         self.priority = priority
         return self
     }
+    public func priority(priority: Double) -> Constraint {
+        return self.priority(Float(priority))
+    }
+    public func priority(priority: CGFloat) -> Constraint {
+        return self.priority(Float(priority))
+    }
+    public func priority(priority: UInt) -> Constraint {
+        return self.priority(Float(priority))
+    }
+    public func priority(priority: Int) -> Constraint {
+        return self.priority(Float(priority))
+    }
     public func priorityRequired() -> Constraint {
-        return priority(1000.0)
+        return self.priority(1000.0)
     }
     public func priorityHigh() -> Constraint {
-        return priority(750.0)
+        return self.priority(750.0)
     }
     public func priorityLow() -> Constraint {
-        return priority(250.0)
+        return self.priority(250.0)
     }
     
     // MARK: offset
@@ -158,9 +222,17 @@ public class Constraint {
         self.offset = amount
         return self
     }
+    public func offset(amount: Double) -> Constraint {
+        return self.offset(Float(amount))
+    }
+    public func offset(amount: CGFloat) -> Constraint {
+        return self.offset(Float(amount))
+    }
     public func offset(amount: Int) -> Constraint {
-        self.offset = amount
-        return self
+        return self.offset(Float(amount))
+    }
+    public func offset(amount: UInt) -> Constraint {
+        return self.offset(Float(amount))
     }
     public func offset(amount: CGPoint) -> Constraint {
         self.offset = amount
@@ -315,6 +387,10 @@ public class Constraint {
         self.constant = other
         return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
+    private func constrainTo(other: Double, relation: ConstraintRelation) -> Constraint {
+        self.constant = other
+        return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
+    }
     private func constrainTo(other: CGSize, relation: ConstraintRelation) -> Constraint {
         self.constant = other
         return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
@@ -352,15 +428,23 @@ private extension NSLayoutAttribute {
         if let float = value as? Float {
             return CGFloat(float)
         }
-            // Int
+        // Double
+        else if let double = value as? Double {
+            return CGFloat(double)
+        }
+        // UInt
         else if let int = value as? Int {
             return CGFloat(int)
         }
-            // CGFloat
+        // Int
+        else if let uint = value as? UInt {
+            return CGFloat(uint)
+        }
+        // CGFloat
         else if let float = value as? CGFloat {
             return float
         }
-            // CGSize
+        // CGSize
         else if let size = value as? CGSize {
             if self == .Width {
                 return size.width
@@ -368,7 +452,7 @@ private extension NSLayoutAttribute {
                 return size.height
             }
         }
-            // CGPoint
+        // CGPoint
         else if let point = value as? CGPoint {
             if self == .Left || self == .CenterX {
                 return point.x
@@ -380,7 +464,7 @@ private extension NSLayoutAttribute {
                 return -point.y
             }
         }
-            // EdgeInsets
+        // EdgeInsets
         else if let insets = value as? EdgeInsets {
             if self == .Left {
                 return insets.left
@@ -401,15 +485,23 @@ private extension NSLayoutAttribute {
         if let float = value as? Float {
             return CGFloat(float)
         }
-            // Int
+        // Double
+        else if let double = value as? Double {
+            return CGFloat(double)
+        }
+        // UInt
         else if let int = value as? Int {
             return CGFloat(int)
         }
-            // CGFloat
+        // Int
+        else if let uint = value as? UInt {
+            return CGFloat(uint)
+        }
+        // CGFloat
         else if let float = value as? CGFloat {
             return float
         }
-            // CGSize
+        // CGSize
         else if let size = value as? CGSize {
             if self == .Width {
                 return size.width
@@ -417,7 +509,7 @@ private extension NSLayoutAttribute {
                 return size.height
             }
         }
-            // CGPoint
+        // CGPoint
         else if let point = value as? CGPoint {
             if self == .Left || self == .CenterX {
                 return point.x
@@ -429,7 +521,7 @@ private extension NSLayoutAttribute {
                 return point.y
             }
         }
-            // EdgeInsets
+        // EdgeInsets
         else if let insets = value as? EdgeInsets {
             if self == .Left {
                 return insets.left
