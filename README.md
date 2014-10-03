@@ -4,6 +4,21 @@ Snappy is a light-weight layout framework which wraps AutoLayout with a nicer sy
 
 > Snappy uses some Swift only features like function overloading it cannot be used from Objective-C. Because of this we’ve chosen to swap prefixes from Masonry’s `mas_` to `snp_` so you can use both Masonry and Snappy in the same project.
 
+## Requirements
+
+## Installation
+
+_Due to the current lack of [proper infrastructure](http://cocoapods.org) for Swift dependency management, using Snappy in your project requires the following steps:_
+
+1. Add Snappy as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/Masonry/Snappy.git`
+2. Open the `Snappy` folder, and drag `Snappy.xcodeproj` into the file navigator of your Xcode project<sup>1</sup>.
+3. In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
+4. In the tab bar at the top of that window, open the "General" panel.
+5. Click on the `+` button in the "Embedded Binaries" group of the panel and select and add `Snappy.framework`.
+
+<sup>1</sup><small>It's important you add Snappy as a subproject of your Xcode Project and not of a potential Xcode Workspace containing your project</small>
+
+
 ## What's wrong with NSLayoutConstraints?
 
 Under the hood Auto Layout is a powerful and flexible way of organising and laying out your views. However creating constraints from code is verbose and not very descriptive.
@@ -141,17 +156,17 @@ make.width.lessThanOrEqualTo(400)
 However Auto Layout does not allow alignment attributes such as left, right, centerY etc to be set to constant values.
 So if you pass a primitive for these attributes Snappy will turn these into constraints relative to the view&rsquo;s superview ie:
 ```swift
-// creates view.left = view.superview.left + 10
+// creates view.left <= view.superview.left + 10
 make.left.lessThanOrEqualTo(10)
 ```
 
 You can also use other primitives and structs to build your constraints, like so:
 ```swift
-make.top.snp_equalTo(42)
-make.height.snp_equalTo(20)
-make.size.snp_equalTo(CGSizeMake(50, 100))
-make.edges.snp_equalTo(UIEdgeInsetsMake(10, 0, 10, 0))
-make.left.snp_equalTo(view).offset(UIEdgeInsetsMake(10, 0, 10, 0))
+make.top.equalTo(42)
+make.height.equalTo(20)
+make.size.equalTo(CGSizeMake(50, 100))
+make.edges.equalTo(UIEdgeInsetsMake(10, 0, 10, 0))
+make.left.equalTo(view).offset(UIEdgeInsetsMake(10, 0, 10, 0))
 ```
 
 ## Learn to prioritize
