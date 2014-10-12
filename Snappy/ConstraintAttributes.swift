@@ -38,6 +38,9 @@ internal struct ConstraintAttributes: RawOptionSetType, BooleanType {
     internal init(_ rawValue: UInt) {
         self.init(rawValue: rawValue)
     }
+    internal init(nilLiteral: ()) {
+        self.rawValue = 0
+    }
     
     internal private(set) var rawValue: UInt
     internal static var allZeros: ConstraintAttributes { return self(0) }
