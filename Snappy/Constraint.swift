@@ -528,9 +528,9 @@ private extension NSLayoutAttribute {
             } else if self == .Top {
                 return insets.top
             } else if self == .Right {
-                return insets.right
+                return -insets.right
             } else if self == .Bottom {
-                return insets.bottom
+                return -insets.bottom
             }
         }
         
