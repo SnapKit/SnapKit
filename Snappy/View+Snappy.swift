@@ -42,9 +42,23 @@ public extension View {
     public var snp_centerY: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.CenterY) }
     public var snp_baseline: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Baseline) }
     
+    public var snp_firstBaseline: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.FirstBaseline) }
+    
+    public var snp_leftMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.LeftMargin) }
+    public var snp_rightMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.RightMargin) }
+    public var snp_topMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.TopMargin) }
+    public var snp_bottomMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.BottomMargin) }
+    public var snp_leadingMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.LeadingMargin) }
+    public var snp_trailingMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.TrailingMargin) }
+    public var snp_centerXWithinMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.CenterXWithinMargins) }
+    public var snp_centerYWithinMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.CenterYWithinMargins) }
+    
     public var snp_edges: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Edges) }
     public var snp_size: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Size) }
     public var snp_center: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Center) }
+    
+    public var snp_margins: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Margins) }
+    public var snp_centerWithinMargins: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.CenterWithinMargins) }
     
     public func snp_makeConstraints(block: (maker: ConstraintMaker) -> ()) {
         ConstraintMaker.makeConstraints(self, block: block)
