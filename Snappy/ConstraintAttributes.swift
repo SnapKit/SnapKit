@@ -116,6 +116,7 @@ internal struct ConstraintAttributes: RawOptionSetType, BooleanType {
             if (self & ConstraintAttributes.Baseline) {
                 attrs.append(.Baseline)
             }
+        #if os(ios)
             if (self & ConstraintAttributes.FirstBaseline) {
                 attrs.append(.FirstBaseline)
             }
@@ -143,6 +144,7 @@ internal struct ConstraintAttributes: RawOptionSetType, BooleanType {
             if (self & ConstraintAttributes.CenterYWithinMargins) {
                 attrs.append(.CenterYWithinMargins)
             }
+        #endif
             return attrs
     }
 }
