@@ -274,6 +274,16 @@ func changeButtonPosition() {
 }
 ```
 
+## Code Snippets
+
+Copy the included code snippets to ``~/Library/Developer/Xcode/UserData/CodeSnippets`` to write your snappy closures at lightning speed!
+
+`snp_make` -> `<view>.snp_makeConstraints { make in <code> }`
+    
+`snp_update` -> `<view>.snp_updateConstraints { make in <code> }`
+    
+`snp_remake` -> `<view>.snp_remakeConstraints { make in <code> }`
+
 ## TODO
 
 * Eye candy
