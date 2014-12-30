@@ -70,7 +70,7 @@ public class ConstraintMaker {
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         
-        var layoutConstraints: Array<LayoutConstraint> = []
+        var layoutConstraints = LayoutConstraint.layoutConstraintsInstalledOnView(view)
         for constraint in maker.constraints {
             layoutConstraints += constraint.install()
         }
