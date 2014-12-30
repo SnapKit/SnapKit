@@ -54,9 +54,11 @@ public extension View {
         ConstraintMaker.remakeConstraints(self, block: block)
     }
     
-    public func snp_uninstallConstraints() {
+    public func snp_removeConstraints() {
         for existingLayoutConstraint in LayoutConstraint.layoutConstraintsInstalledOnView(self) {
             existingLayoutConstraint.constraint?.uninstall()
         }
+        
+        LayoutConstraint.setLayoutConstraints([], installedOnView: self)
     }
 }
