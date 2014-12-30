@@ -55,10 +55,6 @@ public extension View {
     }
     
     public func snp_removeConstraints() {
-        for existingLayoutConstraint in LayoutConstraint.layoutConstraintsInstalledOnView(self) {
-            existingLayoutConstraint.constraint?.uninstall()
-        }
-        
-        LayoutConstraint.setLayoutConstraints([], installedOnView: self)
+        ConstraintMaker.removeConstraints(self)
     }
 }
