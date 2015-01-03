@@ -97,4 +97,11 @@ public class ConstraintMaker {
         }
         LayoutConstraint.setLayoutConstraints(layoutConstraints, installedOnView: view)
     }
+    
+    internal class func removeConstraints(view: View) {
+        for existingLayoutConstraint in LayoutConstraint.layoutConstraintsInstalledOnView(view) {
+            existingLayoutConstraint.constraint?.uninstall()
+        }
+        LayoutConstraint.setLayoutConstraints([], installedOnView: view)
+    }
 }
