@@ -24,20 +24,12 @@
 #if os(iOS)
 import UIKit
 public typealias EdgeInsets = UIEdgeInsets
-public func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
-    return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
-}
-public let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 #else
 import AppKit
-public struct EdgeInsets {
-    public var top: CGFloat // specify amount to inset (positive) for each of the edges. values can be negative to 'outset'
-    public var left: CGFloat
-    public var bottom: CGFloat
-    public var right: CGFloat
-}
+public typealias EdgeInsets = NSEdgeInsets
+#endif
+
 public func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
     return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
 }
 public let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-#endif
