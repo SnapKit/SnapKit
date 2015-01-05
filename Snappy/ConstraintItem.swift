@@ -40,3 +40,11 @@ public class ConstraintItem {
     internal weak var view: View?
     internal var attributes: ConstraintAttributes
 }
+
+internal func == (left: ConstraintItem, right: ConstraintItem) -> Bool {
+    return left.view == right.view && left.attributes == right.attributes
+}
+
+internal func != (left: ConstraintItem, right: ConstraintItem) -> Bool {
+    return !(left == right)
+}

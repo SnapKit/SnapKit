@@ -71,4 +71,8 @@ public extension View {
     public func snp_removeConstraints() {
         ConstraintMaker.removeConstraints(self)
     }
+
+    public func snp_updateConstraints(block: (maker: ConstraintMaker) -> ()) {
+        ConstraintMaker.updateConstraints(self, block: block)
+    }
 }

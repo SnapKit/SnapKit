@@ -45,6 +45,8 @@ public class Constraint {
     
     public var and: Constraint { return self }
     public var with: Constraint { return self }
+
+    public var updateExisting: Bool = false
     
     // MARK: initializer
     
@@ -305,6 +307,17 @@ public class Constraint {
                 attribute: layoutToAttribute,
                 multiplier: CGFloat(self.multiplier),
                 constant: layoutConstant)
+
+            if self.updateExisting {
+                if let existingConstraint = self.layoutConstraintSimilarTo(layoutConstraint, onView: installOnView!) {
+                    if existingConstraint.secondItem === layoutConstraint.secondItem {
+                        existingConstraint.constant = layoutConstraint.constant
+                        continue
+                    } else {
+                        existingConstraint.constraint?.uninstall()
+                    }
+                }
+            }
             
             // set priority
             layoutConstraint.priority = self.priority
@@ -344,7 +357,29 @@ public class Constraint {
         }
         self.installedOnView = nil
     }
-    
+
+    // MAKR: utils
+
+    func layoutConstraintSimilarTo(layoutConstraint: LayoutConstraint, onView: View) -> LayoutConstraint? {
+        for existingConstraint in onView.constraints().reverse() as [NSLayoutConstraint] {
+            if !(existingConstraint is LayoutConstraint) {
+                continue
+            }
+            var existingConstraint = existingConstraint as LayoutConstraint
+            if existingConstraint.firstItem !== layoutConstraint.firstItem {
+                continue
+            }
+            if existingConstraint.firstAttribute != layoutConstraint.firstAttribute {
+                continue
+            }
+            if existingConstraint.relation != existingConstraint.relation {
+                continue
+            }
+            return existingConstraint
+        }
+        return nil
+    }
+
     // MARK: private
     
     private let fromItem: ConstraintItem
