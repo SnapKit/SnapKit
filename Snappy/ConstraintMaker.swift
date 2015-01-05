@@ -104,4 +104,22 @@ public class ConstraintMaker {
         }
         LayoutConstraint.setLayoutConstraints([], installedOnView: view)
     }
+
+    internal class func updateConstraints(view: View, block: (make: ConstraintMaker) -> ()) {
+        #if os(iOS)
+        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        #else
+        view.translatesAutoresizingMaskIntoConstraints = false
+        #endif
+        let maker = ConstraintMaker(view: view)
+        block(make: maker)
+
+        var layoutConstraints: Array<LayoutConstraint> = []
+        for constraint in maker.constraints {
+            constraint.updateExisting = true
+            layoutConstraints += constraint.install()
+        }
+        LayoutConstraint.setLayoutConstraints(layoutConstraints, installedOnView: view)
+    }
+
 }
