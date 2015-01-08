@@ -55,7 +55,7 @@ public class ConstraintMaker {
     internal var constraints = Array<Constraint>()
     
     internal func addConstraint(attributes: ConstraintAttributes) -> Constraint {
-        let item = ConstraintItem(view: self.view, attributes: attributes)
+        let item = ConstraintItem(object: self.view, attributes: attributes)
         let constraint = Constraint(fromItem: item)
         self.constraints.append(constraint)
         return constraint

@@ -30,35 +30,35 @@ public typealias View = NSView
 #endif
 
 public extension View {
-    public var snp_left: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Left) }
-    public var snp_top: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Top) }
-    public var snp_right: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Right) }
-    public var snp_bottom: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Bottom) }
-    public var snp_leading: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Leading) }
-    public var snp_trailing: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Trailing) }
-    public var snp_width: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Width) }
-    public var snp_height: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Height) }
-    public var snp_centerX: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.CenterX) }
-    public var snp_centerY: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.CenterY) }
-    public var snp_baseline: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Baseline) }
+    public var snp_left: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Left) }
+    public var snp_top: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Top) }
+    public var snp_right: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Right) }
+    public var snp_bottom: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Bottom) }
+    public var snp_leading: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Leading) }
+    public var snp_trailing: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Trailing) }
+    public var snp_width: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Width) }
+    public var snp_height: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Height) }
+    public var snp_centerX: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterX) }
+    public var snp_centerY: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterY) }
+    public var snp_baseline: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Baseline) }
     
-    public var snp_firstBaseline: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.FirstBaseline) }
+    public var snp_firstBaseline: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.FirstBaseline) }
     
-    public var snp_leftMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.LeftMargin) }
-    public var snp_rightMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.RightMargin) }
-    public var snp_topMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.TopMargin) }
-    public var snp_bottomMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.BottomMargin) }
-    public var snp_leadingMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.LeadingMargin) }
-    public var snp_trailingMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.TrailingMargin) }
-    public var snp_centerXWithinMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.CenterXWithinMargins) }
-    public var snp_centerYWithinMargin: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.CenterYWithinMargins) }
+    public var snp_leftMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.LeftMargin) }
+    public var snp_rightMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.RightMargin) }
+    public var snp_topMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.TopMargin) }
+    public var snp_bottomMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.BottomMargin) }
+    public var snp_leadingMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.LeadingMargin) }
+    public var snp_trailingMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.TrailingMargin) }
+    public var snp_centerXWithinMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterXWithinMargins) }
+    public var snp_centerYWithinMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterYWithinMargins) }
     
-    public var snp_edges: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Edges) }
-    public var snp_size: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Size) }
-    public var snp_center: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Center) }
+    public var snp_edges: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Edges) }
+    public var snp_size: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Size) }
+    public var snp_center: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Center) }
     
-    public var snp_margins: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.Margins) }
-    public var snp_centerWithinMargins: ConstraintItem { return ConstraintItem(view: self, attributes: ConstraintAttributes.CenterWithinMargins) }
+    public var snp_margins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Margins) }
+    public var snp_centerWithinMargins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterWithinMargins) }
     
     public func snp_makeConstraints(block: (maker: ConstraintMaker) -> ()) {
         ConstraintMaker.makeConstraints(self, block: block)

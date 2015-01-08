@@ -50,7 +50,7 @@ public class Constraint {
     
     internal init(fromItem: ConstraintItem) {
         self.fromItem = fromItem
-        self.toItem = ConstraintItem(view: nil, attributes: ConstraintAttributes.None)
+        self.toItem = ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
     }
     
     // MARK: equalTo
@@ -61,6 +61,11 @@ public class Constraint {
     public func equalTo(other: View) -> Constraint {
         return constrainTo(other, relation: .Equal)
     }
+    #if os(iOS)
+    public func equalTo(other: UILayoutSupport) -> Constraint {
+        return constrainTo(other, relation: .Equal)
+    }
+    #endif
     public func equalTo(other: Float) -> Constraint {
         return constrainTo(other, relation: .Equal)
     }
@@ -94,6 +99,11 @@ public class Constraint {
     public func lessThanOrEqualTo(other: View) -> Constraint {
         return constrainTo(other, relation: .LessThanOrEqualTo)
     }
+    #if os(iOS)
+    public func lessThanOrEqualTo(other: UILayoutSupport) -> Constraint {
+        return constrainTo(other, relation: .LessThanOrEqualTo)
+    }
+    #endif
     public func lessThanOrEqualTo(other: Float) -> Constraint {
         return constrainTo(other, relation: .LessThanOrEqualTo)
     }
@@ -127,6 +137,11 @@ public class Constraint {
     func greaterThanOrEqualTo(other: View) -> Constraint {
         return constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
+    #if os(iOS)
+    public func greaterThanOrEqualTo(other: UILayoutSupport) -> Constraint {
+        return constrainTo(other, relation: .GreaterThanOrEqualTo)
+    }
+    #endif
     public func greaterThanOrEqualTo(other: Float) -> Constraint {
         return constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
@@ -326,9 +341,9 @@ public class Constraint {
     public func uninstall() {
         if let view = self.installedOnView {
             #if os(iOS)
-                var installedConstraints = view.constraints()
-                #else
-                var installedConstraints = view.constraints
+            var installedConstraints = view.constraints()
+            #else
+            var installedConstraints = view.constraints
             #endif
             var constraintsToRemove: Array<LayoutConstraint> = []
             for installedConstraint in installedConstraints {
@@ -381,27 +396,32 @@ public class Constraint {
         return self
     }
     private func constrainTo(other: View, relation: ConstraintRelation) -> Constraint {
-        return constrainTo(ConstraintItem(view: other, attributes: ConstraintAttributes.None), relation: relation)
+        return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
     }
+    #if os(iOS)
+    private func constrainTo(other: UILayoutSupport, relation: ConstraintRelation) -> Constraint {
+        return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
+    }
+    #endif
     private func constrainTo(other: Float, relation: ConstraintRelation) -> Constraint {
         self.constant = other
-        return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
+        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
     private func constrainTo(other: Double, relation: ConstraintRelation) -> Constraint {
         self.constant = other
-        return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
+        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
     private func constrainTo(other: CGSize, relation: ConstraintRelation) -> Constraint {
         self.constant = other
-        return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
+        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
     private func constrainTo(other: CGPoint, relation: ConstraintRelation) -> Constraint {
         self.constant = other
-        return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
+        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
     private func constrainTo(other: EdgeInsets, relation: ConstraintRelation) -> Constraint {
         self.constant = other
-        return constrainTo(ConstraintItem(view: nil, attributes: ConstraintAttributes.None), relation: relation)
+        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
     
     private class func closestCommonSuperviewFromView(fromView: View?, toView: View?) -> View? {

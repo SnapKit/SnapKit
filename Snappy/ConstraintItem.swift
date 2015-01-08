@@ -32,11 +32,31 @@ import AppKit
  */
 public class ConstraintItem {
     
-    internal init(view: View?, attributes: ConstraintAttributes) {
-        self.view = view
+    internal init(object: AnyObject?, attributes: ConstraintAttributes) {
+        self.object = object
         self.attributes = attributes
     }
     
-    internal weak var view: View?
+    internal weak var object: AnyObject?
     internal var attributes: ConstraintAttributes
+    
+    internal var view: View? {
+        get {
+            if let view = self.object as? View {
+                return view
+            }
+            return nil
+        }
+    }
+    
+    #if os(iOS)
+    internal var layoutSupport: UILayoutSupport? {
+        get {
+            if let layoutSupport = self.object as? UILayoutSupport {
+                return layoutSupport
+            }
+            return nil
+        }
+    }
+    #endif
 }
