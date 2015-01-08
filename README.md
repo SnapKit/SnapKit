@@ -18,6 +18,11 @@ _Due to the current lack of [proper infrastructure](http://cocoapods.org) for Sw
 3. In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
 4. In the tab bar at the top of that window, open the "General" panel.
 5. Click on the `+` button in the "Embedded Binaries" group of the panel and select and add `Snappy.framework`.
+6. Import Snappy into your project by adding the following to the top of `AppDelegate.swift`:
+
+```swift
+import Snappy
+```
 
 <sup>1</sup><small>It's important you add Snappy as a subproject of your Xcode Project and not of a potential Xcode Workspace containing your project</small>
 
