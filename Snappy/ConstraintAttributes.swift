@@ -51,6 +51,8 @@ internal struct ConstraintAttributes: RawOptionSetType, BooleanType {
     static func fromRaw(raw: UInt) -> ConstraintAttributes? { return self(raw) }
     static func fromMask(raw: UInt) -> ConstraintAttributes { return self(raw) }
     
+    // normal
+    
     internal static var None: ConstraintAttributes { return self(0) }
     internal static var Left: ConstraintAttributes { return self(1) }
     internal static var Top: ConstraintAttributes {  return self(2) }
@@ -64,8 +66,8 @@ internal struct ConstraintAttributes: RawOptionSetType, BooleanType {
     internal static var CenterY: ConstraintAttributes { return self(512) }
     internal static var Baseline: ConstraintAttributes { return self(1024) }
     
+    #if os(iOS)
     internal static var FirstBaseline: ConstraintAttributes { return self(2048) }
-    
     internal static var LeftMargin: ConstraintAttributes { return self(4096) }
     internal static var RightMargin: ConstraintAttributes { return self(8192) }
     internal static var TopMargin: ConstraintAttributes { return self(16384) }
@@ -74,12 +76,18 @@ internal struct ConstraintAttributes: RawOptionSetType, BooleanType {
     internal static var TrailingMargin: ConstraintAttributes { return self(131072) }
     internal static var CenterXWithinMargins: ConstraintAttributes { return self(262144) }
     internal static var CenterYWithinMargins: ConstraintAttributes { return self(524288) }
+    #endif
+    
+    // aggregates
     
     internal static var Edges: ConstraintAttributes { return self(15) }
     internal static var Size: ConstraintAttributes { return self(192) }
     internal static var Center: ConstraintAttributes { return self(768) }
+    
+    #if os(iOS)
     internal static var Margins: ConstraintAttributes { return self(61440) }
     internal static var CenterWithinMargins: ConstraintAttributes { return self(786432) }
+    #endif
     
     internal var layoutAttributes:Array<NSLayoutAttribute> {
         var attrs: Array<NSLayoutAttribute> = []
@@ -116,7 +124,7 @@ internal struct ConstraintAttributes: RawOptionSetType, BooleanType {
             if (self & ConstraintAttributes.Baseline) {
                 attrs.append(.Baseline)
             }
-        #if os(ios)
+            #if os(ios)
             if (self & ConstraintAttributes.FirstBaseline) {
                 attrs.append(.FirstBaseline)
             }
@@ -144,7 +152,7 @@ internal struct ConstraintAttributes: RawOptionSetType, BooleanType {
             if (self & ConstraintAttributes.CenterYWithinMargins) {
                 attrs.append(.CenterYWithinMargins)
             }
-        #endif
+            #endif
             return attrs
     }
 }
