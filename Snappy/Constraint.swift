@@ -27,6 +27,38 @@ import UIKit
 import AppKit
 #endif
 
+public protocol FloatConstantConstraint {
+    func update(float: Float)
+}
+
+public protocol DoubleConstantConstraint {
+    func update(float: Float)
+}
+
+public protocol CGFloatConstantConstraint {
+    func update(float: Float)
+}
+
+public protocol IntConstantConstraint {
+    func update(float: Float)
+}
+
+public protocol UIntConstantConstraint {
+    func update(float: Float)
+}
+
+public protocol CGPointConstantConstraint {
+    func update(float: Float)
+}
+
+public protocol CGSizeConstantConstraint {
+    func update(size: CGSize)
+}
+
+public protocol EdgeInsetsConstantConstraint {
+    func update(insets: EdgeInsets)
+}
+
 /**
  * Constraint is a single item that defines all the properties for a single ConstraintMaker chain
  */
@@ -269,9 +301,14 @@ public class Constraint {
         return self
     }
     
-    // MARK: install
+    // MARK: internal
     
-    public func install() -> Array<LayoutConstraint> {
+    internal func install() -> Array<LayoutConstraint> {
+        if self.installedOnView != nil {
+            NSException(name: "Cannot Install Constraint", reason: "Already installed", userInfo: nil).raise()
+            return []
+        }
+        
         var installOnView: View? = nil
         if self.toItem.view != nil {
             installOnView = Constraint.closestCommonSuperviewFromView(self.fromItem.view, toView: self.toItem.view)
@@ -330,15 +367,13 @@ public class Constraint {
             layoutConstraints.append(layoutConstraint)
         }
         
-        installOnView?.addConstraints(layoutConstraints)
+        installOnView!.addConstraints(layoutConstraints)
         
         self.installedOnView = installOnView
         return layoutConstraints
     }
     
-    // MARK: uninstall
-    
-    public func uninstall() {
+    internal func uninstall() {
         if let view = self.installedOnView {
             #if os(iOS)
             var installedConstraints = view.constraints()
@@ -556,4 +591,12 @@ private extension NSLayoutAttribute {
         
         return CGFloat(0);
     }
+}
+
+internal func ==(left: Constraint, right: Constraint) -> Bool {
+    return (left.fromItem == right.fromItem &&
+            left.toItem == right.toItem &&
+            left.relation == right.relation &&
+            left.multiplier == right.multiplier &&
+            left.priority == right.priority)
 }

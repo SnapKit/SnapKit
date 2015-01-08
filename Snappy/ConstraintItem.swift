@@ -60,3 +60,20 @@ public class ConstraintItem {
     }
     #endif
 }
+
+
+internal func ==(left: ConstraintItem, right: ConstraintItem) -> Bool {
+    if left.object == nil {
+        return false
+    }
+    if right.object == nil {
+        return false
+    }
+    if left.object !== right.object {
+        return false
+    }
+    if left.attributes != right.attributes {
+        return false
+    }
+    return true
+}

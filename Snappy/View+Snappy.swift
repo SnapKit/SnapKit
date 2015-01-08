@@ -30,6 +30,9 @@ public typealias View = NSView
 #endif
 
 public extension View {
+    
+    // normal
+    
     public var snp_left: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Left) }
     public var snp_top: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Top) }
     public var snp_right: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Right) }
@@ -42,8 +45,8 @@ public extension View {
     public var snp_centerY: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterY) }
     public var snp_baseline: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Baseline) }
     
+    #if os(iOS)
     public var snp_firstBaseline: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.FirstBaseline) }
-    
     public var snp_leftMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.LeftMargin) }
     public var snp_rightMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.RightMargin) }
     public var snp_topMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.TopMargin) }
@@ -52,16 +55,25 @@ public extension View {
     public var snp_trailingMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.TrailingMargin) }
     public var snp_centerXWithinMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterXWithinMargins) }
     public var snp_centerYWithinMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterYWithinMargins) }
+    #endif
+    
+    // aggregates
     
     public var snp_edges: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Edges) }
     public var snp_size: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Size) }
     public var snp_center: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Center) }
     
+    #if os(iOS)
     public var snp_margins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Margins) }
     public var snp_centerWithinMargins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterWithinMargins) }
+    #endif
     
     public func snp_makeConstraints(block: (maker: ConstraintMaker) -> ()) {
         ConstraintMaker.makeConstraints(self, block: block)
+    }
+    
+    public func snp_updateConstraints(block: (maker: ConstraintMaker) -> ()) {
+        ConstraintMaker.updateConstraints(self, block: block)
     }
     
     public func snp_remakeConstraints(block: (maker: ConstraintMaker) -> ()) {
@@ -71,4 +83,21 @@ public extension View {
     public func snp_removeConstraints() {
         ConstraintMaker.removeConstraints(self)
     }
+    
+    // internal
+    
+    internal var snp_installedLayoutConstraints: Array<LayoutConstraint> {
+        get {
+            var constraints = objc_getAssociatedObject(self, &installedLayoutConstraintsKey) as? Array<LayoutConstraint>
+            if constraints != nil {
+                return constraints!
+            }
+            return []
+        }
+        set {
+            objc_setAssociatedObject(self, &installedLayoutConstraintsKey, newValue, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+        }
+    }
 }
+
+private var installedLayoutConstraintsKey = ""

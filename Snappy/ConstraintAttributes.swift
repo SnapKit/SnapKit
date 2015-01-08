@@ -156,12 +156,12 @@ internal struct ConstraintAttributes: RawOptionSetType, BooleanType {
             return attrs
     }
 }
-internal func += (inout left: ConstraintAttributes, right: ConstraintAttributes) {
+internal func +=(inout left: ConstraintAttributes, right: ConstraintAttributes) {
     left = (left | right)
 }
-internal func -= (inout left: ConstraintAttributes, right: ConstraintAttributes) {
+internal func -=(inout left: ConstraintAttributes, right: ConstraintAttributes) {
     left = left & ~right
 }
-internal func == (left: ConstraintAttributes, right: ConstraintAttributes) -> Bool {
+internal func ==(left: ConstraintAttributes, right: ConstraintAttributes) -> Bool {
     return left.rawValue == right.rawValue
 }

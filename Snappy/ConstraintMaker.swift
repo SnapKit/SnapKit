@@ -70,11 +70,12 @@ public class ConstraintMaker {
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         
-        var layoutConstraints = LayoutConstraint.layoutConstraintsInstalledOnView(view)
+        var layoutConstraints = view.snp_installedLayoutConstraints
         for constraint in maker.constraints {
             layoutConstraints += constraint.install()
         }
-        LayoutConstraint.setLayoutConstraints(layoutConstraints, installedOnView: view)
+        
+        view.snp_installedLayoutConstraints = layoutConstraints
     }
     
     internal class func remakeConstraints(view: View, block: (make: ConstraintMaker) -> ()) {
@@ -86,7 +87,7 @@ public class ConstraintMaker {
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         
-        var layoutConstraints: Array<LayoutConstraint> = LayoutConstraint.layoutConstraintsInstalledOnView(view)
+        var layoutConstraints: Array<LayoutConstraint> = view.snp_installedLayoutConstraints
         for existingLayoutConstraint in layoutConstraints {
             existingLayoutConstraint.constraint?.uninstall()
         }
@@ -95,13 +96,15 @@ public class ConstraintMaker {
         for constraint in maker.constraints {
             layoutConstraints += constraint.install()
         }
-        LayoutConstraint.setLayoutConstraints(layoutConstraints, installedOnView: view)
+        
+        view.snp_installedLayoutConstraints = layoutConstraints
     }
     
     internal class func removeConstraints(view: View) {
-        for existingLayoutConstraint in LayoutConstraint.layoutConstraintsInstalledOnView(view) {
+        for existingLayoutConstraint in view.snp_installedLayoutConstraints {
             existingLayoutConstraint.constraint?.uninstall()
         }
-        LayoutConstraint.setLayoutConstraints([], installedOnView: view)
+        
+        view.snp_installedLayoutConstraints = []
     }
 }
