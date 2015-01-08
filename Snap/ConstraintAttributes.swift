@@ -1,5 +1,5 @@
 //
-//  Snappy
+//  Snap
 //
 //  Copyright (c) 2011-2014 Masonry Team - https://github.com/Masonry
 //

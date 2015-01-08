@@ -1,5 +1,5 @@
 //
-//  Snappy
+//  Snap
 //
 //  Copyright (c) 2011-2014 Masonry Team - https://github.com/Masonry
 //
@@ -21,23 +21,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS)
-import UIKit
-public typealias EdgeInsets = UIEdgeInsets
-public func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
-    return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
-}
-public let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-#else
-import AppKit
-public struct EdgeInsets {
-    public var top: CGFloat // specify amount to inset (positive) for each of the edges. values can be negative to 'outset'
-    public var left: CGFloat
-    public var bottom: CGFloat
-    public var right: CGFloat
-}
-public func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
-    return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
-}
-public let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-#endif
+#import <UIKit/UIKit.h>
+
+//! Project version number for Snap.
+FOUNDATION_EXPORT double SnapVersionNumber;
+
+//! Project version string for Snap.
+FOUNDATION_EXPORT const unsigned char SnapVersionString[];

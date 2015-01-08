@@ -1,5 +1,5 @@
 //
-//  Snappy
+//  Snap
 //
 //  Copyright (c) 2011-2014 Masonry Team - https://github.com/Masonry
 //
@@ -28,7 +28,7 @@ import AppKit
 #endif
 
 /**
- * ConstraintMaker is the maker in snappy that gets all constraints kickstarted
+ * ConstraintMaker is the maker in snap that gets all constraints kickstarted
  */
 public class ConstraintMaker {
     public var left: Constraint { return addConstraint(ConstraintAttributes.Left) }

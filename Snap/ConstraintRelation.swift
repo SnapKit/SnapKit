@@ -1,5 +1,5 @@
 //
-//  Snappy
+//  Snap
 //
 //  Copyright (c) 2011-2014 Masonry Team - https://github.com/Masonry
 //
@@ -21,10 +21,28 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#if os(iOS)
+import UIKit
+#else
+import AppKit
+#endif
 
-//! Project version number for Snappy.
-FOUNDATION_EXPORT double SnappyVersionNumber;
-
-//! Project version string for Snappy.
-FOUNDATION_EXPORT const unsigned char SnappyVersionString[];
+/**
+ * ConstraintRelation is an Int enum that maps to NSLayoutRelation.
+ */
+internal enum ConstraintRelation: Int {
+    case Equal = 1, LessThanOrEqualTo, GreaterThanOrEqualTo
+    
+    internal var layoutRelation: NSLayoutRelation {
+        get {
+            switch(self) {
+            case .LessThanOrEqualTo:
+                return .LessThanOrEqual
+            case .GreaterThanOrEqualTo:
+                return .GreaterThanOrEqual
+            default:
+                return .Equal
+            }
+        }
+    }
+}

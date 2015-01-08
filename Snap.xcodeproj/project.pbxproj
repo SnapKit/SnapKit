@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EEBCC9F019CC64F80083B827 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9EF19CC64F70083B827 /* EdgeInsets.swift */; };
-		EEBCC9F219CC65050083B827 /* View+Snappy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F119CC65040083B827 /* View+Snappy.swift */; };
+		EEBCC9F219CC65050083B827 /* View+Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F119CC65040083B827 /* View+Snap.swift */; };
 		EEBCC9F419CC65110083B827 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F319CC65110083B827 /* ConstraintAttributes.swift */; };
 		EEBCC9F619CC65200083B827 /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F519CC65200083B827 /* ConstraintRelation.swift */; };
 		EEBCC9F819CC65260083B827 /* ConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F719CC65260083B827 /* ConstraintItem.swift */; };
@@ -19,13 +19,13 @@
 
 /* Begin PBXFileReference section */
 		EE91728119CB304E007888CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EE91728219CB304E007888CF /* Snappy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Snappy.h; sourceTree = "<group>"; };
+		EE91728219CB304E007888CF /* Snap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Snap.h; sourceTree = "<group>"; };
 		EE91728B19CB304E007888CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EE91728C19CB304E007888CF /* SnappyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappyTests.swift; sourceTree = "<group>"; };
-		EEBCC9D819CC627D0083B827 /* Snappy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Snappy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EEBCC9E219CC627E0083B827 /* SnappyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnappyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE91728C19CB304E007888CF /* SnapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapTests.swift; sourceTree = "<group>"; };
+		EEBCC9D819CC627D0083B827 /* Snap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Snap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEBCC9E219CC627E0083B827 /* SnapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEBCC9EF19CC64F70083B827 /* EdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
-		EEBCC9F119CC65040083B827 /* View+Snappy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Snappy.swift"; sourceTree = "<group>"; };
+		EEBCC9F119CC65040083B827 /* View+Snap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Snap.swift"; sourceTree = "<group>"; };
 		EEBCC9F319CC65110083B827 /* ConstraintAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintAttributes.swift; sourceTree = "<group>"; };
 		EEBCC9F519CC65200083B827 /* ConstraintRelation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintRelation.swift; sourceTree = "<group>"; };
 		EEBCC9F719CC65260083B827 /* ConstraintItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintItem.swift; sourceTree = "<group>"; };
@@ -55,8 +55,8 @@
 		DDC9FD8C1981B4DD009612C7 = {
 			isa = PBXGroup;
 			children = (
-				EE91727F19CB304E007888CF /* Snappy */,
-				EE91728919CB304E007888CF /* SnappyTests */,
+				EE91727F19CB304E007888CF /* Snap */,
+				EE91728919CB304E007888CF /* SnapTests */,
 				DDC9FD961981B4DD009612C7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,17 +64,17 @@
 		DDC9FD961981B4DD009612C7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EEBCC9D819CC627D0083B827 /* Snappy.framework */,
-				EEBCC9E219CC627E0083B827 /* SnappyTests.xctest */,
+				EEBCC9D819CC627D0083B827 /* Snap.framework */,
+				EEBCC9E219CC627E0083B827 /* SnapTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EE91727F19CB304E007888CF /* Snappy */ = {
+		EE91727F19CB304E007888CF /* Snap */ = {
 			isa = PBXGroup;
 			children = (
-				EE91728219CB304E007888CF /* Snappy.h */,
-				EEBCC9F119CC65040083B827 /* View+Snappy.swift */,
+				EE91728219CB304E007888CF /* Snap.h */,
+				EEBCC9F119CC65040083B827 /* View+Snap.swift */,
 				EEBCC9FB19CC65430083B827 /* ConstraintMaker.swift */,
 				EEBCC9FF19CC66020083B827 /* Constraint.swift */,
 				EEBCC9F719CC65260083B827 /* ConstraintItem.swift */,
@@ -84,7 +84,7 @@
 				EEBCC9EF19CC64F70083B827 /* EdgeInsets.swift */,
 				EE91728019CB304E007888CF /* Supporting Files */,
 			);
-			path = Snappy;
+			path = Snap;
 			sourceTree = "<group>";
 		};
 		EE91728019CB304E007888CF /* Supporting Files */ = {
@@ -95,13 +95,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EE91728919CB304E007888CF /* SnappyTests */ = {
+		EE91728919CB304E007888CF /* SnapTests */ = {
 			isa = PBXGroup;
 			children = (
-				EE91728C19CB304E007888CF /* SnappyTests.swift */,
+				EE91728C19CB304E007888CF /* SnapTests.swift */,
 				EE91728A19CB304E007888CF /* Supporting Files */,
 			);
-			path = SnappyTests;
+			path = SnapTests;
 			sourceTree = "<group>";
 		};
 		EE91728A19CB304E007888CF /* Supporting Files */ = {
@@ -125,9 +125,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EEBCC9D719CC627D0083B827 /* Snappy */ = {
+		EEBCC9D719CC627D0083B827 /* Snap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EEBCC9E819CC627E0083B827 /* Build configuration list for PBXNativeTarget "Snappy" */;
+			buildConfigurationList = EEBCC9E819CC627E0083B827 /* Build configuration list for PBXNativeTarget "Snap" */;
 			buildPhases = (
 				EEBCC9D319CC627D0083B827 /* Sources */,
 				EEBCC9D419CC627D0083B827 /* Frameworks */,
@@ -138,14 +138,14 @@
 			);
 			dependencies = (
 			);
-			name = Snappy;
-			productName = Snappy;
-			productReference = EEBCC9D819CC627D0083B827 /* Snappy.framework */;
+			name = Snap;
+			productName = Snap;
+			productReference = EEBCC9D819CC627D0083B827 /* Snap.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EEBCC9E119CC627D0083B827 /* SnappyTests */ = {
+		EEBCC9E119CC627D0083B827 /* SnapTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EEBCC9EB19CC627E0083B827 /* Build configuration list for PBXNativeTarget "SnappyTests" */;
+			buildConfigurationList = EEBCC9EB19CC627E0083B827 /* Build configuration list for PBXNativeTarget "SnapTests" */;
 			buildPhases = (
 				EEBCC9DE19CC627D0083B827 /* Sources */,
 				EEBCC9DF19CC627D0083B827 /* Frameworks */,
@@ -155,9 +155,9 @@
 			);
 			dependencies = (
 			);
-			name = SnappyTests;
-			productName = SnappyTests;
-			productReference = EEBCC9E219CC627E0083B827 /* SnappyTests.xctest */;
+			name = SnapTests;
+			productName = SnapTests;
+			productReference = EEBCC9E219CC627E0083B827 /* SnapTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -177,7 +177,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DDC9FD901981B4DD009612C7 /* Build configuration list for PBXProject "Snappy" */;
+			buildConfigurationList = DDC9FD901981B4DD009612C7 /* Build configuration list for PBXProject "Snap" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -190,8 +190,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EEBCC9D719CC627D0083B827 /* Snappy */,
-				EEBCC9E119CC627D0083B827 /* SnappyTests */,
+				EEBCC9D719CC627D0083B827 /* Snap */,
+				EEBCC9E119CC627D0083B827 /* SnapTests */,
 			);
 		};
 /* End PBXProject section */
@@ -223,7 +223,7 @@
 				EEBCC9F419CC65110083B827 /* ConstraintAttributes.swift in Sources */,
 				EEBCC9FE19CC65510083B827 /* LayoutConstraint.swift in Sources */,
 				EEBCC9FC19CC65430083B827 /* ConstraintMaker.swift in Sources */,
-				EEBCC9F219CC65050083B827 /* View+Snappy.swift in Sources */,
+				EEBCC9F219CC65050083B827 /* View+Snap.swift in Sources */,
 				EEBCCA0019CC66020083B827 /* Constraint.swift in Sources */,
 				EEBCC9F819CC65260083B827 /* ConstraintItem.swift in Sources */,
 			);
@@ -330,7 +330,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = Snappy/Info.plist;
+				INFOPLIST_FILE = Snap/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -349,7 +349,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Snappy/Info.plist;
+				INFOPLIST_FILE = Snap/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -371,7 +371,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SnappyTests/Info.plist;
+				INFOPLIST_FILE = SnapTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -385,7 +385,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SnappyTests/Info.plist;
+				INFOPLIST_FILE = SnapTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -395,7 +395,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DDC9FD901981B4DD009612C7 /* Build configuration list for PBXProject "Snappy" */ = {
+		DDC9FD901981B4DD009612C7 /* Build configuration list for PBXProject "Snap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DDC9FDAF1981B4DD009612C7 /* Debug */,
@@ -404,7 +404,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EEBCC9E819CC627E0083B827 /* Build configuration list for PBXNativeTarget "Snappy" */ = {
+		EEBCC9E819CC627E0083B827 /* Build configuration list for PBXNativeTarget "Snap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EEBCC9E919CC627E0083B827 /* Debug */,
@@ -413,7 +413,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EEBCC9EB19CC627E0083B827 /* Build configuration list for PBXNativeTarget "SnappyTests" */ = {
+		EEBCC9EB19CC627E0083B827 /* Build configuration list for PBXNativeTarget "SnapTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EEBCC9EC19CC627E0083B827 /* Debug */,

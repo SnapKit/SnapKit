@@ -1,6 +1,6 @@
 //
-//  SnappyTests.swift
-//  SnappyTests
+//  SnapTests.swift
+//  SnapTests
 //
 //  Created by Robert Payne on 20/09/14.
 //  Copyright (c) 2014 Jonas Budelmann. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-class SnappyTests: XCTestCase {
+class SnapTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

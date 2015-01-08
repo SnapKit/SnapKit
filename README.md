@@ -1,8 +1,8 @@
-# Snappy
+# Snap
 
-Snappy is a light-weight layout framework which wraps AutoLayout with a nicer syntax. Snappy has its own layout DSL which provides a chainable way of describing your NSLayoutConstraints which results in layout code that is more concise and readable. Snappy supports both iOS and OS X.
+Snap is a light-weight layout framework which wraps AutoLayout with a nicer syntax. Snap has its own layout DSL which provides a chainable way of describing your NSLayoutConstraints which results in layout code that is more concise and readable. Snap supports both iOS and OS X.
 
-> Snappy uses some Swift-only features like function overloading, so it cannot be used from Objective-C. Because of this we’ve chosen to swap prefixes from Masonry’s `mas_` to `snp_` so you can use both Masonry and Snappy in the same project.
+> Snap uses some Swift-only features like function overloading, so it cannot be used from Objective-C. Because of this we’ve chosen to swap prefixes from Masonry’s `mas_` to `snp_` so you can use both Masonry and Snap in the same project.
 
 ## Requirements
 
@@ -11,21 +11,21 @@ Snappy is a light-weight layout framework which wraps AutoLayout with a nicer sy
 
 ## Installation
 
-_Due to the current lack of [proper infrastructure](http://cocoapods.org) for Swift dependency management, using Snappy in your project requires the following steps:_
+_Due to the current lack of [proper infrastructure](http://cocoapods.org) for Swift dependency management, using Snap in your project requires the following steps:_
 
-1. Add Snappy as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/Masonry/Snappy.git`
-2. Open the `Snappy` folder, and drag `Snappy.xcodeproj` into the file navigator of your Xcode project<sup>1</sup>.
+1. Add Snap as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/Masonry/Snap.git`
+2. Open the `Snap` folder, and drag `Snap.xcodeproj` into the file navigator of your Xcode project<sup>1</sup>.
 3. In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
 4. In the tab bar at the top of that window, open the "General" panel.
-5. Click on the `+` button in the "Embedded Binaries" group of the panel and select and add `Snappy.framework`.
+5. Click on the `+` button in the "Embedded Binaries" group of the panel and select and add `Snap.framework`.
 
-<sup>1</sup><small>It's important you add Snappy as a subproject of your Xcode Project and not of a potential Xcode Workspace containing your project</small>
+<sup>1</sup><small>It's important you add Snap as a subproject of your Xcode Project and not of a potential Xcode Workspace containing your project</small>
 
 ## Installation (Cocoapods pre-release)
 
-1. Add Snappy as a line in your Podfile `pod 'Snappy', :git => 'https://github.com/Masonry/Snappy.git'`
+1. Add Snap as a line in your Podfile `pod 'Snap', :git => 'https://github.com/Masonry/Snap.git'`
 2. Run `pod install`
-3. Add `import Snappy` to your `AppDelegate.swift`
+3. Add `import Snap` to your `AppDelegate.swift`
 
 ## What's wrong with NSLayoutConstraints?
 
@@ -108,9 +108,9 @@ view1.snp_makeConstraints { make in
 ```
 
 Also note in the first example we had to add the constraints to the superview `superview.addConstraints`.
-Snappy however will automagically add constraints to the appropriate view.
+Snap however will automagically add constraints to the appropriate view.
 
-Snappy will also call `view1.setTranslatesAutoresizingMaskIntoConstraints(false)` for you.
+Snap will also call `view1.setTranslatesAutoresizingMaskIntoConstraints(false)` for you.
 
 ## Not all things are created equal
 
@@ -162,7 +162,7 @@ make.width.lessThanOrEqualTo(400)
 ```
 
 However Auto Layout does not allow alignment attributes such as left, right, centerY etc to be set to constant values.
-So if you pass a primitive for these attributes Snappy will turn these into constraints relative to the view&rsquo;s superview ie:
+So if you pass a primitive for these attributes Snap will turn these into constraints relative to the view&rsquo;s superview ie:
 ```swift
 // creates view.left <= view.superview.left + 10
 make.left.lessThanOrEqualTo(10)
@@ -196,7 +196,7 @@ make.top.equalTo(label.snp_top).with.priority(600);
 
 ## Composition, composition, composition
 
-Snappy also gives you a few convenience methods which create multiple constraints at the same time.
+Snap also gives you a few convenience methods which create multiple constraints at the same time.
 
 #### edges
 
@@ -240,7 +240,7 @@ make.top.equalTo(otherView)
 ## Hold on for dear life
 
 Sometimes you need modify existing constraints in order to animate or remove/replace constraints.
-In Snappy there are a few different approaches to updating constraints.
+In Snap there are a few different approaches to updating constraints.
 
 #### 1. References
 You can hold on to a reference of a particular constraint by assigning the result of a constraint make expression to a local variable or a class property.
@@ -265,7 +265,7 @@ self.topConstraint.uninstall()
 
 ### 2. snp_remakeConstraints
 
-`snp_remakeConstraints` is similar to `snp_makeConstraints`, but will first remove all existing constraints installed by Snappy.
+`snp_remakeConstraints` is similar to `snp_makeConstraints`, but will first remove all existing constraints installed by Snap.
 
 ```swift
 func changeButtonPosition() {
@@ -284,7 +284,7 @@ func changeButtonPosition() {
 
 ## Code Snippets
 
-Copy the included code snippets to ``~/Library/Developer/Xcode/UserData/CodeSnippets`` to write your snappy closures at lightning speed!
+Copy the included code snippets to ``~/Library/Developer/Xcode/UserData/CodeSnippets`` to write your snap closures at lightning speed!
 
 `snp_make` -> `<view>.snp_makeConstraints { make in <code> }`
     

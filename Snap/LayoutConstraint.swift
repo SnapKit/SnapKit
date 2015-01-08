@@ -1,5 +1,5 @@
 //
-//  Snappy
+//  Snap
 //
 //  Copyright (c) 2011-2014 Masonry Team - https://github.com/Masonry
 //
@@ -28,7 +28,7 @@ import AppKit
 #endif
 
 /**
-* LayoutConstraint is a subclass of NSLayoutConstraint to assist Snappy and also provide better debugging
+* LayoutConstraint is a subclass of NSLayoutConstraint to assist Snap and also provide better debugging
 */
 public class LayoutConstraint: NSLayoutConstraint {
     internal var constraint: Constraint?
