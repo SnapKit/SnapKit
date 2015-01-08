@@ -6,6 +6,9 @@ Snappy is a light-weight layout framework which wraps AutoLayout with a nicer sy
 
 ## Requirements
 
+* iOS 7.0+ / Mac OS X 10.9+ (Cocoapods iOS 8.0+ / Mac OS X 10.9+)
+* Xcode 6.1
+
 ## Installation
 
 _Due to the current lack of [proper infrastructure](http://cocoapods.org) for Swift dependency management, using Snappy in your project requires the following steps:_
@@ -18,6 +21,11 @@ _Due to the current lack of [proper infrastructure](http://cocoapods.org) for Sw
 
 <sup>1</sup><small>It's important you add Snappy as a subproject of your Xcode Project and not of a potential Xcode Workspace containing your project</small>
 
+## Installation (Cocoapods pre-release)
+
+1. Add Snappy as a line in your Podfile `pod 'Snappy', :git => 'https://github.com/Masonry/Snappy.git'`
+2. Run `pod install`
+3. Add `import Snappy` to your `AppDelegate.swift`
 
 ## What's wrong with NSLayoutConstraints?
 
