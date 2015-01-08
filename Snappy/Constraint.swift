@@ -303,7 +303,7 @@ public class Constraint {
     
     // MARK: internal
     
-    internal func install() -> Array<LayoutConstraint> {
+    internal func install(updateExisting: Bool = false) -> Array<LayoutConstraint> {
         if self.installedOnView != nil {
             NSException(name: "Cannot Install Constraint", reason: "Already installed", userInfo: nil).raise()
             return []
@@ -367,6 +367,42 @@ public class Constraint {
             layoutConstraints.append(layoutConstraint)
         }
         
+        // special logic for updating
+        if updateExisting {
+            // get existing constraints for this view
+            let existingLayoutConstraints = reverse(layoutFrom!.snp_installedLayoutConstraints)
+            
+            // array that will contain only new layout constraints
+            var newLayoutConstraints = Array<LayoutConstraint>()
+            
+            // begin looping
+            for layoutConstraint in layoutConstraints {
+                // layout constraint that should be updated
+                var updateLayoutConstraint: LayoutConstraint? = nil
+                
+                // loop through existing and check for match
+                for existingLayoutConstraint in existingLayoutConstraints {
+                    if existingLayoutConstraint == layoutConstraint {
+                        updateLayoutConstraint = existingLayoutConstraint
+                        break
+                    }
+                }
+                
+                // if we have existing one lets just update the constant
+                if updateLayoutConstraint != nil {
+                    updateLayoutConstraint!.constant = layoutConstraint.constant
+                }
+                // otherwise add this layout constraint to new list
+                else {
+                    newLayoutConstraints.append(layoutConstraint)
+                }
+            }
+            
+            // set constraints to only new ones
+            layoutConstraints = newLayoutConstraints
+        }
+        
+        // add constarints
         installOnView!.addConstraints(layoutConstraints)
         
         self.installedOnView = installOnView

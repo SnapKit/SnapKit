@@ -33,3 +33,28 @@ import AppKit
 public class LayoutConstraint: NSLayoutConstraint {
     internal var constraint: Constraint?
 }
+
+public func ==(left: LayoutConstraint, right: LayoutConstraint) -> Bool {
+    if left.firstItem !== right.firstItem {
+        return false
+    }
+    if left.secondItem !== right.secondItem {
+        return false
+    }
+    if left.firstAttribute != right.firstAttribute {
+        return false
+    }
+    if left.secondAttribute != right.secondAttribute {
+        return false
+    }
+    if left.relation != right.relation {
+        return false
+    }
+    if left.priority != right.priority {
+        return false
+    }
+    if left.multiplier != right.multiplier {
+        return false
+    }
+    return true
+}
