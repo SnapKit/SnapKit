@@ -27,38 +27,6 @@ import UIKit
 import AppKit
 #endif
 
-public protocol FloatConstantConstraint {
-    func update(float: Float)
-}
-
-public protocol DoubleConstantConstraint {
-    func update(float: Float)
-}
-
-public protocol CGFloatConstantConstraint {
-    func update(float: Float)
-}
-
-public protocol IntConstantConstraint {
-    func update(float: Float)
-}
-
-public protocol UIntConstantConstraint {
-    func update(float: Float)
-}
-
-public protocol CGPointConstantConstraint {
-    func update(float: Float)
-}
-
-public protocol CGSizeConstantConstraint {
-    func update(size: CGSize)
-}
-
-public protocol EdgeInsetsConstantConstraint {
-    func update(insets: EdgeInsets)
-}
-
 /**
  * Constraint is a single item that defines all the properties for a single ConstraintMaker chain
  */
