@@ -382,15 +382,28 @@ public class Constraint {
                 
                 // loop through existing and check for match
                 for existingLayoutConstraint in existingLayoutConstraints {
-                    if existingLayoutConstraint == layoutConstraint {
+                    if existingLayoutConstraint.isSimilarTo(layoutConstraint) {
                         updateLayoutConstraint = existingLayoutConstraint
                         break
                     }
                 }
-                
-                // if we have existing one lets just update the constant
-                if updateLayoutConstraint != nil {
-                    updateLayoutConstraint!.constant = layoutConstraint.constant
+
+                // if we have existing one
+                if let updateLayoutConstraint = updateLayoutConstraint {
+                    // if existing one is same with new one, updates constant and priority if needed.
+                    if updateLayoutConstraint == layoutConstraint {
+                        if updateLayoutConstraint.constant != layoutConstraint.constant {
+                            updateLayoutConstraint.constant = layoutConstraint.constant
+                        }
+                        if updateLayoutConstraint.priority != layoutConstraint.priority {
+                            updateLayoutConstraint.priority = layoutConstraint.priority
+                        }
+                    }
+                    // if new constraint is not same with existing but has same attributes, replace existing with new one.
+                    else {
+                        updateLayoutConstraint.constraint!.uninstall()
+                        newLayoutConstraints.append(layoutConstraint)
+                    }
                 }
                 // otherwise add this layout constraint to new list
                 else {
@@ -424,9 +437,15 @@ public class Constraint {
                     }
                 }
             }
-            if constraintsToRemove.count > 0 {
-                view.removeConstraints(constraintsToRemove)
+            for constraintToRemove in constraintsToRemove {
+                let firstItem = constraintToRemove.firstItem as View
+                var installedLayoutConstraints = firstItem.snp_installedLayoutConstraints
+                if let i = find(installedLayoutConstraints, constraintToRemove) {
+                    installedLayoutConstraints.removeAtIndex(i)
+                    firstItem.snp_installedLayoutConstraints = installedLayoutConstraints
+                }
             }
+            view.removeConstraints(constraintsToRemove)
         }
         self.installedOnView = nil
     }

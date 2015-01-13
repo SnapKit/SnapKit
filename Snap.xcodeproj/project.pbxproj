@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0364732D1A64086800E1F188 /* UpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0364732C1A64086800E1F188 /* UpdateTests.swift */; };
+		0364732E1A6408F200E1F188 /* SnapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91728C19CB304E007888CF /* SnapTests.swift */; };
+		0364732F1A64090E00E1F188 /* View+Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F119CC65040083B827 /* View+Snap.swift */; };
+		036473301A64090E00E1F188 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9FB19CC65430083B827 /* ConstraintMaker.swift */; };
+		036473311A64090E00E1F188 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9FF19CC66020083B827 /* Constraint.swift */; };
+		036473321A64090E00E1F188 /* ConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F719CC65260083B827 /* ConstraintItem.swift */; };
+		036473331A64090E00E1F188 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F319CC65110083B827 /* ConstraintAttributes.swift */; };
+		036473341A64090E00E1F188 /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F519CC65200083B827 /* ConstraintRelation.swift */; };
+		036473351A64090E00E1F188 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9FD19CC65510083B827 /* LayoutConstraint.swift */; };
+		036473361A64090E00E1F188 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9EF19CC64F70083B827 /* EdgeInsets.swift */; };
 		EEBCC9F019CC64F80083B827 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9EF19CC64F70083B827 /* EdgeInsets.swift */; };
 		EEBCC9F219CC65050083B827 /* View+Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F119CC65040083B827 /* View+Snap.swift */; };
 		EEBCC9F419CC65110083B827 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F319CC65110083B827 /* ConstraintAttributes.swift */; };
@@ -18,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0364732C1A64086800E1F188 /* UpdateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTests.swift; sourceTree = "<group>"; };
 		EE91728119CB304E007888CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE91728219CB304E007888CF /* Snap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Snap.h; sourceTree = "<group>"; };
 		EE91728B19CB304E007888CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				EE91728C19CB304E007888CF /* SnapTests.swift */,
+				0364732C1A64086800E1F188 /* UpdateTests.swift */,
 				EE91728A19CB304E007888CF /* Supporting Files */,
 			);
 			path = SnapTests;
@@ -233,6 +245,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0364732F1A64090E00E1F188 /* View+Snap.swift in Sources */,
+				036473301A64090E00E1F188 /* ConstraintMaker.swift in Sources */,
+				036473311A64090E00E1F188 /* Constraint.swift in Sources */,
+				036473321A64090E00E1F188 /* ConstraintItem.swift in Sources */,
+				036473331A64090E00E1F188 /* ConstraintAttributes.swift in Sources */,
+				036473341A64090E00E1F188 /* ConstraintRelation.swift in Sources */,
+				036473351A64090E00E1F188 /* LayoutConstraint.swift in Sources */,
+				036473361A64090E00E1F188 /* EdgeInsets.swift in Sources */,
+				0364732D1A64086800E1F188 /* UpdateTests.swift in Sources */,
+				0364732E1A6408F200E1F188 /* SnapTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +385,7 @@
 		EEBCC9EC19CC627E0083B827 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -375,12 +398,14 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		EEBCC9ED19CC627E0083B827 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

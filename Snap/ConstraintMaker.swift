@@ -108,13 +108,13 @@ public class ConstraintMaker {
         #endif
         let maker = ConstraintMaker(view: view)
         block(make: maker)
-        
-        var layoutConstraints = view.snp_installedLayoutConstraints
+
+        var newLayoutConstraints = [LayoutConstraint]()
         for constraint in maker.constraints {
-            layoutConstraints += constraint.install(updateExisting: true)
+            newLayoutConstraints += constraint.install(updateExisting: true)
         }
-        
-        view.snp_installedLayoutConstraints = layoutConstraints
+
+        view.snp_installedLayoutConstraints = view.snp_installedLayoutConstraints + newLayoutConstraints
     }
     
     internal class func removeConstraints(view: View) {
