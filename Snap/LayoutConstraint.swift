@@ -32,22 +32,29 @@ import AppKit
 */
 public class LayoutConstraint: NSLayoutConstraint {
     internal var constraint: Constraint?
+
+    func isSimilarTo(layoutConstraint: LayoutConstraint) -> Bool {
+        if self.firstItem !== layoutConstraint.firstItem {
+            return false
+        }
+        if self.firstAttribute != layoutConstraint.firstAttribute {
+            return false
+        }
+        if self.relation != layoutConstraint.relation {
+            return false
+        }
+        return true
+    }
 }
 
 public func ==(left: LayoutConstraint, right: LayoutConstraint) -> Bool {
-    if left.firstItem !== right.firstItem {
+    if !left.isSimilarTo(right) {
         return false
     }
     if left.secondItem !== right.secondItem {
         return false
     }
-    if left.firstAttribute != right.firstAttribute {
-        return false
-    }
     if left.secondAttribute != right.secondAttribute {
-        return false
-    }
-    if left.relation != right.relation {
         return false
     }
     if left.priority != right.priority {
