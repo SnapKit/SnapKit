@@ -6,7 +6,7 @@ Snap is a light-weight layout framework which wraps AutoLayout with a nicer synt
 
 ## Requirements
 
-* iOS 7.0+ / Mac OS X 10.9+ (Cocoapods iOS 8.0+ / Mac OS X 10.9+)
+* iOS 7.0+ / Mac OS X 10.9+ (Using Cocoapods 0.36.0.beta.1 or later – iOS 8.0+ / Mac OS X 10.9+)
 * Xcode 6.1
 
 ## Installation
@@ -23,7 +23,7 @@ _Due to the current lack of [proper infrastructure](http://cocoapods.org) for Sw
 
 ## Installation (Cocoapods pre-release)
 
-1. Add Snap as a line in your Podfile `pod 'Snap', :git => 'https://github.com/Masonry/Snap.git'`
+1. Add Snap as a line in your Podfile `pod 'Snap'`
 2. Run `pod install`
 3. Add `import Snap` to your `AppDelegate.swift`
 
