@@ -437,9 +437,15 @@ public class Constraint {
                     }
                 }
             }
-            if constraintsToRemove.count > 0 {
-                view.removeConstraints(constraintsToRemove)
+            for constraintToRemove in constraintsToRemove {
+                let firstItem = constraintToRemove.firstItem as View
+                var installedLayoutConstraints = firstItem.snp_installedLayoutConstraints
+                if let i = find(installedLayoutConstraints, constraintToRemove) {
+                    installedLayoutConstraints.removeAtIndex(i)
+                    firstItem.snp_installedLayoutConstraints = installedLayoutConstraints
+                }
             }
+            view.removeConstraints(constraintsToRemove)
         }
         self.installedOnView = nil
     }
