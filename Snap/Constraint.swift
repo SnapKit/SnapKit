@@ -380,8 +380,9 @@ public class Constraint {
             layoutConstraints = newLayoutConstraints
         }
         
-        // add constarints
+        // add constraints
         installOnView!.addConstraints(layoutConstraints)
+        installOnView!.snp_installedLayoutConstraints = layoutConstraints
         
         self.installedOnView = installOnView
         return layoutConstraints
@@ -405,6 +406,15 @@ public class Constraint {
             if constraintsToRemove.count > 0 {
                 view.removeConstraints(constraintsToRemove)
             }
+          
+            var layoutConstraints = view.snp_installedLayoutConstraints
+            var layoutConstraintsToKeep = Array<LayoutConstraint>()
+            for layoutConstraint in layoutConstraints {
+                if !contains(constraintsToRemove, layoutConstraint) {
+                    layoutConstraintsToKeep.append(layoutConstraint)
+                }
+            }
+            view.snp_installedLayoutConstraints = layoutConstraintsToKeep
         }
         self.installedOnView = nil
     }

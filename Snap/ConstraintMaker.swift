@@ -111,7 +111,7 @@ public class ConstraintMaker {
         
         var layoutConstraints = view.snp_installedLayoutConstraints
         for constraint in maker.constraints {
-            layoutConstraints += constraint.install(updateExisting: true)
+            layoutConstraints += constraint.installOnView(updateExisting: true)
         }
         
         view.snp_installedLayoutConstraints = layoutConstraints
