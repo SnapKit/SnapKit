@@ -268,10 +268,20 @@ public class Constraint {
         self.offset = amount
         return self
     }
+  
+    // MARK: install / uninstall
+  
+    public func install() -> Array<LayoutConstraint> {
+        return self.installOnView(updateExisting: false)
+    }
+  
+    public func uninstall() {
+        self.uninstallFromView()
+    }
     
     // MARK: internal
     
-    internal func install(updateExisting: Bool = false) -> Array<LayoutConstraint> {
+    internal func installOnView(updateExisting: Bool = false) -> Array<LayoutConstraint> {
         if self.installedOnView != nil {
             NSException(name: "Cannot Install Constraint", reason: "Already installed", userInfo: nil).raise()
             return []
@@ -377,7 +387,7 @@ public class Constraint {
         return layoutConstraints
     }
     
-    internal func uninstall() {
+    internal func uninstallFromView() {
         if let view = self.installedOnView {
             #if os(iOS)
             var installedConstraints = view.constraints()
