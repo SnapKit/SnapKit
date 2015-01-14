@@ -134,7 +134,7 @@ public class Constraint {
     public func greaterThanOrEqualTo(other: ConstraintItem) -> Constraint {
         return constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    func greaterThanOrEqualTo(other: View) -> Constraint {
+    public func greaterThanOrEqualTo(other: View) -> Constraint {
         return constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     #if os(iOS)
