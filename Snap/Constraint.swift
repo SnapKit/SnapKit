@@ -388,8 +388,7 @@ public class Constraint {
         
         // add constraints
         installOnView!.addConstraints(layoutConstraints)
-        installOnView!.snp_installedLayoutConstraints = layoutConstraints
-        
+
         self.installedOnView = installOnView
         return layoutConstraints
     }
