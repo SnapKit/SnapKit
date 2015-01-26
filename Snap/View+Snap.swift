@@ -84,6 +84,26 @@ public extension View {
         ConstraintMaker.removeConstraints(self)
     }
     
+    public func snp_prepareConstraints(tag: String, block: (maker: ConstraintMaker) -> ()) {
+        
+    }
+    
+    public func snp_enableConstraints(tag: String) {
+        
+    }
+    
+    public func snp_disableConstraints(tag: String) {
+        
+    }
+    
+    public func snp_toggleConstraints(tag: String) {
+        
+    }
+    
+    public func snp_removeConstraints(tag: String) {
+        
+    }
+    
     // internal
     
     internal var snp_installedLayoutConstraints: Array<LayoutConstraint> {
