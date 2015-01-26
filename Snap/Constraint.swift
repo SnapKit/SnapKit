@@ -268,13 +268,13 @@ public class Constraint {
         self.offset = amount
         return self
     }
-  
+    
     // MARK: install / uninstall
-  
+    
     public func install() -> Array<LayoutConstraint> {
         return self.installOnView(updateExisting: false)
     }
-  
+    
     public func uninstall() {
         self.uninstallFromView()
     }
@@ -297,14 +297,14 @@ public class Constraint {
         } else {
             installOnView = self.fromItem.view?.superview
             if installOnView == nil {
-              if self.fromItem.attributes == ConstraintAttributes.Width || self.fromItem.attributes == ConstraintAttributes.Height {
-                installOnView = self.fromItem.view
-              }
-              
-              if installedOnView == nil {
-                NSException(name: "Cannot Install Constraint", reason: "Missing superview", userInfo: nil).raise()
-                return []
-              }
+                if self.fromItem.attributes == ConstraintAttributes.Width || self.fromItem.attributes == ConstraintAttributes.Height {
+                    installOnView = self.fromItem.view
+                }
+                
+                if installedOnView == nil {
+                    NSException(name: "Cannot Install Constraint", reason: "Missing superview", userInfo: nil).raise()
+                    return []
+                }
             }
         }
         
@@ -388,40 +388,40 @@ public class Constraint {
         
         // add constraints
         installOnView!.addConstraints(layoutConstraints)
-
+        
         self.installedOnView = installOnView
+        self.installedLayoutConstraints = NSHashTable.weakObjectsHashTable()
+        for layoutConstraint in layoutConstraints {
+            self.installedLayoutConstraints!.addObject(layoutConstraint)
+        }
+        
         return layoutConstraints
     }
     
     internal func uninstallFromView() {
         if let view = self.installedOnView {
-            #if os(iOS)
-            var installedConstraints = view.constraints()
-            #else
-            var installedConstraints = view.constraints
-            #endif
-            var constraintsToRemove: Array<LayoutConstraint> = []
-            for installedConstraint in installedConstraints {
-                if let layoutConstraint = installedConstraint as? LayoutConstraint {
-                    if layoutConstraint.constraint === self {
-                        constraintsToRemove.append(layoutConstraint)
-                    }
-                }
+            // remove all installed layout constraints
+            var layoutConstraintsToRemove = Array<LayoutConstraint>()
+            if let installedLayoutConstraints = self.installedLayoutConstraints?.allObjects as? Array<LayoutConstraint> {
+                layoutConstraintsToRemove += installedLayoutConstraints
             }
-            if constraintsToRemove.count > 0 {
-                view.removeConstraints(constraintsToRemove)
+            
+            if layoutConstraintsToRemove.count > 0 {
+                view.removeConstraints(layoutConstraintsToRemove)
             }
-          
+            
+            // clean up the snp_installedLayoutConstraints
             var layoutConstraints = view.snp_installedLayoutConstraints
             var layoutConstraintsToKeep = Array<LayoutConstraint>()
             for layoutConstraint in layoutConstraints {
-                if !contains(constraintsToRemove, layoutConstraint) {
+                if !contains(layoutConstraintsToRemove, layoutConstraint) {
                     layoutConstraintsToKeep.append(layoutConstraint)
                 }
             }
             view.snp_installedLayoutConstraints = layoutConstraintsToKeep
         }
         self.installedOnView = nil
+        self.installedLayoutConstraints = nil
     }
     
     // MARK: private
@@ -434,6 +434,7 @@ public class Constraint {
     private var priority: Float = 1000.0
     private var offset: Any?
     
+    private var installedLayoutConstraints: NSHashTable?
     private weak var installedOnView: View?
     
     private func addConstraint(attributes: ConstraintAttributes) -> Constraint {
