@@ -297,8 +297,14 @@ public class Constraint {
         } else {
             installOnView = self.fromItem.view?.superview
             if installOnView == nil {
+              if self.fromItem.attributes == ConstraintAttributes.Width || self.fromItem.attributes == ConstraintAttributes.Height {
+                installOnView = self.fromItem.view
+              }
+              
+              if installedOnView == nil {
                 NSException(name: "Cannot Install Constraint", reason: "Missing superview", userInfo: nil).raise()
                 return []
+              }
             }
         }
         
