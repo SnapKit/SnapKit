@@ -124,7 +124,7 @@ internal struct ConstraintAttributes: RawOptionSetType, BooleanType {
             if (self & ConstraintAttributes.Baseline) {
                 attrs.append(.Baseline)
             }
-            #if os(ios)
+            #if os(iOS)
             if (self & ConstraintAttributes.FirstBaseline) {
                 attrs.append(.FirstBaseline)
             }
