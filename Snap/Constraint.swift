@@ -507,7 +507,7 @@ public class Constraint {
                     return view
                 }
                 views.insert(view)
-                fromView = view.superview
+                toView = view.superview
             }
         } while (fromView != nil || toView != nil)
 
