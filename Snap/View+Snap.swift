@@ -108,11 +108,8 @@ public extension View {
     
     internal var snp_installedLayoutConstraints: Array<LayoutConstraint> {
         get {
-            var constraints = objc_getAssociatedObject(self, &installedLayoutConstraintsKey) as? Array<LayoutConstraint>
-            if constraints != nil {
-                return constraints!
-            }
-            return []
+            let constraints = objc_getAssociatedObject(self, &installedLayoutConstraintsKey) as? [LayoutConstraint]
+            return constraints ?? []
         }
         set {
             objc_setAssociatedObject(self, &installedLayoutConstraintsKey, newValue, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))

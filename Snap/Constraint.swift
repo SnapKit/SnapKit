@@ -411,7 +411,7 @@ public class Constraint {
             }
             
             // clean up the snp_installedLayoutConstraints
-            var layoutConstraints = view.snp_installedLayoutConstraints
+            var layoutConstraints = Array(view.snp_installedLayoutConstraints)
             var layoutConstraintsToKeep = Array<LayoutConstraint>()
             for layoutConstraint in layoutConstraints {
                 if !contains(layoutConstraintsToRemove, layoutConstraint) {
