@@ -70,7 +70,7 @@ public class ConstraintMaker {
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         
-        var layoutConstraints = view.snp_installedLayoutConstraints
+        var layoutConstraints = Array(view.snp_installedLayoutConstraints)
         for constraint in maker.constraints {
             layoutConstraints += constraint.install()
         }
@@ -87,7 +87,7 @@ public class ConstraintMaker {
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         
-        var layoutConstraints: Array<LayoutConstraint> = view.snp_installedLayoutConstraints
+        var layoutConstraints = Array(view.snp_installedLayoutConstraints)
         for existingLayoutConstraint in layoutConstraints {
             existingLayoutConstraint.constraint?.uninstall()
         }
@@ -109,7 +109,7 @@ public class ConstraintMaker {
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         
-        var layoutConstraints = view.snp_installedLayoutConstraints
+        var layoutConstraints = Array(view.snp_installedLayoutConstraints)
         for constraint in maker.constraints {
             layoutConstraints += constraint.installOnView(updateExisting: true)
         }
