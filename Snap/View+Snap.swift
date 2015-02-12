@@ -68,40 +68,20 @@ public extension View {
     public var snp_centerWithinMargins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterWithinMargins) }
     #endif
     
-    public func snp_makeConstraints(block: (maker: ConstraintMaker) -> ()) {
+    public func snp_makeConstraints(block: (make: ConstraintMaker) -> ()) {
         ConstraintMaker.makeConstraints(self, block: block)
     }
     
-    public func snp_updateConstraints(block: (maker: ConstraintMaker) -> ()) {
+    public func snp_updateConstraints(block: (make: ConstraintMaker) -> ()) {
         ConstraintMaker.updateConstraints(self, block: block)
     }
     
-    public func snp_remakeConstraints(block: (maker: ConstraintMaker) -> ()) {
+    public func snp_remakeConstraints(block: (make: ConstraintMaker) -> ()) {
         ConstraintMaker.remakeConstraints(self, block: block)
     }
     
     public func snp_removeConstraints() {
         ConstraintMaker.removeConstraints(self)
-    }
-    
-    public func snp_prepareConstraints(tag: String, block: (maker: ConstraintMaker) -> ()) {
-        
-    }
-    
-    public func snp_enableConstraints(tag: String) {
-        
-    }
-    
-    public func snp_disableConstraints(tag: String) {
-        
-    }
-    
-    public func snp_toggleConstraints(tag: String) {
-        
-    }
-    
-    public func snp_removeConstraints(tag: String) {
-        
     }
     
     // internal
