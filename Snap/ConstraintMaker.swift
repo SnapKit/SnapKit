@@ -61,7 +61,7 @@ public class ConstraintMaker {
         return constraint
     }
     
-    internal class func makeConstraints(view: View, block: (make: ConstraintMaker) -> ()) {
+    internal class func makeConstraints(view: View, @noescape block: (make: ConstraintMaker) -> ()) {
         #if os(iOS)
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
         #else
@@ -78,7 +78,7 @@ public class ConstraintMaker {
         view.snp_installedLayoutConstraints = layoutConstraints
     }
     
-    internal class func remakeConstraints(view: View, block: (make: ConstraintMaker) -> ()) {
+    internal class func remakeConstraints(view: View, @noescape block: (make: ConstraintMaker) -> ()) {
         #if os(iOS)
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
         #else
@@ -100,7 +100,7 @@ public class ConstraintMaker {
         view.snp_installedLayoutConstraints = layoutConstraints
     }
     
-    internal class func updateConstraints(view: View, block: (make: ConstraintMaker) -> ()) {
+    internal class func updateConstraints(view: View, @noescape block: (make: ConstraintMaker) -> ()) {
         #if os(iOS)
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
         #else

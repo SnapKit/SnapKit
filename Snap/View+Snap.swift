@@ -68,15 +68,15 @@ public extension View {
     public var snp_centerWithinMargins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterWithinMargins) }
     #endif
     
-    public func snp_makeConstraints(block: (make: ConstraintMaker) -> ()) {
+    public func snp_makeConstraints(@noescape block: (make: ConstraintMaker) -> ()) {
         ConstraintMaker.makeConstraints(self, block: block)
     }
     
-    public func snp_updateConstraints(block: (make: ConstraintMaker) -> ()) {
+    public func snp_updateConstraints(@noescape block: (make: ConstraintMaker) -> ()) {
         ConstraintMaker.updateConstraints(self, block: block)
     }
     
-    public func snp_remakeConstraints(block: (make: ConstraintMaker) -> ()) {
+    public func snp_remakeConstraints(@noescape block: (make: ConstraintMaker) -> ()) {
         ConstraintMaker.remakeConstraints(self, block: block)
     }
     
