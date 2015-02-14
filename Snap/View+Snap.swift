@@ -68,15 +68,15 @@ public extension View {
     public var snp_centerWithinMargins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterWithinMargins) }
     #endif
     
-    public func snp_makeConstraints(block: (maker: ConstraintMaker) -> ()) {
+    public func snp_makeConstraints(block: (make: ConstraintMaker) -> Void) {
         ConstraintMaker.makeConstraints(self, block: block)
     }
     
-    public func snp_updateConstraints(block: (maker: ConstraintMaker) -> ()) {
+    public func snp_updateConstraints(block: (make: ConstraintMaker) -> Void) {
         ConstraintMaker.updateConstraints(self, block: block)
     }
     
-    public func snp_remakeConstraints(block: (maker: ConstraintMaker) -> ()) {
+    public func snp_remakeConstraints(block: (make: ConstraintMaker) -> Void) {
         ConstraintMaker.remakeConstraints(self, block: block)
     }
     
@@ -84,35 +84,14 @@ public extension View {
         ConstraintMaker.removeConstraints(self)
     }
     
-    public func snp_prepareConstraints(tag: String, block: (maker: ConstraintMaker) -> ()) {
-        
-    }
-    
-    public func snp_enableConstraints(tag: String) {
-        
-    }
-    
-    public func snp_disableConstraints(tag: String) {
-        
-    }
-    
-    public func snp_toggleConstraints(tag: String) {
-        
-    }
-    
-    public func snp_removeConstraints(tag: String) {
-        
-    }
-    
     // internal
     
     internal var snp_installedLayoutConstraints: Array<LayoutConstraint> {
         get {
-            var constraints = objc_getAssociatedObject(self, &installedLayoutConstraintsKey) as? Array<LayoutConstraint>
-            if constraints != nil {
-                return constraints!
+            if let constraints = objc_getAssociatedObject(self, &installedLayoutConstraintsKey) as? Array<LayoutConstraint> {
+                return constraints
             }
-            return []
+            return Array<LayoutConstraint>()
         }
         set {
             objc_setAssociatedObject(self, &installedLayoutConstraintsKey, newValue, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EEAED5481A8F56A500777EF9 /* Snap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBCC9D819CC627D0083B827 /* Snap.framework */; };
+		EEAED5491A8F56BF00777EF9 /* SnapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91728C19CB304E007888CF /* SnapTests.swift */; };
 		EEBCC9F019CC64F80083B827 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9EF19CC64F70083B827 /* EdgeInsets.swift */; };
 		EEBCC9F219CC65050083B827 /* View+Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F119CC65040083B827 /* View+Snap.swift */; };
 		EEBCC9F419CC65110083B827 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCC9F319CC65110083B827 /* ConstraintAttributes.swift */; };
@@ -46,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEAED5481A8F56A500777EF9 /* Snap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEAED5491A8F56BF00777EF9 /* SnapTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
