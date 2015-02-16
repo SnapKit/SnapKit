@@ -68,6 +68,10 @@ public extension View {
     public var snp_centerWithinMargins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterWithinMargins) }
     #endif
     
+    public func snp_prepareConstraints(block: (make: ConstraintMaker) -> Void) -> Array<Constraint> {
+        return ConstraintMaker.prepareConstraints(self, block: block)
+    }
+    
     public func snp_makeConstraints(block: (make: ConstraintMaker) -> Void) {
         ConstraintMaker.makeConstraints(self, block: block)
     }
