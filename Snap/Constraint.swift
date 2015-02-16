@@ -402,8 +402,10 @@ public class Constraint {
         if let view = self.installedOnView {
             // remove all installed layout constraints
             var layoutConstraintsToRemove = Array<LayoutConstraint>()
-            if let installedLayoutConstraints = self.installedLayoutConstraints?.allObjects as? Array<LayoutConstraint> {
-                layoutConstraintsToRemove += installedLayoutConstraints
+            if let allObjects = self.installedLayoutConstraints?.allObjects {
+                if let installedLayoutConstraints = allObjects as? Array<LayoutConstraint> {
+                    layoutConstraintsToRemove += installedLayoutConstraints
+                }
             }
             
             if layoutConstraintsToRemove.count > 0 {
