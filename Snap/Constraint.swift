@@ -506,19 +506,27 @@ public class Constraint {
     }
     
     private class func closestCommonSuperviewFromView(fromView: View?, toView: View?) -> View? {
-        var closestCommonSuperview: View?
-        var secondViewSuperview: View? = toView
-        while closestCommonSuperview == nil && secondViewSuperview != nil {
-            var firstViewSuperview = fromView
-            while closestCommonSuperview == nil && firstViewSuperview != nil {
-                if secondViewSuperview == firstViewSuperview {
-                    closestCommonSuperview = secondViewSuperview
+        var views = NSMutableSet()
+        var fromView = fromView
+        var toView = toView
+        do {
+            if let view = toView {
+                if views.containsObject(view) {
+                    return view
                 }
-                firstViewSuperview = firstViewSuperview?.superview
+                views.addObject(view)
+                toView = view.superview
             }
-            secondViewSuperview = secondViewSuperview?.superview
-        }
-        return closestCommonSuperview
+            if let view = fromView {
+                if views.containsObject(view) {
+                    return view
+                }
+                views.addObject(view)
+                fromView = view.superview
+            }
+        } while (fromView != nil || toView != nil)
+        
+        return nil
     }
 }
 
