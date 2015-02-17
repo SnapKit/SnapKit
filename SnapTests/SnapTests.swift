@@ -140,4 +140,30 @@ class SnapTests: XCTestCase {
         
     }
     
+    func testReinstallConstraints() {
+        let v1 = UIView()
+        let v2 = UIView()
+        self.container.addSubview(v1)
+        self.container.addSubview(v2)
+        
+        let constraints = v1.snp_prepareConstraints { (make) -> Void in
+            make.edges.equalTo(v2)
+            return
+        }
+        
+        XCTAssertEqual(self.container.constraints().count, 0, "Should have 0 constraints installed")
+        
+        for constraint in constraints {
+            constraint.install()
+        }
+        
+        XCTAssertEqual(self.container.constraints().count, 4, "Should have 4 constraints installed")
+        
+        for constraint in constraints {
+            constraint.install()
+        }
+        
+        XCTAssertEqual(self.container.constraints().count, 4, "Should have 0 constraints installed")
+    }
+    
 }

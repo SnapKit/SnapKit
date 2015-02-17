@@ -287,11 +287,6 @@ public class Constraint {
     // MARK: internal
     
     internal func installOnView(updateExisting: Bool = false) -> Array<LayoutConstraint> {
-        if self.installedOnView != nil {
-            NSException(name: "Cannot Install Constraint", reason: "Already installed", userInfo: nil).raise()
-            return []
-        }
-        
         var installOnView: View? = nil
         if self.toItem.view != nil {
             installOnView = Constraint.closestCommonSuperviewFromView(self.fromItem.view, toView: self.toItem.view)
@@ -306,11 +301,19 @@ public class Constraint {
                     installOnView = self.fromItem.view
                 }
                 
-                if installedOnView == nil {
+                if installOnView == nil {
                     NSException(name: "Cannot Install Constraint", reason: "Missing superview", userInfo: nil).raise()
                     return []
                 }
             }
+        }
+        
+        if self.installedOnView != nil {
+            if self.installedOnView != installOnView {
+                NSException(name: "Cannot Install Constraint", reason: "Already installed on different view.", userInfo: nil).raise()
+                return []
+            }
+            return self.installedLayoutConstraints?.allObjects as Array<LayoutConstraint>
         }
         
         var newLayoutConstraints = Array<LayoutConstraint>()
