@@ -490,23 +490,23 @@ public class Constraint {
     }
     
     private class func closestCommonSuperviewFromView(fromView: View?, toView: View?) -> View? {
-        var views = Set<UIView>()
+        var views = NSMutableSet()
         var fromView = fromView
         var toView = toView
         do {
             if let view = fromView {
-                if views.contains(view) {
+                if views.containsObject(view) {
                     return view
                 }
-                views.insert(view)
+                views.addObject(view)
                 fromView = view.superview
             }
 
             if let view = toView {
-                if views.contains(view) {
+                if views.containsObject(view) {
                     return view
                 }
-                views.insert(view)
+                views.addObject(view)
                 toView = view.superview
             }
         } while (fromView != nil || toView != nil)
