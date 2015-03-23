@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0610"
+   LastUpgradeVersion = "0620"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EEBCC9D719CC627D0083B827"
+               BlueprintIdentifier = "EECDB3791AC0C9D4006BBC11"
                BuildableName = "Snap.framework"
-               BlueprintName = "Snap"
+               BlueprintName = "Snap OSX"
+               ReferencedContainer = "container:Snap.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EECDB3831AC0C9D4006BBC11"
+               BuildableName = "Snap OSX Tests.xctest"
+               BlueprintName = "Snap OSX Tests"
                ReferencedContainer = "container:Snap.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,7 +42,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EECDB3831AC0C9D4006BBC11"
+               BuildableName = "Snap OSX Tests.xctest"
+               BlueprintName = "Snap OSX Tests"
+               ReferencedContainer = "container:Snap.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "EECDB3791AC0C9D4006BBC11"
+            BuildableName = "Snap.framework"
+            BlueprintName = "Snap OSX"
+            ReferencedContainer = "container:Snap.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -42,9 +75,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EEBCC9D719CC627D0083B827"
+            BlueprintIdentifier = "EECDB3791AC0C9D4006BBC11"
             BuildableName = "Snap.framework"
-            BlueprintName = "Snap"
+            BlueprintName = "Snap OSX"
             ReferencedContainer = "container:Snap.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,9 +93,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EEBCC9D719CC627D0083B827"
+            BlueprintIdentifier = "EECDB3791AC0C9D4006BBC11"
             BuildableName = "Snap.framework"
-            BlueprintName = "Snap"
+            BlueprintName = "Snap OSX"
             ReferencedContainer = "container:Snap.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

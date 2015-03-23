@@ -6,26 +6,22 @@ Snap is a light-weight layout framework which wraps AutoLayout with a nicer synt
 
 ## Requirements
 
-* iOS 7.0+ / Mac OS X 10.9+ (Using Cocoapods 0.36.0.beta.1 or later – iOS 8.0+ / Mac OS X 10.9+)
+* iOS 7.0+ / Mac OS X 10.9+
 * Xcode 6.1
 
-## Installation
-
-_Due to the current lack of [proper infrastructure](http://cocoapods.org) for Swift dependency management, using Snap in your project requires the following steps:_
-
-1. Add Snap as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/Masonry/Snap.git`
-2. Open the `Snap` folder, and drag `Snap.xcodeproj` into the file navigator of your Xcode project<sup>1</sup>.
-3. In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
-4. In the tab bar at the top of that window, open the "General" panel.
-5. Click on the `+` button in the "Embedded Binaries" group of the panel and select and add `Snap.framework`.
-
-<sup>1</sup><small>It's important you add Snap as a subproject of your Xcode Project and not of a potential Xcode Workspace containing your project</small>
-
-## Installation (Cocoapods pre-release)
+## Installation Cocoapods
 
 1. Add Snap as a line in your Podfile `pod 'Snap'`
 2. Run `pod install`
 3. Add `import Snap` to your `AppDelegate.swift`
+
+<small>Cocoapods installations only work for iOS 8.0 and OS X 10.10 or higher deployment targets.</small>
+
+## Installation Carthage
+
+Carthage is supported by adding `github 'Masonry/Snap'` to your Cartfile.
+
+<small>Carthage installations only work for iOS 8.0 and OS X 10.10 or higher deployment targets.</small>
 
 ## What's wrong with NSLayoutConstraints?
 

@@ -1,18 +1,23 @@
-//
-//  SnapTests.swift
-//  SnapTests
-//
-//  Created by Robert Payne on 20/09/14.
-//  Copyright (c) 2014 Jonas Budelmann. All rights reserved.
-//
-
+#if os(iOS)
 import UIKit
+typealias View = UIView
+extension View {
+    var snp_constraints: [AnyObject] { return self.constraints() }
+}
+#else
+import AppKit
+typealias View = NSView
+extension View {
+    var snp_constraints: [AnyObject] { return self.constraints }
+}
+#endif
+
 import XCTest
 import Snap
 
 class SnapTests: XCTestCase {
     
-    let container = UIView()
+    let container = View()
     
     override func setUp() {
         super.setUp()
@@ -25,8 +30,8 @@ class SnapTests: XCTestCase {
     }
     
     func testMakeConstraints() {
-        let v1 = UIView()
-        let v2 = UIView()
+        let v1 = View()
+        let v2 = View()
         self.container.addSubview(v1)
         self.container.addSubview(v2)
         
@@ -36,20 +41,20 @@ class SnapTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(self.container.constraints().count, 2, "Should have 2 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints installed")
         
         v2.snp_makeConstraints { (make) -> Void in
             make.edges.equalTo(v1)
             return
         }
         
-        XCTAssertEqual(self.container.constraints().count, 6, "Should have 6 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 6, "Should have 6 constraints installed")
         
     }
     
     func testUpdateConstraints() {
-        let v1 = UIView()
-        let v2 = UIView()
+        let v1 = View()
+        let v2 = View()
         self.container.addSubview(v1)
         self.container.addSubview(v2)
         
@@ -59,20 +64,20 @@ class SnapTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(self.container.constraints().count, 2, "Should have 2 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints installed")
         
         v1.snp_updateConstraints { (make) -> Void in
             make.top.equalTo(v2.snp_top).offset(15)
             return
         }
         
-        XCTAssertEqual(self.container.constraints().count, 2, "Should still have 2 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should still have 2 constraints installed")
         
     }
     
     func testRemakeConstraints() {
-        let v1 = UIView()
-        let v2 = UIView()
+        let v1 = View()
+        let v2 = View()
         self.container.addSubview(v1)
         self.container.addSubview(v2)
         
@@ -82,20 +87,20 @@ class SnapTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(self.container.constraints().count, 2, "Should have 2 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints installed")
         
         v1.snp_remakeConstraints { (make) -> Void in
             make.edges.equalTo(v2)
             return
         }
         
-        XCTAssertEqual(self.container.constraints().count, 4, "Should have 4 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints installed")
         
     }
     
     func testRemoveConstraints() {
-        let v1 = UIView()
-        let v2 = UIView()
+        let v1 = View()
+        let v2 = View()
         self.container.addSubview(v1)
         self.container.addSubview(v2)
         
@@ -105,17 +110,17 @@ class SnapTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(self.container.constraints().count, 2, "Should have 2 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints installed")
         
         v1.snp_removeConstraints()
         
-        XCTAssertEqual(self.container.constraints().count, 0, "Should have 0 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints installed")
         
     }
     
     func testPrepareConstraints() {
-        let v1 = UIView()
-        let v2 = UIView()
+        let v1 = View()
+        let v2 = View()
         self.container.addSubview(v1)
         self.container.addSubview(v2)
         
@@ -124,25 +129,25 @@ class SnapTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(self.container.constraints().count, 0, "Should have 0 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints installed")
         
         for constraint in constraints {
             constraint.install()
         }
         
-        XCTAssertEqual(self.container.constraints().count, 4, "Should have 4 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints installed")
         
         for constraint in constraints {
             constraint.uninstall()
         }
         
-        XCTAssertEqual(self.container.constraints().count, 0, "Should have 0 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints installed")
         
     }
     
     func testReinstallConstraints() {
-        let v1 = UIView()
-        let v2 = UIView()
+        let v1 = View()
+        let v2 = View()
         self.container.addSubview(v1)
         self.container.addSubview(v2)
         
@@ -151,19 +156,19 @@ class SnapTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(self.container.constraints().count, 0, "Should have 0 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints installed")
         
         for constraint in constraints {
             constraint.install()
         }
         
-        XCTAssertEqual(self.container.constraints().count, 4, "Should have 4 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints installed")
         
         for constraint in constraints {
             constraint.install()
         }
         
-        XCTAssertEqual(self.container.constraints().count, 4, "Should have 0 constraints installed")
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 0 constraints installed")
     }
     
 }
