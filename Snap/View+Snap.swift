@@ -68,15 +68,19 @@ public extension View {
     public var snp_centerWithinMargins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterWithinMargins) }
     #endif
     
-    public func snp_makeConstraints(block: (make: ConstraintMaker) -> ()) {
+    public func snp_prepareConstraints(block: (make: ConstraintMaker) -> Void) -> Array<Constraint> {
+        return ConstraintMaker.prepareConstraints(self, block: block)
+    }
+    
+    public func snp_makeConstraints(block: (make: ConstraintMaker) -> Void) {
         ConstraintMaker.makeConstraints(self, block: block)
     }
     
-    public func snp_updateConstraints(block: (make: ConstraintMaker) -> ()) {
+    public func snp_updateConstraints(block: (make: ConstraintMaker) -> Void) {
         ConstraintMaker.updateConstraints(self, block: block)
     }
     
-    public func snp_remakeConstraints(block: (make: ConstraintMaker) -> ()) {
+    public func snp_remakeConstraints(block: (make: ConstraintMaker) -> Void) {
         ConstraintMaker.remakeConstraints(self, block: block)
     }
     
@@ -88,11 +92,10 @@ public extension View {
     
     internal var snp_installedLayoutConstraints: Array<LayoutConstraint> {
         get {
-            var constraints = objc_getAssociatedObject(self, &installedLayoutConstraintsKey) as? Array<LayoutConstraint>
-            if constraints != nil {
-                return constraints!
+            if let constraints = objc_getAssociatedObject(self, &installedLayoutConstraintsKey) as? Array<LayoutConstraint> {
+                return constraints
             }
-            return []
+            return Array<LayoutConstraint>()
         }
         set {
             objc_setAssociatedObject(self, &installedLayoutConstraintsKey, newValue, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))

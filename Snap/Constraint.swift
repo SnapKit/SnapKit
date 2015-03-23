@@ -31,19 +31,24 @@ import AppKit
  * Constraint is a single item that defines all the properties for a single ConstraintMaker chain
  */
 public class Constraint {
-    public var left: Constraint { return addConstraint(ConstraintAttributes.Left) }
-    public var top: Constraint { return addConstraint(ConstraintAttributes.Top) }
-    public var right: Constraint { return addConstraint(ConstraintAttributes.Right) }
-    public var bottom: Constraint { return addConstraint(ConstraintAttributes.Bottom) }
-    public var leading: Constraint { return addConstraint(ConstraintAttributes.Leading) }
-    public var trailing: Constraint { return addConstraint(ConstraintAttributes.Trailing) }
-    public var width: Constraint { return addConstraint(ConstraintAttributes.Width) }
-    public var height: Constraint { return addConstraint(ConstraintAttributes.Height) }
-    public var centerX: Constraint { return addConstraint(ConstraintAttributes.CenterX) }
-    public var centerY: Constraint { return addConstraint(ConstraintAttributes.CenterY) }
-    public var baseline: Constraint { return addConstraint(ConstraintAttributes.Baseline) }
+    public var left: Constraint { return self.addConstraint(ConstraintAttributes.Left) }
+    public var top: Constraint { return self.addConstraint(ConstraintAttributes.Top) }
+    public var right: Constraint { return self.addConstraint(ConstraintAttributes.Right) }
+    public var bottom: Constraint { return self.addConstraint(ConstraintAttributes.Bottom) }
+    public var leading: Constraint { return self.addConstraint(ConstraintAttributes.Leading) }
+    public var trailing: Constraint { return self.addConstraint(ConstraintAttributes.Trailing) }
+    public var width: Constraint { return self.addConstraint(ConstraintAttributes.Width) }
+    public var height: Constraint { return self.addConstraint(ConstraintAttributes.Height) }
+    public var centerX: Constraint { return self.addConstraint(ConstraintAttributes.CenterX) }
+    public var centerY: Constraint { return self.addConstraint(ConstraintAttributes.CenterY) }
+    public var baseline: Constraint { return self.addConstraint(ConstraintAttributes.Baseline) }
     
-    public var and: Constraint { return self }
+    public var and: Constraint {
+        if self.relation != nil {
+            fatalError("And is semantic only and can only be used before a relation is set.")
+        }
+        return self
+    }
     public var with: Constraint { return self }
     
     // MARK: initializer
@@ -56,115 +61,115 @@ public class Constraint {
     // MARK: equalTo
     
     public func equalTo(other: ConstraintItem) -> Constraint {
-        return constrainTo(other, relation: .Equal)
+        return self.constrainTo(other, relation: .Equal)
     }
     public func equalTo(other: View) -> Constraint {
-        return constrainTo(other, relation: .Equal)
+        return self.constrainTo(other, relation: .Equal)
     }
     #if os(iOS)
     public func equalTo(other: UILayoutSupport) -> Constraint {
-        return constrainTo(other, relation: .Equal)
+        return self.constrainTo(other, relation: .Equal)
     }
     #endif
     public func equalTo(other: Float) -> Constraint {
-        return constrainTo(other, relation: .Equal)
+        return self.constrainTo(other, relation: .Equal)
     }
     public func equalTo(other: Double) -> Constraint {
-        return constrainTo(Float(other), relation: .Equal)
+        return self.constrainTo(Float(other), relation: .Equal)
     }
     public func equalTo(other: CGFloat) -> Constraint {
-        return constrainTo(Float(other), relation: .Equal)
+        return self.constrainTo(Float(other), relation: .Equal)
     }
     public func equalTo(other: Int) -> Constraint {
-        return constrainTo(Float(other), relation: .Equal)
+        return self.constrainTo(Float(other), relation: .Equal)
     }
     public func equalTo(other: UInt) -> Constraint {
-        return constrainTo(Float(other), relation: .Equal)
+        return self.constrainTo(Float(other), relation: .Equal)
     }
     public func equalTo(other: CGSize) -> Constraint {
-        return constrainTo(other, relation: .Equal)
+        return self.constrainTo(other, relation: .Equal)
     }
     public func equalTo(other: CGPoint) -> Constraint {
-        return constrainTo(other, relation: .Equal)
+        return self.constrainTo(other, relation: .Equal)
     }
     public func equalTo(other: EdgeInsets) -> Constraint {
-        return constrainTo(other, relation: .Equal)
+        return self.constrainTo(other, relation: .Equal)
     }
     
     // MARK: lessThanOrEqualTo
     
     public func lessThanOrEqualTo(other: ConstraintItem) -> Constraint {
-        return constrainTo(other, relation: .LessThanOrEqualTo)
+        return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     public func lessThanOrEqualTo(other: View) -> Constraint {
-        return constrainTo(other, relation: .LessThanOrEqualTo)
+        return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     #if os(iOS)
     public func lessThanOrEqualTo(other: UILayoutSupport) -> Constraint {
-        return constrainTo(other, relation: .LessThanOrEqualTo)
+        return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     #endif
     public func lessThanOrEqualTo(other: Float) -> Constraint {
-        return constrainTo(other, relation: .LessThanOrEqualTo)
+        return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     public func lessThanOrEqualTo(other: Double) -> Constraint {
-        return constrainTo(Float(other), relation: .LessThanOrEqualTo)
+        return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
     public func lessThanOrEqualTo(other: CGFloat) -> Constraint {
-        return constrainTo(Float(other), relation: .LessThanOrEqualTo)
+        return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
     public func lessThanOrEqualTo(other: Int) -> Constraint {
-        return constrainTo(Float(other), relation: .LessThanOrEqualTo)
+        return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
     public func lessThanOrEqualTo(other: UInt) -> Constraint {
-        return constrainTo(Float(other), relation: .LessThanOrEqualTo)
+        return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
     public func lessThanOrEqualTo(other: CGSize) -> Constraint {
-        return constrainTo(other, relation: .LessThanOrEqualTo)
+        return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     public func lessThanOrEqualTo(other: CGPoint) -> Constraint {
-        return constrainTo(other, relation: .LessThanOrEqualTo)
+        return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     public func lessThanOrEqualTo(other: EdgeInsets) -> Constraint {
-        return constrainTo(other, relation: .LessThanOrEqualTo)
+        return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     
     // MARK: greaterThanOrEqualTo
     
     public func greaterThanOrEqualTo(other: ConstraintItem) -> Constraint {
-        return constrainTo(other, relation: .GreaterThanOrEqualTo)
+        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     public func greaterThanOrEqualTo(other: View) -> Constraint {
-        return constrainTo(other, relation: .GreaterThanOrEqualTo)
+        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     #if os(iOS)
     public func greaterThanOrEqualTo(other: UILayoutSupport) -> Constraint {
-        return constrainTo(other, relation: .GreaterThanOrEqualTo)
+        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     #endif
     public func greaterThanOrEqualTo(other: Float) -> Constraint {
-        return constrainTo(other, relation: .GreaterThanOrEqualTo)
+        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     public func greaterThanOrEqualTo(other: Double) -> Constraint {
-        return constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
+        return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
     public func greaterThanOrEqualTo(other: CGFloat) -> Constraint {
-        return constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
+        return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
     public func greaterThanOrEqualTo(other: Int) -> Constraint {
-        return constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
+        return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
     public func greaterThanOrEqualTo(other: UInt) -> Constraint {
-        return constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
+        return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
     public func greaterThanOrEqualTo(other: CGSize) -> Constraint {
-        return constrainTo(other, relation: .GreaterThanOrEqualTo)
+        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     public func greaterThanOrEqualTo(other: CGPoint) -> Constraint {
-        return constrainTo(other, relation: .GreaterThanOrEqualTo)
+        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     public func greaterThanOrEqualTo(other: EdgeInsets) -> Constraint {
-        return constrainTo(other, relation: .GreaterThanOrEqualTo)
+        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     
     // MARK: multiplier
@@ -282,11 +287,6 @@ public class Constraint {
     // MARK: internal
     
     internal func installOnView(updateExisting: Bool = false) -> Array<LayoutConstraint> {
-        if self.installedOnView != nil {
-            NSException(name: "Cannot Install Constraint", reason: "Already installed", userInfo: nil).raise()
-            return []
-        }
-        
         var installOnView: View? = nil
         if self.toItem.view != nil {
             installOnView = Constraint.closestCommonSuperviewFromView(self.fromItem.view, toView: self.toItem.view)
@@ -301,14 +301,22 @@ public class Constraint {
                     installOnView = self.fromItem.view
                 }
                 
-                if installedOnView == nil {
+                if installOnView == nil {
                     NSException(name: "Cannot Install Constraint", reason: "Missing superview", userInfo: nil).raise()
                     return []
                 }
             }
         }
         
-        var layoutConstraints: Array<LayoutConstraint> = []
+        if self.installedOnView != nil {
+            if self.installedOnView != installOnView {
+                NSException(name: "Cannot Install Constraint", reason: "Already installed on different view.", userInfo: nil).raise()
+                return []
+            }
+            return self.installedLayoutConstraints?.allObjects as Array<LayoutConstraint>
+        }
+        
+        var newLayoutConstraints = Array<LayoutConstraint>()
         let layoutFromAttributes = self.fromItem.attributes.layoutAttributes
         let layoutToAttributes = self.toItem.attributes.layoutAttributes
         
@@ -348,7 +356,7 @@ public class Constraint {
             // set constraint
             layoutConstraint.constraint = self
             
-            layoutConstraints.append(layoutConstraint)
+            newLayoutConstraints.append(layoutConstraint)
         }
         
         // special logic for updating
@@ -356,11 +364,11 @@ public class Constraint {
             // get existing constraints for this view
             let existingLayoutConstraints = reverse(layoutFrom!.snp_installedLayoutConstraints)
             
-            // array that will contain only new layout constraints
-            var newLayoutConstraints = Array<LayoutConstraint>()
-            
+            // array that will contain only new layout constraints to keep
+            var newLayoutConstraintsToKeep = Array<LayoutConstraint>()
+
             // begin looping
-            for layoutConstraint in layoutConstraints {
+            for layoutConstraint in newLayoutConstraints {
                 // layout constraint that should be updated
                 var updateLayoutConstraint: LayoutConstraint? = nil
                 
@@ -376,34 +384,45 @@ public class Constraint {
                 if updateLayoutConstraint != nil {
                     updateLayoutConstraint!.constant = layoutConstraint.constant
                 }
-                // otherwise add this layout constraint to new list
+                // otherwise add this layout constraint to new keep list
                 else {
-                    newLayoutConstraints.append(layoutConstraint)
+                    newLayoutConstraintsToKeep.append(layoutConstraint)
                 }
             }
-            
+
             // set constraints to only new ones
-            layoutConstraints = newLayoutConstraints
+            newLayoutConstraints = newLayoutConstraintsToKeep
         }
         
         // add constraints
-        installOnView!.addConstraints(layoutConstraints)
+        installOnView!.addConstraints(newLayoutConstraints)
         
+        // store which view this constraint was installed on
         self.installedOnView = installOnView
+        
+        // store which layout constraints are installed for this constraint
         self.installedLayoutConstraints = NSHashTable.weakObjectsHashTable()
-        for layoutConstraint in layoutConstraints {
+        for layoutConstraint in newLayoutConstraints {
             self.installedLayoutConstraints!.addObject(layoutConstraint)
         }
         
-        return layoutConstraints
+        // store the layout constraints against the installed on view
+        var layoutConstraints = Array<LayoutConstraint>(layoutFrom!.snp_installedLayoutConstraints)
+        layoutConstraints += newLayoutConstraints
+        layoutFrom!.snp_installedLayoutConstraints = layoutConstraints
+        
+        // return the new constraints
+        return newLayoutConstraints
     }
     
     internal func uninstallFromView() {
         if let view = self.installedOnView {
             // remove all installed layout constraints
             var layoutConstraintsToRemove = Array<LayoutConstraint>()
-            if let installedLayoutConstraints = self.installedLayoutConstraints?.allObjects as? Array<LayoutConstraint> {
-                layoutConstraintsToRemove += installedLayoutConstraints
+            if let allObjects = self.installedLayoutConstraints?.allObjects {
+                if let installedLayoutConstraints = allObjects as? Array<LayoutConstraint> {
+                    layoutConstraintsToRemove += installedLayoutConstraints
+                }
             }
             
             if layoutConstraintsToRemove.count > 0 {
@@ -490,19 +509,27 @@ public class Constraint {
     }
     
     private class func closestCommonSuperviewFromView(fromView: View?, toView: View?) -> View? {
-        var closestCommonSuperview: View?
-        var secondViewSuperview: View? = toView
-        while closestCommonSuperview == nil && secondViewSuperview != nil {
-            var firstViewSuperview = fromView
-            while closestCommonSuperview == nil && firstViewSuperview != nil {
-                if secondViewSuperview == firstViewSuperview {
-                    closestCommonSuperview = secondViewSuperview
+        var views = NSMutableSet()
+        var fromView = fromView
+        var toView = toView
+        do {
+            if let view = toView {
+                if views.containsObject(view) {
+                    return view
                 }
-                firstViewSuperview = firstViewSuperview?.superview
+                views.addObject(view)
+                toView = view.superview
             }
-            secondViewSuperview = secondViewSuperview?.superview
-        }
-        return closestCommonSuperview
+            if let view = fromView {
+                if views.containsObject(view) {
+                    return view
+                }
+                views.addObject(view)
+                fromView = view.superview
+            }
+        } while (fromView != nil || toView != nil)
+        
+        return nil
     }
 }
 

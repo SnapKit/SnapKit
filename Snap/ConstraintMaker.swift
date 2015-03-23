@@ -31,21 +31,21 @@ import AppKit
  * ConstraintMaker is the maker in snap that gets all constraints kickstarted
  */
 public class ConstraintMaker {
-    public var left: Constraint { return addConstraint(ConstraintAttributes.Left) }
-    public var top: Constraint { return addConstraint(ConstraintAttributes.Top) }
-    public var right: Constraint { return addConstraint(ConstraintAttributes.Right) }
-    public var bottom: Constraint { return addConstraint(ConstraintAttributes.Bottom) }
-    public var leading: Constraint { return addConstraint(ConstraintAttributes.Leading) }
-    public var trailing: Constraint { return addConstraint(ConstraintAttributes.Trailing) }
-    public var width: Constraint { return addConstraint(ConstraintAttributes.Width) }
-    public var height: Constraint { return addConstraint(ConstraintAttributes.Height) }
-    public var centerX: Constraint { return addConstraint(ConstraintAttributes.CenterX) }
-    public var centerY: Constraint { return addConstraint(ConstraintAttributes.CenterY) }
-    public var baseline: Constraint { return addConstraint(ConstraintAttributes.Baseline) }
+    public var left: Constraint { return self.addConstraint(ConstraintAttributes.Left) }
+    public var top: Constraint { return self.addConstraint(ConstraintAttributes.Top) }
+    public var right: Constraint { return self.addConstraint(ConstraintAttributes.Right) }
+    public var bottom: Constraint { return self.addConstraint(ConstraintAttributes.Bottom) }
+    public var leading: Constraint { return self.addConstraint(ConstraintAttributes.Leading) }
+    public var trailing: Constraint { return self.addConstraint(ConstraintAttributes.Trailing) }
+    public var width: Constraint { return self.addConstraint(ConstraintAttributes.Width) }
+    public var height: Constraint { return self.addConstraint(ConstraintAttributes.Height) }
+    public var centerX: Constraint { return self.addConstraint(ConstraintAttributes.CenterX) }
+    public var centerY: Constraint { return self.addConstraint(ConstraintAttributes.CenterY) }
+    public var baseline: Constraint { return self.addConstraint(ConstraintAttributes.Baseline) }
     
-    public var edges: Constraint { return addConstraint(ConstraintAttributes.Edges) }
-    public var size: Constraint { return addConstraint(ConstraintAttributes.Size) }
-    public var center: Constraint { return addConstraint(ConstraintAttributes.Center) }
+    public var edges: Constraint { return self.addConstraint(ConstraintAttributes.Edges) }
+    public var size: Constraint { return self.addConstraint(ConstraintAttributes.Size) }
+    public var center: Constraint { return self.addConstraint(ConstraintAttributes.Center) }
     
     init(view: View) {
         self.view = view
@@ -61,24 +61,26 @@ public class ConstraintMaker {
         return constraint
     }
     
-    internal class func makeConstraints(view: View, block: (make: ConstraintMaker) -> ()) {
-        #if os(iOS)
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
-        #else
-        view.translatesAutoresizingMaskIntoConstraints = false
-        #endif
+    internal class func prepareConstraints(view: View, block: (make: ConstraintMaker) -> Void) -> Array<Constraint> {
         let maker = ConstraintMaker(view: view)
         block(make: maker)
-        
-        var layoutConstraints = view.snp_installedLayoutConstraints
-        for constraint in maker.constraints {
-            layoutConstraints += constraint.install()
-        }
-        
-        view.snp_installedLayoutConstraints = layoutConstraints
+        return maker.constraints
     }
     
-    internal class func remakeConstraints(view: View, block: (make: ConstraintMaker) -> ()) {
+    internal class func makeConstraints(view: View, block: (make: ConstraintMaker) -> Void) {
+        #if os(iOS)
+        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        #else
+        view.translatesAutoresizingMaskIntoConstraints = false
+        #endif
+        let maker = ConstraintMaker(view: view)
+        block(make: maker)
+        for constraint in maker.constraints {
+            constraint.installOnView(updateExisting: false)
+        }
+    }
+    
+    internal class func remakeConstraints(view: View, block: (make: ConstraintMaker) -> Void) {
         #if os(iOS)
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
         #else
@@ -87,20 +89,17 @@ public class ConstraintMaker {
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         
-        var layoutConstraints: Array<LayoutConstraint> = view.snp_installedLayoutConstraints
+        var layoutConstraints = Array<LayoutConstraint>(view.snp_installedLayoutConstraints)
         for existingLayoutConstraint in layoutConstraints {
-            existingLayoutConstraint.constraint?.uninstall()
+            existingLayoutConstraint.constraint?.uninstallFromView()
         }
-        layoutConstraints = []
         
         for constraint in maker.constraints {
-            layoutConstraints += constraint.install()
+            constraint.installOnView(updateExisting: false)
         }
-        
-        view.snp_installedLayoutConstraints = layoutConstraints
     }
     
-    internal class func updateConstraints(view: View, block: (make: ConstraintMaker) -> ()) {
+    internal class func updateConstraints(view: View, block: (make: ConstraintMaker) -> Void) {
         #if os(iOS)
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
         #else
@@ -109,19 +108,15 @@ public class ConstraintMaker {
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         
-        var layoutConstraints = view.snp_installedLayoutConstraints
         for constraint in maker.constraints {
-            layoutConstraints += constraint.installOnView(updateExisting: true)
+            constraint.installOnView(updateExisting: true)
         }
-        
-        view.snp_installedLayoutConstraints = layoutConstraints
     }
     
     internal class func removeConstraints(view: View) {
-        for existingLayoutConstraint in view.snp_installedLayoutConstraints {
-            existingLayoutConstraint.constraint?.uninstall()
+        let existingLayoutConstraints = Array<LayoutConstraint>(view.snp_installedLayoutConstraints)
+        for existingLayoutConstraint in existingLayoutConstraints {
+            existingLayoutConstraint.constraint?.uninstallFromView()
         }
-        
-        view.snp_installedLayoutConstraints = []
     }
 }
