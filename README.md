@@ -1,5 +1,7 @@
 # Snap
 
+[![Build Status](https://travis-ci.org/Masonry/Snap.svg)](https://travis-ci.org/Masonry/Snap)
+
 Snap is a light-weight layout framework which wraps AutoLayout with a nicer syntax. Snap has its own layout DSL which provides a chainable way of describing your NSLayoutConstraints which results in layout code that is more concise and readable. Snap supports both iOS and OS X.
 
 > Snap uses some Swift-only features like function overloading, so it cannot be used from Objective-C. Because of this we’ve chosen to swap prefixes from Masonry’s `mas_` to `snp_` so you can use both Masonry and Snap in the same project.
@@ -9,19 +11,71 @@ Snap is a light-weight layout framework which wraps AutoLayout with a nicer synt
 * iOS 7.0+ / Mac OS X 10.9+
 * Xcode 6.1
 
-## Installation Cocoapods
+## Installation
 
-1. Add Snap as a line in your Podfile `pod 'Snap'`
-2. Run `pod install`
-3. Add `import Snap` to your `AppDelegate.swift`
+> **Embedded frameworks require a minimum deployment target of iOS 8 or OS X Mavericks.**
 
-<small>Cocoapods installations only work for iOS 8.0 and OS X 10.10 or higher deployment targets.</small>
+### CocoaPods
 
-## Installation Carthage
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
 
-Carthage is supported by adding `github 'Masonry/Snap'` to your Cartfile.
+CocoaPods 0.36 adds supports for Swift and embedded frameworks. You can install it with the following command:
 
-<small>Carthage installations only work for iOS 8.0 and OS X 10.10 or higher deployment targets.</small>
+```bash
+$ gem install cocoapods
+```
+
+To integrate Alamofire into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'Snap', '~> 0.9.1'
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
+### Carthage
+
+Carthage is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate Snap into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "Masonry/Snap" >= 0.9.1
+```
+
+### Manually
+
+If you prefer not to use either of the aforementioned dependency managers, you can integrate Snap into your project manually.
+
+### Embedded Framework
+
+- Add Snap as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the following command:
+
+```bash
+$ git submodule add https://github.com/Masonry/Snap.git
+```
+
+- Open the `Snap` folder, and drag `Snap.xcodeproj` into the file navigator of your app project.
+- In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
+- Ensure that the deployment target of Snap.framework matches that of the application target.
+- In the tab bar at the top of that window, open the "Build Phases" panel.
+- Expand the "Target Dependencies" group, and add `Snap.framework`.
+- Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `Snap.framework`.
 
 ## What's wrong with NSLayoutConstraints?
 
