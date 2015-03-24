@@ -313,7 +313,7 @@ public class Constraint {
                 NSException(name: "Cannot Install Constraint", reason: "Already installed on different view.", userInfo: nil).raise()
                 return []
             }
-            return self.installedLayoutConstraints?.allObjects as Array<LayoutConstraint>
+            return (self.installedLayoutConstraints?.allObjects as? Array<LayoutConstraint>)!
         }
         
         var newLayoutConstraints = Array<LayoutConstraint>()
