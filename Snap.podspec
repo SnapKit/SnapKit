@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Snap'
-  s.version = '0.9.1'
+  s.version = '0.9.2'
   s.license = 'MIT'
   s.summary = 'Harness the power of auto layout with a simplified, chainable, and compile time safe syntax.'
   s.homepage = 'https://github.com/Masonry/Snap'
