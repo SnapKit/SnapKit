@@ -6,12 +6,12 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/Masonry/Snap'
   s.authors = { 'Robert Payne' => 'robertpayne@me.com' }
   s.social_media_url = 'http://twitter.com/robertjpayne'
-  s.source = { :git => 'https://github.com/Masonry/Snap.git', :tag => '0.9.1' }
+  s.source = { :git => 'https://github.com/Masonry/Snap.git', :tag => '0.9.2' }
 
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.9'
 
-  s.source_files = 'Snap/*.swift'
+  s.source_files = 'Source/*.swift'
 
   s.requires_arc = true
 end
