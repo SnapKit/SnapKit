@@ -61,13 +61,13 @@ public class ConstraintMaker {
         return constraint
     }
     
-    internal class func prepareConstraints(view: View, block: (make: ConstraintMaker) -> Void) -> Array<Constraint> {
+    internal class func prepareConstraints(view: View, @noescape block: (make: ConstraintMaker) -> Void) -> Array<Constraint> {
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         return maker.constraints
     }
     
-    internal class func makeConstraints(view: View, block: (make: ConstraintMaker) -> Void) {
+    internal class func makeConstraints(view: View, @noescape block: (make: ConstraintMaker) -> Void) {
         #if os(iOS)
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
         #else
@@ -80,7 +80,7 @@ public class ConstraintMaker {
         }
     }
     
-    internal class func remakeConstraints(view: View, block: (make: ConstraintMaker) -> Void) {
+    internal class func remakeConstraints(view: View, @noescape block: (make: ConstraintMaker) -> Void) {
         #if os(iOS)
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
         #else
@@ -88,18 +88,14 @@ public class ConstraintMaker {
         #endif
         let maker = ConstraintMaker(view: view)
         block(make: maker)
-        
-        var layoutConstraints = Array<LayoutConstraint>(view.snp_installedLayoutConstraints)
-        for existingLayoutConstraint in layoutConstraints {
-            existingLayoutConstraint.constraint?.uninstallFromView()
-        }
-        
+
+        self.removeConstraints(view)
         for constraint in maker.constraints {
             constraint.installOnView(updateExisting: false)
         }
     }
     
-    internal class func updateConstraints(view: View, block: (make: ConstraintMaker) -> Void) {
+    internal class func updateConstraints(view: View, @noescape block: (make: ConstraintMaker) -> Void) {
         #if os(iOS)
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
         #else
@@ -114,8 +110,7 @@ public class ConstraintMaker {
     }
     
     internal class func removeConstraints(view: View) {
-        let existingLayoutConstraints = Array<LayoutConstraint>(view.snp_installedLayoutConstraints)
-        for existingLayoutConstraint in existingLayoutConstraints {
+        for existingLayoutConstraint in view.snp_installedLayoutConstraints {
             existingLayoutConstraint.constraint?.uninstallFromView()
         }
     }
