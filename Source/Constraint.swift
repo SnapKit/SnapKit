@@ -407,9 +407,7 @@ public class Constraint {
         }
         
         // store the layout constraints against the installed on view
-        var layoutConstraints = Array<LayoutConstraint>(layoutFrom!.snp_installedLayoutConstraints)
-        layoutConstraints += newLayoutConstraints
-        layoutFrom!.snp_installedLayoutConstraints = layoutConstraints
+        layoutFrom!.snp_installedLayoutConstraints += newLayoutConstraints
         
         // return the new constraints
         return newLayoutConstraints
@@ -417,27 +415,15 @@ public class Constraint {
     
     internal func uninstallFromView() {
         if let view = self.installedOnView {
-            // remove all installed layout constraints
-            var layoutConstraintsToRemove = Array<LayoutConstraint>()
-            if let allObjects = self.installedLayoutConstraints?.allObjects {
-                if let installedLayoutConstraints = allObjects as? Array<LayoutConstraint> {
-                    layoutConstraintsToRemove += installedLayoutConstraints
-                }
-            }
-            
-            if layoutConstraintsToRemove.count > 0 {
+            if let layoutConstraintsToRemove = self.installedLayoutConstraints?.allObjects {
                 view.removeConstraints(layoutConstraintsToRemove)
             }
-            
-            // clean up the snp_installedLayoutConstraints
-            var layoutConstraints = view.snp_installedLayoutConstraints
-            var layoutConstraintsToKeep = Array<LayoutConstraint>()
-            for layoutConstraint in layoutConstraints {
-                if !contains(layoutConstraintsToRemove, layoutConstraint) {
-                    layoutConstraintsToKeep.append(layoutConstraint)
+
+            if let installedConstraints = self.fromItem.view?.snp_installedLayoutConstraints {
+                self.fromItem.view?.snp_installedLayoutConstraints = installedConstraints.filter {
+                    self.installedLayoutConstraints?.containsObject($0) != true
                 }
             }
-            view.snp_installedLayoutConstraints = layoutConstraintsToKeep
         }
         self.installedOnView = nil
         self.installedLayoutConstraints = nil
