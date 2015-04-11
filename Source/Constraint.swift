@@ -291,6 +291,28 @@ final public class Constraint {
         self.uninstallFromView()
     }
     
+    public func activate() {
+        if NSLayoutConstraint.respondsToSelector("activateConstraints:") && self.installInfo != nil {
+            let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
+            if layoutConstraints.count > 0 {
+                NSLayoutConstraint.activateConstraints(layoutConstraints)
+            }
+        } else {
+            self.install()
+        }
+    }
+    
+    public func deactivate() {
+        if NSLayoutConstraint.respondsToSelector("deactivateConstraints:") && self.installInfo != nil {
+            let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
+            if layoutConstraints.count > 0 {
+                NSLayoutConstraint.deactivateConstraints(layoutConstraints)
+            }
+        } else {
+            self.uninstall()
+        }
+    }
+    
     // MARK: internal
     
     internal func installOnView(updateExisting: Bool = false) -> [LayoutConstraint] {
