@@ -405,7 +405,7 @@ final public class Constraint {
             self.installInfo!.layoutConstraints.addObject(layoutConstraint)
         }
         
-        // store the layout constraints against the installed on view
+        // store the layout constraints against the layout from view
         layoutFrom!.snp_installedLayoutConstraints += newLayoutConstraints
         
         // return the new constraints
@@ -414,16 +414,20 @@ final public class Constraint {
     
     internal func uninstallFromView() {
         if let installInfo = self.installInfo,
-           let installedOnView = installInfo.view,
            let installedLayoutConstraints = installInfo.layoutConstraints.allObjects as? [LayoutConstraint] {
             
             if installedLayoutConstraints.count > 0 {
-                // remove the constraints from the UIView's storage
-                installedOnView.removeConstraints(installedLayoutConstraints)
                 
-                // remove the constraints from our associated object storage
-                installedOnView.snp_installedLayoutConstraints = installedOnView.snp_installedLayoutConstraints.filter {
-                    return !contains(installedLayoutConstraints, $0)
+                if let installedOnView = installInfo.view {
+                    // remove the constraints from the UIView's storage
+                    installedOnView.removeConstraints(installedLayoutConstraints)
+                }
+                
+                // remove the constraints from the from item view
+                if let fromView = self.fromItem.view {
+                    fromView.snp_installedLayoutConstraints = fromView.snp_installedLayoutConstraints.filter {
+                        return !contains(installedLayoutConstraints, $0)
+                    }
                 }
             }
             
@@ -442,9 +446,6 @@ final public class Constraint {
     private var offset: Any = Float(0.0)
     
     private var installInfo: ConstraintInstallInfo?
-    private var installed: Bool {
-        return (self.installInfo != nil)
-    }
     
     private func addConstraint(attributes: ConstraintAttributes) -> Constraint {
         if self.relation == nil {
