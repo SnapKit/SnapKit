@@ -3,7 +3,7 @@ CHANGELOG
 
 # 0.10.0 - Next Release In Development
 
-* **BREAKING:** Using `.equalTo(<EdgeInsets>)` will no longer invert the constants on the right/bottom edge. This does not affect `.offset(<EdgeInsets>)`
+* **BREAKING:** Using `.equalTo(<EdgeInsets>)` will no longer multiply the constants on the right/bottom edge by -1. This does not affect `.offset(<EdgeInsets>)`
 * Ensure Swift 1.2 compatibility
 * Added a `Snap.Config.interfaceLayoutDirection` variable for richer Leading/Trailing support.
 * Fixed memory leaks that could occur on long lived views
