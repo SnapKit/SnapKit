@@ -89,71 +89,71 @@ internal struct ConstraintAttributes: RawOptionSetType, BooleanType {
     internal static var CenterWithinMargins: ConstraintAttributes { return self(786432) }
     #endif
     
-    internal var layoutAttributes:Array<NSLayoutAttribute> {
-        var attrs: Array<NSLayoutAttribute> = []
-            if (self & ConstraintAttributes.Left) {
-                attrs.append(.Left)
-            }
-            if (self & ConstraintAttributes.Top) {
-                attrs.append(.Top)
-            }
-            if (self & ConstraintAttributes.Right) {
-                attrs.append(.Right)
-            }
-            if (self & ConstraintAttributes.Bottom) {
-                attrs.append(.Bottom)
-            }
-            if (self & ConstraintAttributes.Leading) {
-                attrs.append(.Leading)
-            }
-            if (self & ConstraintAttributes.Trailing) {
-                attrs.append(.Trailing)
-            }
-            if (self & ConstraintAttributes.Width) {
-                attrs.append(.Width)
-            }
-            if (self & ConstraintAttributes.Height) {
-                attrs.append(.Height)
-            }
-            if (self & ConstraintAttributes.CenterX) {
-                attrs.append(.CenterX)
-            }
-            if (self & ConstraintAttributes.CenterY) {
-                attrs.append(.CenterY)
-            }
-            if (self & ConstraintAttributes.Baseline) {
-                attrs.append(.Baseline)
-            }
-            #if os(iOS)
-            if (self & ConstraintAttributes.FirstBaseline) {
-                attrs.append(.FirstBaseline)
-            }
-            if (self & ConstraintAttributes.LeftMargin) {
-                attrs.append(.LeftMargin)
-            }
-            if (self & ConstraintAttributes.RightMargin) {
-                attrs.append(.RightMargin)
-            }
-            if (self & ConstraintAttributes.TopMargin) {
-                attrs.append(.TopMargin)
-            }
-            if (self & ConstraintAttributes.BottomMargin) {
-                attrs.append(.BottomMargin)
-            }
-            if (self & ConstraintAttributes.LeadingMargin) {
-                attrs.append(.LeadingMargin)
-            }
-            if (self & ConstraintAttributes.TrailingMargin) {
-                attrs.append(.TrailingMargin)
-            }
-            if (self & ConstraintAttributes.CenterXWithinMargins) {
-                attrs.append(.CenterXWithinMargins)
-            }
-            if (self & ConstraintAttributes.CenterYWithinMargins) {
-                attrs.append(.CenterYWithinMargins)
-            }
-            #endif
-            return attrs
+    internal var layoutAttributes:[NSLayoutAttribute] {
+        var attrs = [NSLayoutAttribute]()
+        if (self & ConstraintAttributes.Left) {
+            attrs.append(.Left)
+        }
+        if (self & ConstraintAttributes.Top) {
+            attrs.append(.Top)
+        }
+        if (self & ConstraintAttributes.Right) {
+            attrs.append(.Right)
+        }
+        if (self & ConstraintAttributes.Bottom) {
+            attrs.append(.Bottom)
+        }
+        if (self & ConstraintAttributes.Leading) {
+            attrs.append(.Leading)
+        }
+        if (self & ConstraintAttributes.Trailing) {
+            attrs.append(.Trailing)
+        }
+        if (self & ConstraintAttributes.Width) {
+            attrs.append(.Width)
+        }
+        if (self & ConstraintAttributes.Height) {
+            attrs.append(.Height)
+        }
+        if (self & ConstraintAttributes.CenterX) {
+            attrs.append(.CenterX)
+        }
+        if (self & ConstraintAttributes.CenterY) {
+            attrs.append(.CenterY)
+        }
+        if (self & ConstraintAttributes.Baseline) {
+            attrs.append(.Baseline)
+        }
+        #if os(iOS)
+        if (self & ConstraintAttributes.FirstBaseline) {
+            attrs.append(.FirstBaseline)
+        }
+        if (self & ConstraintAttributes.LeftMargin) {
+            attrs.append(.LeftMargin)
+        }
+        if (self & ConstraintAttributes.RightMargin) {
+            attrs.append(.RightMargin)
+        }
+        if (self & ConstraintAttributes.TopMargin) {
+            attrs.append(.TopMargin)
+        }
+        if (self & ConstraintAttributes.BottomMargin) {
+            attrs.append(.BottomMargin)
+        }
+        if (self & ConstraintAttributes.LeadingMargin) {
+            attrs.append(.LeadingMargin)
+        }
+        if (self & ConstraintAttributes.TrailingMargin) {
+            attrs.append(.TrailingMargin)
+        }
+        if (self & ConstraintAttributes.CenterXWithinMargins) {
+            attrs.append(.CenterXWithinMargins)
+        }
+        if (self & ConstraintAttributes.CenterYWithinMargins) {
+            attrs.append(.CenterYWithinMargins)
+        }
+        #endif
+        return attrs
     }
 }
 internal func +=(inout left: ConstraintAttributes, right: ConstraintAttributes) {
