@@ -30,7 +30,7 @@ import AppKit
 /**
  * ConstraintMaker is the maker in snap that gets all constraints kickstarted
  */
-public class ConstraintMaker {
+final public class ConstraintMaker {
     public var left: Constraint { return self.addConstraint(ConstraintAttributes.Left) }
     public var top: Constraint { return self.addConstraint(ConstraintAttributes.Top) }
     public var right: Constraint { return self.addConstraint(ConstraintAttributes.Right) }

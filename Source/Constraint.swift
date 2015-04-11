@@ -30,7 +30,7 @@ import AppKit
 /**
  * Constraint is a single item that defines all the properties for a single ConstraintMaker chain
  */
-public class Constraint {
+final public class Constraint {
     public var left: Constraint { return self.addConstraint(ConstraintAttributes.Left) }
     public var top: Constraint { return self.addConstraint(ConstraintAttributes.Top) }
     public var right: Constraint { return self.addConstraint(ConstraintAttributes.Right) }

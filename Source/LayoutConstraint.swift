@@ -30,8 +30,8 @@ import AppKit
 /**
 * LayoutConstraint is a subclass of NSLayoutConstraint to assist Snap and also provide better debugging
 */
-public class LayoutConstraint: NSLayoutConstraint {
-    internal var constraint: Constraint?
+final public class LayoutConstraint: NSLayoutConstraint {
+    internal var snp_constraint: Constraint? = nil
 }
 
 public func ==(left: LayoutConstraint, right: LayoutConstraint) -> Bool {

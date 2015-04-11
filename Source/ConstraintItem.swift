@@ -30,7 +30,7 @@ import AppKit
 /**
  * ConstraintItem is a class that is used while building constraints.
  */
-public class ConstraintItem {
+final public class ConstraintItem {
     
     internal init(object: AnyObject?, attributes: ConstraintAttributes) {
         self.object = object
