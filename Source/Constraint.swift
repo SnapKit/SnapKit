@@ -28,270 +28,430 @@ import AppKit
 #endif
 
 /**
- * Constraint is a single item that defines all the properties for a single ConstraintMaker chain
- */
-final public class Constraint {
-    public var left: Constraint { return self.addConstraint(ConstraintAttributes.Left) }
-    public var top: Constraint { return self.addConstraint(ConstraintAttributes.Top) }
-    public var right: Constraint { return self.addConstraint(ConstraintAttributes.Right) }
-    public var bottom: Constraint { return self.addConstraint(ConstraintAttributes.Bottom) }
-    public var leading: Constraint { return self.addConstraint(ConstraintAttributes.Leading) }
-    public var trailing: Constraint { return self.addConstraint(ConstraintAttributes.Trailing) }
-    public var width: Constraint { return self.addConstraint(ConstraintAttributes.Width) }
-    public var height: Constraint { return self.addConstraint(ConstraintAttributes.Height) }
-    public var centerX: Constraint { return self.addConstraint(ConstraintAttributes.CenterX) }
-    public var centerY: Constraint { return self.addConstraint(ConstraintAttributes.CenterY) }
-    public var baseline: Constraint { return self.addConstraint(ConstraintAttributes.Baseline) }
+* Constraint is a protocol that exposes the public methods on a Constraint
+*/
+public protocol Constraint: class {
     
-    public var and: Constraint {
-        if self.relation != nil {
-            fatalError("And is semantic only and can only be used before a relation is set.")
-        }
-        return self
-    }
-    public var with: Constraint { return self }
+    func install() -> [LayoutConstraint]
+    func uninstall() -> Void
+    func activate() -> Void
+    func deactivate() -> Void
+    
+}
+
+public protocol ConstraintFinalizable: class {
+    
+    var constraint: Constraint { get }
+    
+}
+
+/**
+ * ConstraintPriortizable is a protocol that allows a constraint to be prioritized
+ */
+public protocol ConstraintPriortizable: ConstraintFinalizable {
+    
+    func priority(priority: Float) -> ConstraintFinalizable
+    func priority(priority: Double) -> ConstraintFinalizable
+    func priority(priority: CGFloat) -> ConstraintFinalizable
+    func priority(priority: UInt) -> ConstraintFinalizable
+    func priority(priority: Int) -> ConstraintFinalizable
+    func priorityRequired() -> ConstraintFinalizable
+    func priorityHigh() -> ConstraintFinalizable
+    func priorityMedium() -> ConstraintFinalizable
+    func priorityLow() -> ConstraintFinalizable
+}
+
+/**
+ * ConstraintMultipliable is a protocol that allows a constraint to be multiplied
+ */
+public protocol ConstraintMultipliable: ConstraintPriortizable {
+    
+    func multipliedBy(amount: Float) -> ConstraintPriortizable
+    func multipliedBy(amount: Double) -> ConstraintPriortizable
+    func multipliedBy(amount: CGFloat) -> ConstraintPriortizable
+    func multipliedBy(amount: Int) -> ConstraintPriortizable
+    func multipliedBy(amount: UInt) -> ConstraintPriortizable
+    
+    func dividedBy(amount: Float) -> ConstraintPriortizable
+    func dividedBy(amount: Double) -> ConstraintPriortizable
+    func dividedBy(amount: CGFloat) -> ConstraintPriortizable
+    func dividedBy(amount: Int) -> ConstraintPriortizable
+    func dividedBy(amount: UInt) -> ConstraintPriortizable
+}
+
+/**
+ * ConstraintOffsetable is a protocol that allows a constraint to be offset
+ */
+public protocol ConstraintOffsetable: ConstraintMultipliable {
+    
+    func offset(amount: Float) -> ConstraintMultipliable
+    func offset(amount: Double) -> ConstraintMultipliable
+    func offset(amount: CGFloat) -> ConstraintMultipliable
+    func offset(amount: Int) -> ConstraintMultipliable
+    func offset(amount: UInt) -> ConstraintMultipliable
+    func offset(amount: CGPoint) -> ConstraintMultipliable
+    func offset(amount: CGSize) -> ConstraintMultipliable
+    func offset(amount: EdgeInsets) -> ConstraintMultipliable
+    
+    func insets(amount: EdgeInsets) -> ConstraintMultipliable
+}
+
+
+
+/**
+ * ConstraintRelatable is a protocol that allows a constraint to be set related to another item/constant by equalTo, lessThanOrEqualTo or greaterThanOrEqualTo
+ */
+public protocol ConstraintRelatable: class {
+    
+    func equalTo(other: ConstraintItem) -> ConstraintOffsetable
+    func equalTo(other: View) -> ConstraintOffsetable
+    #if os(iOS)
+    func equalTo(other: UILayoutSupport) -> ConstraintOffsetable
+    #endif
+    func equalTo(other: Float) -> ConstraintMultipliable
+    func equalTo(other: Double) -> ConstraintMultipliable
+    func equalTo(other: CGFloat) -> ConstraintMultipliable
+    func equalTo(other: Int) -> ConstraintMultipliable
+    func equalTo(other: UInt) -> ConstraintMultipliable
+    func equalTo(other: CGSize) -> ConstraintMultipliable
+    func equalTo(other: CGPoint) -> ConstraintMultipliable
+    func equalTo(other: EdgeInsets) -> ConstraintMultipliable
+    
+    func lessThanOrEqualTo(other: ConstraintItem) -> ConstraintOffsetable
+    func lessThanOrEqualTo(other: View) -> ConstraintOffsetable
+    #if os(iOS)
+    func lessThanOrEqualTo(other: UILayoutSupport) -> ConstraintOffsetable
+    #endif
+    func lessThanOrEqualTo(other: Float) -> ConstraintMultipliable
+    func lessThanOrEqualTo(other: Double) -> ConstraintMultipliable
+    func lessThanOrEqualTo(other: CGFloat) -> ConstraintMultipliable
+    func lessThanOrEqualTo(other: Int) -> ConstraintMultipliable
+    func lessThanOrEqualTo(other: UInt) -> ConstraintMultipliable
+    func lessThanOrEqualTo(other: CGSize) -> ConstraintMultipliable
+    func lessThanOrEqualTo(other: CGPoint) -> ConstraintMultipliable
+    func lessThanOrEqualTo(other: EdgeInsets) -> ConstraintMultipliable
+    
+    func greaterThanOrEqualTo(other: ConstraintItem) -> ConstraintOffsetable
+    func greaterThanOrEqualTo(other: View) -> ConstraintOffsetable
+    #if os(iOS)
+    func greaterThanOrEqualTo(other: UILayoutSupport) -> ConstraintOffsetable
+    #endif
+    func greaterThanOrEqualTo(other: Float) -> ConstraintMultipliable
+    func greaterThanOrEqualTo(other: Double) -> ConstraintMultipliable
+    func greaterThanOrEqualTo(other: CGFloat) -> ConstraintMultipliable
+    func greaterThanOrEqualTo(other: Int) -> ConstraintMultipliable
+    func greaterThanOrEqualTo(other: UInt) -> ConstraintMultipliable
+    func greaterThanOrEqualTo(other: CGSize) -> ConstraintMultipliable
+    func greaterThanOrEqualTo(other: CGPoint) -> ConstraintMultipliable
+    func greaterThanOrEqualTo(other: EdgeInsets) -> ConstraintMultipliable
+
+}
+
+/**
+* ConstraintExtendable is a protocol that allows a constraint to be extended
+*/
+public protocol ConstraintExtendable: ConstraintRelatable {
+    
+    var left: ConstraintExtendable { get }
+    var top: ConstraintExtendable { get }
+    var bottom: ConstraintExtendable { get }
+    var leading: ConstraintExtendable { get }
+    var trailing: ConstraintExtendable { get }
+    var width: ConstraintExtendable { get }
+    var height: ConstraintExtendable { get }
+    var centerX: ConstraintExtendable { get }
+    var centerY: ConstraintExtendable { get }
+    var baseline: ConstraintExtendable { get }
+    
+    #if os(iOS)
+    var firstBaseline: ConstraintExtendable { get }
+    var leftMargin: ConstraintExtendable { get }
+    var rightMargin: ConstraintExtendable { get }
+    var topMargin: ConstraintExtendable { get }
+    var bottomMargin: ConstraintExtendable { get }
+    var leadingMargin: ConstraintExtendable { get }
+    var trailingMargin: ConstraintExtendable { get }
+    var centerXWithinMargins: ConstraintExtendable { get }
+    var centerYWithinMargins: ConstraintExtendable { get }
+    #endif
+}
+
+/**
+ * MutableConstraint is a single item that defines all the properties for a single ConstraintMaker chain
+ */
+final internal class MutableConstraint: Constraint, ConstraintExtendable, ConstraintOffsetable, ConstraintFinalizable {
+    
+    var left: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Left) }
+    var top: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Top) }
+    var right: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Right) }
+    var bottom: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Bottom) }
+    var leading: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Leading) }
+    var trailing: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Trailing) }
+    var width: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Width) }
+    var height: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Height) }
+    var centerX: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.CenterX) }
+    var centerY: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.CenterY) }
+    var baseline: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Baseline) }
+    
+    #if os(iOS)
+    var firstBaseline: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.FirstBaseline) }
+    var leftMargin: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.LeftMargin) }
+    var rightMargin: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.RightMargin) }
+    var topMargin: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.TopMargin) }
+    var bottomMargin: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.BottomMargin) }
+    var leadingMargin: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.LeadingMargin) }
+    var trailingMargin: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.TrailingMargin) }
+    var centerXWithinMargins: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.CenterXWithinMargins) }
+    var centerYWithinMargins: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.CenterYWithinMargins) }
+    #endif
     
     // MARK: initializer
     
-    internal init(fromItem: ConstraintItem) {
+    init(fromItem: ConstraintItem) {
         self.fromItem = fromItem
         self.toItem = ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
     }
     
     // MARK: equalTo
     
-    public func equalTo(other: ConstraintItem) -> Constraint {
+    func equalTo(other: ConstraintItem) -> ConstraintOffsetable {
         return self.constrainTo(other, relation: .Equal)
     }
-    public func equalTo(other: View) -> Constraint {
+    func equalTo(other: View) -> ConstraintOffsetable {
         return self.constrainTo(other, relation: .Equal)
     }
     #if os(iOS)
-    public func equalTo(other: UILayoutSupport) -> Constraint {
+    func equalTo(other: UILayoutSupport) -> ConstraintOffsetable {
         return self.constrainTo(other, relation: .Equal)
     }
     #endif
-    public func equalTo(other: Float) -> Constraint {
+    func equalTo(other: Float) -> ConstraintMultipliable {
         return self.constrainTo(other, relation: .Equal)
     }
-    public func equalTo(other: Double) -> Constraint {
+    func equalTo(other: Double) -> ConstraintMultipliable {
         return self.constrainTo(Float(other), relation: .Equal)
     }
-    public func equalTo(other: CGFloat) -> Constraint {
+    func equalTo(other: CGFloat) -> ConstraintMultipliable {
         return self.constrainTo(Float(other), relation: .Equal)
     }
-    public func equalTo(other: Int) -> Constraint {
+    func equalTo(other: Int) -> ConstraintMultipliable {
         return self.constrainTo(Float(other), relation: .Equal)
     }
-    public func equalTo(other: UInt) -> Constraint {
+    func equalTo(other: UInt) -> ConstraintMultipliable {
         return self.constrainTo(Float(other), relation: .Equal)
     }
-    public func equalTo(other: CGSize) -> Constraint {
+    func equalTo(other: CGSize) -> ConstraintMultipliable {
         return self.constrainTo(other, relation: .Equal)
     }
-    public func equalTo(other: CGPoint) -> Constraint {
+    func equalTo(other: CGPoint) -> ConstraintMultipliable {
         return self.constrainTo(other, relation: .Equal)
     }
-    public func equalTo(other: EdgeInsets) -> Constraint {
+    func equalTo(other: EdgeInsets) -> ConstraintMultipliable {
         return self.constrainTo(other, relation: .Equal)
     }
     
     // MARK: lessThanOrEqualTo
     
-    public func lessThanOrEqualTo(other: ConstraintItem) -> Constraint {
+    func lessThanOrEqualTo(other: ConstraintItem) -> ConstraintOffsetable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    public func lessThanOrEqualTo(other: View) -> Constraint {
+    func lessThanOrEqualTo(other: View) -> ConstraintOffsetable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     #if os(iOS)
-    public func lessThanOrEqualTo(other: UILayoutSupport) -> Constraint {
+    func lessThanOrEqualTo(other: UILayoutSupport) -> ConstraintOffsetable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     #endif
-    public func lessThanOrEqualTo(other: Float) -> Constraint {
+    func lessThanOrEqualTo(other: Float) -> ConstraintMultipliable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    public func lessThanOrEqualTo(other: Double) -> Constraint {
+    func lessThanOrEqualTo(other: Double) -> ConstraintMultipliable {
         return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
-    public func lessThanOrEqualTo(other: CGFloat) -> Constraint {
+    func lessThanOrEqualTo(other: CGFloat) -> ConstraintMultipliable {
         return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
-    public func lessThanOrEqualTo(other: Int) -> Constraint {
+    func lessThanOrEqualTo(other: Int) -> ConstraintMultipliable {
         return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
-    public func lessThanOrEqualTo(other: UInt) -> Constraint {
+    func lessThanOrEqualTo(other: UInt) -> ConstraintMultipliable {
         return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
-    public func lessThanOrEqualTo(other: CGSize) -> Constraint {
+    func lessThanOrEqualTo(other: CGSize) -> ConstraintMultipliable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    public func lessThanOrEqualTo(other: CGPoint) -> Constraint {
+    func lessThanOrEqualTo(other: CGPoint) -> ConstraintMultipliable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    public func lessThanOrEqualTo(other: EdgeInsets) -> Constraint {
+    func lessThanOrEqualTo(other: EdgeInsets) -> ConstraintMultipliable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     
     // MARK: greaterThanOrEqualTo
     
-    public func greaterThanOrEqualTo(other: ConstraintItem) -> Constraint {
+    func greaterThanOrEqualTo(other: ConstraintItem) -> ConstraintOffsetable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    public func greaterThanOrEqualTo(other: View) -> Constraint {
+    func greaterThanOrEqualTo(other: View) -> ConstraintOffsetable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     #if os(iOS)
-    public func greaterThanOrEqualTo(other: UILayoutSupport) -> Constraint {
+    func greaterThanOrEqualTo(other: UILayoutSupport) -> ConstraintOffsetable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     #endif
-    public func greaterThanOrEqualTo(other: Float) -> Constraint {
+    func greaterThanOrEqualTo(other: Float) -> ConstraintMultipliable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    public func greaterThanOrEqualTo(other: Double) -> Constraint {
+    func greaterThanOrEqualTo(other: Double) -> ConstraintMultipliable {
         return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
-    public func greaterThanOrEqualTo(other: CGFloat) -> Constraint {
+    func greaterThanOrEqualTo(other: CGFloat) -> ConstraintMultipliable {
         return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
-    public func greaterThanOrEqualTo(other: Int) -> Constraint {
+    func greaterThanOrEqualTo(other: Int) -> ConstraintMultipliable {
         return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
-    public func greaterThanOrEqualTo(other: UInt) -> Constraint {
+    func greaterThanOrEqualTo(other: UInt) -> ConstraintMultipliable {
         return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
-    public func greaterThanOrEqualTo(other: CGSize) -> Constraint {
+    func greaterThanOrEqualTo(other: CGSize) -> ConstraintMultipliable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    public func greaterThanOrEqualTo(other: CGPoint) -> Constraint {
+    func greaterThanOrEqualTo(other: CGPoint) -> ConstraintMultipliable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    public func greaterThanOrEqualTo(other: EdgeInsets) -> Constraint {
+    func greaterThanOrEqualTo(other: EdgeInsets) -> ConstraintMultipliable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     
     // MARK: multiplier
     
-    public func multipliedBy(amount: Float) -> Constraint {
+    func multipliedBy(amount: Float) -> ConstraintPriortizable {
         self.multiplier = amount
         return self
     }
-    public func multipliedBy(amount: Double) -> Constraint {
+    func multipliedBy(amount: Double) -> ConstraintPriortizable {
         return self.multipliedBy(Float(amount))
     }
-    public func multipliedBy(amount: CGFloat) -> Constraint {
+    func multipliedBy(amount: CGFloat) -> ConstraintPriortizable {
         return self.multipliedBy(Float(amount))
     }
-    public func multipliedBy(amount: Int) -> Constraint {
+    func multipliedBy(amount: Int) -> ConstraintPriortizable {
         return self.multipliedBy(Float(amount))
     }
-    public func multipliedBy(amount: UInt) -> Constraint {
+    func multipliedBy(amount: UInt) -> ConstraintPriortizable {
         return self.multipliedBy(Float(amount))
     }
     
-    public func dividedBy(amount: Float) -> Constraint {
+    func dividedBy(amount: Float) -> ConstraintPriortizable {
         self.multiplier = 1.0 / amount;
         return self
     }
-    public func dividedBy(amount: Double) -> Constraint {
+    func dividedBy(amount: Double) -> ConstraintPriortizable {
         return self.dividedBy(Float(amount))
     }
-    public func dividedBy(amount: CGFloat) -> Constraint {
+    func dividedBy(amount: CGFloat) -> ConstraintPriortizable {
         return self.dividedBy(Float(amount))
     }
-    public func dividedBy(amount: Int) -> Constraint {
+    func dividedBy(amount: Int) -> ConstraintPriortizable {
         return self.dividedBy(Float(amount))
     }
-    public func dividedBy(amount: UInt) -> Constraint {
+    func dividedBy(amount: UInt) -> ConstraintPriortizable {
         return self.dividedBy(Float(amount))
     }
     
     // MARK: priority
     
-    public func priority(priority: Float) -> Constraint {
+    func priority(priority: Float) -> ConstraintFinalizable {
         self.priority = priority
         return self
     }
-    public func priority(priority: Double) -> Constraint {
+    func priority(priority: Double) -> ConstraintFinalizable {
         return self.priority(Float(priority))
     }
-    public func priority(priority: CGFloat) -> Constraint {
+    func priority(priority: CGFloat) -> ConstraintFinalizable {
         return self.priority(Float(priority))
     }
-    public func priority(priority: UInt) -> Constraint {
+    func priority(priority: UInt) -> ConstraintFinalizable {
         return self.priority(Float(priority))
     }
-    public func priority(priority: Int) -> Constraint {
+    func priority(priority: Int) -> ConstraintFinalizable {
         return self.priority(Float(priority))
     }
-    public func priorityRequired() -> Constraint {
+    func priorityRequired() -> ConstraintFinalizable {
         return self.priority(1000.0)
     }
-    public func priorityHigh() -> Constraint {
+    func priorityHigh() -> ConstraintFinalizable {
         return self.priority(750.0)
     }
-    public func priorityMedium() -> Constraint {
+    func priorityMedium() -> ConstraintFinalizable {
         #if os(iOS)
         return self.priority(500.0)
         #else
         return self.priority(501.0)
         #endif
     }
-    public func priorityLow() -> Constraint {
+    func priorityLow() -> ConstraintFinalizable {
         return self.priority(250.0)
     }
     
     // MARK: offset
     
-    public func offset(amount: Float) -> Constraint {
+    func offset(amount: Float) -> ConstraintMultipliable {
         self.offset = amount
         return self
     }
-    public func offset(amount: Double) -> Constraint {
+    func offset(amount: Double) -> ConstraintMultipliable {
         return self.offset(Float(amount))
     }
-    public func offset(amount: CGFloat) -> Constraint {
+    func offset(amount: CGFloat) -> ConstraintMultipliable {
         return self.offset(Float(amount))
     }
-    public func offset(amount: Int) -> Constraint {
+    func offset(amount: Int) -> ConstraintMultipliable {
         return self.offset(Float(amount))
     }
-    public func offset(amount: UInt) -> Constraint {
+    func offset(amount: UInt) -> ConstraintMultipliable {
         return self.offset(Float(amount))
     }
-    public func offset(amount: CGPoint) -> Constraint {
+    func offset(amount: CGPoint) -> ConstraintMultipliable {
         self.offset = amount
         return self
     }
-    public func offset(amount: CGSize) -> Constraint {
+    func offset(amount: CGSize) -> ConstraintMultipliable {
         self.offset = amount
         return self
     }
-    public func offset(amount: EdgeInsets) -> Constraint {
+    func offset(amount: EdgeInsets) -> ConstraintMultipliable {
         self.offset = amount
         return self
     }
     
     // MARK: insets
     
-    public func insets(amount: EdgeInsets) -> Constraint {
+    func insets(amount: EdgeInsets) -> ConstraintMultipliable {
         self.offset = amount
+        return self
+    }
+    
+    // MARK: Constraint
+    
+    var constraint: Constraint {
         return self
     }
     
     // MARK: install / uninstall
     
-    public func install() -> [LayoutConstraint] {
+    func install() -> [LayoutConstraint] {
         return self.installOnView(updateExisting: false)
     }
     
-    public func uninstall() {
+    func uninstall() {
         self.uninstallFromView()
     }
     
-    public func activate() {
+    func activate() {
         if NSLayoutConstraint.respondsToSelector("activateConstraints:") && self.installInfo != nil {
             let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
             if layoutConstraints.count > 0 {
@@ -302,7 +462,7 @@ final public class Constraint {
         }
     }
     
-    public func deactivate() {
+    func deactivate() {
         if NSLayoutConstraint.respondsToSelector("deactivateConstraints:") && self.installInfo != nil {
             let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
             if layoutConstraints.count > 0 {
@@ -313,12 +473,10 @@ final public class Constraint {
         }
     }
     
-    // MARK: internal
-    
-    internal func installOnView(updateExisting: Bool = false) -> [LayoutConstraint] {
+    func installOnView(updateExisting: Bool = false) -> [LayoutConstraint] {
         var installOnView: View? = nil
         if self.toItem.view != nil {
-            installOnView = Constraint.closestCommonSuperviewFromView(self.fromItem.view, toView: self.toItem.view)
+            installOnView = MutableConstraint.closestCommonSuperviewFromView(self.fromItem.view, toView: self.toItem.view)
             if installOnView == nil {
                 NSException(name: "Cannot Install Constraint", reason: "No common superview between views", userInfo: nil).raise()
                 return []
@@ -441,7 +599,7 @@ final public class Constraint {
         return newLayoutConstraints
     }
     
-    internal func uninstallFromView() {
+    func uninstallFromView() {
         if let installInfo = self.installInfo,
            let installedLayoutConstraints = installInfo.layoutConstraints.allObjects as? [LayoutConstraint] {
             
@@ -476,14 +634,14 @@ final public class Constraint {
     
     private var installInfo: ConstraintInstallInfo?
     
-    private func addConstraint(attributes: ConstraintAttributes) -> Constraint {
+    private func addConstraint(attributes: ConstraintAttributes) -> MutableConstraint {
         if self.relation == nil {
             self.fromItem.attributes += attributes
         }
         return self
     }
     
-    private func constrainTo(other: ConstraintItem, relation: ConstraintRelation) -> Constraint {
+    private func constrainTo(other: ConstraintItem, relation: ConstraintRelation) -> MutableConstraint {
         if other.attributes != ConstraintAttributes.None {
             let toLayoutAttributes = other.attributes.layoutAttributes
             if toLayoutAttributes.count > 1 {
@@ -499,31 +657,31 @@ final public class Constraint {
         self.relation = relation
         return self
     }
-    private func constrainTo(other: View, relation: ConstraintRelation) -> Constraint {
+    private func constrainTo(other: View, relation: ConstraintRelation) -> MutableConstraint {
         return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
     }
     #if os(iOS)
-    private func constrainTo(other: UILayoutSupport, relation: ConstraintRelation) -> Constraint {
+    private func constrainTo(other: UILayoutSupport, relation: ConstraintRelation) -> MutableConstraint {
         return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
     }
     #endif
-    private func constrainTo(other: Float, relation: ConstraintRelation) -> Constraint {
+    private func constrainTo(other: Float, relation: ConstraintRelation) -> MutableConstraint {
         self.constant = other
         return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
-    private func constrainTo(other: Double, relation: ConstraintRelation) -> Constraint {
+    private func constrainTo(other: Double, relation: ConstraintRelation) -> MutableConstraint {
         self.constant = other
         return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
-    private func constrainTo(other: CGSize, relation: ConstraintRelation) -> Constraint {
+    private func constrainTo(other: CGSize, relation: ConstraintRelation) -> MutableConstraint {
         self.constant = other
         return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
-    private func constrainTo(other: CGPoint, relation: ConstraintRelation) -> Constraint {
+    private func constrainTo(other: CGPoint, relation: ConstraintRelation) -> MutableConstraint {
         self.constant = other
         return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
-    private func constrainTo(other: EdgeInsets, relation: ConstraintRelation) -> Constraint {
+    private func constrainTo(other: EdgeInsets, relation: ConstraintRelation) -> MutableConstraint {
         self.constant = other
         return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
@@ -726,7 +884,7 @@ private struct ConstraintInstallInfo {
 }
 
 
-internal func ==(left: Constraint, right: Constraint) -> Bool {
+internal func ==(left: MutableConstraint, right: MutableConstraint) -> Bool {
     return (left.fromItem == right.fromItem &&
             left.toItem == right.toItem &&
             left.relation == right.relation &&

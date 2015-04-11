@@ -72,7 +72,7 @@ public extension View {
     #endif
     
     final public func snp_prepareConstraints(@noescape block: (make: ConstraintMaker) -> Void) -> [Constraint] {
-        return ConstraintMaker.prepareConstraints(self, block: block)
+        return ConstraintMaker.prepareConstraints(self, block: block).map { return $0 as Constraint }
     }
     
     final public func snp_makeConstraints(@noescape block: (make: ConstraintMaker) -> Void) {

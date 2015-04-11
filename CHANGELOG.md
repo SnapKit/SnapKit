@@ -4,6 +4,8 @@ CHANGELOG
 # 0.10.0 - Next Release In Development
 
 * **BREAKING:** Using `.equalTo(<EdgeInsets>)` will no longer multiply the constants on the right/bottom edge by -1. This does not affect `.offset(<EdgeInsets>)`
+* **BREAKING:** The constraint making chain now utilises protocols to tighten the API's to avoid user error. This may break some syntaxes.
+* **BREAKING:** Semantic `and` and `with` chain variables were removed
 * Ensure Swift 1.2 compatibility
 * Added a `Snap.Config.interfaceLayoutDirection` variable for richer Leading/Trailing support.
 * Fixed memory leaks that could occur on long lived views

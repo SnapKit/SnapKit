@@ -181,8 +181,8 @@ class SnapTests: XCTestCase {
         var c2: Constraint? = nil
         
         v1.snp_prepareConstraints { (make) -> Void in
-            c1 = make.top.equalTo(v2.snp_top).offset(50)
-            c2 = make.left.equalTo(v2.snp_top).offset(50)
+            c1 = make.top.equalTo(v2.snp_top).offset(50).constraint
+            c2 = make.left.equalTo(v2.snp_top).offset(50).constraint
             return
         }
         

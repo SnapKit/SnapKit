@@ -31,49 +31,49 @@ import AppKit
  * ConstraintMaker is the maker in snap that gets all constraints kickstarted
  */
 final public class ConstraintMaker {
-    public var left: Constraint { return self.addConstraint(ConstraintAttributes.Left) }
-    public var top: Constraint { return self.addConstraint(ConstraintAttributes.Top) }
-    public var right: Constraint { return self.addConstraint(ConstraintAttributes.Right) }
-    public var bottom: Constraint { return self.addConstraint(ConstraintAttributes.Bottom) }
-    public var leading: Constraint { return self.addConstraint(ConstraintAttributes.Leading) }
-    public var trailing: Constraint { return self.addConstraint(ConstraintAttributes.Trailing) }
-    public var width: Constraint { return self.addConstraint(ConstraintAttributes.Width) }
-    public var height: Constraint { return self.addConstraint(ConstraintAttributes.Height) }
-    public var centerX: Constraint { return self.addConstraint(ConstraintAttributes.CenterX) }
-    public var centerY: Constraint { return self.addConstraint(ConstraintAttributes.CenterY) }
-    public var baseline: Constraint { return self.addConstraint(ConstraintAttributes.Baseline) }
+    public var left: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Left) }
+    public var top: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Top) }
+    public var right: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Right) }
+    public var bottom: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Bottom) }
+    public var leading: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Leading) }
+    public var trailing: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Trailing) }
+    public var width: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Width) }
+    public var height: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Height) }
+    public var centerX: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.CenterX) }
+    public var centerY: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.CenterY) }
+    public var baseline: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Baseline) }
     
     #if os(iOS)
-    public var firstBaseline: Constraint { return self.addConstraint(ConstraintAttributes.FirstBaseline) }
-    public var leftMargin: Constraint { return self.addConstraint(ConstraintAttributes.LeftMargin) }
-    public var rightMargin: Constraint { return self.addConstraint(ConstraintAttributes.RightMargin) }
-    public var topMargin: Constraint { return self.addConstraint(ConstraintAttributes.TopMargin) }
-    public var bottomMargin: Constraint { return self.addConstraint(ConstraintAttributes.BottomMargin) }
-    public var leadingMargin: Constraint { return self.addConstraint(ConstraintAttributes.LeadingMargin) }
-    public var trailingMargin: Constraint { return self.addConstraint(ConstraintAttributes.TrailingMargin) }
-    public var centerXWithinMargins: Constraint { return self.addConstraint(ConstraintAttributes.CenterXWithinMargins) }
-    public var centerYWithinMargins: Constraint { return self.addConstraint(ConstraintAttributes.CenterYWithinMargins) }
+    public var firstBaseline: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.FirstBaseline) }
+    public var leftMargin: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.LeftMargin) }
+    public var rightMargin: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.RightMargin) }
+    public var topMargin: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.TopMargin) }
+    public var bottomMargin: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.BottomMargin) }
+    public var leadingMargin: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.LeadingMargin) }
+    public var trailingMargin: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.TrailingMargin) }
+    public var centerXWithinMargins: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.CenterXWithinMargins) }
+    public var centerYWithinMargins: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.CenterYWithinMargins) }
     #endif
     
-    public var edges: Constraint { return self.addConstraint(ConstraintAttributes.Edges) }
-    public var size: Constraint { return self.addConstraint(ConstraintAttributes.Size) }
-    public var center: Constraint { return self.addConstraint(ConstraintAttributes.Center) }
+    public var edges: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Edges) }
+    public var size: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Size) }
+    public var center: ConstraintExtendable { return self.addConstraint(ConstraintAttributes.Center) }
     
     init(view: View) {
         self.view = view
     }
     
     internal weak var view: View?
-    internal var constraints = [Constraint]()
+    internal var constraints = [MutableConstraint]()
     
-    internal func addConstraint(attributes: ConstraintAttributes) -> Constraint {
+    internal func addConstraint(attributes: ConstraintAttributes) -> MutableConstraint {
         let item = ConstraintItem(object: self.view, attributes: attributes)
-        let constraint = Constraint(fromItem: item)
+        let constraint = MutableConstraint(fromItem: item)
         self.constraints.append(constraint)
         return constraint
     }
     
-    internal class func prepareConstraints(view: View, @noescape block: (make: ConstraintMaker) -> Void) -> [Constraint] {
+    internal class func prepareConstraints(view: View, @noescape block: (make: ConstraintMaker) -> Void) -> [MutableConstraint] {
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         return maker.constraints
