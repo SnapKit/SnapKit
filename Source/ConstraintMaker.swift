@@ -43,6 +43,18 @@ final public class ConstraintMaker {
     public var centerY: Constraint { return self.addConstraint(ConstraintAttributes.CenterY) }
     public var baseline: Constraint { return self.addConstraint(ConstraintAttributes.Baseline) }
     
+    #if os(iOS)
+    public var firstBaseline: Constraint { return self.addConstraint(ConstraintAttributes.FirstBaseline) }
+    public var leftMargin: Constraint { return self.addConstraint(ConstraintAttributes.LeftMargin) }
+    public var rightMargin: Constraint { return self.addConstraint(ConstraintAttributes.RightMargin) }
+    public var topMargin: Constraint { return self.addConstraint(ConstraintAttributes.TopMargin) }
+    public var bottomMargin: Constraint { return self.addConstraint(ConstraintAttributes.BottomMargin) }
+    public var leadingMargin: Constraint { return self.addConstraint(ConstraintAttributes.LeadingMargin) }
+    public var trailingMargin: Constraint { return self.addConstraint(ConstraintAttributes.TrailingMargin) }
+    public var centerXWithinMargins: Constraint { return self.addConstraint(ConstraintAttributes.CenterXWithinMargins) }
+    public var centerYWithinMargins: Constraint { return self.addConstraint(ConstraintAttributes.CenterYWithinMargins) }
+    #endif
+    
     public var edges: Constraint { return self.addConstraint(ConstraintAttributes.Edges) }
     public var size: Constraint { return self.addConstraint(ConstraintAttributes.Size) }
     public var center: Constraint { return self.addConstraint(ConstraintAttributes.Center) }
