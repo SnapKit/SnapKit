@@ -313,7 +313,7 @@ public class Constraint {
                 NSException(name: "Cannot Install Constraint", reason: "Already installed on different view.", userInfo: nil).raise()
                 return []
             }
-            return (self.installedLayoutConstraints?.allObjects as? Array<LayoutConstraint>)!
+            return self.installedLayoutConstraints?.allObjects as! Array<LayoutConstraint>
         }
         
         var newLayoutConstraints = Array<LayoutConstraint>()
@@ -465,9 +465,9 @@ public class Constraint {
     
     private func constrainTo(other: ConstraintItem, relation: ConstraintRelation) -> Constraint {
         if other.attributes != ConstraintAttributes.None {
-            var toLayoutAttributes = other.attributes.layoutAttributes
+            let toLayoutAttributes = other.attributes.layoutAttributes
             if toLayoutAttributes.count > 1 {
-                var fromLayoutAttributes = self.fromItem.attributes.layoutAttributes
+                let fromLayoutAttributes = self.fromItem.attributes.layoutAttributes
                 if toLayoutAttributes != fromLayoutAttributes {
                     NSException(name: "Invalid Constraint", reason: "Cannot constrain to multiple non identical attributes", userInfo: nil).raise()
                     return self
@@ -509,22 +509,22 @@ public class Constraint {
     }
     
     private class func closestCommonSuperviewFromView(fromView: View?, toView: View?) -> View? {
-        var views = NSMutableSet()
+        var views = Set<View>()
         var fromView = fromView
         var toView = toView
         do {
             if let view = toView {
-                if views.containsObject(view) {
+                if views.contains(view) {
                     return view
                 }
-                views.addObject(view)
+                views.insert(view)
                 toView = view.superview
             }
             if let view = fromView {
-                if views.containsObject(view) {
+                if views.contains(view) {
                     return view
                 }
-                views.addObject(view)
+                views.insert(view)
                 fromView = view.superview
             }
         } while (fromView != nil || toView != nil)

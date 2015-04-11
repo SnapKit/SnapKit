@@ -95,7 +95,7 @@ public extension View {
             if let constraints = objc_getAssociatedObject(self, &installedLayoutConstraintsKey) as? Array<LayoutConstraint> {
                 return constraints
             }
-            return Array<LayoutConstraint>()
+            return []
         }
         set {
             objc_setAssociatedObject(self, &installedLayoutConstraintsKey, newValue, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))

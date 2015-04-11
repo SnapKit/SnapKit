@@ -41,22 +41,12 @@ public class ConstraintItem {
     internal var attributes: ConstraintAttributes
     
     internal var view: View? {
-        get {
-            if let view = self.object as? View {
-                return view
-            }
-            return nil
-        }
+        return self.object as? View
     }
     
     #if os(iOS)
     internal var layoutSupport: UILayoutSupport? {
-        get {
-            if let layoutSupport = self.object as? UILayoutSupport {
-                return layoutSupport
-            }
-            return nil
-        }
+        return self.object as? UILayoutSupport
     }
     #endif
 }
