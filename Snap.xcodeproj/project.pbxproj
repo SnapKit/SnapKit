@@ -35,6 +35,8 @@
 		EEFCF32D1AD9250C00A425FA /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32B1AD910B900A425FA /* Debugging.swift */; };
 		EEFCF32F1AD926AE00A425FA /* Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32E1AD926AE00A425FA /* Snap.swift */; };
 		EEFCF3301AD92C2200A425FA /* Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32E1AD926AE00A425FA /* Snap.swift */; };
+		EEFCF3321AD9432400A425FA /* ConstraintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF3311AD9432400A425FA /* ConstraintBuilder.swift */; };
+		EEFCF3331AD9432400A425FA /* ConstraintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF3311AD9432400A425FA /* ConstraintBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,7 @@
 		EECDB3841AC0C9D4006BBC11 /* Snap OSX Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Snap OSX Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEFCF32B1AD910B900A425FA /* Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debugging.swift; sourceTree = "<group>"; };
 		EEFCF32E1AD926AE00A425FA /* Snap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snap.swift; sourceTree = "<group>"; };
+		EEFCF3311AD9432400A425FA /* ConstraintBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,7 @@
 				EECDB3661AC0C95C006BBC11 /* Snap.h */,
 				EEFCF32E1AD926AE00A425FA /* Snap.swift */,
 				EECDB35E1AC0C95C006BBC11 /* Constraint.swift */,
+				EEFCF3311AD9432400A425FA /* ConstraintBuilder.swift */,
 				EECDB35F1AC0C95C006BBC11 /* ConstraintAttributes.swift */,
 				EECDB3601AC0C95C006BBC11 /* ConstraintItem.swift */,
 				EECDB3611AC0C95C006BBC11 /* ConstraintMaker.swift */,
@@ -350,6 +354,7 @@
 				EEFCF32F1AD926AE00A425FA /* Snap.swift in Sources */,
 				EEFCF32C1AD910B900A425FA /* Debugging.swift in Sources */,
 				EECDB3701AC0C9A6006BBC11 /* ConstraintRelation.swift in Sources */,
+				EEFCF3321AD9432400A425FA /* ConstraintBuilder.swift in Sources */,
 				EECDB3731AC0C9A6006BBC11 /* View+Snap.swift in Sources */,
 				EECDB3711AC0C9A6006BBC11 /* EdgeInsets.swift in Sources */,
 				EECDB36F1AC0C9A6006BBC11 /* ConstraintMaker.swift in Sources */,
@@ -375,6 +380,7 @@
 				EEFCF3301AD92C2200A425FA /* Snap.swift in Sources */,
 				EEFCF32D1AD9250C00A425FA /* Debugging.swift in Sources */,
 				EECDB3991AC0CBFF006BBC11 /* ConstraintRelation.swift in Sources */,
+				EEFCF3331AD9432400A425FA /* ConstraintBuilder.swift in Sources */,
 				EECDB39C1AC0CBFF006BBC11 /* View+Snap.swift in Sources */,
 				EECDB39A1AC0CBFF006BBC11 /* EdgeInsets.swift in Sources */,
 				EECDB3981AC0CBFF006BBC11 /* ConstraintMaker.swift in Sources */,

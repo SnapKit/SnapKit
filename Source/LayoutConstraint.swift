@@ -1,7 +1,7 @@
 //
 //  Snap
 //
-//  Copyright (c) 2011-2014 Masonry Team - https://github.com/Masonry
+//  Copyright (c) 2011-2015 Masonry Team - https://github.com/Masonry
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ import AppKit
 * LayoutConstraint is a subclass of NSLayoutConstraint to assist Snap and also provide better debugging
 */
 final public class LayoutConstraint: NSLayoutConstraint {
-    internal var snp_constraint: MutableConstraint? = nil
+    internal var snp_constraint: ConstraintBuilder? = nil
 }
 
 public func ==(left: LayoutConstraint, right: LayoutConstraint) -> Bool {
