@@ -232,6 +232,9 @@ final public class Constraint {
     public func priorityHigh() -> Constraint {
         return self.priority(750.0)
     }
+    public func priorityMedium() -> Constraint {
+        return self.priority(500.0)
+    }
     public func priorityLow() -> Constraint {
         return self.priority(250.0)
     }
