@@ -665,50 +665,50 @@ private extension NSLayoutAttribute {
                 return size.height
             }
         }
-            // CGPoint
+        // CGPoint
         else if let point = value as? CGPoint {
             #if os(iOS)
             switch self {
             case .Left, .CenterX, .LeftMargin, .CenterXWithinMargins: return point.x
             case .Top, .CenterY, .TopMargin, .CenterYWithinMargins, .Baseline, .FirstBaseline: return point.y
-            case .Right, .RightMargin: return -point.x
-            case .Bottom, .BottomMargin: return -point.y
-            case .Leading, .LeadingMargin: return (Config.interfaceLayoutDirection == .LeftToRight) ? point.x : -point.x
-            case .Trailing, .TrailingMargin: return (Config.interfaceLayoutDirection == .LeftToRight) ? -point.x : point.x
+            case .Right, .RightMargin: return point.x
+            case .Bottom, .BottomMargin: return point.y
+            case .Leading, .LeadingMargin: return point.x
+            case .Trailing, .TrailingMargin: return point.x
             case .Width, .Height, .NotAnAttribute: return CGFloat(0)
             }
             #else
             switch self {
             case .Left, .CenterX: return point.x
             case .Top, .CenterY, .Baseline: return point.y
-            case .Right: return -point.x
-            case .Bottom: return -point.y
-            case .Leading: return (Config.interfaceLayoutDirection == .LeftToRight) ? point.x : -point.x
-            case .Trailing: return (Config.interfaceLayoutDirection == .LeftToRight) ? -point.x : point.x
+            case .Right: return point.x
+            case .Bottom: return point.y
+            case .Leading: return point.x
+            case .Trailing: return point.x
             case .Width, .Height, .NotAnAttribute: return CGFloat(0)
             }
             #endif
         }
-            // EdgeInsets
+        // EdgeInsets
         else if let insets = value as? EdgeInsets {
             #if os(iOS)
             switch self {
             case .Left, .CenterX, .LeftMargin, .CenterXWithinMargins: return insets.left
             case .Top, .CenterY, .TopMargin, .CenterYWithinMargins, .Baseline, .FirstBaseline: return insets.top
-            case .Right, .RightMargin: return -insets.right
-            case .Bottom, .BottomMargin: return -insets.bottom
-            case .Leading, .LeadingMargin: return (Config.interfaceLayoutDirection == .LeftToRight) ? insets.left : -insets.right
-            case .Trailing, .TrailingMargin: return (Config.interfaceLayoutDirection == .LeftToRight) ? -insets.right : insets.left
+            case .Right, .RightMargin: return insets.right
+            case .Bottom, .BottomMargin: return insets.bottom
+            case .Leading, .LeadingMargin: return (Config.interfaceLayoutDirection == .LeftToRight) ? insets.left : insets.right
+            case .Trailing, .TrailingMargin: return (Config.interfaceLayoutDirection == .LeftToRight) ? insets.right : insets.left
             case .Width, .Height, .NotAnAttribute: return CGFloat(0)
             }
             #else
             switch self {
             case .Left, .CenterX: return insets.left
             case .Top, .CenterY, .Baseline: return insets.top
-            case .Right: return -insets.right
-            case .Bottom: return -insets.bottom
-            case .Leading: return (Config.interfaceLayoutDirection == .LeftToRight) ? insets.left : -insets.right
-            case .Trailing: return (Config.interfaceLayoutDirection == .LeftToRight) ? -insets.right : insets.left
+            case .Right: return insets.right
+            case .Bottom: return insets.bottom
+            case .Leading: return (Config.interfaceLayoutDirection == .LeftToRight) ? insets.left : insets.right
+            case .Trailing: return (Config.interfaceLayoutDirection == .LeftToRight) ? insets.right : insets.left
             case .Width, .Height, .NotAnAttribute: return CGFloat(0)
             }
             #endif
