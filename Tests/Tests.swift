@@ -171,4 +171,43 @@ class SnapTests: XCTestCase {
         XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 0 constraints installed")
     }
     
+    func testActivateDeactivateConstraints() {
+        let v1 = View()
+        let v2 = View()
+        self.container.addSubview(v1)
+        self.container.addSubview(v2)
+        
+        var c1: Constraint? = nil
+        var c2: Constraint? = nil
+        
+        v1.snp_prepareConstraints { (make) -> Void in
+            c1 = make.top.equalTo(v2.snp_top).offset(50)
+            c2 = make.left.equalTo(v2.snp_top).offset(50)
+            return
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints")
+        
+        c1?.activate()
+        c2?.activate()
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
+        
+        c1?.deactivate()
+        c2?.deactivate()
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints")
+        
+        c1?.uninstall()
+        c2?.uninstall()
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints")
+        
+        c1?.activate()
+        c2?.activate()
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
+        
+    }
+    
 }
