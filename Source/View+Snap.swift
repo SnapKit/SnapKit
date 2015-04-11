@@ -29,6 +29,9 @@ import AppKit
 public typealias View = NSView
 #endif
 
+/**
+ * View extension that exposes primary api
+ */
 public extension View {
     
     // normal

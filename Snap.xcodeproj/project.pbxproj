@@ -31,6 +31,7 @@
 		EECDB39B1AC0CBFF006BBC11 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB3651AC0C95C006BBC11 /* LayoutConstraint.swift */; };
 		EECDB39C1AC0CBFF006BBC11 /* View+Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB3671AC0C95C006BBC11 /* View+Snap.swift */; };
 		EECDB39D1AC0CC03006BBC11 /* Snap.h in Headers */ = {isa = PBXBuildFile; fileRef = EECDB3661AC0C95C006BBC11 /* Snap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EEFCF32C1AD910B900A425FA /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32B1AD910B900A425FA /* Debugging.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		EECDB36A1AC0C95C006BBC11 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		EECDB37A1AC0C9D4006BBC11 /* Snap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Snap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECDB3841AC0C9D4006BBC11 /* Snap OSX Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Snap OSX Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEFCF32B1AD910B900A425FA /* Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debugging.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				EECDB35D1AC0C95C006BBC11 /* Source */,
-				EECDB3681AC0C95C006BBC11 /* Tests */,
 				EE94F60C1AC0F113008767FF /* Frameworks */,
 				DDC9FD961981B4DD009612C7 /* Products */,
 			);
@@ -142,7 +143,9 @@
 				EECDB3631AC0C95C006BBC11 /* EdgeInsets.swift */,
 				EECDB3651AC0C95C006BBC11 /* LayoutConstraint.swift */,
 				EECDB3671AC0C95C006BBC11 /* View+Snap.swift */,
+				EEFCF32B1AD910B900A425FA /* Debugging.swift */,
 				EECDB36B1AC0C967006BBC11 /* Supporting Files */,
+				EECDB3681AC0C95C006BBC11 /* Tests */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -153,7 +156,8 @@
 				EECDB3691AC0C95C006BBC11 /* Info.plist */,
 				EECDB36A1AC0C95C006BBC11 /* Tests.swift */,
 			);
-			path = Tests;
+			name = Tests;
+			path = ../Tests;
 			sourceTree = "<group>";
 		};
 		EECDB36B1AC0C967006BBC11 /* Supporting Files */ = {
@@ -338,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EECDB36C1AC0C9A6006BBC11 /* Constraint.swift in Sources */,
+				EEFCF32C1AD910B900A425FA /* Debugging.swift in Sources */,
 				EECDB3701AC0C9A6006BBC11 /* ConstraintRelation.swift in Sources */,
 				EECDB3731AC0C9A6006BBC11 /* View+Snap.swift in Sources */,
 				EECDB3711AC0C9A6006BBC11 /* EdgeInsets.swift in Sources */,
