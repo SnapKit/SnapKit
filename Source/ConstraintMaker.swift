@@ -52,7 +52,7 @@ final public class ConstraintMaker {
     }
     
     internal weak var view: View?
-    internal var constraints = Array<Constraint>()
+    internal var constraints = [Constraint]()
     
     internal func addConstraint(attributes: ConstraintAttributes) -> Constraint {
         let item = ConstraintItem(object: self.view, attributes: attributes)
@@ -61,7 +61,7 @@ final public class ConstraintMaker {
         return constraint
     }
     
-    internal class func prepareConstraints(view: View, @noescape block: (make: ConstraintMaker) -> Void) -> Array<Constraint> {
+    internal class func prepareConstraints(view: View, @noescape block: (make: ConstraintMaker) -> Void) -> [Constraint] {
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         return maker.constraints
@@ -89,9 +89,9 @@ final public class ConstraintMaker {
         let maker = ConstraintMaker(view: view)
         block(make: maker)
         
-        var layoutConstraints = Array<LayoutConstraint>(view.snp_installedLayoutConstraints)
+        var layoutConstraints = [LayoutConstraint](view.snp_installedLayoutConstraints)
         for existingLayoutConstraint in layoutConstraints {
-            existingLayoutConstraint.constraint?.uninstallFromView()
+            existingLayoutConstraint.snp_constraint?.uninstallFromView()
         }
         
         for constraint in maker.constraints {
@@ -114,9 +114,9 @@ final public class ConstraintMaker {
     }
     
     internal class func removeConstraints(view: View) {
-        let existingLayoutConstraints = Array<LayoutConstraint>(view.snp_installedLayoutConstraints)
+        let existingLayoutConstraints = [LayoutConstraint](view.snp_installedLayoutConstraints)
         for existingLayoutConstraint in existingLayoutConstraints {
-            existingLayoutConstraint.constraint?.uninstallFromView()
+            existingLayoutConstraint.snp_constraint?.uninstallFromView()
         }
     }
 }
