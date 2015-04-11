@@ -34,6 +34,7 @@
 		EEFCF32C1AD910B900A425FA /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32B1AD910B900A425FA /* Debugging.swift */; };
 		EEFCF32D1AD9250C00A425FA /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32B1AD910B900A425FA /* Debugging.swift */; };
 		EEFCF32F1AD926AE00A425FA /* Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32E1AD926AE00A425FA /* Snap.swift */; };
+		EEFCF3301AD92C2200A425FA /* Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32E1AD926AE00A425FA /* Snap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -371,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EECDB3951AC0CBFF006BBC11 /* Constraint.swift in Sources */,
+				EEFCF3301AD92C2200A425FA /* Snap.swift in Sources */,
 				EEFCF32D1AD9250C00A425FA /* Debugging.swift in Sources */,
 				EECDB3991AC0CBFF006BBC11 /* ConstraintRelation.swift in Sources */,
 				EECDB39C1AC0CBFF006BBC11 /* View+Snap.swift in Sources */,
