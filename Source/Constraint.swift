@@ -672,7 +672,7 @@ private extension NSLayoutAttribute {
 
 private struct ConstraintInstallInfo {
     
-    weak var view: UIView? = nil
+    weak var view: View? = nil
     let layoutConstraints: NSHashTable
     
 }

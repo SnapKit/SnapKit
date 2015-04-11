@@ -106,7 +106,7 @@ private var labelKey = ""
 
 private func descriptionForObject(object: AnyObject) -> String {
     let pointerDescription = NSString(format: "%p", [object])
-    if let object = object as? UIView {
+    if let object = object as? View {
         return "<\(object.dynamicType):\(object.snp_label ?? pointerDescription)>"
     } else if let object = object as? LayoutConstraint {
         return "<\(object.dynamicType):\(object.snp_label ?? pointerDescription)>"
