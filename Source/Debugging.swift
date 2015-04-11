@@ -60,9 +60,9 @@ public extension LayoutConstraint {
     override public var description: String {
         var description = "<"
         
-        description += snp_descriptionForObject(self)
+        description += descriptionForObject(self)
         
-        description += " \(snp_descriptionForObject(self.firstItem))"
+        description += " \(descriptionForObject(self.firstItem))"
         if self.firstAttribute != .NotAnAttribute {
             description += ".\(self.firstAttribute.snp_description)"
         }
@@ -70,7 +70,7 @@ public extension LayoutConstraint {
         description += " \(self.relation.snp_description)"
         
         if let secondItem: AnyObject = self.secondItem {
-            description += " \(snp_descriptionForObject(secondItem))"
+            description += " \(descriptionForObject(secondItem))"
         }
         
         if self.secondAttribute != .NotAnAttribute {
