@@ -118,7 +118,7 @@ final public class ConstraintMaker {
         self.view = view
     }
     
-    internal weak var view: View?
+    internal let view: View
     internal var constraintDescriptions = [ConstraintDescription]()
     
     internal func makeConstraintDescription(attributes: ConstraintAttributes) -> ConstraintDescription {
@@ -144,7 +144,7 @@ final public class ConstraintMaker {
         let maker = ConstraintMaker(view: view)
         closure(make: maker)
         
-        let constraints = maker.constraintDescriptions.map { $0.constraint }
+        let constraints = maker.constraintDescriptions.map { $0.constraint as! ConcreteConstraint }
         for constraint in constraints {
             constraint.installOnView(updateExisting: false)
         }
@@ -160,7 +160,7 @@ final public class ConstraintMaker {
         closure(make: maker)
         
         self.removeConstraints(view)
-        let constraints = maker.constraintDescriptions.map { $0.constraint }
+        let constraints = maker.constraintDescriptions.map { $0.constraint as! ConcreteConstraint }
         for constraint in constraints {
             constraint.installOnView(updateExisting: false)
         }
@@ -175,7 +175,7 @@ final public class ConstraintMaker {
         let maker = ConstraintMaker(view: view)
         closure(make: maker)
         
-        let constraints = maker.constraintDescriptions.map { $0.constraint }
+        let constraints = maker.constraintDescriptions.map { $0.constraint as! ConcreteConstraint}
         for constraint in constraints {
             constraint.installOnView(updateExisting: true)
         }
@@ -183,7 +183,7 @@ final public class ConstraintMaker {
     
     internal class func removeConstraints(view: View) {
         for existingLayoutConstraint in view.snp_installedLayoutConstraints {
-            existingLayoutConstraint.snp_constraint?.uninstallFromView()
+            existingLayoutConstraint.snp_constraint?.uninstall()
         }
     }
 }

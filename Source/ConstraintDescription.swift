@@ -429,11 +429,11 @@ final internal class ConstraintDescription: ConstraintDescriptionExtendable, Con
     // MARK: Constraint
     
     internal var constraint: Constraint {
-        if self.createdConstraint == nil {
+        if self.concreteConstraint == nil {
             if self.relation == nil {
                 fatalError("Attempting to create a constraint from a ConstraintDescription before it has been fully chained.")
             }
-            self.createdConstraint = Constraint(
+            self.concreteConstraint = ConcreteConstraint(
                 fromItem: self.fromItem,
                 toItem: self.toItem,
                 relation: self.relation!,
@@ -441,7 +441,7 @@ final internal class ConstraintDescription: ConstraintDescriptionExtendable, Con
                 multiplier: self.multiplier,
                 priority: self.priority)
         }
-        return self.createdConstraint!
+        return self.concreteConstraint!
     }
     
     // MARK: Private
@@ -449,40 +449,40 @@ final internal class ConstraintDescription: ConstraintDescriptionExtendable, Con
     private let fromItem: ConstraintItem
     private var toItem: ConstraintItem {
         willSet {
-            if self.createdConstraint != nil {
+            if self.concreteConstraint != nil {
                 fatalError("Attempting to modify a ConstraintDescription after it’s constraint has been created.")
             }
         }
     }
     private var relation: ConstraintRelation? {
         willSet {
-            if self.createdConstraint != nil {
+            if self.concreteConstraint != nil {
                 fatalError("Attempting to modify a ConstraintDescription after it’s constraint has been created.")
             }
         }
     }
     private var constant: Any = Float(0.0) {
         willSet {
-            if self.createdConstraint != nil {
+            if self.concreteConstraint != nil {
                 fatalError("Attempting to modify a ConstraintDescription after it’s constraint has been created.")
             }
         }
     }
     private var multiplier: Float = 1.0 {
         willSet {
-            if self.createdConstraint != nil {
+            if self.concreteConstraint != nil {
                 fatalError("Attempting to modify a ConstraintDescription after it’s constraint has been created.")
             }
         }
     }
     private var priority: Float = 1000.0 {
         willSet {
-            if self.createdConstraint != nil {
+            if self.concreteConstraint != nil {
                 fatalError("Attempting to modify a ConstraintDescription after it’s constraint has been created.")
             }
         }
     }
-    private var createdConstraint: Constraint? = nil
+    private var concreteConstraint: ConcreteConstraint? = nil
     
     private func addConstraint(attributes: ConstraintAttributes) -> ConstraintDescription {
         if self.relation == nil {

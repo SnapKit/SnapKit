@@ -27,17 +27,114 @@ import UIKit
 import AppKit
 #endif
 
-public class Constraint {
+/**
+    Used to expose API's for a Constraint
+*/
+public protocol Constraint: class {
     
-    public func install() -> [LayoutConstraint] {
+    func install() -> [LayoutConstraint]
+    func uninstall()
+    func activate()
+    func deactivate()
+    
+    func updateOffset(amount: Float) -> Void
+    func updateOffset(amount: Double) -> Void
+    func updateOffset(amount: CGFloat) -> Void
+    func updateOffset(amount: Int) -> Void
+    func updateOffset(amount: UInt) -> Void
+    func updateOffset(amount: CGPoint) -> Void
+    func updateOffset(amount: CGSize) -> Void
+    func updateOffset(amount: EdgeInsets) -> Void
+    
+    func updateInsets(amount: EdgeInsets) -> Void
+    
+    func updatePriority(priority: Float) -> Void
+    func updatePriority(priority: Double) -> Void
+    func updatePriority(priority: CGFloat) -> Void
+    func updatePriority(priority: UInt) -> Void
+    func updatePriority(priority: Int) -> Void
+    func updatePriorityRequired() -> Void
+    func updatePriorityHigh() -> Void
+    func updatePriorityMedium() -> Void
+    func updatePriorityLow() -> Void
+    
+}
+
+/**
+    Used internally to implement a ConcreteConstraint
+*/
+internal class ConcreteConstraint: Constraint {
+    
+    internal func updateOffset(amount: Float) -> Void {
+        self.constant = amount
+    }
+    internal func updateOffset(amount: Double) -> Void {
+        self.updateOffset(Float(amount))
+    }
+    internal func updateOffset(amount: CGFloat) -> Void {
+        self.updateOffset(Float(amount))
+    }
+    internal func updateOffset(amount: Int) -> Void {
+        self.updateOffset(Float(amount))
+    }
+    internal func updateOffset(amount: UInt) -> Void {
+        self.updateOffset(Float(amount))
+    }
+    internal func updateOffset(amount: CGPoint) -> Void {
+        self.constant = amount
+    }
+    internal func updateOffset(amount: CGSize) -> Void {
+        self.constant = amount
+    }
+    internal func updateOffset(amount: EdgeInsets) -> Void {
+        self.constant = amount
+    }
+    
+    internal func updateInsets(amount: EdgeInsets) -> Void {
+        self.constant = EdgeInsets(top: amount.top, left: amount.left, bottom: -amount.bottom, right: -amount.right)
+    }
+    
+    internal func updatePriority(priority: Float) -> Void {
+        self.priority = priority
+    }
+    internal func updatePriority(priority: Double) -> Void {
+        self.updatePriority(Float(priority))
+    }
+    internal func updatePriority(priority: CGFloat) -> Void {
+        self.updatePriority(Float(priority))
+    }
+    internal func updatePriority(priority: UInt) -> Void {
+        self.updatePriority(Float(priority))
+    }
+    internal func updatePriority(priority: Int) -> Void {
+        self.updatePriority(Float(priority))
+    }
+    internal func updatePriorityRequired() -> Void {
+        self.updatePriority(Float(1000.0))
+    }
+    internal func updatePriorityHigh() -> Void {
+        self.updatePriority(Float(750.0))
+    }
+    internal func updatePriorityMedium() -> Void {
+        #if os(iOS)
+        self.updatePriority(Float(500.0))
+        #else
+        self.updatePriority(Float(501.0))
+        #endif
+    }
+    internal func updatePriorityLow() -> Void {
+        self.updatePriority(Float(250.0))
+    }
+    
+    internal func install() -> [LayoutConstraint] {
         return self.installOnView(updateExisting: false)
     }
     
-    public func uninstall() {
+    internal func uninstall() {
         self.uninstallFromView()
     }
     
-    public func activate() {
+    internal func activate() {
         if NSLayoutConstraint.respondsToSelector("activateConstraints:") && self.installInfo != nil {
             let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
             if layoutConstraints.count > 0 {
@@ -48,7 +145,7 @@ public class Constraint {
         }
     }
     
-    public func deactivate() {
+    internal func deactivate() {
         if NSLayoutConstraint.respondsToSelector("deactivateConstraints:") && self.installInfo != nil {
             let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
             if layoutConstraints.count > 0 {
@@ -62,11 +159,28 @@ public class Constraint {
     private let fromItem: ConstraintItem
     private let toItem: ConstraintItem
     private let relation: ConstraintRelation
-    private var constant: Any
-    private var multiplier: Float
-    private var priority: Float
+    private let multiplier: Float
+    private var constant: Any {
+        didSet {
+            if let installInfo = self.installInfo {
+                for layoutConstraint in installInfo.layoutConstraints.allObjects as! [LayoutConstraint] {
+                    let attribute = (layoutConstraint.secondAttribute == .NotAnAttribute) ? layoutConstraint.firstAttribute : layoutConstraint.secondAttribute
+                    layoutConstraint.constant = attribute.snp_constantForValue(self.constant)
+                }
+            }
+        }
+    }
+    private var priority: Float {
+        didSet {
+            if let installInfo = self.installInfo {
+                for layoutConstraint in installInfo.layoutConstraints.allObjects as! [LayoutConstraint] {
+                    layoutConstraint.priority = self.priority
+                }
+            }
+        }
+    }
     
-    private var installInfo: ConstraintInstallInfo? = nil
+    private var installInfo: ConcreteConstraintInstallInfo? = nil
     
     internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float) {
         self.fromItem = fromItem
@@ -188,7 +302,7 @@ public class Constraint {
         installOnView!.addConstraints(newLayoutConstraints)
         
         // set install info
-        self.installInfo = ConstraintInstallInfo(view: installOnView, layoutConstraints: NSHashTable.weakObjectsHashTable())
+        self.installInfo = ConcreteConstraintInstallInfo(view: installOnView, layoutConstraints: NSHashTable.weakObjectsHashTable())
         
         // store which layout constraints are installed for this constraint
         for layoutConstraint in newLayoutConstraints {
@@ -227,7 +341,7 @@ public class Constraint {
     
 }
 
-private struct ConstraintInstallInfo {
+private struct ConcreteConstraintInstallInfo {
     
     weak var view: View? = nil
     let layoutConstraints: NSHashTable
@@ -342,19 +456,10 @@ private func closestCommonSuperviewBetween(fromView: View?, toView: View?) -> Vi
     return nil
 }
 
-private func ==(left: Constraint, right: Constraint) -> Bool {
+private func ==(left: ConcreteConstraint, right: ConcreteConstraint) -> Bool {
     return (left.fromItem == right.fromItem &&
             left.toItem == right.toItem &&
             left.relation == right.relation &&
             left.multiplier == right.multiplier &&
             left.priority == right.priority)
 }
-
-//public protocol Constraint: class {
-//    
-//    func install() -> [LayoutConstraint]
-//    func uninstall() -> Void
-//    func activate() -> Void
-//    func deactivate() -> Void
-//    
-//}
