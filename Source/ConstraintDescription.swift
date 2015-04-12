@@ -450,35 +450,35 @@ final internal class ConstraintDescription: ConstraintDescriptionExtendable, Con
     private var toItem: ConstraintItem {
         willSet {
             if self.concreteConstraint != nil {
-                fatalError("Attempting to modify a ConstraintDescription after it’s constraint has been created.")
+                fatalError("Attempting to modify a ConstraintDescription after its constraint has been created.")
             }
         }
     }
     private var relation: ConstraintRelation? {
         willSet {
             if self.concreteConstraint != nil {
-                fatalError("Attempting to modify a ConstraintDescription after it’s constraint has been created.")
+                fatalError("Attempting to modify a ConstraintDescription after its constraint has been created.")
             }
         }
     }
     private var constant: Any = Float(0.0) {
         willSet {
             if self.concreteConstraint != nil {
-                fatalError("Attempting to modify a ConstraintDescription after it’s constraint has been created.")
+                fatalError("Attempting to modify a ConstraintDescription after its constraint has been created.")
             }
         }
     }
     private var multiplier: Float = 1.0 {
         willSet {
             if self.concreteConstraint != nil {
-                fatalError("Attempting to modify a ConstraintDescription after it’s constraint has been created.")
+                fatalError("Attempting to modify a ConstraintDescription after its constraint has been created.")
             }
         }
     }
     private var priority: Float = 1000.0 {
         willSet {
             if self.concreteConstraint != nil {
-                fatalError("Attempting to modify a ConstraintDescription after it’s constraint has been created.")
+                fatalError("Attempting to modify a ConstraintDescription after its constraint has been created.")
             }
         }
     }
