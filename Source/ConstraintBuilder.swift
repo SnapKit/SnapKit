@@ -84,9 +84,6 @@ public protocol ConstraintBuilderOffsetable: ConstraintBuilderMultipliable {
     func offset(amount: CGSize) -> ConstraintBuilderMultipliable
     func offset(amount: EdgeInsets) -> ConstraintBuilderMultipliable
     
-    func inset(amount: EdgeInsets) -> ConstraintBuilderMultipliable
-    
-    @availability(*, deprecated=0.10.0, renamed="inset")
     func insets(amount: EdgeInsets) -> ConstraintBuilderMultipliable
 }
 
@@ -423,14 +420,11 @@ final internal class ConstraintBuilder: Constraint, ConstraintBuilderExtendable,
         return self
     }
     
-    // MARK: inset
+    // MARK: insets
     
-    func inset(amount: EdgeInsets) -> ConstraintBuilderMultipliable {
+    func insets(amount: EdgeInsets) -> ConstraintBuilderMultipliable {
         self.constant = EdgeInsets(top: amount.top, left: amount.left, bottom: -amount.bottom, right: -amount.right)
         return self
-    }
-    func insets(amount: EdgeInsets) -> ConstraintBuilderMultipliable {
-        return self.inset(amount)
     }
     
     // MARK: Constraint
