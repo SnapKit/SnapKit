@@ -1,5 +1,5 @@
 
-<img src="https://raw.githubusercontent.com/Masonry/Snap/Assets/snap-banner.png" alt="">
+<img src="https://raw.githubusercontent.com/Masonry/Snap/develop/Assets/snap-banner.png" alt="">
 
 ====
 
