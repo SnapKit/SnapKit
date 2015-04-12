@@ -28,8 +28,8 @@ import AppKit
 #endif
 
 /**
- * ConstraintAttributes is an options set that maps to NSLayoutAttributes.
- */
+    Used to define `NSLayoutAttributes` in a more concise and composite manner
+*/
 internal struct ConstraintAttributes: RawOptionSetType, BooleanType {
     
     internal init(rawValue: UInt) {
@@ -47,9 +47,9 @@ internal struct ConstraintAttributes: RawOptionSetType, BooleanType {
     internal static func convertFromNilLiteral() -> ConstraintAttributes { return self(0) }
     internal var boolValue: Bool { return self.rawValue != 0 }
     
-    func toRaw() -> UInt { return self.rawValue }
-    static func fromRaw(raw: UInt) -> ConstraintAttributes? { return self(raw) }
-    static func fromMask(raw: UInt) -> ConstraintAttributes { return self(raw) }
+    internal func toRaw() -> UInt { return self.rawValue }
+    internal static func fromRaw(raw: UInt) -> ConstraintAttributes? { return self(raw) }
+    internal static func fromMask(raw: UInt) -> ConstraintAttributes { return self(raw) }
     
     // normal
     

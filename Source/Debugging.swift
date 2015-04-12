@@ -28,8 +28,8 @@ import AppKit
 #endif
 
 /**
- * View extension that exposes snp_label debugging api
- */
+    Used to allow adding a snp_label to a View for debugging purposes
+*/
 public extension View {
     
     public var snp_label: String? {
@@ -44,8 +44,8 @@ public extension View {
 }
 
 /**
- * LayoutConstraint extension that exposes snp_label debugging api
- */
+    Used to allow adding a snp_label to a LayoutConstraint for debugging purposes
+*/
 public extension LayoutConstraint {
     
     public var snp_label: String? {

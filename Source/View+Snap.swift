@@ -30,68 +30,139 @@ public typealias View = NSView
 #endif
 
 /**
- * View extension that exposes primary api
- */
+    Used to expose public API on views
+*/
 public extension View {
     
-    // normal
-    
+    /// left edge
     final public var snp_left: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Left) }
+    
+    /// top edge
     final public var snp_top: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Top) }
+    
+    /// right edge
     final public var snp_right: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Right) }
+    
+    /// bottom edge
     final public var snp_bottom: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Bottom) }
+    
+    /// leading edge
     final public var snp_leading: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Leading) }
+    
+    /// trailing edge
     final public var snp_trailing: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Trailing) }
+    
+    /// width dimension
     final public var snp_width: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Width) }
+    
+    /// height dimension
     final public var snp_height: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Height) }
+    
+    /// centerX position
     final public var snp_centerX: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterX) }
+    
+    /// centerY position
     final public var snp_centerY: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterY) }
+    
+    /// baseline position
     final public var snp_baseline: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Baseline) }
     
     #if os(iOS)
+    
+    /// first baseline position
     final public var snp_firstBaseline: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.FirstBaseline) }
+    
+    /// left margin
     final public var snp_leftMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.LeftMargin) }
+    
+    /// right margin
     final public var snp_rightMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.RightMargin) }
+    
+    /// top margin
     final public var snp_topMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.TopMargin) }
+    
+    /// bottom margin
     final public var snp_bottomMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.BottomMargin) }
+    
+    /// leading margin
     final public var snp_leadingMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.LeadingMargin) }
+    
+    /// trailing margin
     final public var snp_trailingMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.TrailingMargin) }
-    final public var snp_centerXWithinMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterXWithinMargins) }
-    final public var snp_centerYWithinMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterYWithinMargins) }
+    
+    /// centerX within margins
+    final public var snp_centerXWithinMargins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterXWithinMargins) }
+    
+    /// centerY within margins
+    final public var snp_centerYWithinMargins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterYWithinMargins) }
+    
     #endif
     
-    // aggregates
-    
+    // top + left + bottom + right edges
     final public var snp_edges: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Edges) }
+    
+    // width + height dimensions
     final public var snp_size: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Size) }
+    
+    // centerX + centerY positions
     final public var snp_center: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Center) }
     
     #if os(iOS)
+    
+    // top + left + bottom + right margins
     final public var snp_margins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Margins) }
+    
+    // centerX + centerY within margins
     final public var snp_centerWithinMargins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterWithinMargins) }
+    
     #endif
     
-    final public func snp_prepareConstraints(@noescape block: (make: ConstraintMaker) -> Void) -> [Constraint] {
-        return ConstraintMaker.prepareConstraints(self, block: block).map { return $0 as Constraint }
+    /**
+        Prepares constraints with a `ConstraintMaker` and returns the made constraints but does not install them.
+
+        :param: closure that will be passed the `ConstraintMaker` to make the constraints with
+        
+        :returns: the constraints made
+    */
+    final public func snp_prepareConstraints(@noescape closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
+        return ConstraintMaker.prepareConstraints(self, closure: closure)
     }
     
-    final public func snp_makeConstraints(@noescape block: (make: ConstraintMaker) -> Void) {
-        ConstraintMaker.makeConstraints(self, block: block)
+    /**
+        Makes constraints with a `ConstraintMaker` and installs them along side any previous made constraints.
+        
+        :param: closure that will be passed the `ConstraintMaker` to make the constraints with
+    */
+    final public func snp_makeConstraints(@noescape closure: (make: ConstraintMaker) -> Void) -> Void {
+        ConstraintMaker.makeConstraints(self, closure: closure)
     }
     
-    final public func snp_updateConstraints(@noescape block: (make: ConstraintMaker) -> Void) {
-        ConstraintMaker.updateConstraints(self, block: block)
+    /**
+        Updates constraints with a `ConstraintMaker` that will replace existing constraints that match and install new ones.
+    
+        For constraints to match only the constant can be updated.
+    
+        :param: closure that will be passed the `ConstraintMaker` to update the constraints with
+    */
+    final public func snp_updateConstraints(@noescape closure: (make: ConstraintMaker) -> Void) -> Void {
+        ConstraintMaker.updateConstraints(self, closure: closure)
     }
     
-    final public func snp_remakeConstraints(@noescape block: (make: ConstraintMaker) -> Void) {
-        ConstraintMaker.remakeConstraints(self, block: block)
+    /**
+        Remakes constraints with a `ConstraintMaker` that will first remove all previously made constraints and make and install new ones.
+    
+        :param: closure that will be passed the `ConstraintMaker` to remake the constraints with
+    */
+    final public func snp_remakeConstraints(@noescape closure: (make: ConstraintMaker) -> Void) -> Void {
+        ConstraintMaker.remakeConstraints(self, closure: closure)
     }
     
+    /**
+        Removes all previously made constraints.
+    */
     final public func snp_removeConstraints() {
         ConstraintMaker.removeConstraints(self)
     }
-    
-    // internal
     
     final internal var snp_installedLayoutConstraints: [LayoutConstraint] {
         get {

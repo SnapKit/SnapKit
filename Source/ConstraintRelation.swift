@@ -28,8 +28,8 @@ import AppKit
 #endif
 
 /**
- * ConstraintRelation is an Int enum that maps to NSLayoutRelation.
- */
+    Used to define `NSLayoutRelation`
+*/
 internal enum ConstraintRelation: Int {
     case Equal = 1, LessThanOrEqualTo, GreaterThanOrEqualTo
     

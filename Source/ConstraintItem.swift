@@ -28,8 +28,8 @@ import AppKit
 #endif
 
 /**
- * ConstraintItem is a class that is used while building constraints.
- */
+    Used to assist in building a constraint
+*/
 final public class ConstraintItem {
     
     internal init(object: AnyObject?, attributes: ConstraintAttributes) {
@@ -45,9 +45,11 @@ final public class ConstraintItem {
     }
     
     #if os(iOS)
+    
     internal var layoutSupport: UILayoutSupport? {
         return self.object as? UILayoutSupport
     }
+    
     #endif
 }
 

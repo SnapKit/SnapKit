@@ -156,6 +156,7 @@ class SnapTests: XCTestCase {
             return
         }
         
+        
         XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints installed")
         
         for constraint in constraints {

@@ -23,17 +23,18 @@
 
 #if os(iOS)
 import UIKit
-typealias InterfaceLayoutDirection = UIUserInterfaceLayoutDirection
+public typealias InterfaceLayoutDirection = UIUserInterfaceLayoutDirection
 #else
 import AppKit
-typealias InterfaceLayoutDirection = NSUserInterfaceLayoutDirection
+public typealias InterfaceLayoutDirection = NSUserInterfaceLayoutDirection
 #endif
 
 /**
- * Config that can be used to configure Snap
- */
+    Used to configure different parts of Snap
+*/
 public struct Config {
     
+    /// The interface layout direction
     public static var interfaceLayoutDirection = InterfaceLayoutDirection.LeftToRight
     
 }
