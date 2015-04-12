@@ -4,3 +4,4 @@ Examples/
 .DS_Store
 Gemfile
 Gemfile.lock
+*.sketch
