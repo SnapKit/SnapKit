@@ -71,7 +71,7 @@ public protocol ConstraintBuilderMultipliable: ConstraintBuilderPriortizable {
 }
 
 /**
- * ConstraintBuilderOffsetable is a protocol that allows a constraint to be offset
+ * ConstraintBuilderOffsetable is a protocol that allows a constraint to be offset / inset
  */
 public protocol ConstraintBuilderOffsetable: ConstraintBuilderMultipliable {
     
