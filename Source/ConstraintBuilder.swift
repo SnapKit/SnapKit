@@ -146,6 +146,7 @@ public protocol ConstraintBuilderExtendable: ConstraintBuilderRelatable {
     var left: ConstraintBuilderExtendable { get }
     var top: ConstraintBuilderExtendable { get }
     var bottom: ConstraintBuilderExtendable { get }
+    var right: ConstraintBuilderExtendable { get }
     var leading: ConstraintBuilderExtendable { get }
     var trailing: ConstraintBuilderExtendable { get }
     var width: ConstraintBuilderExtendable { get }
