@@ -1,4 +1,7 @@
-# Snap
+
+<img src="https://raw.githubusercontent.com/Masonry/Snap/Assets/snap-banner.png" alt="">
+
+====
 
 [![Build Status](https://travis-ci.org/Masonry/Snap.svg)](https://travis-ci.org/Masonry/Snap)
 
@@ -32,7 +35,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'Snap', '~> 0.9.1'
+pod 'Snap', '~> 0.9.2'
 ```
 
 Then, run the following command:
@@ -54,8 +57,8 @@ $ brew install carthage
 
 To integrate Snap into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-```ogdl
-github "Masonry/Snap" >= 0.9.1
+```
+github "Masonry/Snap" >= 0.9.2
 ```
 
 ### Manually
@@ -141,19 +144,18 @@ Heres the same constraints created using ConstraintMaker
 ```swift
 let padding = UIEdgeInsetsMake(10, 10, 10, 10)
 
-view1.snp_makeConstraints { make in
-  make.top.equalTo(superview.snp_top).with.offset(padding.top) // with is an optional semantic filler
-  make.left.equalTo(superview.snp_left).with.offset(padding.left)
-  make.bottom.equalTo(superview.snp_bottom).with.offset(-padding.bottom)
-  make.right.equalTo(superview.snp_right).with.offset(-padding.right)
+view1.snp_makeConstraints { (make) -> Void in
+  make.top.equalTo(superview.snp_top).offset(padding.top)
+  make.left.equalTo(superview.snp_left).offset(padding.left)
+  make.bottom.equalTo(superview.snp_bottom).offset(-padding.bottom)
+  make.right.equalTo(superview.snp_right).offset(-padding.right)
 }
 ```
 Or even shorter
 
 ```swift
-view1.snp_makeConstraints { make in
-  make.edges.equalTo(superview).with.insets(padding)
-  return // this return is a fix for implicit returns in Swift and is only required for single line constraints
+view1.snp_makeConstraints { (make) -> Void in
+  make.edges.equalTo(superview).insets(padding)
 }
 ```
 
@@ -304,7 +306,7 @@ var topConstraint: Constraint? = nil
 
 // when making constraints
 view1.snp_makeConstraints { make in
-  self.topConstraint = make.top.equalTo(superview).with.offset(padding.top)
+  self.topConstraint = make.top.equalTo(superview).with.offset(padding.top).constraint
   make.left.equalTo(superview).with.offset(padding.left)
 }
 
