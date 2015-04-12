@@ -20,26 +20,3 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-
-#if os(iOS)
-import UIKit
-#else
-import AppKit
-#endif
-
-/**
- * Interface layout direction
- */
-public enum InterfaceLayoutDirection {
-    case LeftToRight
-    case RightToLeft
-}
-
-/**
- * Config that can be used to configure Snap
- */
-public struct Config {
-    
-    public static var interfaceLayoutDirection = InterfaceLayoutDirection.LeftToRight
-    
-}

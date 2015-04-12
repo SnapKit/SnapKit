@@ -392,7 +392,7 @@ final internal class ConstraintBuilder: Constraint, ConstraintBuilderExtendable,
     // MARK: offset
     
     func offset(amount: Float) -> ConstraintBuilderMultipliable {
-        self.offset = amount
+        self.constant = amount
         return self
     }
     func offset(amount: Double) -> ConstraintBuilderMultipliable {
@@ -408,22 +408,22 @@ final internal class ConstraintBuilder: Constraint, ConstraintBuilderExtendable,
         return self.offset(Float(amount))
     }
     func offset(amount: CGPoint) -> ConstraintBuilderMultipliable {
-        self.offset = amount
+        self.constant = amount
         return self
     }
     func offset(amount: CGSize) -> ConstraintBuilderMultipliable {
-        self.offset = amount
+        self.constant = amount
         return self
     }
     func offset(amount: EdgeInsets) -> ConstraintBuilderMultipliable {
-        self.offset = amount
+        self.constant = amount
         return self
     }
     
     // MARK: insets
     
     func insets(amount: EdgeInsets) -> ConstraintBuilderMultipliable {
-        self.offset = amount
+        self.constant = EdgeInsets(top: amount.top, left: amount.left, bottom: -amount.bottom, right: -amount.right)
         return self
     }
     
@@ -511,7 +511,6 @@ final internal class ConstraintBuilder: Constraint, ConstraintBuilderExtendable,
             
             // get layout constant
             var layoutConstant: CGFloat = layoutToAttribute.snp_constantForValue(self.constant)
-            layoutConstant += layoutToAttribute.snp_offsetForValue(self.offset)
             
             // get layout to
             var layoutTo: View? = self.toItem.view
@@ -622,7 +621,6 @@ final internal class ConstraintBuilder: Constraint, ConstraintBuilderExtendable,
     private var constant: Any = Float(0.0)
     private var multiplier: Float = 1.0
     private var priority: Float = 1000.0
-    private var offset: Any = Float(0.0)
     
     private var installInfo: ConstraintInstallInfo?
     
@@ -705,87 +703,6 @@ final internal class ConstraintBuilder: Constraint, ConstraintBuilderExtendable,
 
 private extension NSLayoutAttribute {
     
-    private func snp_offsetForValue(value: Any?) -> CGFloat {
-        // Float
-        if let float = value as? Float {
-            return CGFloat(float)
-        }
-        // Double
-        else if let double = value as? Double {
-            return CGFloat(double)
-        }
-        // UInt
-        else if let int = value as? Int {
-            return CGFloat(int)
-        }
-        // Int
-        else if let uint = value as? UInt {
-            return CGFloat(uint)
-        }
-        // CGFloat
-        else if let float = value as? CGFloat {
-            return float
-        }
-        // CGSize
-        else if let size = value as? CGSize {
-            if self == .Width {
-                return size.width
-            } else if self == .Height {
-                return size.height
-            }
-        }
-        // CGPoint
-        else if let point = value as? CGPoint {
-            #if os(iOS)
-            switch self {
-            case .Left, .CenterX, .LeftMargin, .CenterXWithinMargins: return point.x
-            case .Top, .CenterY, .TopMargin, .CenterYWithinMargins, .Baseline, .FirstBaseline: return point.y
-            case .Right, .RightMargin: return -point.x
-            case .Bottom, .BottomMargin: return -point.y
-            case .Leading, .LeadingMargin: return (Config.interfaceLayoutDirection == .LeftToRight) ? point.x : -point.x
-            case .Trailing, .TrailingMargin: return (Config.interfaceLayoutDirection == .LeftToRight) ? -point.x : point.x
-            case .Width, .Height, .NotAnAttribute: return CGFloat(0)
-            }
-            #else
-            switch self {
-            case .Left, .CenterX: return point.x
-            case .Top, .CenterY, .Baseline: return point.y
-            case .Right: return -point.x
-            case .Bottom: return -point.y
-            case .Leading: return (Config.interfaceLayoutDirection == .LeftToRight) ? point.x : -point.x
-            case .Trailing: return (Config.interfaceLayoutDirection == .LeftToRight) ? -point.x : point.x
-            case .Width, .Height, .NotAnAttribute: return CGFloat(0)
-            }
-            #endif
-        }
-        // EdgeInsets
-        else if let insets = value as? EdgeInsets {
-            #if os(iOS)
-            switch self {
-            case .Left, .CenterX, .LeftMargin, .CenterXWithinMargins: return insets.left
-            case .Top, .CenterY, .TopMargin, .CenterYWithinMargins, .Baseline, .FirstBaseline: return insets.top
-            case .Right, .RightMargin: return -insets.right
-            case .Bottom, .BottomMargin: return -insets.bottom
-            case .Leading, .LeadingMargin: return (Config.interfaceLayoutDirection == .LeftToRight) ? insets.left : -insets.right
-            case .Trailing, .TrailingMargin: return (Config.interfaceLayoutDirection == .LeftToRight) ? -insets.right : insets.left
-            case .Width, .Height, .NotAnAttribute: return CGFloat(0)
-            }
-            #else
-            switch self {
-            case .Left, .CenterX: return insets.left
-            case .Top, .CenterY, .Baseline: return insets.top
-            case .Right: return -insets.right
-            case .Bottom: return -insets.bottom
-            case .Leading: return (Config.interfaceLayoutDirection == .LeftToRight) ? insets.left : -insets.right
-            case .Trailing: return (Config.interfaceLayoutDirection == .LeftToRight) ? -insets.right : insets.left
-            case .Width, .Height, .NotAnAttribute: return CGFloat(0)
-            }
-            #endif
-        }
-        
-        return CGFloat(0)
-    }
-    
     private func snp_constantForValue(value: Any?) -> CGFloat {
         // Float
         if let float = value as? Float {
@@ -847,8 +764,8 @@ private extension NSLayoutAttribute {
             case .Top, .CenterY, .TopMargin, .CenterYWithinMargins, .Baseline, .FirstBaseline: return insets.top
             case .Right, .RightMargin: return insets.right
             case .Bottom, .BottomMargin: return insets.bottom
-            case .Leading, .LeadingMargin: return (Config.interfaceLayoutDirection == .LeftToRight) ? insets.left : insets.right
-            case .Trailing, .TrailingMargin: return (Config.interfaceLayoutDirection == .LeftToRight) ? insets.right : insets.left
+            case .Leading, .LeadingMargin: return insets.left
+            case .Trailing, .TrailingMargin: return insets.right
             case .Width, .Height, .NotAnAttribute: return CGFloat(0)
             }
             #else
@@ -857,8 +774,8 @@ private extension NSLayoutAttribute {
             case .Top, .CenterY, .Baseline: return insets.top
             case .Right: return insets.right
             case .Bottom: return insets.bottom
-            case .Leading: return (Config.interfaceLayoutDirection == .LeftToRight) ? insets.left : insets.right
-            case .Trailing: return (Config.interfaceLayoutDirection == .LeftToRight) ? insets.right : insets.left
+            case .Leading: return insets.left
+            case .Trailing: return insets.right
             case .Width, .Height, .NotAnAttribute: return CGFloat(0)
             }
             #endif
