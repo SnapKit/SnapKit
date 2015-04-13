@@ -144,7 +144,7 @@ Heres the same constraints created using ConstraintMaker
 ```swift
 let padding = UIEdgeInsetsMake(10, 10, 10, 10)
 
-view1.snp_makeConstraints { (make) -> Void in
+view1.snp_makeConstraints { make in
   make.top.equalTo(superview.snp_top).offset(padding.top)
   make.left.equalTo(superview.snp_left).offset(padding.left)
   make.bottom.equalTo(superview.snp_bottom).offset(-padding.bottom)
@@ -154,7 +154,7 @@ view1.snp_makeConstraints { (make) -> Void in
 Or even shorter
 
 ```swift
-view1.snp_makeConstraints { (make) -> Void in
+view1.snp_makeConstraints { make in
   make.edges.equalTo(superview).insets(padding)
 }
 ```
