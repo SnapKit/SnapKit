@@ -1,8 +1,8 @@
 title: Snap
 email: robertpayne@me.com
 description: Swift AutoLayout DSL for iOS and OS X
-baseurl: "/"
-url: "http://snap.github.io/"
+baseurl: "/Snap"
+url: "http://masonry.github.io/"
 twitter_username: robertjpayne
 github_username:  robertjpayne
 
