@@ -1,4 +1,2 @@
-.DS_Store
-Gemfile
-Gemfile.lock
-*.sketch
+_site
+.sass-cache
