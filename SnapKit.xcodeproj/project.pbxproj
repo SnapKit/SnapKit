@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		EE94F6091AC0F10A008767FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE94F6081AC0F10A008767FF /* UIKit.framework */; };
 		EE94F60B1AC0F10F008767FF /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE94F60A1AC0F10F008767FF /* AppKit.framework */; };
-		EE94F6101AC0F143008767FF /* Snap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBCC9D819CC627D0083B827 /* Snap.framework */; };
-		EE94F6111AC0F146008767FF /* Snap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECDB37A1AC0C9D4006BBC11 /* Snap.framework */; };
+		EE94F6101AC0F143008767FF /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBCC9D819CC627D0083B827 /* SnapKit.framework */; };
+		EE94F6111AC0F146008767FF /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECDB37A1AC0C9D4006BBC11 /* SnapKit.framework */; };
 		EECDB36C1AC0C9A6006BBC11 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB35E1AC0C95C006BBC11 /* Constraint.swift */; };
 		EECDB36D1AC0C9A6006BBC11 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB35F1AC0C95C006BBC11 /* ConstraintAttributes.swift */; };
 		EECDB36E1AC0C9A6006BBC11 /* ConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB3601AC0C95C006BBC11 /* ConstraintItem.swift */; };
@@ -18,8 +18,8 @@
 		EECDB3701AC0C9A6006BBC11 /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB3621AC0C95C006BBC11 /* ConstraintRelation.swift */; };
 		EECDB3711AC0C9A6006BBC11 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB3631AC0C95C006BBC11 /* EdgeInsets.swift */; };
 		EECDB3721AC0C9A6006BBC11 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB3651AC0C95C006BBC11 /* LayoutConstraint.swift */; };
-		EECDB3731AC0C9A6006BBC11 /* View+Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB3671AC0C95C006BBC11 /* View+Snap.swift */; };
-		EECDB3741AC0C9B6006BBC11 /* Snap.h in Headers */ = {isa = PBXBuildFile; fileRef = EECDB3661AC0C95C006BBC11 /* Snap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EECDB3731AC0C9A6006BBC11 /* View+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB3671AC0C95C006BBC11 /* View+SnapKit.swift */; };
+		EECDB3741AC0C9B6006BBC11 /* SnapKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EECDB3661AC0C95C006BBC11 /* SnapKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EECDB3931AC0CB52006BBC11 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB36A1AC0C95C006BBC11 /* Tests.swift */; };
 		EECDB3941AC0CB52006BBC11 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB36A1AC0C95C006BBC11 /* Tests.swift */; };
 		EECDB3951AC0CBFF006BBC11 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB35E1AC0C95C006BBC11 /* Constraint.swift */; };
@@ -29,12 +29,12 @@
 		EECDB3991AC0CBFF006BBC11 /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB3621AC0C95C006BBC11 /* ConstraintRelation.swift */; };
 		EECDB39A1AC0CBFF006BBC11 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB3631AC0C95C006BBC11 /* EdgeInsets.swift */; };
 		EECDB39B1AC0CBFF006BBC11 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB3651AC0C95C006BBC11 /* LayoutConstraint.swift */; };
-		EECDB39C1AC0CBFF006BBC11 /* View+Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB3671AC0C95C006BBC11 /* View+Snap.swift */; };
-		EECDB39D1AC0CC03006BBC11 /* Snap.h in Headers */ = {isa = PBXBuildFile; fileRef = EECDB3661AC0C95C006BBC11 /* Snap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EECDB39C1AC0CBFF006BBC11 /* View+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB3671AC0C95C006BBC11 /* View+SnapKit.swift */; };
+		EECDB39D1AC0CC03006BBC11 /* SnapKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EECDB3661AC0C95C006BBC11 /* SnapKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EEFCF32C1AD910B900A425FA /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32B1AD910B900A425FA /* Debugging.swift */; };
 		EEFCF32D1AD9250C00A425FA /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32B1AD910B900A425FA /* Debugging.swift */; };
-		EEFCF32F1AD926AE00A425FA /* Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32E1AD926AE00A425FA /* Snap.swift */; };
-		EEFCF3301AD92C2200A425FA /* Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32E1AD926AE00A425FA /* Snap.swift */; };
+		EEFCF32F1AD926AE00A425FA /* SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32E1AD926AE00A425FA /* SnapKit.swift */; };
+		EEFCF3301AD92C2200A425FA /* SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF32E1AD926AE00A425FA /* SnapKit.swift */; };
 		EEFCF3321AD9432400A425FA /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF3311AD9432400A425FA /* ConstraintDescription.swift */; };
 		EEFCF3331AD9432400A425FA /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCF3311AD9432400A425FA /* ConstraintDescription.swift */; };
 /* End PBXBuildFile section */
@@ -45,15 +45,15 @@
 			containerPortal = DDC9FD8D1981B4DD009612C7 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = EECDB3791AC0C9D4006BBC11;
-			remoteInfo = "Snap OSX";
+			remoteInfo = "SnapKit OSX";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		EE94F6081AC0F10A008767FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EE94F60A1AC0F10F008767FF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
-		EEBCC9D819CC627D0083B827 /* Snap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Snap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EEBCC9E219CC627E0083B827 /* Snap iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Snap iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEBCC9D819CC627D0083B827 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEBCC9E219CC627E0083B827 /* SnapKit iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SnapKit iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECDB35E1AC0C95C006BBC11 /* Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
 		EECDB35F1AC0C95C006BBC11 /* ConstraintAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintAttributes.swift; sourceTree = "<group>"; };
 		EECDB3601AC0C95C006BBC11 /* ConstraintItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintItem.swift; sourceTree = "<group>"; };
@@ -62,14 +62,14 @@
 		EECDB3631AC0C95C006BBC11 /* EdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
 		EECDB3641AC0C95C006BBC11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EECDB3651AC0C95C006BBC11 /* LayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstraint.swift; sourceTree = "<group>"; };
-		EECDB3661AC0C95C006BBC11 /* Snap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Snap.h; sourceTree = "<group>"; };
-		EECDB3671AC0C95C006BBC11 /* View+Snap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Snap.swift"; sourceTree = "<group>"; };
+		EECDB3661AC0C95C006BBC11 /* SnapKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnapKit.h; sourceTree = "<group>"; };
+		EECDB3671AC0C95C006BBC11 /* View+SnapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SnapKit.swift"; sourceTree = "<group>"; };
 		EECDB3691AC0C95C006BBC11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EECDB36A1AC0C95C006BBC11 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		EECDB37A1AC0C9D4006BBC11 /* Snap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Snap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EECDB3841AC0C9D4006BBC11 /* Snap OSX Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Snap OSX Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EECDB37A1AC0C9D4006BBC11 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EECDB3841AC0C9D4006BBC11 /* SnapKit OSX Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SnapKit OSX Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEFCF32B1AD910B900A425FA /* Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debugging.swift; sourceTree = "<group>"; };
-		EEFCF32E1AD926AE00A425FA /* Snap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snap.swift; sourceTree = "<group>"; };
+		EEFCF32E1AD926AE00A425FA /* SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapKit.swift; sourceTree = "<group>"; };
 		EEFCF3311AD9432400A425FA /* ConstraintDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintDescription.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE94F6111AC0F146008767FF /* Snap.framework in Frameworks */,
+				EE94F6111AC0F146008767FF /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE94F6101AC0F143008767FF /* Snap.framework in Frameworks */,
+				EE94F6101AC0F143008767FF /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,10 +121,10 @@
 		DDC9FD961981B4DD009612C7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EEBCC9D819CC627D0083B827 /* Snap.framework */,
-				EEBCC9E219CC627E0083B827 /* Snap iOS Tests.xctest */,
-				EECDB37A1AC0C9D4006BBC11 /* Snap.framework */,
-				EECDB3841AC0C9D4006BBC11 /* Snap OSX Tests.xctest */,
+				EEBCC9D819CC627D0083B827 /* SnapKit.framework */,
+				EEBCC9E219CC627E0083B827 /* SnapKit iOS Tests.xctest */,
+				EECDB37A1AC0C9D4006BBC11 /* SnapKit.framework */,
+				EECDB3841AC0C9D4006BBC11 /* SnapKit OSX Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,12 +141,12 @@
 		EECDB35D1AC0C95C006BBC11 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				EECDB3661AC0C95C006BBC11 /* Snap.h */,
-				EEFCF32E1AD926AE00A425FA /* Snap.swift */,
+				EECDB3661AC0C95C006BBC11 /* SnapKit.h */,
+				EEFCF32E1AD926AE00A425FA /* SnapKit.swift */,
 				EECDB35E1AC0C95C006BBC11 /* Constraint.swift */,
 				EEFCF3311AD9432400A425FA /* ConstraintDescription.swift */,
 				EECDB3611AC0C95C006BBC11 /* ConstraintMaker.swift */,
-				EECDB3671AC0C95C006BBC11 /* View+Snap.swift */,
+				EECDB3671AC0C95C006BBC11 /* View+SnapKit.swift */,
 				EECDB3601AC0C95C006BBC11 /* ConstraintItem.swift */,
 				EECDB3631AC0C95C006BBC11 /* EdgeInsets.swift */,
 				EECDB3651AC0C95C006BBC11 /* LayoutConstraint.swift */,
@@ -184,7 +184,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EECDB3741AC0C9B6006BBC11 /* Snap.h in Headers */,
+				EECDB3741AC0C9B6006BBC11 /* SnapKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,16 +192,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EECDB39D1AC0CC03006BBC11 /* Snap.h in Headers */,
+				EECDB39D1AC0CC03006BBC11 /* SnapKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EEBCC9D719CC627D0083B827 /* Snap iOS */ = {
+		EEBCC9D719CC627D0083B827 /* SnapKit iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EEBCC9E819CC627E0083B827 /* Build configuration list for PBXNativeTarget "Snap iOS" */;
+			buildConfigurationList = EEBCC9E819CC627E0083B827 /* Build configuration list for PBXNativeTarget "SnapKit iOS" */;
 			buildPhases = (
 				EEBCC9D319CC627D0083B827 /* Sources */,
 				EEBCC9D419CC627D0083B827 /* Frameworks */,
@@ -212,14 +212,14 @@
 			);
 			dependencies = (
 			);
-			name = "Snap iOS";
-			productName = Snap;
-			productReference = EEBCC9D819CC627D0083B827 /* Snap.framework */;
+			name = "SnapKit iOS";
+			productName = SnapKit;
+			productReference = EEBCC9D819CC627D0083B827 /* SnapKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EEBCC9E119CC627D0083B827 /* Snap iOS Tests */ = {
+		EEBCC9E119CC627D0083B827 /* SnapKit iOS Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EEBCC9EB19CC627E0083B827 /* Build configuration list for PBXNativeTarget "Snap iOS Tests" */;
+			buildConfigurationList = EEBCC9EB19CC627E0083B827 /* Build configuration list for PBXNativeTarget "SnapKit iOS Tests" */;
 			buildPhases = (
 				EEBCC9DE19CC627D0083B827 /* Sources */,
 				EE94F60E1AC0F136008767FF /* Frameworks */,
@@ -229,14 +229,14 @@
 			);
 			dependencies = (
 			);
-			name = "Snap iOS Tests";
-			productName = SnapTests;
-			productReference = EEBCC9E219CC627E0083B827 /* Snap iOS Tests.xctest */;
+			name = "SnapKit iOS Tests";
+			productName = SnapKitTests;
+			productReference = EEBCC9E219CC627E0083B827 /* SnapKit iOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EECDB3791AC0C9D4006BBC11 /* Snap OSX */ = {
+		EECDB3791AC0C9D4006BBC11 /* SnapKit OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EECDB38D1AC0C9D4006BBC11 /* Build configuration list for PBXNativeTarget "Snap OSX" */;
+			buildConfigurationList = EECDB38D1AC0C9D4006BBC11 /* Build configuration list for PBXNativeTarget "SnapKit OSX" */;
 			buildPhases = (
 				EECDB3751AC0C9D4006BBC11 /* Sources */,
 				EECDB3761AC0C9D4006BBC11 /* Frameworks */,
@@ -247,14 +247,14 @@
 			);
 			dependencies = (
 			);
-			name = "Snap OSX";
-			productName = "Snap OSX";
-			productReference = EECDB37A1AC0C9D4006BBC11 /* Snap.framework */;
+			name = "SnapKit OSX";
+			productName = "SnapKit OSX";
+			productReference = EECDB37A1AC0C9D4006BBC11 /* SnapKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EECDB3831AC0C9D4006BBC11 /* Snap OSX Tests */ = {
+		EECDB3831AC0C9D4006BBC11 /* SnapKit OSX Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EECDB3901AC0C9D4006BBC11 /* Build configuration list for PBXNativeTarget "Snap OSX Tests" */;
+			buildConfigurationList = EECDB3901AC0C9D4006BBC11 /* Build configuration list for PBXNativeTarget "SnapKit OSX Tests" */;
 			buildPhases = (
 				EECDB3801AC0C9D4006BBC11 /* Sources */,
 				EE94F60D1AC0F132008767FF /* Frameworks */,
@@ -265,9 +265,9 @@
 			dependencies = (
 				EECDB3871AC0C9D4006BBC11 /* PBXTargetDependency */,
 			);
-			name = "Snap OSX Tests";
-			productName = "Snap OSXTests";
-			productReference = EECDB3841AC0C9D4006BBC11 /* Snap OSX Tests.xctest */;
+			name = "SnapKit OSX Tests";
+			productName = "SnapKit OSXTests";
+			productReference = EECDB3841AC0C9D4006BBC11 /* SnapKit OSX Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -277,7 +277,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0600;
-				ORGANIZATIONNAME = "Masonry Team";
+				ORGANIZATIONNAME = "SnapKit Team";
 				TargetAttributes = {
 					EEBCC9D719CC627D0083B827 = {
 						CreatedOnToolsVersion = 6.0;
@@ -293,7 +293,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DDC9FD901981B4DD009612C7 /* Build configuration list for PBXProject "Snap" */;
+			buildConfigurationList = DDC9FD901981B4DD009612C7 /* Build configuration list for PBXProject "SnapKit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -306,10 +306,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EEBCC9D719CC627D0083B827 /* Snap iOS */,
-				EECDB3791AC0C9D4006BBC11 /* Snap OSX */,
-				EEBCC9E119CC627D0083B827 /* Snap iOS Tests */,
-				EECDB3831AC0C9D4006BBC11 /* Snap OSX Tests */,
+				EEBCC9D719CC627D0083B827 /* SnapKit iOS */,
+				EECDB3791AC0C9D4006BBC11 /* SnapKit OSX */,
+				EEBCC9E119CC627D0083B827 /* SnapKit iOS Tests */,
+				EECDB3831AC0C9D4006BBC11 /* SnapKit OSX Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -351,11 +351,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EECDB36C1AC0C9A6006BBC11 /* Constraint.swift in Sources */,
-				EEFCF32F1AD926AE00A425FA /* Snap.swift in Sources */,
+				EEFCF32F1AD926AE00A425FA /* SnapKit.swift in Sources */,
 				EEFCF32C1AD910B900A425FA /* Debugging.swift in Sources */,
 				EECDB3701AC0C9A6006BBC11 /* ConstraintRelation.swift in Sources */,
 				EEFCF3321AD9432400A425FA /* ConstraintDescription.swift in Sources */,
-				EECDB3731AC0C9A6006BBC11 /* View+Snap.swift in Sources */,
+				EECDB3731AC0C9A6006BBC11 /* View+SnapKit.swift in Sources */,
 				EECDB3711AC0C9A6006BBC11 /* EdgeInsets.swift in Sources */,
 				EECDB36F1AC0C9A6006BBC11 /* ConstraintMaker.swift in Sources */,
 				EECDB36D1AC0C9A6006BBC11 /* ConstraintAttributes.swift in Sources */,
@@ -377,11 +377,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EECDB3951AC0CBFF006BBC11 /* Constraint.swift in Sources */,
-				EEFCF3301AD92C2200A425FA /* Snap.swift in Sources */,
+				EEFCF3301AD92C2200A425FA /* SnapKit.swift in Sources */,
 				EEFCF32D1AD9250C00A425FA /* Debugging.swift in Sources */,
 				EECDB3991AC0CBFF006BBC11 /* ConstraintRelation.swift in Sources */,
 				EEFCF3331AD9432400A425FA /* ConstraintDescription.swift in Sources */,
-				EECDB39C1AC0CBFF006BBC11 /* View+Snap.swift in Sources */,
+				EECDB39C1AC0CBFF006BBC11 /* View+SnapKit.swift in Sources */,
 				EECDB39A1AC0CBFF006BBC11 /* EdgeInsets.swift in Sources */,
 				EECDB3981AC0CBFF006BBC11 /* ConstraintMaker.swift in Sources */,
 				EECDB3961AC0CBFF006BBC11 /* ConstraintAttributes.swift in Sources */,
@@ -403,7 +403,7 @@
 /* Begin PBXTargetDependency section */
 		EECDB3871AC0C9D4006BBC11 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EECDB3791AC0C9D4006BBC11 /* Snap OSX */;
+			target = EECDB3791AC0C9D4006BBC11 /* SnapKit OSX */;
 			targetProxy = EECDB3861AC0C9D4006BBC11 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -502,7 +502,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = Snap;
+				PRODUCT_NAME = SnapKit;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -522,7 +522,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = Snap;
+				PRODUCT_NAME = SnapKit;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -574,7 +574,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = Snap;
+				PRODUCT_NAME = SnapKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = macosx;
@@ -598,7 +598,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = Snap;
+				PRODUCT_NAME = SnapKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = macosx;
@@ -644,7 +644,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DDC9FD901981B4DD009612C7 /* Build configuration list for PBXProject "Snap" */ = {
+		DDC9FD901981B4DD009612C7 /* Build configuration list for PBXProject "SnapKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DDC9FDAF1981B4DD009612C7 /* Debug */,
@@ -653,7 +653,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EEBCC9E819CC627E0083B827 /* Build configuration list for PBXNativeTarget "Snap iOS" */ = {
+		EEBCC9E819CC627E0083B827 /* Build configuration list for PBXNativeTarget "SnapKit iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EEBCC9E919CC627E0083B827 /* Debug */,
@@ -662,7 +662,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EEBCC9EB19CC627E0083B827 /* Build configuration list for PBXNativeTarget "Snap iOS Tests" */ = {
+		EEBCC9EB19CC627E0083B827 /* Build configuration list for PBXNativeTarget "SnapKit iOS Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EEBCC9EC19CC627E0083B827 /* Debug */,
@@ -671,7 +671,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EECDB38D1AC0C9D4006BBC11 /* Build configuration list for PBXNativeTarget "Snap OSX" */ = {
+		EECDB38D1AC0C9D4006BBC11 /* Build configuration list for PBXNativeTarget "SnapKit OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EECDB38E1AC0C9D4006BBC11 /* Debug */,
@@ -680,7 +680,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EECDB3901AC0C9D4006BBC11 /* Build configuration list for PBXNativeTarget "Snap OSX Tests" */ = {
+		EECDB3901AC0C9D4006BBC11 /* Build configuration list for PBXNativeTarget "SnapKit OSX Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EECDB3911AC0C9D4006BBC11 /* Debug */,

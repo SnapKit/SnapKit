@@ -13,9 +13,9 @@ extension View {
 #endif
 
 import XCTest
-import Snap
+import SnapKit
 
-class SnapTests: XCTestCase {
+class SnapKitTests: XCTestCase {
     
     let container = View()
     

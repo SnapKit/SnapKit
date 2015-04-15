@@ -9,6 +9,6 @@ before_install:
 - gem install xcpretty -N
 script:
 - set -o pipefail
-- xcodebuild -project Snap.xcodeproj -scheme "Snap iOS" -sdk iphonesimulator
+- xcodebuild -project SnapKit.xcodeproj -scheme "SnapKit iOS" -sdk iphonesimulator
   -destination "platform=iOS Simulator,name=iPhone 6" ONLY_ACTIVE_ARCH=NO  test | xcpretty -c
 - pod lib lint --quick

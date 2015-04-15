@@ -1,13 +1,13 @@
 
-<img src="https://raw.githubusercontent.com/Masonry/Snap/develop/Assets/snap-banner.png" alt="">
+SnapKit
 
 ====
 
-[![Build Status](https://travis-ci.org/Masonry/Snap.svg)](https://travis-ci.org/Masonry/Snap)
+[![Build Status](https://travis-ci.org/SnapKit/SnapKit.svg)](https://travis-ci.org/SnapKit/SnapKit)
 
-Snap is a light-weight layout framework which wraps AutoLayout with a nicer syntax. Snap has its own layout DSL which provides a chainable way of describing your NSLayoutConstraints which results in layout code that is more concise and readable. Snap supports both iOS and OS X.
+SnapKit is a light-weight layout framework which wraps AutoLayout with a nicer syntax. SnapKit has its own layout DSL which provides a chainable way of describing your NSLayoutConstraints which results in layout code that is more concise and readable. SnapKit supports both iOS and OS X.
 
-> Snap uses some Swift-only features like function overloading, so it cannot be used from Objective-C. Because of this we’ve chosen to swap prefixes from Masonry’s `mas_` to `snp_` so you can use both Masonry and Snap in the same project.
+> SnapKit uses some Swift-only features like function overloading, so it cannot be used from Objective-C. Because of this we’ve chosen to swap prefixes from Masonry’s `mas_` to `snp_` so you can use both Masonry and SnapKit in the same project.
 
 ## Requirements
 
@@ -28,14 +28,14 @@ CocoaPods 0.36 adds supports for Swift and embedded frameworks. You can install 
 $ gem install cocoapods
 ```
 
-To integrate Snap into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate SnapKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'Snap', '~> 0.9.2'
+pod 'SnapKit', '~> 0.10.0'
 ```
 
 Then, run the following command:
@@ -55,30 +55,30 @@ $ brew update
 $ brew install carthage
 ```
 
-To integrate Snap into your Xcode project using Carthage, specify it in your `Cartfile`:
+To integrate SnapKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```
-github "Masonry/Snap" >= 0.9.2
+github "SnapKit/SnapKit" >= 0.10.0
 ```
 
 ### Manually
 
-If you prefer not to use either of the aforementioned dependency managers, you can integrate Snap into your project manually.
+If you prefer not to use either of the aforementioned dependency managers, you can integrate SnapKit into your project manually.
 
 ### Embedded Framework
 
-- Add Snap as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the following command:
+- Add SnapKit as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the following command:
 
 ```bash
-$ git submodule add https://github.com/Masonry/Snap.git
+$ git submodule add https://github.com/SnapKit/SnapKit.git
 ```
 
-- Open the `Snap` folder, and drag `Snap.xcodeproj` into the file navigator of your app project.
+- Open the `SnapKit` folder, and drag `SnapKit.xcodeproj` into the file navigator of your app project.
 - In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
-- Ensure that the deployment target of Snap.framework matches that of the application target.
+- Ensure that the deployment target of SnapKit.framework matches that of the application target.
 - In the tab bar at the top of that window, open the "Build Phases" panel.
-- Expand the "Target Dependencies" group, and add `Snap.framework`.
-- Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `Snap.framework`.
+- Expand the "Target Dependencies" group, and add `SnapKit.framework`.
+- Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `SnapKit.framework`.
 
 ## What's wrong with NSLayoutConstraints?
 
@@ -160,9 +160,9 @@ view1.snp_makeConstraints { (make) -> Void in
 ```
 
 Also note in the first example we had to add the constraints to the superview `superview.addConstraints`.
-Snap however will automagically add constraints to the appropriate view.
+SnapKit however will automagically add constraints to the appropriate view.
 
-Snap will also call `view1.setTranslatesAutoresizingMaskIntoConstraints(false)` for you.
+SnapKit will also call `view1.setTranslatesAutoresizingMaskIntoConstraints(false)` for you.
 
 ## Not all things are created equal
 
@@ -214,7 +214,7 @@ make.width.lessThanOrEqualTo(400)
 ```
 
 However Auto Layout does not allow alignment attributes such as left, right, centerY etc to be set to constant values.
-So if you pass a primitive for these attributes Snap will turn these into constraints relative to the view&rsquo;s superview ie:
+So if you pass a primitive for these attributes SnapKit will turn these into constraints relative to the view&rsquo;s superview ie:
 ```swift
 // creates view.left <= view.superview.left + 10
 make.left.lessThanOrEqualTo(10)
@@ -241,14 +241,14 @@ make.left.equalTo(view).offset(UIEdgeInsetsMake(10, 0, 10, 0))
 
 Priorities are can be tacked on to the end of a constraint chain like so:
 ```swift
-make.left.greaterThanOrEqualTo(label.snp_left).with.priorityLow();
+make.left.greaterThanOrEqualTo(label.snp_left).priorityLow();
 
-make.top.equalTo(label.snp_top).with.priority(600);
+make.top.equalTo(label.snp_top).priority(600);
 ```
 
 ## Composition, composition, composition
 
-Snap also gives you a few convenience methods which create multiple constraints at the same time.
+SnapKit also gives you a few convenience methods which create multiple constraints at the same time.
 
 #### edges
 
@@ -285,14 +285,14 @@ You can chain view attributes for increased readability:
 
 ```swift
 // All edges but the top should equal those of the superview
-make.left.right.and.bottom.equalTo(superview)
+make.left.right.bottom.equalTo(superview)
 make.top.equalTo(otherView)
 ```
 
 ## Hold on for dear life
 
 Sometimes you need modify existing constraints in order to animate or remove/replace constraints.
-In Snap there are a few different approaches to updating constraints.
+In SnapKit there are a few different approaches to updating constraints.
 
 #### 1. References
 You can hold on to a reference of a particular constraint by assigning the result of a constraint make expression to a local variable or a class property.
@@ -306,8 +306,8 @@ var topConstraint: Constraint? = nil
 
 // when making constraints
 view1.snp_makeConstraints { make in
-  self.topConstraint = make.top.equalTo(superview).with.offset(padding.top).constraint
-  make.left.equalTo(superview).with.offset(padding.left)
+  self.topConstraint = make.top.equalTo(superview).offset(padding.top).constraint
+  make.left.equalTo(superview).offset(padding.left)
 }
 
 ...
@@ -317,7 +317,7 @@ self.topConstraint.uninstall()
 
 ### 2. snp_remakeConstraints
 
-`snp_remakeConstraints` is similar to `snp_makeConstraints`, but will first remove all existing constraints installed by Snap.
+`snp_remakeConstraints` is similar to `snp_makeConstraints`, but will first remove all existing constraints installed by SnapKit.
 
 ```swift
 func changeButtonPosition() {

@@ -1,7 +1,7 @@
 //
-//  Snap
+//  SnapKit
 //
-//  Copyright (c) 2011-2015 Masonry Team - https://github.com/Masonry
+//  Copyright (c) 2011-2015 SnapKit Team - https://github.com/SnapKit
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ public typealias InterfaceLayoutDirection = NSUserInterfaceLayoutDirection
 #endif
 
 /**
-    Used to configure different parts of Snap
+    Used to configure different parts of SnapKit
 */
 public struct Config {
     
