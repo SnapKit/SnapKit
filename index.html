@@ -1,23 +1,38 @@
 ---
 layout: default
+id: home
 ---
+<div id="top">
+  <div id="info">
+    <h2>SnapKit is a DSL to make autolayout easy on both iOS&nbsp;and&nbsp;OS&nbsp;X.</h2>
+    <ul>
+      <li><strong>Simple &amp; Expressive</strong> chaining DSL allows building constraints with minimal amounts of code while ensuring they are easy to read and understand.</li>
+      <li><strong>Type Safe</strong> by design to reduce programmer error and keep invalid constraints from being created in the first place increases productivity.</li>
+      <li><strong>Compatible</strong>for both iOS and OS X apps installable through Cocoapods or Carthage.</li>
+      <li><strong>Free</strong> to use in all projects and licensed under the flexible MIT&nbsp;license.</li>
+    </ul>
+  </div>
 
-<div class="home">
+  <div id="example">
+{% highlight swift %}
+let box = UIView()
+let container = UIView()
 
-  <h1 class="page-heading">Posts</h1>
+container.addSubview(box)
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
+box.snp_makeConstraints { (make) -> Void in
+    make.size.equalTo(50)
+    make.center.equalTo(container)
+}
+{% endhighlight %}
+    <h6>makes</h6>
+    <div class="box">
+      <span>container</span>
+      <div class="box">
+        <span>box</span>
+      </div>
+    </div>
+  </div>
 </div>
+
+<button id="get-started-btn"><a href="/docs">Get Started &rarr;</a></button>
