@@ -53,38 +53,32 @@ public protocol ConstraintDescriptionPriortizable: ConstraintDescriptionFinaliza
 }
 
 /**
-    Used to expose multiplier APIs
+    Used to expose multiplier & constant APIs
 */
-public protocol ConstraintDescriptionMultipliable: ConstraintDescriptionPriortizable {
-    
-    func multipliedBy(amount: Float) -> ConstraintDescriptionPriortizable
-    func multipliedBy(amount: Double) -> ConstraintDescriptionPriortizable
-    func multipliedBy(amount: CGFloat) -> ConstraintDescriptionPriortizable
-    func multipliedBy(amount: Int) -> ConstraintDescriptionPriortizable
-    func multipliedBy(amount: UInt) -> ConstraintDescriptionPriortizable
-    
-    func dividedBy(amount: Float) -> ConstraintDescriptionPriortizable
-    func dividedBy(amount: Double) -> ConstraintDescriptionPriortizable
-    func dividedBy(amount: CGFloat) -> ConstraintDescriptionPriortizable
-    func dividedBy(amount: Int) -> ConstraintDescriptionPriortizable
-    func dividedBy(amount: UInt) -> ConstraintDescriptionPriortizable
-}
+public protocol ConstraintDescriptionEditable: ConstraintDescriptionPriortizable {
 
-/**
-    Used to expose constant APIs
-*/
-public protocol ConstraintDescriptionOffsetable: ConstraintDescriptionMultipliable {
+    func multipliedBy(amount: Float) -> ConstraintDescriptionEditable
+    func multipliedBy(amount: Double) -> ConstraintDescriptionEditable
+    func multipliedBy(amount: CGFloat) -> ConstraintDescriptionEditable
+    func multipliedBy(amount: Int) -> ConstraintDescriptionEditable
+    func multipliedBy(amount: UInt) -> ConstraintDescriptionEditable
     
-    func offset(amount: Float) -> ConstraintDescriptionMultipliable
-    func offset(amount: Double) -> ConstraintDescriptionMultipliable
-    func offset(amount: CGFloat) -> ConstraintDescriptionMultipliable
-    func offset(amount: Int) -> ConstraintDescriptionMultipliable
-    func offset(amount: UInt) -> ConstraintDescriptionMultipliable
-    func offset(amount: CGPoint) -> ConstraintDescriptionMultipliable
-    func offset(amount: CGSize) -> ConstraintDescriptionMultipliable
-    func offset(amount: EdgeInsets) -> ConstraintDescriptionMultipliable
+    func dividedBy(amount: Float) -> ConstraintDescriptionEditable
+    func dividedBy(amount: Double) -> ConstraintDescriptionEditable
+    func dividedBy(amount: CGFloat) -> ConstraintDescriptionEditable
+    func dividedBy(amount: Int) -> ConstraintDescriptionEditable
+    func dividedBy(amount: UInt) -> ConstraintDescriptionEditable
+
+    func offset(amount: Float) -> ConstraintDescriptionEditable
+    func offset(amount: Double) -> ConstraintDescriptionEditable
+    func offset(amount: CGFloat) -> ConstraintDescriptionEditable
+    func offset(amount: Int) -> ConstraintDescriptionEditable
+    func offset(amount: UInt) -> ConstraintDescriptionEditable
+    func offset(amount: CGPoint) -> ConstraintDescriptionEditable
+    func offset(amount: CGSize) -> ConstraintDescriptionEditable
+    func offset(amount: EdgeInsets) -> ConstraintDescriptionEditable
     
-    func insets(amount: EdgeInsets) -> ConstraintDescriptionMultipliable
+    func insets(amount: EdgeInsets) -> ConstraintDescriptionEditable
 }
 
 /**
@@ -92,47 +86,47 @@ public protocol ConstraintDescriptionOffsetable: ConstraintDescriptionMultipliab
 */
 public protocol ConstraintDescriptionRelatable: class {
     
-    func equalTo(other: ConstraintItem) -> ConstraintDescriptionOffsetable
-    func equalTo(other: View) -> ConstraintDescriptionOffsetable
+    func equalTo(other: ConstraintItem) -> ConstraintDescriptionEditable
+    func equalTo(other: View) -> ConstraintDescriptionEditable
     #if os(iOS)
-    func equalTo(other: UILayoutSupport) -> ConstraintDescriptionOffsetable
+    func equalTo(other: UILayoutSupport) -> ConstraintDescriptionEditable
     #endif
-    func equalTo(other: Float) -> ConstraintDescriptionMultipliable
-    func equalTo(other: Double) -> ConstraintDescriptionMultipliable
-    func equalTo(other: CGFloat) -> ConstraintDescriptionMultipliable
-    func equalTo(other: Int) -> ConstraintDescriptionMultipliable
-    func equalTo(other: UInt) -> ConstraintDescriptionMultipliable
-    func equalTo(other: CGSize) -> ConstraintDescriptionMultipliable
-    func equalTo(other: CGPoint) -> ConstraintDescriptionMultipliable
-    func equalTo(other: EdgeInsets) -> ConstraintDescriptionMultipliable
+    func equalTo(other: Float) -> ConstraintDescriptionEditable
+    func equalTo(other: Double) -> ConstraintDescriptionEditable
+    func equalTo(other: CGFloat) -> ConstraintDescriptionEditable
+    func equalTo(other: Int) -> ConstraintDescriptionEditable
+    func equalTo(other: UInt) -> ConstraintDescriptionEditable
+    func equalTo(other: CGSize) -> ConstraintDescriptionEditable
+    func equalTo(other: CGPoint) -> ConstraintDescriptionEditable
+    func equalTo(other: EdgeInsets) -> ConstraintDescriptionEditable
     
-    func lessThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionOffsetable
-    func lessThanOrEqualTo(other: View) -> ConstraintDescriptionOffsetable
+    func lessThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable
+    func lessThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
     #if os(iOS)
-    func lessThanOrEqualTo(other: UILayoutSupport) -> ConstraintDescriptionOffsetable
+    func lessThanOrEqualTo(other: UILayoutSupport) -> ConstraintDescriptionEditable
     #endif
-    func lessThanOrEqualTo(other: Float) -> ConstraintDescriptionMultipliable
-    func lessThanOrEqualTo(other: Double) -> ConstraintDescriptionMultipliable
-    func lessThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionMultipliable
-    func lessThanOrEqualTo(other: Int) -> ConstraintDescriptionMultipliable
-    func lessThanOrEqualTo(other: UInt) -> ConstraintDescriptionMultipliable
-    func lessThanOrEqualTo(other: CGSize) -> ConstraintDescriptionMultipliable
-    func lessThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionMultipliable
-    func lessThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionMultipliable
+    func lessThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable
+    func lessThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable
+    func lessThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable
+    func lessThanOrEqualTo(other: Int) -> ConstraintDescriptionEditable
+    func lessThanOrEqualTo(other: UInt) -> ConstraintDescriptionEditable
+    func lessThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable
+    func lessThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable
+    func lessThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable
     
-    func greaterThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionOffsetable
-    func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionOffsetable
+    func greaterThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable
+    func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
     #if os(iOS)
-    func greaterThanOrEqualTo(other: UILayoutSupport) -> ConstraintDescriptionOffsetable
+    func greaterThanOrEqualTo(other: UILayoutSupport) -> ConstraintDescriptionEditable
     #endif
-    func greaterThanOrEqualTo(other: Float) -> ConstraintDescriptionMultipliable
-    func greaterThanOrEqualTo(other: Double) -> ConstraintDescriptionMultipliable
-    func greaterThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionMultipliable
-    func greaterThanOrEqualTo(other: Int) -> ConstraintDescriptionMultipliable
-    func greaterThanOrEqualTo(other: UInt) -> ConstraintDescriptionMultipliable
-    func greaterThanOrEqualTo(other: CGSize) -> ConstraintDescriptionMultipliable
-    func greaterThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionMultipliable
-    func greaterThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionMultipliable
+    func greaterThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable
+    func greaterThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable
+    func greaterThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable
+    func greaterThanOrEqualTo(other: Int) -> ConstraintDescriptionEditable
+    func greaterThanOrEqualTo(other: UInt) -> ConstraintDescriptionEditable
+    func greaterThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable
+    func greaterThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable
+    func greaterThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable
 
 }
 
@@ -169,7 +163,7 @@ public protocol ConstraintDescriptionExtendable: ConstraintDescriptionRelatable 
 /**
     Used to internally manage building constraint
  */
-final internal class ConstraintDescription: ConstraintDescriptionExtendable, ConstraintDescriptionOffsetable, ConstraintDescriptionFinalizable {
+final internal class ConstraintDescription: ConstraintDescriptionExtendable, ConstraintDescriptionEditable, ConstraintDescriptionFinalizable {
     
     internal var left: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Left) }
     internal var top: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Top) }
@@ -204,153 +198,190 @@ final internal class ConstraintDescription: ConstraintDescriptionExtendable, Con
     
     // MARK: equalTo
     
-    internal func equalTo(other: ConstraintItem) -> ConstraintDescriptionOffsetable {
+    internal func equalTo(other: ConstraintItem) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
-    internal func equalTo(other: View) -> ConstraintDescriptionOffsetable {
+    internal func equalTo(other: View) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
-    
     #if os(iOS)
-    internal func equalTo(other: UILayoutSupport) -> ConstraintDescriptionOffsetable {
+    internal func equalTo(other: UILayoutSupport) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
     #endif
-    internal func equalTo(other: Float) -> ConstraintDescriptionMultipliable {
+    internal func equalTo(other: Float) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
-    internal func equalTo(other: Double) -> ConstraintDescriptionMultipliable {
+    internal func equalTo(other: Double) -> ConstraintDescriptionEditable {
         return self.constrainTo(Float(other), relation: .Equal)
     }
-    internal func equalTo(other: CGFloat) -> ConstraintDescriptionMultipliable {
+    internal func equalTo(other: CGFloat) -> ConstraintDescriptionEditable {
         return self.constrainTo(Float(other), relation: .Equal)
     }
-    internal func equalTo(other: Int) -> ConstraintDescriptionMultipliable {
+    internal func equalTo(other: Int) -> ConstraintDescriptionEditable {
         return self.constrainTo(Float(other), relation: .Equal)
     }
-    internal func equalTo(other: UInt) -> ConstraintDescriptionMultipliable {
+    internal func equalTo(other: UInt) -> ConstraintDescriptionEditable {
         return self.constrainTo(Float(other), relation: .Equal)
     }
-    internal func equalTo(other: CGSize) -> ConstraintDescriptionMultipliable {
+    internal func equalTo(other: CGSize) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
-    internal func equalTo(other: CGPoint) -> ConstraintDescriptionMultipliable {
+    internal func equalTo(other: CGPoint) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
-    internal func equalTo(other: EdgeInsets) -> ConstraintDescriptionMultipliable {
+    internal func equalTo(other: EdgeInsets) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
     
     // MARK: lessThanOrEqualTo
     
-    internal func lessThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionOffsetable {
+    internal func lessThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    internal func lessThanOrEqualTo(other: View) -> ConstraintDescriptionOffsetable {
+    internal func lessThanOrEqualTo(other: View) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     #if os(iOS)
-    internal func lessThanOrEqualTo(other: UILayoutSupport) -> ConstraintDescriptionOffsetable {
+    internal func lessThanOrEqualTo(other: UILayoutSupport) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     #endif
-    internal func lessThanOrEqualTo(other: Float) -> ConstraintDescriptionMultipliable {
+    internal func lessThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    internal func lessThanOrEqualTo(other: Double) -> ConstraintDescriptionMultipliable {
+    internal func lessThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable {
         return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
-    internal func lessThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionMultipliable {
+    internal func lessThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable {
         return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
-    internal func lessThanOrEqualTo(other: Int) -> ConstraintDescriptionMultipliable {
+    internal func lessThanOrEqualTo(other: Int) -> ConstraintDescriptionEditable {
         return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
-    internal func lessThanOrEqualTo(other: UInt) -> ConstraintDescriptionMultipliable {
+    internal func lessThanOrEqualTo(other: UInt) -> ConstraintDescriptionEditable {
         return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
-    internal func lessThanOrEqualTo(other: CGSize) -> ConstraintDescriptionMultipliable {
+    internal func lessThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    internal func lessThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionMultipliable {
+    internal func lessThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    internal func lessThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionMultipliable {
+    internal func lessThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     
     // MARK: greaterThanOrEqualTo
     
-    internal func greaterThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionOffsetable {
+    internal func greaterThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    internal func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionOffsetable {
+    internal func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     #if os(iOS)
-    internal func greaterThanOrEqualTo(other: UILayoutSupport) -> ConstraintDescriptionOffsetable {
+    internal func greaterThanOrEqualTo(other: UILayoutSupport) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     #endif
-    internal func greaterThanOrEqualTo(other: Float) -> ConstraintDescriptionMultipliable {
+    internal func greaterThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    internal func greaterThanOrEqualTo(other: Double) -> ConstraintDescriptionMultipliable {
+    internal func greaterThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable {
         return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
-    internal func greaterThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionMultipliable {
+    internal func greaterThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable {
         return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
-    internal func greaterThanOrEqualTo(other: Int) -> ConstraintDescriptionMultipliable {
+    internal func greaterThanOrEqualTo(other: Int) -> ConstraintDescriptionEditable {
         return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
-    internal func greaterThanOrEqualTo(other: UInt) -> ConstraintDescriptionMultipliable {
+    internal func greaterThanOrEqualTo(other: UInt) -> ConstraintDescriptionEditable {
         return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
-    internal func greaterThanOrEqualTo(other: CGSize) -> ConstraintDescriptionMultipliable {
+    internal func greaterThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    internal func greaterThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionMultipliable {
+    internal func greaterThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    internal func greaterThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionMultipliable {
+    internal func greaterThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     
     // MARK: multiplier
     
-    internal func multipliedBy(amount: Float) -> ConstraintDescriptionPriortizable {
+    internal func multipliedBy(amount: Float) -> ConstraintDescriptionEditable {
         self.multiplier = amount
         return self
     }
-    internal func multipliedBy(amount: Double) -> ConstraintDescriptionPriortizable {
+    internal func multipliedBy(amount: Double) -> ConstraintDescriptionEditable {
         return self.multipliedBy(Float(amount))
     }
-    internal func multipliedBy(amount: CGFloat) -> ConstraintDescriptionPriortizable {
+    internal func multipliedBy(amount: CGFloat) -> ConstraintDescriptionEditable {
         return self.multipliedBy(Float(amount))
     }
-    internal func multipliedBy(amount: Int) -> ConstraintDescriptionPriortizable {
+    internal func multipliedBy(amount: Int) -> ConstraintDescriptionEditable {
         return self.multipliedBy(Float(amount))
     }
-    internal func multipliedBy(amount: UInt) -> ConstraintDescriptionPriortizable {
+    internal func multipliedBy(amount: UInt) -> ConstraintDescriptionEditable {
         return self.multipliedBy(Float(amount))
     }
     
-    internal func dividedBy(amount: Float) -> ConstraintDescriptionPriortizable {
+    internal func dividedBy(amount: Float) -> ConstraintDescriptionEditable {
         self.multiplier = 1.0 / amount;
         return self
     }
-    internal func dividedBy(amount: Double) -> ConstraintDescriptionPriortizable {
+    internal func dividedBy(amount: Double) -> ConstraintDescriptionEditable {
         return self.dividedBy(Float(amount))
     }
-    internal func dividedBy(amount: CGFloat) -> ConstraintDescriptionPriortizable {
+    internal func dividedBy(amount: CGFloat) -> ConstraintDescriptionEditable {
         return self.dividedBy(Float(amount))
     }
-    internal func dividedBy(amount: Int) -> ConstraintDescriptionPriortizable {
+    internal func dividedBy(amount: Int) -> ConstraintDescriptionEditable {
         return self.dividedBy(Float(amount))
     }
-    internal func dividedBy(amount: UInt) -> ConstraintDescriptionPriortizable {
+    internal func dividedBy(amount: UInt) -> ConstraintDescriptionEditable {
         return self.dividedBy(Float(amount))
+    }
+    
+    // MARK: offset
+    
+    internal func offset(amount: Float) -> ConstraintDescriptionEditable {
+        self.constant = amount
+        return self
+    }
+    internal func offset(amount: Double) -> ConstraintDescriptionEditable {
+        return self.offset(Float(amount))
+    }
+    internal func offset(amount: CGFloat) -> ConstraintDescriptionEditable {
+        return self.offset(Float(amount))
+    }
+    internal func offset(amount: Int) -> ConstraintDescriptionEditable {
+        return self.offset(Float(amount))
+    }
+    internal func offset(amount: UInt) -> ConstraintDescriptionEditable {
+        return self.offset(Float(amount))
+    }
+    internal func offset(amount: CGPoint) -> ConstraintDescriptionEditable {
+        self.constant = amount
+        return self
+    }
+    internal func offset(amount: CGSize) -> ConstraintDescriptionEditable {
+        self.constant = amount
+        return self
+    }
+    internal func offset(amount: EdgeInsets) -> ConstraintDescriptionEditable {
+        self.constant = amount
+        return self
+    }
+    
+    // MARK: insets
+    
+    internal func insets(amount: EdgeInsets) -> ConstraintDescriptionEditable {
+        self.constant = EdgeInsets(top: amount.top, left: amount.left, bottom: -amount.bottom, right: -amount.right)
+        return self
     }
     
     // MARK: priority
@@ -386,44 +417,6 @@ final internal class ConstraintDescription: ConstraintDescriptionExtendable, Con
     }
     internal func priorityLow() -> ConstraintDescriptionFinalizable {
         return self.priority(250.0)
-    }
-    
-    // MARK: offset
-    
-    internal func offset(amount: Float) -> ConstraintDescriptionMultipliable {
-        self.constant = amount
-        return self
-    }
-    internal func offset(amount: Double) -> ConstraintDescriptionMultipliable {
-        return self.offset(Float(amount))
-    }
-    internal func offset(amount: CGFloat) -> ConstraintDescriptionMultipliable {
-        return self.offset(Float(amount))
-    }
-    internal func offset(amount: Int) -> ConstraintDescriptionMultipliable {
-        return self.offset(Float(amount))
-    }
-    internal func offset(amount: UInt) -> ConstraintDescriptionMultipliable {
-        return self.offset(Float(amount))
-    }
-    internal func offset(amount: CGPoint) -> ConstraintDescriptionMultipliable {
-        self.constant = amount
-        return self
-    }
-    internal func offset(amount: CGSize) -> ConstraintDescriptionMultipliable {
-        self.constant = amount
-        return self
-    }
-    internal func offset(amount: EdgeInsets) -> ConstraintDescriptionMultipliable {
-        self.constant = amount
-        return self
-    }
-    
-    // MARK: insets
-    
-    internal func insets(amount: EdgeInsets) -> ConstraintDescriptionMultipliable {
-        self.constant = EdgeInsets(top: amount.top, left: amount.left, bottom: -amount.bottom, right: -amount.right)
-        return self
     }
     
     // MARK: Constraint
