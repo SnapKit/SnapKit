@@ -30,33 +30,33 @@ import AppKit
 /**
     Used to expose API's for a Constraint
 */
-public protocol Constraint: class {
+public class Constraint {
     
-    func install() -> [LayoutConstraint]
-    func uninstall()
-    func activate()
-    func deactivate()
+    public func install() -> [LayoutConstraint] { fatalError("Must be implemented by Concrete subclass.") }
+    public func uninstall() -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func activate() -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func deactivate() -> Void { fatalError("Must be implemented by Concrete subclass.") }
     
-    func updateOffset(amount: Float) -> Void
-    func updateOffset(amount: Double) -> Void
-    func updateOffset(amount: CGFloat) -> Void
-    func updateOffset(amount: Int) -> Void
-    func updateOffset(amount: UInt) -> Void
-    func updateOffset(amount: CGPoint) -> Void
-    func updateOffset(amount: CGSize) -> Void
-    func updateOffset(amount: EdgeInsets) -> Void
+    public func updateOffset(amount: Float) -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updateOffset(amount: Double) -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updateOffset(amount: CGFloat) -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updateOffset(amount: Int) -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updateOffset(amount: UInt) -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updateOffset(amount: CGPoint) -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updateOffset(amount: CGSize) -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updateOffset(amount: EdgeInsets) -> Void { fatalError("Must be implemented by Concrete subclass.") }
     
-    func updateInsets(amount: EdgeInsets) -> Void
+    public func updateInsets(amount: EdgeInsets) -> Void { fatalError("Must be implemented by Concrete subclass.") }
     
-    func updatePriority(priority: Float) -> Void
-    func updatePriority(priority: Double) -> Void
-    func updatePriority(priority: CGFloat) -> Void
-    func updatePriority(priority: UInt) -> Void
-    func updatePriority(priority: Int) -> Void
-    func updatePriorityRequired() -> Void
-    func updatePriorityHigh() -> Void
-    func updatePriorityMedium() -> Void
-    func updatePriorityLow() -> Void
+    public func updatePriority(priority: Float) -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updatePriority(priority: Double) -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updatePriority(priority: CGFloat) -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updatePriority(priority: UInt) -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updatePriority(priority: Int) -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updatePriorityRequired() -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updatePriorityHigh() -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updatePriorityMedium() -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updatePriorityLow() -> Void { fatalError("Must be implemented by Concrete subclass.") }
     
 }
 
@@ -65,76 +65,76 @@ public protocol Constraint: class {
 */
 internal class ConcreteConstraint: Constraint {
     
-    internal func updateOffset(amount: Float) -> Void {
+    internal override func updateOffset(amount: Float) -> Void {
         self.constant = amount
     }
-    internal func updateOffset(amount: Double) -> Void {
+    internal override func updateOffset(amount: Double) -> Void {
         self.updateOffset(Float(amount))
     }
-    internal func updateOffset(amount: CGFloat) -> Void {
+    internal override func updateOffset(amount: CGFloat) -> Void {
         self.updateOffset(Float(amount))
     }
-    internal func updateOffset(amount: Int) -> Void {
+    internal override func updateOffset(amount: Int) -> Void {
         self.updateOffset(Float(amount))
     }
-    internal func updateOffset(amount: UInt) -> Void {
+    internal override func updateOffset(amount: UInt) -> Void {
         self.updateOffset(Float(amount))
     }
-    internal func updateOffset(amount: CGPoint) -> Void {
+    internal override func updateOffset(amount: CGPoint) -> Void {
         self.constant = amount
     }
-    internal func updateOffset(amount: CGSize) -> Void {
+    internal override func updateOffset(amount: CGSize) -> Void {
         self.constant = amount
     }
-    internal func updateOffset(amount: EdgeInsets) -> Void {
+    internal override func updateOffset(amount: EdgeInsets) -> Void {
         self.constant = amount
     }
     
-    internal func updateInsets(amount: EdgeInsets) -> Void {
+    internal override func updateInsets(amount: EdgeInsets) -> Void {
         self.constant = EdgeInsets(top: amount.top, left: amount.left, bottom: -amount.bottom, right: -amount.right)
     }
     
-    internal func updatePriority(priority: Float) -> Void {
+    internal override func updatePriority(priority: Float) -> Void {
         self.priority = priority
     }
-    internal func updatePriority(priority: Double) -> Void {
+    internal override func updatePriority(priority: Double) -> Void {
         self.updatePriority(Float(priority))
     }
-    internal func updatePriority(priority: CGFloat) -> Void {
+    internal override func updatePriority(priority: CGFloat) -> Void {
         self.updatePriority(Float(priority))
     }
-    internal func updatePriority(priority: UInt) -> Void {
+    internal override func updatePriority(priority: UInt) -> Void {
         self.updatePriority(Float(priority))
     }
-    internal func updatePriority(priority: Int) -> Void {
+    internal override func updatePriority(priority: Int) -> Void {
         self.updatePriority(Float(priority))
     }
-    internal func updatePriorityRequired() -> Void {
+    internal override func updatePriorityRequired() -> Void {
         self.updatePriority(Float(1000.0))
     }
-    internal func updatePriorityHigh() -> Void {
+    internal override func updatePriorityHigh() -> Void {
         self.updatePriority(Float(750.0))
     }
-    internal func updatePriorityMedium() -> Void {
+    internal override func updatePriorityMedium() -> Void {
         #if os(iOS)
         self.updatePriority(Float(500.0))
         #else
         self.updatePriority(Float(501.0))
         #endif
     }
-    internal func updatePriorityLow() -> Void {
+    internal override func updatePriorityLow() -> Void {
         self.updatePriority(Float(250.0))
     }
     
-    internal func install() -> [LayoutConstraint] {
+    internal override func install() -> [LayoutConstraint] {
         return self.installOnView(updateExisting: false)
     }
     
-    internal func uninstall() {
+    internal override func uninstall() -> Void {
         self.uninstallFromView()
     }
     
-    internal func activate() {
+    internal override func activate() -> Void {
         if NSLayoutConstraint.respondsToSelector("activateConstraints:") && self.installInfo != nil {
             let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
             if layoutConstraints.count > 0 {
@@ -145,7 +145,7 @@ internal class ConcreteConstraint: Constraint {
         }
     }
     
-    internal func deactivate() {
+    internal override func deactivate() -> Void {
         if NSLayoutConstraint.respondsToSelector("deactivateConstraints:") && self.installInfo != nil {
             let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
             if layoutConstraints.count > 0 {
