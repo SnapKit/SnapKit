@@ -391,7 +391,7 @@ private extension NSLayoutAttribute {
                 case .Trailing, .TrailingMargin: return point.x
                 case .Width, .Height, .NotAnAttribute: return CGFloat(0)
                 }
-                #else
+            #else
                 switch self {
                 case .Left, .CenterX: return point.x
                 case .Top, .CenterY, .Baseline: return point.y
@@ -415,14 +415,14 @@ private extension NSLayoutAttribute {
                 case .Trailing, .TrailingMargin: return  (Config.interfaceLayoutDirection == .LeftToRight) ? insets.right : -insets.left
                 case .Width, .Height, .NotAnAttribute: return CGFloat(0)
                 }
-                #else
+            #else
                 switch self {
                 case .Left, .CenterX: return insets.left
                 case .Top, .CenterY, .Baseline: return insets.top
                 case .Right: return insets.right
                 case .Bottom: return insets.bottom
-                case .Leading, .LeadingMargin: return  (Config.interfaceLayoutDirection == .LeftToRight) ? insets.left : -insets.right
-                case .Trailing, .TrailingMargin: return  (Config.interfaceLayoutDirection == .LeftToRight) ? insets.right : -insets.left
+                case .Leading: return  (Config.interfaceLayoutDirection == .LeftToRight) ? insets.left : -insets.right
+                case .Trailing: return  (Config.interfaceLayoutDirection == .LeftToRight) ? insets.right : -insets.left
                 case .Width, .Height, .NotAnAttribute: return CGFloat(0)
                 }
             #endif
