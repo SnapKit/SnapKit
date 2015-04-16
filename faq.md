@@ -24,5 +24,5 @@ SnapKit is about building code based views and layouts. Interface Builder is fid
 #### Who's behind all this?
 
 * [Robert Payne](https://github.com/robertjpayne)
-* [Jonas Buddleman](https://github.com/cloudkite)
+* [Jonas Budelmann](https://github.com/cloudkite)
 * [Countless others](https://github.com/SnapKit/SnapKit/graphs/contributors)
