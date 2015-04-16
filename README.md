@@ -1,5 +1,7 @@
 
-SnapKit
+<div style="padding: 40px 0; background-color: #0091BD; background-image: -webkit-linear-gradient(90deg, #00C7B5 0, #0056C7 100%); background-image: linear-gradient(90deg, #00C7B5 0, #0056C7 100%); text-align: center; ">
+	<img src="http://snapkit.io/images/logo_2x.png" width="539" height="128" alt="SnapKit" />
+</div>
 
 ====
 
