@@ -2,18 +2,18 @@
 layout: default
 id: home
 ---
-<div id="top">
-  <div id="info">
-    <h2>SnapKit is a DSL to make autolayout easy on both iOS&nbsp;and&nbsp;OS&nbsp;X.</h2>
+<div class="row">
+  <div id="info" class="small-12 large-6 columns">
+    <h4>SnapKit is a DSL to make autolayout easy on both iOS&nbsp;and&nbsp;OS&nbsp;X.</h4>
     <ul>
       <li><strong>Simple &amp; Expressive</strong> chaining DSL allows building constraints with minimal amounts of code while ensuring they are easy to read and understand.</li>
-      <li><strong>Type Safe</strong> by design to reduce programmer error and keep invalid constraints from being created in the first place increases productivity.</li>
-      <li><strong>Compatible</strong>for both iOS and OS X apps installable through Cocoapods or Carthage.</li>
+      <li><strong>Type Safe</strong> by design to reduce programmer error and keep invalid constraints from being created in the first place for maximized productivity.</li>
+      <li><strong>Compatible</strong> for both iOS and OS X apps installable through Cocoapods or Carthage.</li>
       <li><strong>Free</strong> to use in all projects and licensed under the flexible MIT&nbsp;license.</li>
     </ul>
   </div>
 
-  <div id="example">
+  <div id="example" class="small-12 large-6 columns">
 {% highlight swift %}
 let box = UIView()
 let container = UIView()
@@ -35,4 +35,4 @@ box.snp_makeConstraints { (make) -> Void in
   </div>
 </div>
 
-<button id="get-started-btn"><a href="/docs">Get Started &rarr;</a></button>
+<button id="get-started-btn"><a href="/docs">Getting Started &amp; Docs &rarr;</a></button>

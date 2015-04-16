@@ -1,3 +1,5 @@
+@import "foundation/functions";
+
 $body-bg: #FFF;
 $body-font-color: #444;
 $body-font-weight: 400;
@@ -5,7 +7,11 @@ $body-font-style: normal;
 $header-font-color: #444;
 $header-font-weight: 500;
 $header-font-style: normal;
+$header-bottom-margin: 0.75rem;
 
 $body-font-family: "Gotham Rounded A", "Gotham Rounded B", "Helvetica Neue", "Helvetica", sans-serif;
 $header-font-family: $body-font-family;
-$header-line-height: 1;
+
+// $small-range: (0em, em-calc(767));
+// $medium-range: (em-calc(768), em-calc(1023));
+// $large-range: (em-calc(1024), 0em);

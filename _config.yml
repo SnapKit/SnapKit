@@ -1,8 +1,9 @@
-title: Snap
+title: SnapKit
 email: robertpayne@me.com
 description: Swift AutoLayout DSL for iOS and OS X
 url: "http://www.snapkit.io/"
-twitter_username: robertjpayne
-github_username:  robertjpayne
+github_username:  SnapKit
 
-markdown: kramdown
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "tables", "superscript", "with_toc_data"]
