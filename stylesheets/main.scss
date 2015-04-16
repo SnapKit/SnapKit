@@ -68,10 +68,10 @@ table {
   #logo {
     color: transparent;
     text-indent: -99999px;
-    width: rem-calc(534);
+    width: rem-calc(539);
     height: rem-calc(128);
     margin-top: rem-calc(90);
-    @include retina-image(/images/logo, rem-calc(534) rem-calc(128));
+    @include retina-image(/images/logo, rem-calc(539) rem-calc(128));
     background-size: 100% 100%;
     display: inline-block;
   }
@@ -107,8 +107,8 @@ table {
     #logo {
       margin-top: rem-calc(40);
       width: rem-calc(280.0);
-      height: rem-calc(67);
-      background-size: rem-calc(280) rem-calc(67);
+      height: rem-calc(66);
+      background-size: rem-calc(280) rem-calc(66);
     }
     #nav {
       margin-top: rem-calc(20);
@@ -131,7 +131,7 @@ table {
   }
 }
 
-#page-docs {
+#page-docs, #page-faq {
   #content-wrapper {
     #content {
       max-width: rem-calc(800);
