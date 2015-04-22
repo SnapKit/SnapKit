@@ -30,7 +30,7 @@ import AppKit
 /**
     Used to make constraints
 */
-final public class ConstraintMaker {
+public class ConstraintMaker {
     
     /// left edge
     public var left: ConstraintDescriptionExtendable { return self.makeConstraintDescription(ConstraintAttributes.Left) }

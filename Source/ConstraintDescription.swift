@@ -163,7 +163,7 @@ public protocol ConstraintDescriptionExtendable: ConstraintDescriptionRelatable 
 /**
     Used to internally manage building constraint
  */
-final internal class ConstraintDescription: ConstraintDescriptionExtendable, ConstraintDescriptionEditable, ConstraintDescriptionFinalizable {
+internal class ConstraintDescription: ConstraintDescriptionExtendable, ConstraintDescriptionEditable, ConstraintDescriptionFinalizable {
     
     internal var left: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Left) }
     internal var top: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Top) }

@@ -63,7 +63,7 @@ public class Constraint {
 /**
     Used internally to implement a ConcreteConstraint
 */
-final internal class ConcreteConstraint: Constraint {
+internal class ConcreteConstraint: Constraint {
     
     internal override func updateOffset(amount: Float) -> Void {
         self.constant = amount
