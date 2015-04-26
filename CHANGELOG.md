@@ -1,6 +1,10 @@
 CHANGELOG
 =======
 
+# 0.11.0 - April 26 2015
+
+* Removed `final` declarations as they were causing crashes in certain circumstances
+
 # 0.10.0 - April 15 2015
 
 * **ANNOUNCEMENT**: Snap is now SnapKit
