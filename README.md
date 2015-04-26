@@ -4,6 +4,8 @@ SnapKit is a DSL to make Auto Layout easy on both iOS and OS X.
 
 [![Build Status](https://travis-ci.org/SnapKit/SnapKit.svg)](https://travis-ci.org/SnapKit/SnapKit)
 
+> SnapKit does build just fine, Travis.ci doesn't support Swift 1.2 yet so this will continue to show as failing until it is updated.
+
 ```swift
 import SnapKit
 
