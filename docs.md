@@ -8,7 +8,7 @@ id: docs
 * iOS 7.0+ / OS X 10.9+
 * Xcode 6.3+
 
-> While SnapKit supports iOS 7.0, frameworks are not supported for iOS 7.0 so you must use manually embed the framework for non app store apps or integrate the source files directly.
+> While SnapKit supports iOS 7.0, frameworks are not supported for iOS 7.0 so you must manually embed the framework for non app store apps or integrate the source files directly.
 
 ## Installing
 
@@ -263,7 +263,29 @@ self.topConstraint.uninstall()
 self.topConstraint.updateOffset(5)
 ```
 
-### 2. snp_remakeConstraints
+### 2. snp_updateConstraints
+
+Alternative if you are only updating the **constant** value of the constraint you can use the method `snp_updateConstraints` instead of `snp_makeConstraints`
+
+```swift
+// this is Apple's recommended place for adding/updating constraints
+// this method can get called multiple times in response to setNeedsUpdateConstraints
+// which can be called by UIKit internally or in your code if you need to trigger an update to your constraints
+- (void)updateConstraints {
+    self.growingButton.snp_updateConstraints { (make) -> Void in
+        make.center.equalTo(self);
+        make.width.equalTo(self.buttonSize.width).priorityLow()
+        make.height.equalTo(self.buttonSize.height).priorityLow()
+        make.width.lessThanOrEqualTo(self)
+        make.height.lessThanOrEqualTo(self)
+    }
+    
+    // according to apple super should be called at end of method
+	 super.updateConstraints()
+}
+```
+
+### 3. snp_remakeConstraints
 
 `snp_remakeConstraints` is similar to `snp_makeConstraints`, but will first remove all existing constraints installed by SnapKit.
 
@@ -281,3 +303,15 @@ func changeButtonPosition() {
   }
 }
 ```
+
+## Features
+
+* Not limited to a subset of Auto Layout. Anything NSLayoutConstraint can do SnapKit can also do.
+* Better debugging support to help find breaking constraints.
+* No crazy operator overloads.
+* Not string or dictionary based and you get the strictest compile time checks possible.
+
+## TODO
+
+* Example Projects
+* Better Debugging Support
