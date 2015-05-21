@@ -93,6 +93,7 @@ public class ConstraintMaker {
     
     /// centerY within margins
     public var centerYWithinMargins: ConstraintDescriptionExtendable { return self.makeConstraintDescription(ConstraintAttributes.CenterYWithinMargins) }
+    
     #endif
     
     /// top + left + bottom + right edges
@@ -107,10 +108,10 @@ public class ConstraintMaker {
     #if os(iOS)
     
     // top + left + bottom + right margins
-    public var snp_margins: ConstraintDescriptionExtendable { return self.makeConstraintDescription(ConstraintAttributes.Margins) }
+    public var margins: ConstraintDescriptionExtendable { return self.makeConstraintDescription(ConstraintAttributes.Margins) }
     
     // centerX + centerY within margins
-    public var snp_centerWithinMargins: ConstraintDescriptionExtendable { return self.makeConstraintDescription(ConstraintAttributes.CenterWithinMargins) }
+    public var centerWithinMargins: ConstraintDescriptionExtendable { return self.makeConstraintDescription(ConstraintAttributes.CenterWithinMargins) }
     
     #endif
     
