@@ -1,14 +1,14 @@
 language: objective-c
-osx_image: xcode611
+osx_image: beta-xcode6.3
 branches:
   only:
     - master
 env:
-- LC_CTYPE=en_US.UTF-8 LANG=en_US.UTF-8
+  - LC_CTYPE=en_US.UTF-8 LANG=en_US.UTF-8
 before_install:
-- gem install xcpretty -N
+  - gem install xcpretty -N
 script:
-- set -o pipefail
-- xcodebuild -project SnapKit.xcodeproj -scheme "SnapKit iOS" -sdk iphonesimulator
-  -destination "platform=iOS Simulator,name=iPhone 6" ONLY_ACTIVE_ARCH=NO  test | xcpretty -c
-- pod lib lint --quick
+  - set -o pipefail
+  - xcodebuild -project SnapKit.xcodeproj -scheme "SnapKit iOS" -sdk iphonesimulator
+    -destination "platform=iOS Simulator,name=iPhone 6" ONLY_ACTIVE_ARCH=NO  test | xcpretty -c
+  - pod lib lint --quick
