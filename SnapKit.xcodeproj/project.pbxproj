@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE4910981B19A26000A54F1F /* ViewController+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4910971B19A26000A54F1F /* ViewController+SnapKit.swift */; };
+		EE4910991B19A40200A54F1F /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBCC9D819CC627D0083B827 /* SnapKit.framework */; };
 		EE94F6091AC0F10A008767FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE94F6081AC0F10A008767FF /* UIKit.framework */; };
 		EE94F60B1AC0F10F008767FF /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE94F60A1AC0F10F008767FF /* AppKit.framework */; };
-		EE94F6101AC0F143008767FF /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBCC9D819CC627D0083B827 /* SnapKit.framework */; };
 		EE94F6111AC0F146008767FF /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECDB37A1AC0C9D4006BBC11 /* SnapKit.framework */; };
 		EECDB36C1AC0C9A6006BBC11 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB35E1AC0C95C006BBC11 /* Constraint.swift */; };
 		EECDB36D1AC0C9A6006BBC11 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB35F1AC0C95C006BBC11 /* ConstraintAttributes.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE4910971B19A26000A54F1F /* ViewController+SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+SnapKit.swift"; sourceTree = "<group>"; };
 		EE94F6081AC0F10A008767FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EE94F60A1AC0F10F008767FF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		EEBCC9D819CC627D0083B827 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE94F6101AC0F143008767FF /* SnapKit.framework in Frameworks */,
+				EE4910991B19A40200A54F1F /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +149,7 @@
 				EEFCF3311AD9432400A425FA /* ConstraintDescription.swift */,
 				EECDB3611AC0C95C006BBC11 /* ConstraintMaker.swift */,
 				EECDB3671AC0C95C006BBC11 /* View+SnapKit.swift */,
+				EE4910971B19A26000A54F1F /* ViewController+SnapKit.swift */,
 				EECDB3601AC0C95C006BBC11 /* ConstraintItem.swift */,
 				EECDB3631AC0C95C006BBC11 /* EdgeInsets.swift */,
 				EECDB3651AC0C95C006BBC11 /* LayoutConstraint.swift */,
@@ -357,6 +360,7 @@
 				EEFCF3321AD9432400A425FA /* ConstraintDescription.swift in Sources */,
 				EECDB3731AC0C9A6006BBC11 /* View+SnapKit.swift in Sources */,
 				EECDB3711AC0C9A6006BBC11 /* EdgeInsets.swift in Sources */,
+				EE4910981B19A26000A54F1F /* ViewController+SnapKit.swift in Sources */,
 				EECDB36F1AC0C9A6006BBC11 /* ConstraintMaker.swift in Sources */,
 				EECDB36D1AC0C9A6006BBC11 /* ConstraintAttributes.swift in Sources */,
 				EECDB3721AC0C9A6006BBC11 /* LayoutConstraint.swift in Sources */,
