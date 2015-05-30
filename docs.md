@@ -271,7 +271,7 @@ Alternative if you are only updating the **constant** value of the constraint yo
 // this is Apple's recommended place for adding/updating constraints
 // this method can get called multiple times in response to setNeedsUpdateConstraints
 // which can be called by UIKit internally or in your code if you need to trigger an update to your constraints
-- (void)updateConstraints {
+override func updateConstraints() {
     self.growingButton.snp_updateConstraints { (make) -> Void in
         make.center.equalTo(self);
         make.width.equalTo(self.buttonSize.width).priorityLow()
