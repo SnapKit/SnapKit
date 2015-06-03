@@ -23,7 +23,6 @@
 
 #if os(iOS)
 import UIKit
-public typealias ViewController = UIViewController
 
 /**
     Used to expose public API on view controllers
