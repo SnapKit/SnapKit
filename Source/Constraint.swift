@@ -127,7 +127,7 @@ internal class ConcreteConstraint: Constraint {
     }
     
     internal override func install() -> [LayoutConstraint] {
-        return self.installOnView(updateExisting: false)
+        return self.installOnView(false)
     }
     
     internal override func uninstall() -> Void {
@@ -194,7 +194,7 @@ internal class ConcreteConstraint: Constraint {
     internal func installOnView(updateExisting: Bool = false) -> [LayoutConstraint] {
         var installOnView: View? = nil
         if self.toItem.view != nil {
-            installOnView = closestCommonSuperviewBetween(self.fromItem.view, self.toItem.view)
+            installOnView = closestCommonSuperviewBetween(self.fromItem.view, toView: self.toItem.view)
             if installOnView == nil {
                 NSException(name: "Cannot Install Constraint", reason: "No common superview between views", userInfo: nil).raise()
                 return []
@@ -236,7 +236,7 @@ internal class ConcreteConstraint: Constraint {
             let layoutToAttribute = (layoutToAttributes.count > 0) ? layoutToAttributes[0] : layoutFromAttribute
             
             // get layout constant
-            var layoutConstant: CGFloat = layoutToAttribute.snp_constantForValue(self.constant)
+            let layoutConstant: CGFloat = layoutToAttribute.snp_constantForValue(self.constant)
             
             // get layout to
             var layoutTo: View? = self.toItem.view
@@ -266,7 +266,7 @@ internal class ConcreteConstraint: Constraint {
         // special logic for updating
         if updateExisting {
             // get existing constraints for this view
-            let existingLayoutConstraints = reverse(layoutFrom!.snp_installedLayoutConstraints)
+            let existingLayoutConstraints = Array(layoutFrom!.snp_installedLayoutConstraints.reverse())
             
             // array that will contain only new layout constraints to keep
             var newLayoutConstraintsToKeep = [LayoutConstraint]()
@@ -330,7 +330,7 @@ internal class ConcreteConstraint: Constraint {
                     // remove the constraints from the from item view
                     if let fromView = self.fromItem.view {
                         fromView.snp_installedLayoutConstraints = fromView.snp_installedLayoutConstraints.filter {
-                            return !contains(installedLayoutConstraints, $0)
+                            return !installedLayoutConstraints.contains($0)
                         }
                     }
                 }
@@ -436,7 +436,7 @@ private func closestCommonSuperviewBetween(fromView: View?, toView: View?) -> Vi
     var views = Set<View>()
     var fromView = fromView
     var toView = toView
-    do {
+    repeat {
         if let view = toView {
             if views.contains(view) {
                 return view
