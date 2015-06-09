@@ -120,9 +120,9 @@ public extension View {
     /**
         Prepares constraints with a `ConstraintMaker` and returns the made constraints but does not install them.
 
-        :param: closure that will be passed the `ConstraintMaker` to make the constraints with
+        - parameter closure: that will be passed the `ConstraintMaker` to make the constraints with
         
-        :returns: the constraints made
+        - returns: the constraints made
     */
     public func snp_prepareConstraints(@noescape closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
         return ConstraintMaker.prepareConstraints(self, closure: closure)
@@ -131,7 +131,7 @@ public extension View {
     /**
         Makes constraints with a `ConstraintMaker` and installs them along side any previous made constraints.
         
-        :param: closure that will be passed the `ConstraintMaker` to make the constraints with
+        - parameter closure: that will be passed the `ConstraintMaker` to make the constraints with
     */
     public func snp_makeConstraints(@noescape closure: (make: ConstraintMaker) -> Void) -> Void {
         ConstraintMaker.makeConstraints(self, closure: closure)
@@ -142,7 +142,7 @@ public extension View {
     
         For constraints to match only the constant can be updated.
     
-        :param: closure that will be passed the `ConstraintMaker` to update the constraints with
+        - parameter closure: that will be passed the `ConstraintMaker` to update the constraints with
     */
     public func snp_updateConstraints(@noescape closure: (make: ConstraintMaker) -> Void) -> Void {
         ConstraintMaker.updateConstraints(self, closure: closure)
@@ -151,7 +151,7 @@ public extension View {
     /**
         Remakes constraints with a `ConstraintMaker` that will first remove all previously made constraints and make and install new ones.
     
-        :param: closure that will be passed the `ConstraintMaker` to remake the constraints with
+        - parameter closure: that will be passed the `ConstraintMaker` to remake the constraints with
     */
     public func snp_remakeConstraints(@noescape closure: (make: ConstraintMaker) -> Void) -> Void {
         ConstraintMaker.remakeConstraints(self, closure: closure)
@@ -172,7 +172,7 @@ public extension View {
             return []
         }
         set {
-            objc_setAssociatedObject(self, &installedLayoutConstraintsKey, newValue, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+            objc_setAssociatedObject(self, &installedLayoutConstraintsKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }
