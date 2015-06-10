@@ -83,8 +83,8 @@ superview.addSubview(box)
 box.snp_makeConstraints { (make) -> Void in
     make.top.equalTo(superview).offset(20)
     make.left.equalTo(superview).offset(20)
-    make.bottom.equalTo(superview).offset(20)
-    make.right.equalTo(superview).offset(20)
+    make.bottom.equalTo(superview).offset(-20)
+    make.right.equalTo(superview).offset(-20)
 }
 ```
 
