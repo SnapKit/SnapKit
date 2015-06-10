@@ -95,7 +95,7 @@ let box = UIView()
 superview.addSubview(box)
 
 box.snp_makeConstraints { (make) -> Void in
-    make.edges.equalTo(superview).inset(UIEdgeInsetsMake(20, 20, 20, 20))
+    make.edges.equalTo(superview).insets(UIEdgeInsetsMake(20, 20, 20, 20))
 }
 ```
 
