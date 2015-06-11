@@ -76,7 +76,7 @@ $ git submodule add https://github.com/SnapKit/SnapKit.git
 
 SnapKit is designed to be extremely easy to use. Let's say we want to layout a box that is constrained to it's superview's edges with 20pts of padding.
 
-```swift
+```
 let box = UIView()
 superview.addSubview(box)
 
@@ -90,7 +90,7 @@ box.snp_makeConstraints { (make) -> Void in
 
 Or even shorter:
 
-```swift
+```
 let box = UIView()
 superview.addSubview(box)
 
@@ -117,7 +117,7 @@ These three equality constraints accept one argument which can be any of the fol
 
 #### 1. ViewAttribute
 
-```swift
+```
 make.centerX.lessThanOrEqualTo(view2.snp_left)
 ```
 
@@ -140,7 +140,7 @@ view.snp_baseline          |  NSLayoutAttribute.Baseline
 
 if you want view.left to be greater than or equal to label.left:
 
-```swift
+```
 // these two constraints are exactly the same
 make.left.greaterThanOrEqualTo(label)
 make.left.greaterThanOrEqualTo(label.snp_left)
@@ -151,7 +151,7 @@ make.left.greaterThanOrEqualTo(label.snp_left)
 Auto Layout allows width and height to be set to constant values.
 if you want to set view to have a minimum and maximum width you could pass a primitive to the equality blocks:
 
-```swift
+```
 // width >= 200 && width <= 400
 make.width.greaterThanOrEqualTo(200)
 make.width.lessThanOrEqualTo(400)
@@ -160,14 +160,14 @@ make.width.lessThanOrEqualTo(400)
 However Auto Layout does not allow alignment attributes such as left, right, centerY etc to be set to constant values.
 So if you pass a primitive for these attributes SnapKit will turn these into constraints relative to the view's superview ie:
 
-```swift
+```
 // creates view.left <= view.superview.left + 10
 make.left.lessThanOrEqualTo(10)
 ```
 
 You can also use other primitives and structs to build your constraints, like so:
 
-```swift
+```
 make.top.equalTo(42)
 make.height.equalTo(20)
 make.size.equalTo(CGSizeMake(50, 100))
@@ -187,7 +187,7 @@ make.left.equalTo(view).offset(UIEdgeInsetsMake(10, 0, 10, 0))
 
 Priorities are can be tacked on to the end of a constraint chain like so:
 
-```swift
+```
 make.left.greaterThanOrEqualTo(label.snp_left).priorityLow()
 make.top.equalTo(label.snp_top).priority(600)
 ```
@@ -198,7 +198,7 @@ SnapKit also gives you a few convenience methods to create multiple constraints 
 
 #### edges
 
-```swift
+```
 // make top, left, bottom, right equal view2
 make.edges.equalTo(view2);
 
@@ -209,7 +209,7 @@ make.edges.equalTo(superview).insets(UIEdgeInsetsMake(5, 10, 15, 20))
 
 #### size
 
-```swift
+```
 // make width and height greater than or equal to titleLabel
 make.size.greaterThanOrEqualTo(titleLabel)
 
@@ -219,7 +219,7 @@ make.size.equalTo(superview).offset(CGSizeMake(100, -50))
 
 #### center
 
-```swift
+```
 // make centerX and centerY = button1
 make.center.equalTo(button1)
 
@@ -229,7 +229,7 @@ make.center.equalTo(superview).offset(CGPointMake(-5, 10))
 
 You can chain view attributes for increased readability:
 
-```swift
+```
 // All edges but the top should equal those of the superview
 make.left.right.bottom.equalTo(superview)
 make.top.equalTo(otherView)
@@ -244,7 +244,7 @@ In SnapKit there are a few different approaches to updating constraints.
 You can hold on to a reference of a particular constraint by assigning the result of a constraint make expression to a local variable or a class property.
 You could also reference multiple constraints by storing them away in an array.
 
-```swift
+```
 var topConstraint: Constraint? = nil
 
 ...
@@ -267,7 +267,7 @@ self.topConstraint.updateOffset(5)
 
 Alternative if you are only updating the **constant** value of the constraint you can use the method `snp_updateConstraints` instead of `snp_makeConstraints`
 
-```swift
+```
 // this is Apple's recommended place for adding/updating constraints
 // this method can get called multiple times in response to setNeedsUpdateConstraints
 // which can be called by UIKit internally or in your code if you need to trigger an update to your constraints
@@ -289,7 +289,7 @@ override func updateConstraints() {
 
 `snp_remakeConstraints` is similar to `snp_makeConstraints`, but will first remove all existing constraints installed by SnapKit.
 
-```swift
+```
 func changeButtonPosition() {
   self.button.snp_remakeConstraints { (make) -> Void in 
     make.size.equalTo(self.buttonSize)
