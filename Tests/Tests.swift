@@ -2,7 +2,7 @@
 import UIKit
 typealias View = UIView
 extension View {
-    var snp_constraints: [AnyObject] { return self.constraints() }
+    var snp_constraints: [AnyObject] { return self.constraints }
 }
 #else
 import AppKit

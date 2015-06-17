@@ -146,11 +146,7 @@ public class ConstraintMaker {
     }
     
     internal class func makeConstraints(#view: View, file: String = "Unknown", line: UInt = 0, @noescape closure: (make: ConstraintMaker) -> Void) {
-        #if os(iOS)
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
-        #else
         view.translatesAutoresizingMaskIntoConstraints = false
-        #endif
         let maker = ConstraintMaker(view: view, file: file, line: line)
         closure(make: maker)
         
@@ -163,11 +159,7 @@ public class ConstraintMaker {
     }
     
     internal class func remakeConstraints(#view: View, file: String = "Unknown", line: UInt = 0, @noescape closure: (make: ConstraintMaker) -> Void) {
-        #if os(iOS)
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
-        #else
         view.translatesAutoresizingMaskIntoConstraints = false
-        #endif
         let maker = ConstraintMaker(view: view, file: file, line: line)
         closure(make: maker)
         
@@ -181,11 +173,7 @@ public class ConstraintMaker {
     }
     
     internal class func updateConstraints(#view: View, file: String = "Unknown", line: UInt = 0, @noescape closure: (make: ConstraintMaker) -> Void) {
-        #if os(iOS)
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
-        #else
         view.translatesAutoresizingMaskIntoConstraints = false
-        #endif
         let maker = ConstraintMaker(view: view, file: file, line: line)
         closure(make: maker)
         
