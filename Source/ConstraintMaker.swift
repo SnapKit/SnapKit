@@ -137,48 +137,36 @@ public class ConstraintMaker {
     }
     
     internal class func makeConstraints(view: View, @noescape closure: (make: ConstraintMaker) -> Void) {
-        #if os(iOS)
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
-        #else
         view.translatesAutoresizingMaskIntoConstraints = false
-        #endif
         let maker = ConstraintMaker(view: view)
         closure(make: maker)
         
         let constraints = maker.constraintDescriptions.map { $0.constraint as! ConcreteConstraint }
         for constraint in constraints {
-            constraint.installOnView(updateExisting: false)
+            constraint.installOnViewUpdatingExisting(false)
         }
     }
     
     internal class func remakeConstraints(view: View, @noescape closure: (make: ConstraintMaker) -> Void) {
-        #if os(iOS)
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
-        #else
         view.translatesAutoresizingMaskIntoConstraints = false
-        #endif
         let maker = ConstraintMaker(view: view)
         closure(make: maker)
         
         self.removeConstraints(view)
         let constraints = maker.constraintDescriptions.map { $0.constraint as! ConcreteConstraint }
         for constraint in constraints {
-            constraint.installOnView(updateExisting: false)
+            constraint.installOnViewUpdatingExisting(false)
         }
     }
     
     internal class func updateConstraints(view: View, @noescape closure: (make: ConstraintMaker) -> Void) {
-        #if os(iOS)
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
-        #else
         view.translatesAutoresizingMaskIntoConstraints = false
-        #endif
         let maker = ConstraintMaker(view: view)
         closure(make: maker)
         
         let constraints = maker.constraintDescriptions.map { $0.constraint as! ConcreteConstraint}
         for constraint in constraints {
-            constraint.installOnView(updateExisting: true)
+            constraint.installOnViewUpdatingExisting(true)
         }
     }
     
