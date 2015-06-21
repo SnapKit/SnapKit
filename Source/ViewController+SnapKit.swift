@@ -30,17 +30,10 @@ public typealias ViewController = UIViewController
 */
 public extension UIViewController {
     
-    /// top layout guide top
-    public var snp_topLayoutGuideTop: ConstraintItem { return ConstraintItem(object: self.topLayoutGuide, attributes: ConstraintAttributes.Top) }
+    /// top layout guide
+    public var snp_topLayoutGuide: ConstraintItem { return ConstraintItem(object: self.topLayoutGuide, attributes: ConstraintAttributes.Bottom) }
     
-    /// top layout guide bottom
-    public var snp_topLayoutGuideBottom: ConstraintItem { return ConstraintItem(object: self.topLayoutGuide, attributes: ConstraintAttributes.Bottom) }
-    
-    /// bottom layout guide top
-    public var snp_bottomLayoutGuideTop: ConstraintItem { return ConstraintItem(object: self.bottomLayoutGuide, attributes: ConstraintAttributes.Top) }
-    
-    /// bottom layout guide bottom
-    public var snp_bottomLayoutGuideBottom: ConstraintItem { return ConstraintItem(object: self.bottomLayoutGuide, attributes: ConstraintAttributes.Bottom) }
-    
+    /// bottom layout guide
+    public var snp_bottomLayoutGuide: ConstraintItem { return ConstraintItem(object: self.bottomLayoutGuide, attributes: ConstraintAttributes.Top) }
 }
 #endif
