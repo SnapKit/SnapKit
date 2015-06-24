@@ -167,6 +167,7 @@ private extension NSLayoutAttribute {
         case .CenterX:              return "centerX"
         case .CenterY:              return "centerY"
         case .Baseline:             return "baseline"
+        default:                    return "default"
         }
         #endif
         
