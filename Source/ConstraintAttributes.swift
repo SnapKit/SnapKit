@@ -157,10 +157,10 @@ internal struct ConstraintAttributes: OptionSetType, BooleanType {
     }
 }
 internal func +=(inout left: ConstraintAttributes, right: ConstraintAttributes) {
-    left = left.intersect(right)
+    left.unionInPlace(right)
 }
 internal func -=(inout left: ConstraintAttributes, right: ConstraintAttributes) {
-    left = left.subtract(right)
+    left.subtractInPlace(right)
 }
 internal func ==(left: ConstraintAttributes, right: ConstraintAttributes) -> Bool {
     return left.rawValue == right.rawValue
