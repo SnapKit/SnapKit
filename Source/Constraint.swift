@@ -400,6 +400,7 @@ private extension NSLayoutAttribute {
                 case .Leading: return point.x
                 case .Trailing: return point.x
                 case .Width, .Height, .NotAnAttribute: return CGFloat(0)
+                case .FirstBaseline: return point.y
                 }
             #endif
         }
@@ -424,6 +425,7 @@ private extension NSLayoutAttribute {
                 case .Leading: return  (Config.interfaceLayoutDirection == .LeftToRight) ? insets.left : -insets.right
                 case .Trailing: return  (Config.interfaceLayoutDirection == .LeftToRight) ? insets.right : -insets.left
                 case .Width, .Height, .NotAnAttribute: return CGFloat(0)
+                case .FirstBaseline: return insets.bottom
                 }
             #endif
         }
