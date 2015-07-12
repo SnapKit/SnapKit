@@ -122,11 +122,11 @@ public class ConstraintMaker {
     internal let view: View
     internal var constraintDescriptions = [ConstraintDescription]()
     
-    internal func makeConstraintDescription(attributes: ConstraintAttributes) -> ConstraintDescription {
+    internal func makeConstraintDescription(attributes: ConstraintAttributes) -> ConstraintDescriptionExtendable {
         let item = ConstraintItem(object: self.view, attributes: attributes)
         let constraintDescription = ConstraintDescription(fromItem: item)
         self.constraintDescriptions.append(constraintDescription)
-        return constraintDescription
+        return ConstraintDescriptionExtendable(constraintDescription)
     }
     
     internal class func prepareConstraints(view: View, @noescape closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
