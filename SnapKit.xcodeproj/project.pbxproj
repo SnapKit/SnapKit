@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77F5D2191B530F3B00A1558A /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5D2181B530F3B00A1558A /* SourceLocation.swift */; };
+		77F5D21A1B530F3B00A1558A /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5D2181B530F3B00A1558A /* SourceLocation.swift */; };
 		EE4910981B19A26000A54F1F /* ViewController+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4910971B19A26000A54F1F /* ViewController+SnapKit.swift */; };
 		EE4910991B19A40200A54F1F /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBCC9D819CC627D0083B827 /* SnapKit.framework */; };
 		EE94F6091AC0F10A008767FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE94F6081AC0F10A008767FF /* UIKit.framework */; };
@@ -51,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		77F5D2181B530F3B00A1558A /* SourceLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLocation.swift; sourceTree = "<group>"; };
 		EE4910971B19A26000A54F1F /* ViewController+SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+SnapKit.swift"; sourceTree = "<group>"; };
 		EE94F6081AC0F10A008767FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EE94F60A1AC0F10F008767FF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -143,6 +146,7 @@
 		EECDB35D1AC0C95C006BBC11 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				77F5D2181B530F3B00A1558A /* SourceLocation.swift */,
 				EECDB3661AC0C95C006BBC11 /* SnapKit.h */,
 				EEFCF32E1AD926AE00A425FA /* SnapKit.swift */,
 				EECDB35E1AC0C95C006BBC11 /* Constraint.swift */,
@@ -362,6 +366,7 @@
 				EECDB3711AC0C9A6006BBC11 /* EdgeInsets.swift in Sources */,
 				EE4910981B19A26000A54F1F /* ViewController+SnapKit.swift in Sources */,
 				EECDB36F1AC0C9A6006BBC11 /* ConstraintMaker.swift in Sources */,
+				77F5D2191B530F3B00A1558A /* SourceLocation.swift in Sources */,
 				EECDB36D1AC0C9A6006BBC11 /* ConstraintAttributes.swift in Sources */,
 				EECDB3721AC0C9A6006BBC11 /* LayoutConstraint.swift in Sources */,
 				EECDB36E1AC0C9A6006BBC11 /* ConstraintItem.swift in Sources */,
@@ -389,6 +394,7 @@
 				EECDB39A1AC0CBFF006BBC11 /* EdgeInsets.swift in Sources */,
 				EECDB3981AC0CBFF006BBC11 /* ConstraintMaker.swift in Sources */,
 				EECDB3961AC0CBFF006BBC11 /* ConstraintAttributes.swift in Sources */,
+				77F5D21A1B530F3B00A1558A /* SourceLocation.swift in Sources */,
 				EECDB39B1AC0CBFF006BBC11 /* LayoutConstraint.swift in Sources */,
 				EECDB3971AC0CBFF006BBC11 /* ConstraintItem.swift in Sources */,
 			);

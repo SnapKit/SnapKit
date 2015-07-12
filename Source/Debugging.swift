@@ -109,7 +109,22 @@ private func descriptionForObject(object: AnyObject) -> String {
     if let object = object as? View {
         return "<\(object.dynamicType.description()):\(object.snp_label ?? pointerDescription)>"
     } else if let object = object as? LayoutConstraint {
-        return "<\(object.dynamicType.description()):\(object.snp_label ?? pointerDescription)>"
+        let identifierString : String
+        if let identifier = object.identifier {
+            identifierString = "(\(identifier))"
+        }
+        else {
+            identifierString = ""
+        }
+        
+        let locationString : String
+        if let location = (object.snp_constraint as? ConcreteConstraint)?.location {
+            locationString = "@\(location.file.lastPathComponent):\(location.line)"
+        }
+        else {
+            locationString = ""
+        }
+        return "<\(object.dynamicType.description()):\(object.snp_label ?? pointerDescription)\(identifierString)\(locationString)>"
     }
     return "<\(object.dynamicType.description()):\(pointerDescription)>"
 }
