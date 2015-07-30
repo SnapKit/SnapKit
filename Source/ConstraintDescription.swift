@@ -78,7 +78,12 @@ public protocol ConstraintDescriptionEditable: ConstraintDescriptionPriortizable
     func offset(amount: CGSize) -> ConstraintDescriptionEditable
     func offset(amount: EdgeInsets) -> ConstraintDescriptionEditable
     
-    func insets(amount: EdgeInsets) -> ConstraintDescriptionEditable
+    func inset(amount: Float) -> ConstraintDescriptionEditable
+    func inset(amount: Double) -> ConstraintDescriptionEditable
+    func inset(amount: CGFloat) -> ConstraintDescriptionEditable
+    func inset(amount: Int) -> ConstraintDescriptionEditable
+    func inset(amount: UInt) -> ConstraintDescriptionEditable
+    func inset(amount: EdgeInsets) -> ConstraintDescriptionEditable
 }
 
 /**
@@ -377,9 +382,33 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
         return self
     }
     
-    // MARK: insets
+    // MARK: inset
     
-    internal func insets(amount: EdgeInsets) -> ConstraintDescriptionEditable {
+    internal func inset(amount: Float) -> ConstraintDescriptionEditable {
+        let value = CGFloat(amount)
+        self.constant = EdgeInsets(top: value, left: value, bottom: -value, right: -value)
+        return self
+    }
+    internal func inset(amount: Double) -> ConstraintDescriptionEditable {
+        let value = CGFloat(amount)
+        self.constant = EdgeInsets(top: value, left: value, bottom: -value, right: -value)
+        return self
+    }
+    internal func inset(amount: CGFloat) -> ConstraintDescriptionEditable {
+        self.constant = EdgeInsets(top: amount, left: amount, bottom: -amount, right: -amount)
+        return self
+    }
+    internal func inset(amount: Int) -> ConstraintDescriptionEditable {
+        let value = CGFloat(amount)
+        self.constant = EdgeInsets(top: value, left: value, bottom: -value, right: -value)
+        return self
+    }
+    internal func inset(amount: UInt) -> ConstraintDescriptionEditable {
+        let value = CGFloat(amount)
+        self.constant = EdgeInsets(top: value, left: value, bottom: -value, right: -value)
+        return self
+    }
+    internal func inset(amount: EdgeInsets) -> ConstraintDescriptionEditable {
         self.constant = EdgeInsets(top: amount.top, left: amount.left, bottom: -amount.bottom, right: -amount.right)
         return self
     }
