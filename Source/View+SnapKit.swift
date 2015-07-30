@@ -124,8 +124,8 @@ public extension View {
         
         :returns: the constraints made
     */
-    public func snp_prepareConstraints(@noescape closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
-        return ConstraintMaker.prepareConstraints(self, closure: closure)
+    public func snp_prepareConstraints(file: String = __FILE__, line: UInt = __LINE__, @noescape closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
+        return ConstraintMaker.prepareConstraints(view: self, file: file, line: line, closure: closure)
     }
     
     /**
@@ -133,8 +133,8 @@ public extension View {
         
         :param: closure that will be passed the `ConstraintMaker` to make the constraints with
     */
-    public func snp_makeConstraints(@noescape closure: (make: ConstraintMaker) -> Void) -> Void {
-        ConstraintMaker.makeConstraints(self, closure: closure)
+    public func snp_makeConstraints(file: String = __FILE__, line: UInt = __LINE__, @noescape closure: (make: ConstraintMaker) -> Void) -> Void {
+        ConstraintMaker.makeConstraints(view: self, file: file, line: line, closure: closure)
     }
     
     /**
@@ -144,8 +144,8 @@ public extension View {
     
         :param: closure that will be passed the `ConstraintMaker` to update the constraints with
     */
-    public func snp_updateConstraints(@noescape closure: (make: ConstraintMaker) -> Void) -> Void {
-        ConstraintMaker.updateConstraints(self, closure: closure)
+    public func snp_updateConstraints(file: String = __FILE__, line: UInt = __LINE__, @noescape closure: (make: ConstraintMaker) -> Void) -> Void {
+        ConstraintMaker.updateConstraints(view: self, file: file, line: line, closure: closure)
     }
     
     /**
@@ -153,15 +153,15 @@ public extension View {
     
         :param: closure that will be passed the `ConstraintMaker` to remake the constraints with
     */
-    public func snp_remakeConstraints(@noescape closure: (make: ConstraintMaker) -> Void) -> Void {
-        ConstraintMaker.remakeConstraints(self, closure: closure)
+    public func snp_remakeConstraints(file: String = __FILE__, line: UInt = __LINE__, @noescape closure: (make: ConstraintMaker) -> Void) -> Void {
+        ConstraintMaker.remakeConstraints(view: self, file: file, line: line, closure: closure)
     }
     
     /**
         Removes all previously made constraints.
     */
     public func snp_removeConstraints() {
-        ConstraintMaker.removeConstraints(self)
+        ConstraintMaker.removeConstraints(view: self)
     }
     
     internal var snp_installedLayoutConstraints: [LayoutConstraint] {
