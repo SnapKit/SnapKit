@@ -3,7 +3,7 @@ CHANGELOG
 
 # 0.13.0 - July 30 2015
 
-* Refactored `insets` to `inset` and it now accepts Float/Double/CGFloat/Int/UInt as well as EdgeInsets
+* **BREAKING:** Refactored `insets` to `inset` and it now accepts Float/Double/CGFloat/Int/UInt as well as EdgeInsets
 * Size constraints to fixed constants like `make.width.equalTo(50)` now install directly on the from view rather than it’s superview
 * Debugging should generate property object pointer descriptions
 * Debugging now includes file/line number where the closure that created the constraint is in your code
