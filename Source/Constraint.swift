@@ -130,7 +130,7 @@ internal class ConcreteConstraint: Constraint {
     }
     
     internal override func install() -> [LayoutConstraint] {
-        return self.installOnViewUpdatingExisting(false)
+        return self.installOnView(updateExisting: false, file: self.makerFile, line: self.makerLine)
     }
     
     internal override func uninstall() -> Void {
@@ -194,7 +194,7 @@ internal class ConcreteConstraint: Constraint {
         self.priority = priority
     }
     
-    internal func installOnView(updateExisting: Bool = false, file: String? = nil, line: UInt? = nil) -> [LayoutConstraint] {
+    internal func installOnView(updateExisting updateExisting: Bool = false, file: String? = nil, line: UInt? = nil) -> [LayoutConstraint] {
         var installOnView: View? = nil
         if self.toItem.view != nil {
             installOnView = closestCommonSuperviewFromView(self.fromItem.view, toView: self.toItem.view)
@@ -204,11 +204,7 @@ internal class ConcreteConstraint: Constraint {
             }
         } else {
             
-            let widthAttr = ConstraintAttributes.Width
-            let heightAttr = ConstraintAttributes.Height
-            let sizeAttrs = widthAttr | heightAttr
-            
-            if self.fromItem.attributes == widthAttr || self.fromItem.attributes == heightAttr || self.fromItem.attributes == sizeAttrs {
+            if self.fromItem.attributes.isSubsetOf(ConstraintAttributes.Width.union(.Height)) {
                 installOnView = self.fromItem.view
             } else {
                 installOnView = self.fromItem.view?.superview

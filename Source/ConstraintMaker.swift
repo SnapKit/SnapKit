@@ -133,7 +133,7 @@ public class ConstraintMaker {
         return constraintDescription
     }
     
-    internal class func prepareConstraints(#view: View, file: String = "Unknown", line: UInt = 0, @noescape closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
+    internal class func prepareConstraints(view view: View, file: String = "Unknown", line: UInt = 0, @noescape closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
         let maker = ConstraintMaker(view: view, file: file, line: line)
         closure(make: maker)
         
@@ -145,7 +145,7 @@ public class ConstraintMaker {
         return constraints
     }
     
-    internal class func makeConstraints(#view: View, file: String = "Unknown", line: UInt = 0, @noescape closure: (make: ConstraintMaker) -> Void) {
+    internal class func makeConstraints(view view: View, file: String = "Unknown", line: UInt = 0, @noescape closure: (make: ConstraintMaker) -> Void) {
         view.translatesAutoresizingMaskIntoConstraints = false
         let maker = ConstraintMaker(view: view, file: file, line: line)
         closure(make: maker)
@@ -158,7 +158,7 @@ public class ConstraintMaker {
         }
     }
     
-    internal class func remakeConstraints(#view: View, file: String = "Unknown", line: UInt = 0, @noescape closure: (make: ConstraintMaker) -> Void) {
+    internal class func remakeConstraints(view view: View, file: String = "Unknown", line: UInt = 0, @noescape closure: (make: ConstraintMaker) -> Void) {
         view.translatesAutoresizingMaskIntoConstraints = false
         let maker = ConstraintMaker(view: view, file: file, line: line)
         closure(make: maker)
@@ -172,7 +172,7 @@ public class ConstraintMaker {
         }
     }
     
-    internal class func updateConstraints(#view: View, file: String = "Unknown", line: UInt = 0, @noescape closure: (make: ConstraintMaker) -> Void) {
+    internal class func updateConstraints(view view: View, file: String = "Unknown", line: UInt = 0, @noescape closure: (make: ConstraintMaker) -> Void) {
         view.translatesAutoresizingMaskIntoConstraints = false
         let maker = ConstraintMaker(view: view, file: file, line: line)
         closure(make: maker)
@@ -185,7 +185,7 @@ public class ConstraintMaker {
         }
     }
     
-    internal class func removeConstraints(#view: View) {
+    internal class func removeConstraints(view view: View) {
         for existingLayoutConstraint in view.snp_installedLayoutConstraints {
             existingLayoutConstraint.snp_constraint?.uninstall()
         }
