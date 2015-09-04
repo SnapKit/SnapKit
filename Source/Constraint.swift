@@ -241,11 +241,8 @@ internal class ConcreteConstraint: Constraint {
             let layoutConstant: CGFloat = layoutToAttribute.snp_constantForValue(self.constant)
             
             // get layout to
-            var layoutTo: View? = self.toItem.view
-            if layoutTo == nil && layoutToAttribute != .Width && layoutToAttribute != .Height {
-                layoutTo = installOnView
-            }
-            
+            let layoutTo = self.toItem.object
+
             // create layout constraint
             let layoutConstraint = LayoutConstraint(
                 item: layoutFrom!,
