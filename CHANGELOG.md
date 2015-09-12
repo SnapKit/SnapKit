@@ -1,6 +1,10 @@
 CHANGELOG
 =======
 
+# 0.14.0 - September 12 2015
+
+* Swift 2.0 / Xcode 7 GM
+
 # 0.13.0 - July 30 2015
 
 * **BREAKING:** Refactored `insets` to `inset` and it now accepts Float/Double/CGFloat/Int/UInt as well as EdgeInsets
