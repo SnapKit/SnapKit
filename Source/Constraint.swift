@@ -138,24 +138,24 @@ internal class ConcreteConstraint: Constraint {
     }
     
     internal override func activate() -> Void {
-        if NSLayoutConstraint.respondsToSelector("activateConstraints:") && self.installInfo != nil {
-            let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
-            if layoutConstraints.count > 0 {
-                NSLayoutConstraint.activateConstraints(layoutConstraints)
-            }
-        } else {
+        guard #available(iOS 8.0, OSX 10.10, *), self.installInfo != nil else {
             self.install()
+            return
+        }
+        let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
+        if layoutConstraints.count > 0 {
+            NSLayoutConstraint.activateConstraints(layoutConstraints)
         }
     }
     
     internal override func deactivate() -> Void {
-        if NSLayoutConstraint.respondsToSelector("deactivateConstraints:") && self.installInfo != nil {
-            let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
-            if layoutConstraints.count > 0 {
-                NSLayoutConstraint.deactivateConstraints(layoutConstraints)
-            }
-        } else {
-            self.uninstall()
+        guard #available(iOS 8.0, OSX 10.10, *), self.installInfo != nil else {
+            self.install()
+            return
+        }
+        let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
+        if layoutConstraints.count > 0 {
+            NSLayoutConstraint.deactivateConstraints(layoutConstraints)
         }
     }
     
