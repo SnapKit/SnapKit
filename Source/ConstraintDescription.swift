@@ -153,14 +153,23 @@ public protocol ConstraintDescriptionExtendable: ConstraintDescriptionRelatable 
     var baseline: ConstraintDescriptionExtendable { get }
     
     #if os(iOS)
+    @available(iOS 8.0, *)
     var firstBaseline: ConstraintDescriptionExtendable { get }
+    @available(iOS 8.0, *)
     var leftMargin: ConstraintDescriptionExtendable { get }
+    @available(iOS 8.0, *)
     var rightMargin: ConstraintDescriptionExtendable { get }
+    @available(iOS 8.0, *)
     var topMargin: ConstraintDescriptionExtendable { get }
+    @available(iOS 8.0, *)
     var bottomMargin: ConstraintDescriptionExtendable { get }
+    @available(iOS 8.0, *)
     var leadingMargin: ConstraintDescriptionExtendable { get }
+    @available(iOS 8.0, *)
     var trailingMargin: ConstraintDescriptionExtendable { get }
+    @available(iOS 8.0, *)
     var centerXWithinMargins: ConstraintDescriptionExtendable { get }
+    @available(iOS 8.0, *)
     var centerYWithinMargins: ConstraintDescriptionExtendable { get }
     #endif
 }
@@ -183,14 +192,23 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal var baseline: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Baseline) }
     
     #if os(iOS)
+    @available(iOS 8.0, *)
     internal var firstBaseline: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.FirstBaseline) }
+    @available(iOS 8.0, *)
     internal var leftMargin: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.LeftMargin) }
+    @available(iOS 8.0, *)
     internal var rightMargin: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.RightMargin) }
+    @available(iOS 8.0, *)
     internal var topMargin: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.TopMargin) }
+    @available(iOS 8.0, *)
     internal var bottomMargin: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.BottomMargin) }
+    @available(iOS 8.0, *)
     internal var leadingMargin: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.LeadingMargin) }
+    @available(iOS 8.0, *)
     internal var trailingMargin: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.TrailingMargin) }
+    @available(iOS 8.0, *)
     internal var centerXWithinMargins: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.CenterXWithinMargins) }
+    @available(iOS 8.0, *)
     internal var centerYWithinMargins: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.CenterYWithinMargins) }
     #endif
     

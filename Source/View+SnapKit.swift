@@ -70,30 +70,39 @@ public extension View {
     #if os(iOS)
     
     /// first baseline position
+    @available(iOS 8.0, *)
     public var snp_firstBaseline: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.FirstBaseline) }
     
     /// left margin
+    @available(iOS 8.0, *)
     public var snp_leftMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.LeftMargin) }
     
     /// right margin
+    @available(iOS 8.0, *)
     public var snp_rightMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.RightMargin) }
     
     /// top margin
+    @available(iOS 8.0, *)
     public var snp_topMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.TopMargin) }
     
     /// bottom margin
+    @available(iOS 8.0, *)
     public var snp_bottomMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.BottomMargin) }
     
     /// leading margin
+    @available(iOS 8.0, *)
     public var snp_leadingMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.LeadingMargin) }
     
     /// trailing margin
+    @available(iOS 8.0, *)
     public var snp_trailingMargin: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.TrailingMargin) }
     
     /// centerX within margins
+    @available(iOS 8.0, *)
     public var snp_centerXWithinMargins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterXWithinMargins) }
     
     /// centerY within margins
+    @available(iOS 8.0, *)
     public var snp_centerYWithinMargins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterYWithinMargins) }
     
     #endif
@@ -110,9 +119,11 @@ public extension View {
     #if os(iOS)
     
     // top + left + bottom + right margins
+    @available(iOS 8.0, *)
     public var snp_margins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.Margins) }
     
     // centerX + centerY within margins
+    @available(iOS 8.0, *)
     public var snp_centerWithinMargins: ConstraintItem { return ConstraintItem(object: self, attributes: ConstraintAttributes.CenterWithinMargins) }
     
     #endif
