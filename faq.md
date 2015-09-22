@@ -7,7 +7,7 @@ permalink: /faq/
 
 #### CocoaPods won't let me install SnapKit into my iOS 7.0 project?
 
-SnapKit doesn't use any iOS 8.0 specific APIs, but since Xcode does not support integrating Swift code without dynamic frameworks it cannot be integrated via a framework for iOS 7.0 deployments. You should instead embed the source code directly into your application.
+SnapKit doesn't use any iOS 8.0 specific APIs, but since Xcode does not support integrating Swift code without dynamic frameworks it cannot be integrated via a framework for iOS 7.0 deployments. You should instead embed the source code directly into your application. See the [Legacy Platforms](/legacy-platforms) documentation.
 
 #### Do you have any examples?
 
