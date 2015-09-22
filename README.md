@@ -30,7 +30,7 @@ class MyViewController: UIViewController {
 
 * [Documentation](http://snapkit.io/docs/)
 * [F.A.Q.](http://snapkit.io/faq/)
-* [Legacy Platforms (< iOS 8.0, < OS X 10.10)](https://github.com/SnapKit/SnapKit/blob/develop/LEGACY_PLATFORMS.md)
+* [Legacy Platforms (iOS 7.0, OS X 10.9)](http://snapkit.io/legacy-platforms/)
 
 ## License
 
