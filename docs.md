@@ -32,7 +32,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'SnapKit', '~> 0.14.0'
+pod 'SnapKit', '~> 0.15.0'
 ```
 
 Then, run the following command:
@@ -55,7 +55,7 @@ $ brew install carthage
 To integrate SnapKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```
-github "SnapKit/SnapKit" >= 0.14.0
+github "SnapKit/SnapKit" >= 0.15.0
 ```
 
 ### Embedded Framework
