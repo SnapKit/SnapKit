@@ -9,7 +9,7 @@ id: docs
 * Swift 2.0
 * Xcode 7.0+
 
-> While SnapKit supports iOS 7.0 and OS X 10.9 these are considered legacy platforms, so you must manually integrate the source files directly. Please see the [Legacy Platforms](/legacy-platforms) documentation for more information and steps.
+> While SnapKit supports iOS 7.0 and OS X 10.9 these are considered legacy platforms, so you must manually integrate the source files directly. Please see the [Legacy Platforms](/legacy-platforms) page for more information and steps.
 
 ## Installing
 
@@ -32,7 +32,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'SnapKit'
+pod 'SnapKit', '~> 0.14.0'
 ```
 
 Then, run the following command:
@@ -55,7 +55,7 @@ $ brew install carthage
 To integrate SnapKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```
-github "SnapKit/SnapKit" >= 0.12.0
+github "SnapKit/SnapKit" >= 0.14.0
 ```
 
 ### Embedded Framework
