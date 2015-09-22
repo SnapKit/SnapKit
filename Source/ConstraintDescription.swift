@@ -93,9 +93,8 @@ public protocol ConstraintDescriptionRelatable: class {
     
     func equalTo(other: ConstraintItem) -> ConstraintDescriptionEditable
     func equalTo(other: View) -> ConstraintDescriptionEditable
-    #if os(iOS)
-    func equalTo(other: UILayoutSupport) -> ConstraintDescriptionEditable
-    #endif
+    @available(iOS 7.0, *)
+    func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable
     func equalTo(other: Float) -> ConstraintDescriptionEditable
     func equalTo(other: Double) -> ConstraintDescriptionEditable
     func equalTo(other: CGFloat) -> ConstraintDescriptionEditable
@@ -107,9 +106,8 @@ public protocol ConstraintDescriptionRelatable: class {
     
     func lessThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable
     func lessThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
-    #if os(iOS)
-    func lessThanOrEqualTo(other: UILayoutSupport) -> ConstraintDescriptionEditable
-    #endif
+    @available(iOS 7.0, *)
+    func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
     func lessThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable
     func lessThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable
     func lessThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable
@@ -121,9 +119,8 @@ public protocol ConstraintDescriptionRelatable: class {
     
     func greaterThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable
     func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
-    #if os(iOS)
-    func greaterThanOrEqualTo(other: UILayoutSupport) -> ConstraintDescriptionEditable
-    #endif
+    @available(iOS 7.0, *)
+    func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
     func greaterThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable
     func greaterThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable
     func greaterThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable
@@ -152,7 +149,6 @@ public protocol ConstraintDescriptionExtendable: ConstraintDescriptionRelatable 
     var centerY: ConstraintDescriptionExtendable { get }
     var baseline: ConstraintDescriptionExtendable { get }
     
-    #if os(iOS)
     @available(iOS 8.0, *)
     var firstBaseline: ConstraintDescriptionExtendable { get }
     @available(iOS 8.0, *)
@@ -171,7 +167,6 @@ public protocol ConstraintDescriptionExtendable: ConstraintDescriptionRelatable 
     var centerXWithinMargins: ConstraintDescriptionExtendable { get }
     @available(iOS 8.0, *)
     var centerYWithinMargins: ConstraintDescriptionExtendable { get }
-    #endif
 }
 
 /**
@@ -191,7 +186,6 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal var centerY: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.CenterY) }
     internal var baseline: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Baseline) }
     
-    #if os(iOS)
     @available(iOS 8.0, *)
     internal var firstBaseline: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.FirstBaseline) }
     @available(iOS 8.0, *)
@@ -210,7 +204,6 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal var centerXWithinMargins: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.CenterXWithinMargins) }
     @available(iOS 8.0, *)
     internal var centerYWithinMargins: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.CenterYWithinMargins) }
-    #endif
     
     // MARK: initializer
     
@@ -227,11 +220,10 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func equalTo(other: View) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
-    #if os(iOS)
-    internal func equalTo(other: UILayoutSupport) -> ConstraintDescriptionEditable {
+    @available(iOS 7.0, *)
+    internal func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
-    #endif
     internal func equalTo(other: Float) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
@@ -265,11 +257,10 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func lessThanOrEqualTo(other: View) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    #if os(iOS)
-    internal func lessThanOrEqualTo(other: UILayoutSupport) -> ConstraintDescriptionEditable {
+    @available(iOS 7.0, *)
+    internal func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    #endif
     internal func lessThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
@@ -303,11 +294,10 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    #if os(iOS)
-    internal func greaterThanOrEqualTo(other: UILayoutSupport) -> ConstraintDescriptionEditable {
+    @available(iOS 7.0, *)
+    internal func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    #endif
     internal func greaterThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
@@ -552,13 +542,10 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
         return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
     }
     
-    #if os(iOS)
-    
-    private func constrainTo(other: UILayoutSupport, relation: ConstraintRelation) -> ConstraintDescription {
+    @available(iOS 7.0, *)
+    private func constrainTo(other: LayoutSupport, relation: ConstraintRelation) -> ConstraintDescription {
         return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
     }
-    
-    #endif
     
     private func constrainTo(other: Float, relation: ConstraintRelation) -> ConstraintDescription {
         self.constant = other

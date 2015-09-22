@@ -44,13 +44,10 @@ public class ConstraintItem {
         return self.object as? View
     }
     
-    #if os(iOS)
-    
-    internal var layoutSupport: UILayoutSupport? {
-        return self.object as? UILayoutSupport
+    @available(iOS 7.0, *)
+    internal var layoutSupport: LayoutSupport? {
+        return self.object as? LayoutSupport
     }
-    
-    #endif
 }
 
 

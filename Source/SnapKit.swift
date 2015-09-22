@@ -24,9 +24,11 @@
 #if os(iOS)
 import UIKit
 public typealias InterfaceLayoutDirection = UIUserInterfaceLayoutDirection
+public typealias LayoutSupport = UILayoutSupport
 #else
 import AppKit
 public typealias InterfaceLayoutDirection = NSUserInterfaceLayoutDirection
+public class LayoutSupport {}
 #endif
 
 /**

@@ -65,8 +65,6 @@ public class ConstraintMaker {
     /// baseline position
     public var baseline: ConstraintDescriptionExtendable { return self.makeConstraintDescription(ConstraintAttributes.Baseline) }
     
-    #if os(iOS)
-    
     /// firse baseline position
     @available(iOS 8.0, *)
     public var firstBaseline: ConstraintDescriptionExtendable { return self.makeConstraintDescription(ConstraintAttributes.FirstBaseline) }
@@ -103,8 +101,6 @@ public class ConstraintMaker {
     @available(iOS 8.0, *)
     public var centerYWithinMargins: ConstraintDescriptionExtendable { return self.makeConstraintDescription(ConstraintAttributes.CenterYWithinMargins) }
     
-    #endif
-    
     /// top + left + bottom + right edges
     public var edges: ConstraintDescriptionExtendable { return self.makeConstraintDescription(ConstraintAttributes.Edges) }
     
@@ -114,8 +110,6 @@ public class ConstraintMaker {
     // centerX + centerY positions
     public var center: ConstraintDescriptionExtendable { return self.makeConstraintDescription(ConstraintAttributes.Center) }
     
-    #if os(iOS)
-    
     // top + left + bottom + right margins
     @available(iOS 8.0, *)
     public var margins: ConstraintDescriptionExtendable { return self.makeConstraintDescription(ConstraintAttributes.Margins) }
@@ -123,8 +117,6 @@ public class ConstraintMaker {
     // centerX + centerY within margins
     @available(iOS 8.0, *)
     public var centerWithinMargins: ConstraintDescriptionExtendable { return self.makeConstraintDescription(ConstraintAttributes.CenterWithinMargins) }
-    
-    #endif
     
     internal init(view: View, file: String, line: UInt) {
         self.view = view

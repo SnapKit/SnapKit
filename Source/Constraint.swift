@@ -138,10 +138,16 @@ internal class ConcreteConstraint: Constraint {
     }
     
     internal override func activate() -> Void {
-        guard #available(iOS 8.0, OSX 10.10, *), self.installInfo != nil else {
+        guard self.installInfo != nil else {
             self.install()
             return
         }
+        #if SNAPKIT_DEPLOYMENT_LEGACY
+        guard #available(iOS 8.0, OSX 10.10, *) else {
+            self.install()
+            return
+        }
+        #endif
         let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
         if layoutConstraints.count > 0 {
             NSLayoutConstraint.activateConstraints(layoutConstraints)
@@ -149,10 +155,14 @@ internal class ConcreteConstraint: Constraint {
     }
     
     internal override func deactivate() -> Void {
-        guard #available(iOS 8.0, OSX 10.10, *), self.installInfo != nil else {
-            self.install()
+        guard self.installInfo != nil else {
             return
         }
+        #if SNAPKIT_DEPLOYMENT_LEGACY
+        guard #available(iOS 8.0, OSX 10.10, *) else {
+            return
+        }
+        #endif
         let layoutConstraints = self.installInfo!.layoutConstraints.allObjects as! [LayoutConstraint]
         if layoutConstraints.count > 0 {
             NSLayoutConstraint.deactivateConstraints(layoutConstraints)
@@ -241,7 +251,11 @@ internal class ConcreteConstraint: Constraint {
             let layoutConstant: CGFloat = layoutToAttribute.snp_constantForValue(self.constant)
             
             // get layout to
-            var layoutTo: View? = self.toItem.view
+            #if os(iOS)
+            var layoutTo: AnyObject? = self.toItem.view ?? self.toItem.layoutSupport
+            #else
+            var layoutTo: AnyObject? = self.toItem.view
+            #endif
             if layoutTo == nil && layoutToAttribute != .Width && layoutToAttribute != .Height {
                 layoutTo = installOnView
             }
