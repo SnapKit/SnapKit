@@ -1,6 +1,12 @@
 CHANGELOG
 =======
 
+# 0.15.0 - September 22 2015
+
+* Fixed issues with layout guides on iOS 9
+* Fixed warnings related to `guard #available` statements
+* Better support for legacy platforms (iOS 7 / OS X 10.9). [Documentation Here](http://snapkit.io/legacy-platforms)
+
 # 0.14.0 - September 12 2015
 
 * Swift 2.0 / Xcode 7 GM
