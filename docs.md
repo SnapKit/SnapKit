@@ -6,9 +6,10 @@ id: docs
 ## Requirements
 
 * iOS 7.0+ / OS X 10.9+
-* Xcode 6.3+
+* Swift 2.0
+* Xcode 7.0+
 
-> While SnapKit supports iOS 7.0, frameworks are not supported for iOS 7.0 so you must manually embed the framework for non app store apps or integrate the source files directly.
+> While SnapKit supports iOS 7.0, frameworks are not supported for iOS 7.0 so you must manually embed the framework for non app store apps or integrate the source files directly. Please see the [Legacy Platforms](https://github.com/SnapKit/SnapKit/blob/develop/LEGACY_PLATFORMS.md) readme.
 
 ## Installing
 
@@ -31,7 +32,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'SnapKit', '~> 0.12.0'
+pod 'SnapKit'
 ```
 
 Then, run the following command:
