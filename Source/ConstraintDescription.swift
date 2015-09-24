@@ -95,6 +95,8 @@ public protocol ConstraintDescriptionRelatable: class {
     func equalTo(other: View) -> ConstraintDescriptionEditable
     @available(iOS 7.0, *)
     func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable
+    @available(iOS 9.0, *)
+    func equalTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
     func equalTo(other: Float) -> ConstraintDescriptionEditable
     func equalTo(other: Double) -> ConstraintDescriptionEditable
     func equalTo(other: CGFloat) -> ConstraintDescriptionEditable
@@ -108,6 +110,8 @@ public protocol ConstraintDescriptionRelatable: class {
     func lessThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
     @available(iOS 7.0, *)
     func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
+    @available(iOS 9.0, *)
+    func lessThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
     func lessThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable
     func lessThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable
     func lessThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable
@@ -121,6 +125,8 @@ public protocol ConstraintDescriptionRelatable: class {
     func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
     @available(iOS 7.0, *)
     func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
+    @available(iOS 9.0, *)
+    func greaterThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
     func greaterThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable
     func greaterThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable
     func greaterThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable
@@ -224,6 +230,10 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
+    @available(iOS 9.0, *)
+    internal func equalTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
+        return self.constrainTo(other, relation: .Equal)
+    }
     internal func equalTo(other: Float) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
@@ -259,6 +269,10 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     }
     @available(iOS 7.0, *)
     internal func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
+        return self.constrainTo(other, relation: .LessThanOrEqualTo)
+    }
+    @available(iOS 9.0, *)
+    internal func lessThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     internal func lessThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable {
@@ -297,6 +311,10 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     @available(iOS 7.0, *)
     internal func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
+    }
+    @available(iOS 9.0, *)
+    internal func greaterThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
+        return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     internal func greaterThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
@@ -544,6 +562,11 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     
     @available(iOS 7.0, *)
     private func constrainTo(other: LayoutSupport, relation: ConstraintRelation) -> ConstraintDescription {
+        return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
+    }
+    
+    @available(iOS 9.0, *)
+    private func constrainTo(other: NSLayoutAnchor, relation: ConstraintRelation) -> ConstraintDescription {
         return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
     }
     
