@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 #else
 import AppKit
@@ -464,7 +464,7 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
         return self.priority(750.0)
     }
     internal func priorityMedium() -> ConstraintDescriptionFinalizable {
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
         return self.priority(500.0)
         #else
         return self.priority(501.0)
