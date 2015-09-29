@@ -1,4 +1,4 @@
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 typealias View = UIView
 extension View {
@@ -30,7 +30,7 @@ class SnapKitTests: XCTestCase {
     }
     
     func testLayoutGuideConstraints() {
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
         let vc = UIViewController()
         vc.view = UIView(frame: CGRectMake(0, 0, 300, 300))
         
