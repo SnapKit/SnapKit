@@ -95,7 +95,7 @@ public protocol ConstraintDescriptionRelatable: class {
     func equalTo(other: View) -> ConstraintDescriptionEditable
     @available(iOS 7.0, *)
     func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable
-    @available(iOS 9.0, *)
+    @available(iOS 9.0, OSX 10.11, *)
     func equalTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
     func equalTo(other: Float) -> ConstraintDescriptionEditable
     func equalTo(other: Double) -> ConstraintDescriptionEditable
@@ -110,7 +110,7 @@ public protocol ConstraintDescriptionRelatable: class {
     func lessThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
     @available(iOS 7.0, *)
     func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
-    @available(iOS 9.0, *)
+    @available(iOS 9.0, OSX 10.11, *)
     func lessThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
     func lessThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable
     func lessThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable
@@ -125,7 +125,7 @@ public protocol ConstraintDescriptionRelatable: class {
     func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
     @available(iOS 7.0, *)
     func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
-    @available(iOS 9.0, *)
+    @available(iOS 9.0, OSX 10.11, *)
     func greaterThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
     func greaterThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable
     func greaterThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable
@@ -230,7 +230,7 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
-    @available(iOS 9.0, *)
+    @available(iOS 9.0, OSX 10.11, *)
     internal func equalTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
@@ -271,7 +271,7 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    @available(iOS 9.0, *)
+    @available(iOS 9.0, OSX 10.11, *)
     internal func lessThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
@@ -312,7 +312,7 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    @available(iOS 9.0, *)
+    @available(iOS 9.0, OSX 10.11, *)
     internal func greaterThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
@@ -565,7 +565,7 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
         return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
     }
     
-    @available(iOS 9.0, *)
+    @available(iOS 9.0, OSX 10.11, *)
     private func constrainTo(other: NSLayoutAnchor, relation: ConstraintRelation) -> ConstraintDescription {
         return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
     }
