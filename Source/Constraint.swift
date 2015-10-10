@@ -315,7 +315,15 @@ internal class ConcreteConstraint: Constraint {
         }
         
         // add constraints
-        installOnView!.addConstraints(newLayoutConstraints)
+        #if SNAPKIT_DEPLOYMENT_LEGACY && !os(OSX)
+        if #available(iOS 8.0, *) {
+            NSLayoutConstraint.activateConstraints(newLayoutConstraints)
+        } else {
+            installOnView!.addConstraints(newLayoutConstraints)
+        }
+        #else
+            NSLayoutConstraint.activateConstraints(newLayoutConstraints)
+        #endif
         
         // set install info
         self.installInfo = ConcreteConstraintInstallInfo(view: installOnView, layoutConstraints: NSHashTable.weakObjectsHashTable())
@@ -337,11 +345,16 @@ internal class ConcreteConstraint: Constraint {
             let installedLayoutConstraints = installInfo.layoutConstraints.allObjects as? [LayoutConstraint] {
                 
                 if installedLayoutConstraints.count > 0 {
-                    
-                    if let installedOnView = installInfo.view {
-                        // remove the constraints from the UIView's storage
+                    // remove the constraints from the UIView's storage
+                    #if SNAPKIT_DEPLOYMENT_LEGACY && !os(OSX)
+                    if #available(iOS 8.0, *) {
+                        NSLayoutConstraint.deactivateConstraints(installedLayoutConstraints)
+                    } else if let installedOnView = installInfo.view {
                         installedOnView.removeConstraints(installedLayoutConstraints)
                     }
+                    #else
+                        NSLayoutConstraint.deactivateConstraints(installedLayoutConstraints)
+                    #endif
                     
                     // remove the constraints from the from item view
                     if let fromView = self.fromItem.view {
