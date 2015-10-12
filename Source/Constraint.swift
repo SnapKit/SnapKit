@@ -61,6 +61,7 @@ public class Constraint {
     internal var makerFile: String = "Unknown"
     internal var makerLine: UInt = 0
     
+    internal(set) public var location : SourceLocation?
 }
 
 /**
@@ -195,13 +196,15 @@ internal class ConcreteConstraint: Constraint {
     
     private var installInfo: ConcreteConstraintInstallInfo? = nil
     
-    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float) {
+    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float, location : SourceLocation?) {
         self.fromItem = fromItem
         self.toItem = toItem
         self.relation = relation
         self.constant = constant
         self.multiplier = multiplier
         self.priority = priority
+        super.init()
+        self.location = location
     }
     
     internal func installOnView(updateExisting updateExisting: Bool = false, file: String? = nil, line: UInt? = nil) -> [LayoutConstraint] {

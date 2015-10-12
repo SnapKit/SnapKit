@@ -197,25 +197,31 @@ public class ConstraintDescriptionRelatable {
     }
     
 
-    public func equalTo(other: RelationTarget) -> ConstraintDescriptionEditable {
-        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .Equal))
+    public func equalTo(other: RelationTarget, file : String = __FILE__, line : UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .Equal, location: location))
     }
-    public func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
-        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .Equal))
-    }
-    
-    public func lessThanOrEqualTo(other: RelationTarget) -> ConstraintDescriptionEditable {
-        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .LessThanOrEqualTo))
-    }
-    public func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
-        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .LessThanOrEqualTo))
+    public func equalTo(other: LayoutSupport, file : String = __FILE__, line : UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .Equal, location: location))
     }
     
-    public func greaterThanOrEqualTo(other: RelationTarget) -> ConstraintDescriptionEditable {
-        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .GreaterThanOrEqualTo))
+    public func lessThanOrEqualTo(other: RelationTarget, file : String = __FILE__, line : UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .LessThanOrEqualTo, location: location))
     }
-    public func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
-        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .GreaterThanOrEqualTo))
+    public func lessThanOrEqualTo(other: LayoutSupport, file : String = __FILE__, line : UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .LessThanOrEqualTo, location: location))
+    }
+    
+    public func greaterThanOrEqualTo(other: RelationTarget, file : String = __FILE__, line : UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .GreaterThanOrEqualTo, location: location))
+    }
+    public func greaterThanOrEqualTo(other: LayoutSupport, file : String = __FILE__, line : UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .GreaterThanOrEqualTo, location: location))
     }
 }
 
@@ -300,6 +306,8 @@ public class ConstraintDescriptionExtendable: ConstraintDescriptionRelatable {
     Used to internally manage building constraint
  */
 internal class ConstraintDescription {
+    
+    private var location : SourceLocation?
     
     private var left: ConstraintDescription { return self.addConstraint(ConstraintAttributes.Left) }
     private var top: ConstraintDescription { return self.addConstraint(ConstraintAttributes.Top) }
@@ -418,7 +426,9 @@ internal class ConstraintDescription {
                 relation: self.relation!,
                 constant: self.constant,
                 multiplier: self.multiplier,
-                priority: self.priority)
+                priority: self.priority,
+                location: self.location
+            )
         }
         return self.concreteConstraint!
     }
@@ -470,7 +480,10 @@ internal class ConstraintDescription {
         return self
     }
     
-    private func constrainTo(other: RelationTarget, relation: ConstraintRelation) -> ConstraintDescription {
+    private func constrainTo(other: RelationTarget, relation: ConstraintRelation, location : SourceLocation) -> ConstraintDescription {
+        
+        self.location = location
+        
         if let constant = other as? FloatConvertible {
             self.constant = constant.floatValue
         }
@@ -494,7 +507,7 @@ internal class ConstraintDescription {
     }
     
     @available(iOS 7.0, *)
-    private func constrainTo(other: LayoutSupport, relation: ConstraintRelation) -> ConstraintDescription {
+    private func constrainTo(other: LayoutSupport, relation: ConstraintRelation, location : SourceLocation) -> ConstraintDescription {
         return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation, location: location)
     }
     
