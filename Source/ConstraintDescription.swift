@@ -27,6 +27,41 @@ import UIKit
 import AppKit
 #endif
 
+// Reduce duplication by centralizing casts
+public protocol FloatConvertible {
+    var floatValue : Float { get }
+}
+
+extension Float : FloatConvertible {
+    public var floatValue : Float {
+        return self
+    }
+}
+
+extension Int : FloatConvertible {
+    public var floatValue : Float {
+        return Float(self)
+    }
+}
+
+extension UInt : FloatConvertible {
+    public var floatValue : Float {
+        return Float(self)
+    }
+}
+
+extension Double : FloatConvertible {
+    public var floatValue : Float {
+        return Float(self)
+    }
+}
+
+extension CGFloat : FloatConvertible {
+    public var floatValue : Float {
+        return Float(self)
+    }
+}
+
 /**
     Used to expose the final API of a `ConstraintDescription` which allows getting a constraint from it
  */
@@ -41,11 +76,7 @@ public protocol ConstraintDescriptionFinalizable: class {
  */
 public protocol ConstraintDescriptionPriortizable: ConstraintDescriptionFinalizable {
     
-    func priority(priority: Float) -> ConstraintDescriptionFinalizable
-    func priority(priority: Double) -> ConstraintDescriptionFinalizable
-    func priority(priority: CGFloat) -> ConstraintDescriptionFinalizable
-    func priority(priority: UInt) -> ConstraintDescriptionFinalizable
-    func priority(priority: Int) -> ConstraintDescriptionFinalizable
+    func priority(priority: FloatConvertible) -> ConstraintDescriptionFinalizable
     func priorityRequired() -> ConstraintDescriptionFinalizable
     func priorityHigh() -> ConstraintDescriptionFinalizable
     func priorityMedium() -> ConstraintDescriptionFinalizable
@@ -57,32 +88,16 @@ public protocol ConstraintDescriptionPriortizable: ConstraintDescriptionFinaliza
 */
 public protocol ConstraintDescriptionEditable: ConstraintDescriptionPriortizable {
 
-    func multipliedBy(amount: Float) -> ConstraintDescriptionEditable
-    func multipliedBy(amount: Double) -> ConstraintDescriptionEditable
-    func multipliedBy(amount: CGFloat) -> ConstraintDescriptionEditable
-    func multipliedBy(amount: Int) -> ConstraintDescriptionEditable
-    func multipliedBy(amount: UInt) -> ConstraintDescriptionEditable
+    func multipliedBy(amount: FloatConvertible) -> ConstraintDescriptionEditable
     
-    func dividedBy(amount: Float) -> ConstraintDescriptionEditable
-    func dividedBy(amount: Double) -> ConstraintDescriptionEditable
-    func dividedBy(amount: CGFloat) -> ConstraintDescriptionEditable
-    func dividedBy(amount: Int) -> ConstraintDescriptionEditable
-    func dividedBy(amount: UInt) -> ConstraintDescriptionEditable
+    func dividedBy(amount: FloatConvertible) -> ConstraintDescriptionEditable
 
-    func offset(amount: Float) -> ConstraintDescriptionEditable
-    func offset(amount: Double) -> ConstraintDescriptionEditable
-    func offset(amount: CGFloat) -> ConstraintDescriptionEditable
-    func offset(amount: Int) -> ConstraintDescriptionEditable
-    func offset(amount: UInt) -> ConstraintDescriptionEditable
+    func offset(amount: FloatConvertible) -> ConstraintDescriptionEditable
     func offset(amount: CGPoint) -> ConstraintDescriptionEditable
     func offset(amount: CGSize) -> ConstraintDescriptionEditable
     func offset(amount: EdgeInsets) -> ConstraintDescriptionEditable
     
-    func inset(amount: Float) -> ConstraintDescriptionEditable
-    func inset(amount: Double) -> ConstraintDescriptionEditable
-    func inset(amount: CGFloat) -> ConstraintDescriptionEditable
-    func inset(amount: Int) -> ConstraintDescriptionEditable
-    func inset(amount: UInt) -> ConstraintDescriptionEditable
+    func inset(amount: FloatConvertible) -> ConstraintDescriptionEditable
     func inset(amount: EdgeInsets) -> ConstraintDescriptionEditable
 }
 
@@ -97,11 +112,7 @@ public protocol ConstraintDescriptionRelatable: class {
     func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable
     @available(iOS 9.0, OSX 10.11, *)
     func equalTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
-    func equalTo(other: Float) -> ConstraintDescriptionEditable
-    func equalTo(other: Double) -> ConstraintDescriptionEditable
-    func equalTo(other: CGFloat) -> ConstraintDescriptionEditable
-    func equalTo(other: Int) -> ConstraintDescriptionEditable
-    func equalTo(other: UInt) -> ConstraintDescriptionEditable
+    func equalTo(other: FloatConvertible) -> ConstraintDescriptionEditable
     func equalTo(other: CGSize) -> ConstraintDescriptionEditable
     func equalTo(other: CGPoint) -> ConstraintDescriptionEditable
     func equalTo(other: EdgeInsets) -> ConstraintDescriptionEditable
@@ -112,11 +123,7 @@ public protocol ConstraintDescriptionRelatable: class {
     func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
     @available(iOS 9.0, OSX 10.11, *)
     func lessThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: Int) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: UInt) -> ConstraintDescriptionEditable
+    func lessThanOrEqualTo(other: FloatConvertible) -> ConstraintDescriptionEditable
     func lessThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable
     func lessThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable
     func lessThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable
@@ -127,11 +134,7 @@ public protocol ConstraintDescriptionRelatable: class {
     func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
     @available(iOS 9.0, OSX 10.11, *)
     func greaterThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: Int) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: UInt) -> ConstraintDescriptionEditable
+    func greaterThanOrEqualTo(other: FloatConvertible) -> ConstraintDescriptionEditable
     func greaterThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable
     func greaterThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable
     func greaterThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable
@@ -234,20 +237,8 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func equalTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
-    internal func equalTo(other: Float) -> ConstraintDescriptionEditable {
+    internal func equalTo(other: FloatConvertible) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
-    }
-    internal func equalTo(other: Double) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .Equal)
-    }
-    internal func equalTo(other: CGFloat) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .Equal)
-    }
-    internal func equalTo(other: Int) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .Equal)
-    }
-    internal func equalTo(other: UInt) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .Equal)
     }
     internal func equalTo(other: CGSize) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
@@ -275,20 +266,8 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func lessThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    internal func lessThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable {
+    internal func lessThanOrEqualTo(other: FloatConvertible) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: Int) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: UInt) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
     }
     internal func lessThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
@@ -316,20 +295,8 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func greaterThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    internal func greaterThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable {
+    internal func greaterThanOrEqualTo(other: FloatConvertible) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: Int) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: UInt) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
     }
     internal func greaterThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
@@ -343,57 +310,21 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     
     // MARK: multiplier
     
-    internal func multipliedBy(amount: Float) -> ConstraintDescriptionEditable {
-        self.multiplier = amount
+    internal func multipliedBy(amount: FloatConvertible) -> ConstraintDescriptionEditable {
+        self.multiplier = amount.floatValue
         return self
-    }
-    internal func multipliedBy(amount: Double) -> ConstraintDescriptionEditable {
-        return self.multipliedBy(Float(amount))
-    }
-    internal func multipliedBy(amount: CGFloat) -> ConstraintDescriptionEditable {
-        return self.multipliedBy(Float(amount))
-    }
-    internal func multipliedBy(amount: Int) -> ConstraintDescriptionEditable {
-        return self.multipliedBy(Float(amount))
-    }
-    internal func multipliedBy(amount: UInt) -> ConstraintDescriptionEditable {
-        return self.multipliedBy(Float(amount))
     }
     
-    internal func dividedBy(amount: Float) -> ConstraintDescriptionEditable {
-        self.multiplier = 1.0 / amount;
+    internal func dividedBy(amount: FloatConvertible) -> ConstraintDescriptionEditable {
+        self.multiplier = 1.0 / amount.floatValue;
         return self
-    }
-    internal func dividedBy(amount: Double) -> ConstraintDescriptionEditable {
-        return self.dividedBy(Float(amount))
-    }
-    internal func dividedBy(amount: CGFloat) -> ConstraintDescriptionEditable {
-        return self.dividedBy(Float(amount))
-    }
-    internal func dividedBy(amount: Int) -> ConstraintDescriptionEditable {
-        return self.dividedBy(Float(amount))
-    }
-    internal func dividedBy(amount: UInt) -> ConstraintDescriptionEditable {
-        return self.dividedBy(Float(amount))
     }
     
     // MARK: offset
     
-    internal func offset(amount: Float) -> ConstraintDescriptionEditable {
-        self.constant = amount
+    internal func offset(amount: FloatConvertible) -> ConstraintDescriptionEditable {
+        self.constant = amount.floatValue
         return self
-    }
-    internal func offset(amount: Double) -> ConstraintDescriptionEditable {
-        return self.offset(Float(amount))
-    }
-    internal func offset(amount: CGFloat) -> ConstraintDescriptionEditable {
-        return self.offset(Float(amount))
-    }
-    internal func offset(amount: Int) -> ConstraintDescriptionEditable {
-        return self.offset(Float(amount))
-    }
-    internal func offset(amount: UInt) -> ConstraintDescriptionEditable {
-        return self.offset(Float(amount))
     }
     internal func offset(amount: CGPoint) -> ConstraintDescriptionEditable {
         self.constant = amount
@@ -410,27 +341,8 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     
     // MARK: inset
     
-    internal func inset(amount: Float) -> ConstraintDescriptionEditable {
-        let value = CGFloat(amount)
-        self.constant = EdgeInsets(top: value, left: value, bottom: -value, right: -value)
-        return self
-    }
-    internal func inset(amount: Double) -> ConstraintDescriptionEditable {
-        let value = CGFloat(amount)
-        self.constant = EdgeInsets(top: value, left: value, bottom: -value, right: -value)
-        return self
-    }
-    internal func inset(amount: CGFloat) -> ConstraintDescriptionEditable {
-        self.constant = EdgeInsets(top: amount, left: amount, bottom: -amount, right: -amount)
-        return self
-    }
-    internal func inset(amount: Int) -> ConstraintDescriptionEditable {
-        let value = CGFloat(amount)
-        self.constant = EdgeInsets(top: value, left: value, bottom: -value, right: -value)
-        return self
-    }
-    internal func inset(amount: UInt) -> ConstraintDescriptionEditable {
-        let value = CGFloat(amount)
+    internal func inset(amount: FloatConvertible) -> ConstraintDescriptionEditable {
+        let value = CGFloat(amount.floatValue)
         self.constant = EdgeInsets(top: value, left: value, bottom: -value, right: -value)
         return self
     }
@@ -441,21 +353,9 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     
     // MARK: priority
     
-    internal func priority(priority: Float) -> ConstraintDescriptionFinalizable {
-        self.priority = priority
+    internal func priority(priority: FloatConvertible) -> ConstraintDescriptionFinalizable {
+        self.priority = priority.floatValue
         return self
-    }
-    internal func priority(priority: Double) -> ConstraintDescriptionFinalizable {
-        return self.priority(Float(priority))
-    }
-    internal func priority(priority: CGFloat) -> ConstraintDescriptionFinalizable {
-        return self.priority(Float(priority))
-    }
-    func priority(priority: UInt) -> ConstraintDescriptionFinalizable {
-        return self.priority(Float(priority))
-    }
-    internal func priority(priority: Int) -> ConstraintDescriptionFinalizable {
-        return self.priority(Float(priority))
     }
     internal func priorityRequired() -> ConstraintDescriptionFinalizable {
         return self.priority(1000.0)
@@ -570,13 +470,8 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
         return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
     }
     
-    private func constrainTo(other: Float, relation: ConstraintRelation) -> ConstraintDescription {
-        self.constant = other
-        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
-    }
-    
-    private func constrainTo(other: Double, relation: ConstraintRelation) -> ConstraintDescription {
-        self.constant = other
+    private func constrainTo(other: FloatConvertible, relation: ConstraintRelation) -> ConstraintDescription {
+        self.constant = other.floatValue
         return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
     
