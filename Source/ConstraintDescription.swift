@@ -27,38 +27,82 @@ import UIKit
 import AppKit
 #endif
 
-// Reduce duplication by centralizing casts
-public protocol FloatConvertible {
+// Type of object that can be a target of relation constraint. 
+// Doesn't cover system protocols which can't be extended with additional conformances.
+public protocol RelationTarget {
+    var constraintItem : ConstraintItem { get }
+}
+
+// Type of things that can be converted to floats. Used to provide a catch all for
+// different numeric types.
+public protocol FloatConvertible : RelationTarget {
     var floatValue : Float { get }
 }
 
-extension Float : FloatConvertible {
+extension FloatConvertible {
+    public var constraintItem : ConstraintItem {
+        return ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
+    }
+}
+
+extension Float : FloatConvertible, RelationTarget {
     public var floatValue : Float {
         return self
     }
 }
 
-extension Int : FloatConvertible {
+extension Int : FloatConvertible, RelationTarget {
     public var floatValue : Float {
         return Float(self)
     }
 }
 
-extension UInt : FloatConvertible {
+extension UInt : FloatConvertible, RelationTarget {
     public var floatValue : Float {
         return Float(self)
     }
 }
 
-extension Double : FloatConvertible {
+extension Double : FloatConvertible, RelationTarget {
     public var floatValue : Float {
         return Float(self)
     }
 }
 
-extension CGFloat : FloatConvertible {
+extension CGFloat : FloatConvertible, RelationTarget {
     public var floatValue : Float {
         return Float(self)
+    }
+}
+
+@available(iOS 9.0, OSX 10.11, *)
+extension NSLayoutAnchor : RelationTarget {
+    public var constraintItem : ConstraintItem {
+        return ConstraintItem(object: self, attributes: ConstraintAttributes.None)
+    }
+}
+
+extension CGPoint : RelationTarget {
+    public var constraintItem : ConstraintItem {
+        return ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
+    }
+}
+
+extension CGSize : RelationTarget {
+    public var constraintItem : ConstraintItem {
+        return ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
+    }
+}
+
+extension EdgeInsets : RelationTarget {
+    public var constraintItem : ConstraintItem {
+        return ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
+    }
+}
+
+extension View : RelationTarget {
+    public var constraintItem : ConstraintItem {
+        return ConstraintItem(object: self, attributes: ConstraintAttributes.None)
     }
 }
 
@@ -107,38 +151,19 @@ public protocol ConstraintDescriptionEditable: ConstraintDescriptionPriortizable
 public protocol ConstraintDescriptionRelatable: class {
     
     func equalTo(other: ConstraintItem) -> ConstraintDescriptionEditable
-    func equalTo(other: View) -> ConstraintDescriptionEditable
+    func equalTo(other: RelationTarget) -> ConstraintDescriptionEditable
     @available(iOS 7.0, *)
     func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable
-    @available(iOS 9.0, OSX 10.11, *)
-    func equalTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
-    func equalTo(other: FloatConvertible) -> ConstraintDescriptionEditable
-    func equalTo(other: CGSize) -> ConstraintDescriptionEditable
-    func equalTo(other: CGPoint) -> ConstraintDescriptionEditable
-    func equalTo(other: EdgeInsets) -> ConstraintDescriptionEditable
     
     func lessThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
+    func lessThanOrEqualTo(other: RelationTarget) -> ConstraintDescriptionEditable
     @available(iOS 7.0, *)
     func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
-    @available(iOS 9.0, OSX 10.11, *)
-    func lessThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: FloatConvertible) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable
     
     func greaterThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
+    func greaterThanOrEqualTo(other: RelationTarget) -> ConstraintDescriptionEditable
     @available(iOS 7.0, *)
     func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
-    @available(iOS 9.0, OSX 10.11, *)
-    func greaterThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: FloatConvertible) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable
-
 }
 
 /**
@@ -226,27 +251,11 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func equalTo(other: ConstraintItem) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
-    internal func equalTo(other: View) -> ConstraintDescriptionEditable {
+    internal func equalTo(other: RelationTarget) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
     @available(iOS 7.0, *)
     internal func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .Equal)
-    }
-    @available(iOS 9.0, OSX 10.11, *)
-    internal func equalTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .Equal)
-    }
-    internal func equalTo(other: FloatConvertible) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .Equal)
-    }
-    internal func equalTo(other: CGSize) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .Equal)
-    }
-    internal func equalTo(other: CGPoint) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .Equal)
-    }
-    internal func equalTo(other: EdgeInsets) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
     
@@ -255,27 +264,11 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func lessThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
-    internal func lessThanOrEqualTo(other: View) -> ConstraintDescriptionEditable {
+    internal func lessThanOrEqualTo(other: RelationTarget) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     @available(iOS 7.0, *)
     internal func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    @available(iOS 9.0, OSX 10.11, *)
-    internal func lessThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: FloatConvertible) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
     
@@ -284,27 +277,11 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func greaterThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
-    internal func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionEditable {
+    internal func greaterThanOrEqualTo(other: RelationTarget) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     @available(iOS 7.0, *)
     internal func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
-    }
-    @available(iOS 9.0, OSX 10.11, *)
-    internal func greaterThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: FloatConvertible) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
     }
     
@@ -456,18 +433,13 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
         return self
     }
     
-    private func constrainTo(other: View, relation: ConstraintRelation) -> ConstraintDescription {
-        return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
+    private func constrainTo(other: RelationTarget, relation: ConstraintRelation) -> ConstraintDescription {
+        return constrainTo(other.constraintItem, relation: relation)
     }
     
     @available(iOS 7.0, *)
     private func constrainTo(other: LayoutSupport, relation: ConstraintRelation) -> ConstraintDescription {
-        return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
-    }
-    
-    @available(iOS 9.0, OSX 10.11, *)
-    private func constrainTo(other: NSLayoutAnchor, relation: ConstraintRelation) -> ConstraintDescription {
-        return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
+        return constrainTo(ConstraintItem(object: self, attributes: ConstraintAttributes.None), relation: relation)
     }
     
     private func constrainTo(other: FloatConvertible, relation: ConstraintRelation) -> ConstraintDescription {
@@ -475,18 +447,4 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
         return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
     }
     
-    private func constrainTo(other: CGSize, relation: ConstraintRelation) -> ConstraintDescription {
-        self.constant = other
-        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
-    }
-    
-    private func constrainTo(other: CGPoint, relation: ConstraintRelation) -> ConstraintDescription {
-        self.constant = other
-        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
-    }
-    
-    private func constrainTo(other: EdgeInsets, relation: ConstraintRelation) -> ConstraintDescription {
-        self.constant = other
-        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
-    }
 }
