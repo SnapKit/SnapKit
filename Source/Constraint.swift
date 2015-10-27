@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 #else
 import AppKit
@@ -119,7 +119,7 @@ internal class ConcreteConstraint: Constraint {
         self.updatePriority(Float(750.0))
     }
     internal override func updatePriorityMedium() -> Void {
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
         self.updatePriority(Float(500.0))
         #else
         self.updatePriority(Float(501.0))
@@ -251,7 +251,7 @@ internal class ConcreteConstraint: Constraint {
             let layoutConstant: CGFloat = layoutToAttribute.snp_constantForValue(self.constant)
             
             // get layout to
-            #if os(iOS)
+            #if os(iOS) || os(tvOS)
             var layoutTo: AnyObject? = self.toItem.view ?? self.toItem.layoutSupport
             #else
             var layoutTo: AnyObject? = self.toItem.view
@@ -315,7 +315,15 @@ internal class ConcreteConstraint: Constraint {
         }
         
         // add constraints
-        installOnView!.addConstraints(newLayoutConstraints)
+        #if SNAPKIT_DEPLOYMENT_LEGACY && !os(OSX)
+        if #available(iOS 8.0, *) {
+            NSLayoutConstraint.activateConstraints(newLayoutConstraints)
+        } else {
+            installOnView!.addConstraints(newLayoutConstraints)
+        }
+        #else
+            NSLayoutConstraint.activateConstraints(newLayoutConstraints)
+        #endif
         
         // set install info
         self.installInfo = ConcreteConstraintInstallInfo(view: installOnView, layoutConstraints: NSHashTable.weakObjectsHashTable())
@@ -337,11 +345,16 @@ internal class ConcreteConstraint: Constraint {
             let installedLayoutConstraints = installInfo.layoutConstraints.allObjects as? [LayoutConstraint] {
                 
                 if installedLayoutConstraints.count > 0 {
-                    
-                    if let installedOnView = installInfo.view {
-                        // remove the constraints from the UIView's storage
+                    // remove the constraints from the UIView's storage
+                    #if SNAPKIT_DEPLOYMENT_LEGACY && !os(OSX)
+                    if #available(iOS 8.0, *) {
+                        NSLayoutConstraint.deactivateConstraints(installedLayoutConstraints)
+                    } else if let installedOnView = installInfo.view {
                         installedOnView.removeConstraints(installedLayoutConstraints)
                     }
+                    #else
+                        NSLayoutConstraint.deactivateConstraints(installedLayoutConstraints)
+                    #endif
                     
                     // remove the constraints from the from item view
                     if let fromView = self.fromItem.view {
@@ -397,7 +410,7 @@ private extension NSLayoutAttribute {
         }
             // CGPoint
         else if let point = value as? CGPoint {
-            #if os(iOS)
+            #if os(iOS) || os(tvOS)
                 switch self {
                 case .Left, .CenterX, .LeftMargin, .CenterXWithinMargins: return point.x
                 case .Top, .CenterY, .TopMargin, .CenterYWithinMargins, .Baseline, .FirstBaseline: return point.y
@@ -422,7 +435,7 @@ private extension NSLayoutAttribute {
         }
             // EdgeInsets
         else if let insets = value as? EdgeInsets {
-            #if os(iOS)
+            #if os(iOS) || os(tvOS)
                 switch self {
                 case .Left, .CenterX, .LeftMargin, .CenterXWithinMargins: return insets.left
                 case .Top, .CenterY, .TopMargin, .CenterYWithinMargins, .Baseline, .FirstBaseline: return insets.top
