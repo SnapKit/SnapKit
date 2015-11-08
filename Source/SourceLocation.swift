@@ -23,10 +23,10 @@
 
 public struct SourceLocation {
     
-    public let file : String
-    public let line : UInt
+    public let file: String
+    public let line: UInt
     
-    init(file : String, line : UInt) {
+    init(file: String, line: UInt) {
         self.file = file
         self.line = line
     }

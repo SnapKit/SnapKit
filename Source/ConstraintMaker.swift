@@ -135,7 +135,7 @@ public class ConstraintMaker {
     }
     
     internal class func prepareConstraints(view view: View, location: SourceLocation, @noescape closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
-        let maker = ConstraintMaker(view: view, location : location)
+        let maker = ConstraintMaker(view: view, location: location)
         closure(make: maker)
         
         let constraints = maker.constraintDescriptions.map { $0.constraint }
@@ -157,7 +157,7 @@ public class ConstraintMaker {
         }
     }
     
-    internal class func remakeConstraints(view view: View, location : SourceLocation, @noescape closure: (make: ConstraintMaker) -> Void) {
+    internal class func remakeConstraints(view view: View, location: SourceLocation, @noescape closure: (make: ConstraintMaker) -> Void) {
         view.translatesAutoresizingMaskIntoConstraints = false
         let maker = ConstraintMaker(view: view, location: location)
         closure(make: maker)

@@ -27,87 +27,83 @@ import UIKit
 import AppKit
 #endif
 
-// Type of object that can be a target of relation constraint. 
-// Doesn't cover system protocols which can't be extended with additional conformances.
 public protocol RelationTarget {
-    var constraintItem : ConstraintItem { get }
+    var constraintItem: ConstraintItem { get }
 }
 
-// Type of things that can be converted to floats. Used to provide a catch all for
-// different numeric types.
-public protocol FloatConvertible : RelationTarget {
-    var floatValue : Float { get }
+public protocol FloatConvertible: RelationTarget {
+    var floatValue: Float { get }
 }
 
 extension FloatConvertible {
-    public var constraintItem : ConstraintItem {
+    public var constraintItem: ConstraintItem {
         return ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
     }
 }
 
-extension Float : FloatConvertible, RelationTarget {
-    public var floatValue : Float {
+extension Float: FloatConvertible, RelationTarget {
+    public var floatValue: Float {
         return self
     }
 }
 
-extension Int : FloatConvertible, RelationTarget {
-    public var floatValue : Float {
+extension Int: FloatConvertible, RelationTarget {
+    public var floatValue: Float {
         return Float(self)
     }
 }
 
-extension UInt : FloatConvertible, RelationTarget {
-    public var floatValue : Float {
+extension UInt: FloatConvertible, RelationTarget {
+    public var floatValue: Float {
         return Float(self)
     }
 }
 
-extension Double : FloatConvertible, RelationTarget {
-    public var floatValue : Float {
+extension Double: FloatConvertible, RelationTarget {
+    public var floatValue: Float {
         return Float(self)
     }
 }
 
-extension CGFloat : FloatConvertible, RelationTarget {
-    public var floatValue : Float {
+extension CGFloat: FloatConvertible, RelationTarget {
+    public var floatValue: Float {
         return Float(self)
     }
 }
 
 @available(iOS 9.0, OSX 10.11, *)
-extension NSLayoutAnchor : RelationTarget {
-    public var constraintItem : ConstraintItem {
+extension NSLayoutAnchor: RelationTarget {
+    public var constraintItem: ConstraintItem {
         return ConstraintItem(object: self, attributes: ConstraintAttributes.None)
     }
 }
 
-extension CGPoint : RelationTarget {
-    public var constraintItem : ConstraintItem {
+extension CGPoint: RelationTarget {
+    public var constraintItem: ConstraintItem {
         return ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
     }
 }
 
-extension CGSize : RelationTarget {
-    public var constraintItem : ConstraintItem {
+extension CGSize: RelationTarget {
+    public var constraintItem: ConstraintItem {
         return ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
     }
 }
 
-extension EdgeInsets : RelationTarget {
-    public var constraintItem : ConstraintItem {
+extension EdgeInsets: RelationTarget {
+    public var constraintItem: ConstraintItem {
         return ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
     }
 }
 
-extension View : RelationTarget {
-    public var constraintItem : ConstraintItem {
+extension View: RelationTarget {
+    public var constraintItem: ConstraintItem {
         return ConstraintItem(object: self, attributes: ConstraintAttributes.None)
     }
 }
 
-extension ConstraintItem : RelationTarget {
-    public var constraintItem : ConstraintItem {
+extension ConstraintItem: RelationTarget {
+    public var constraintItem: ConstraintItem {
         return self
     }
 }
@@ -117,9 +113,9 @@ extension ConstraintItem : RelationTarget {
  */
 public class ConstraintDescriptionFinalizable {
     
-    private let backing : ConstraintDescription
+    private let backing: ConstraintDescription
     
-    internal init(_ backing : ConstraintDescription) {
+    internal init(_ backing: ConstraintDescription) {
         self.backing = backing
     }
     
@@ -164,7 +160,7 @@ public class ConstraintDescriptionEditable: ConstraintDescriptionPriortizable {
         return self.multipliedBy(1 / amount.floatValue)
     }
     
-    public func offset(amount : FloatConvertible) -> ConstraintDescriptionEditable {
+    public func offset(amount: FloatConvertible) -> ConstraintDescriptionEditable {
         return ConstraintDescriptionEditable(self.backing.offset(amount))
     }
     public func offset(amount: CGPoint) -> ConstraintDescriptionEditable {
@@ -190,38 +186,37 @@ public class ConstraintDescriptionEditable: ConstraintDescriptionPriortizable {
 */
 public class ConstraintDescriptionRelatable {
 
-    private let backing : ConstraintDescription
+    private let backing: ConstraintDescription
     
-    init(_ backing : ConstraintDescription) {
+    init(_ backing: ConstraintDescription) {
         self.backing = backing
     }
     
-
-    public func equalTo(other: RelationTarget, file : String = __FILE__, line : UInt = __LINE__) -> ConstraintDescriptionEditable {
+    public func equalTo(other: RelationTarget, file: String = __FILE__, line: UInt = __LINE__) -> ConstraintDescriptionEditable {
         let location = SourceLocation(file: file, line: line)
-        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .Equal, location: location))
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation: .Equal, location: location))
     }
-    public func equalTo(other: LayoutSupport, file : String = __FILE__, line : UInt = __LINE__) -> ConstraintDescriptionEditable {
+    public func equalTo(other: LayoutSupport, file: String = __FILE__, line: UInt = __LINE__) -> ConstraintDescriptionEditable {
         let location = SourceLocation(file: file, line: line)
-        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .Equal, location: location))
-    }
-    
-    public func lessThanOrEqualTo(other: RelationTarget, file : String = __FILE__, line : UInt = __LINE__) -> ConstraintDescriptionEditable {
-        let location = SourceLocation(file: file, line: line)
-        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .LessThanOrEqualTo, location: location))
-    }
-    public func lessThanOrEqualTo(other: LayoutSupport, file : String = __FILE__, line : UInt = __LINE__) -> ConstraintDescriptionEditable {
-        let location = SourceLocation(file: file, line: line)
-        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .LessThanOrEqualTo, location: location))
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation: .Equal, location: location))
     }
     
-    public func greaterThanOrEqualTo(other: RelationTarget, file : String = __FILE__, line : UInt = __LINE__) -> ConstraintDescriptionEditable {
+    public func lessThanOrEqualTo(other: RelationTarget, file: String = __FILE__, line: UInt = __LINE__) -> ConstraintDescriptionEditable {
         let location = SourceLocation(file: file, line: line)
-        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .GreaterThanOrEqualTo, location: location))
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation: .LessThanOrEqualTo, location: location))
     }
-    public func greaterThanOrEqualTo(other: LayoutSupport, file : String = __FILE__, line : UInt = __LINE__) -> ConstraintDescriptionEditable {
+    public func lessThanOrEqualTo(other: LayoutSupport, file: String = __FILE__, line: UInt = __LINE__) -> ConstraintDescriptionEditable {
         let location = SourceLocation(file: file, line: line)
-        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation : .GreaterThanOrEqualTo, location: location))
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation: .LessThanOrEqualTo, location: location))
+    }
+    
+    public func greaterThanOrEqualTo(other: RelationTarget, file: String = __FILE__, line: UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation: .GreaterThanOrEqualTo, location: location))
+    }
+    public func greaterThanOrEqualTo(other: LayoutSupport, file: String = __FILE__, line: UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation: .GreaterThanOrEqualTo, location: location))
     }
 }
 
@@ -307,7 +302,7 @@ public class ConstraintDescriptionExtendable: ConstraintDescriptionRelatable {
  */
 internal class ConstraintDescription {
     
-    private var location : SourceLocation?
+    private var location: SourceLocation? = nil
     
     private var left: ConstraintDescription { return self.addConstraint(ConstraintAttributes.Left) }
     private var top: ConstraintDescription { return self.addConstraint(ConstraintAttributes.Top) }
@@ -480,7 +475,7 @@ internal class ConstraintDescription {
         return self
     }
     
-    private func constrainTo(other: RelationTarget, relation: ConstraintRelation, location : SourceLocation) -> ConstraintDescription {
+    private func constrainTo(other: RelationTarget, relation: ConstraintRelation, location: SourceLocation) -> ConstraintDescription {
         
         self.location = location
         
@@ -507,7 +502,7 @@ internal class ConstraintDescription {
     }
     
     @available(iOS 7.0, *)
-    private func constrainTo(other: LayoutSupport, relation: ConstraintRelation, location : SourceLocation) -> ConstraintDescription {
+    private func constrainTo(other: LayoutSupport, relation: ConstraintRelation, location: SourceLocation) -> ConstraintDescription {
         return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation, location: location)
     }
     

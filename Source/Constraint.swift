@@ -60,7 +60,7 @@ public class Constraint {
     
     internal var makerLocation: SourceLocation = SourceLocation(file: "Unknown", line: 0)
     
-    internal(set) public var location : SourceLocation?
+    internal(set) public var location: SourceLocation?
 }
 
 /**
@@ -128,15 +128,15 @@ internal class ConcreteConstraint: Constraint {
     internal override func updatePriorityLow() -> Void {
         self.updatePriority(Float(250.0))
     }
-    
+
     internal override func install() -> [LayoutConstraint] {
         return self.installOnView(updateExisting: false, location: self.makerLocation)
     }
-    
+
     internal override func uninstall() -> Void {
         self.uninstallFromView()
     }
-    
+
     internal override func activate() -> Void {
         guard self.installInfo != nil else {
             self.install()
@@ -153,7 +153,7 @@ internal class ConcreteConstraint: Constraint {
             NSLayoutConstraint.activateConstraints(layoutConstraints)
         }
     }
-    
+
     internal override func deactivate() -> Void {
         guard self.installInfo != nil else {
             return
@@ -195,7 +195,7 @@ internal class ConcreteConstraint: Constraint {
     
     private var installInfo: ConcreteConstraintInstallInfo? = nil
     
-    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float, location : SourceLocation?) {
+    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float, location: SourceLocation?) {
         self.fromItem = fromItem
         self.toItem = toItem
         self.relation = relation

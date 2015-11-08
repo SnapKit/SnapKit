@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		779230441BCB6FC30027CF5F /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779230431BCB6FC30027CF5F /* SourceLocation.swift */; settings = {ASSET_TAGS = (); }; };
-		779230451BCB6FC30027CF5F /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779230431BCB6FC30027CF5F /* SourceLocation.swift */; settings = {ASSET_TAGS = (); }; };
+		779230441BCB6FC30027CF5F /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779230431BCB6FC30027CF5F /* SourceLocation.swift */; };
+		779230451BCB6FC30027CF5F /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779230431BCB6FC30027CF5F /* SourceLocation.swift */; };
 		EE4910981B19A26000A54F1F /* ViewController+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4910971B19A26000A54F1F /* ViewController+SnapKit.swift */; };
 		EE4910991B19A40200A54F1F /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBCC9D819CC627D0083B827 /* SnapKit.framework */; };
 		EE94F6091AC0F10A008767FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE94F6081AC0F10A008767FF /* UIKit.framework */; };
