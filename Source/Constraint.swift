@@ -58,9 +58,9 @@ public class Constraint {
     public func updatePriorityMedium() -> Void { fatalError("Must be implemented by Concrete subclass.") }
     public func updatePriorityLow() -> Void { fatalError("Must be implemented by Concrete subclass.") }
     
-    internal var makerFile: String = "Unknown"
-    internal var makerLine: UInt = 0
+    internal var makerLocation: SourceLocation = SourceLocation(file: "Unknown", line: 0)
     
+    internal(set) public var location: SourceLocation?
 }
 
 /**
@@ -128,15 +128,15 @@ internal class ConcreteConstraint: Constraint {
     internal override func updatePriorityLow() -> Void {
         self.updatePriority(Float(250.0))
     }
-    
+
     internal override func install() -> [LayoutConstraint] {
-        return self.installOnView(updateExisting: false, file: self.makerFile, line: self.makerLine)
+        return self.installOnView(updateExisting: false, location: self.makerLocation)
     }
-    
+
     internal override func uninstall() -> Void {
         self.uninstallFromView()
     }
-    
+
     internal override func activate() -> Void {
         guard self.installInfo != nil else {
             self.install()
@@ -153,7 +153,7 @@ internal class ConcreteConstraint: Constraint {
             NSLayoutConstraint.activateConstraints(layoutConstraints)
         }
     }
-    
+
     internal override func deactivate() -> Void {
         guard self.installInfo != nil else {
             return
@@ -195,21 +195,23 @@ internal class ConcreteConstraint: Constraint {
     
     private var installInfo: ConcreteConstraintInstallInfo? = nil
     
-    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float) {
+    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float, location: SourceLocation?) {
         self.fromItem = fromItem
         self.toItem = toItem
         self.relation = relation
         self.constant = constant
         self.multiplier = multiplier
         self.priority = priority
+        super.init()
+        self.location = location
     }
     
-    internal func installOnView(updateExisting updateExisting: Bool = false, file: String? = nil, line: UInt? = nil) -> [LayoutConstraint] {
+    internal func installOnView(updateExisting updateExisting: Bool = false, location: SourceLocation? = nil) -> [LayoutConstraint] {
         var installOnView: View? = nil
         if self.toItem.view != nil {
             installOnView = closestCommonSuperviewFromView(self.fromItem.view, toView: self.toItem.view)
             if installOnView == nil {
-                NSException(name: "Cannot Install Constraint", reason: "No common superview between views (@\(self.makerFile)#\(self.makerLine))", userInfo: nil).raise()
+                NSException(name: "Cannot Install Constraint", reason: "No common superview between views (@\(self.makerLocation.file)#\(self.makerLocation.line))", userInfo: nil).raise()
                 return []
             }
         } else {
@@ -219,7 +221,7 @@ internal class ConcreteConstraint: Constraint {
             } else {
                 installOnView = self.fromItem.view?.superview
                 if installOnView == nil {
-                    NSException(name: "Cannot Install Constraint", reason: "Missing superview (@\(self.makerFile)#\(self.makerLine))", userInfo: nil).raise()
+                    NSException(name: "Cannot Install Constraint", reason: "Missing superview (@\(self.makerLocation.file)#\(self.self.makerLocation.line))", userInfo: nil).raise()
                     return []
                 }
             }
@@ -227,7 +229,7 @@ internal class ConcreteConstraint: Constraint {
         
         if let installedOnView = self.installInfo?.view {
             if installedOnView != installOnView {
-                NSException(name: "Cannot Install Constraint", reason: "Already installed on different view. (@\(self.makerFile)#\(self.makerLine))", userInfo: nil).raise()
+                NSException(name: "Cannot Install Constraint", reason: "Already installed on different view. (@\(self.makerLocation.file)#\(self.makerLocation.line))", userInfo: nil).raise()
                 return []
             }
             return self.installInfo?.layoutConstraints.allObjects as? [LayoutConstraint] ?? []

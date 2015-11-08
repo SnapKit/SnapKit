@@ -27,189 +27,313 @@ import UIKit
 import AppKit
 #endif
 
+public protocol RelationTarget {
+    var constraintItem: ConstraintItem { get }
+}
+
+public protocol FloatConvertible: RelationTarget {
+    var floatValue: Float { get }
+}
+
+extension FloatConvertible {
+    public var constraintItem: ConstraintItem {
+        return ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
+    }
+}
+
+extension Float: FloatConvertible, RelationTarget {
+    public var floatValue: Float {
+        return self
+    }
+}
+
+extension Int: FloatConvertible, RelationTarget {
+    public var floatValue: Float {
+        return Float(self)
+    }
+}
+
+extension UInt: FloatConvertible, RelationTarget {
+    public var floatValue: Float {
+        return Float(self)
+    }
+}
+
+extension Double: FloatConvertible, RelationTarget {
+    public var floatValue: Float {
+        return Float(self)
+    }
+}
+
+extension CGFloat: FloatConvertible, RelationTarget {
+    public var floatValue: Float {
+        return Float(self)
+    }
+}
+
+@available(iOS 9.0, OSX 10.11, *)
+extension NSLayoutAnchor: RelationTarget {
+    public var constraintItem: ConstraintItem {
+        return ConstraintItem(object: self, attributes: ConstraintAttributes.None)
+    }
+}
+
+extension CGPoint: RelationTarget {
+    public var constraintItem: ConstraintItem {
+        return ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
+    }
+}
+
+extension CGSize: RelationTarget {
+    public var constraintItem: ConstraintItem {
+        return ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
+    }
+}
+
+extension EdgeInsets: RelationTarget {
+    public var constraintItem: ConstraintItem {
+        return ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
+    }
+}
+
+extension View: RelationTarget {
+    public var constraintItem: ConstraintItem {
+        return ConstraintItem(object: self, attributes: ConstraintAttributes.None)
+    }
+}
+
+extension ConstraintItem: RelationTarget {
+    public var constraintItem: ConstraintItem {
+        return self
+    }
+}
+
 /**
     Used to expose the final API of a `ConstraintDescription` which allows getting a constraint from it
  */
-public protocol ConstraintDescriptionFinalizable: class {
+public class ConstraintDescriptionFinalizable {
     
-    var constraint: Constraint { get }
+    private let backing: ConstraintDescription
     
+    internal init(_ backing: ConstraintDescription) {
+        self.backing = backing
+    }
+    
+    public var constraint: Constraint {
+        return backing.constraint
+    }
 }
 
 /**
     Used to expose priority APIs
  */
-public protocol ConstraintDescriptionPriortizable: ConstraintDescriptionFinalizable {
+public class ConstraintDescriptionPriortizable: ConstraintDescriptionFinalizable {
     
-    func priority(priority: Float) -> ConstraintDescriptionFinalizable
-    func priority(priority: Double) -> ConstraintDescriptionFinalizable
-    func priority(priority: CGFloat) -> ConstraintDescriptionFinalizable
-    func priority(priority: UInt) -> ConstraintDescriptionFinalizable
-    func priority(priority: Int) -> ConstraintDescriptionFinalizable
-    func priorityRequired() -> ConstraintDescriptionFinalizable
-    func priorityHigh() -> ConstraintDescriptionFinalizable
-    func priorityMedium() -> ConstraintDescriptionFinalizable
-    func priorityLow() -> ConstraintDescriptionFinalizable
+    public func priority(priority: FloatConvertible) -> ConstraintDescriptionFinalizable {
+        return ConstraintDescriptionFinalizable(self.backing.priority(priority))
+    }
+    
+    public func priorityRequired() -> ConstraintDescriptionFinalizable {
+        return ConstraintDescriptionFinalizable(self.backing.priorityRequired())
+    }
+    public func priorityHigh() -> ConstraintDescriptionFinalizable {
+        return ConstraintDescriptionFinalizable(self.backing.priorityHigh())
+    }
+    public func priorityMedium() -> ConstraintDescriptionFinalizable {
+        return ConstraintDescriptionFinalizable(self.backing.priorityMedium())
+    }
+    public func priorityLow() -> ConstraintDescriptionFinalizable {
+        return ConstraintDescriptionFinalizable(self.backing.priorityLow())
+    }
 }
 
 /**
     Used to expose multiplier & constant APIs
 */
-public protocol ConstraintDescriptionEditable: ConstraintDescriptionPriortizable {
+public class ConstraintDescriptionEditable: ConstraintDescriptionPriortizable {
 
-    func multipliedBy(amount: Float) -> ConstraintDescriptionEditable
-    func multipliedBy(amount: Double) -> ConstraintDescriptionEditable
-    func multipliedBy(amount: CGFloat) -> ConstraintDescriptionEditable
-    func multipliedBy(amount: Int) -> ConstraintDescriptionEditable
-    func multipliedBy(amount: UInt) -> ConstraintDescriptionEditable
+    public func multipliedBy(amount: FloatConvertible) -> ConstraintDescriptionEditable {
+        return ConstraintDescriptionEditable(self.backing.multipliedBy(amount))
+    }
     
-    func dividedBy(amount: Float) -> ConstraintDescriptionEditable
-    func dividedBy(amount: Double) -> ConstraintDescriptionEditable
-    func dividedBy(amount: CGFloat) -> ConstraintDescriptionEditable
-    func dividedBy(amount: Int) -> ConstraintDescriptionEditable
-    func dividedBy(amount: UInt) -> ConstraintDescriptionEditable
-
-    func offset(amount: Float) -> ConstraintDescriptionEditable
-    func offset(amount: Double) -> ConstraintDescriptionEditable
-    func offset(amount: CGFloat) -> ConstraintDescriptionEditable
-    func offset(amount: Int) -> ConstraintDescriptionEditable
-    func offset(amount: UInt) -> ConstraintDescriptionEditable
-    func offset(amount: CGPoint) -> ConstraintDescriptionEditable
-    func offset(amount: CGSize) -> ConstraintDescriptionEditable
-    func offset(amount: EdgeInsets) -> ConstraintDescriptionEditable
+    public func dividedBy(amount: FloatConvertible) -> ConstraintDescriptionEditable {
+        return self.multipliedBy(1 / amount.floatValue)
+    }
     
-    func inset(amount: Float) -> ConstraintDescriptionEditable
-    func inset(amount: Double) -> ConstraintDescriptionEditable
-    func inset(amount: CGFloat) -> ConstraintDescriptionEditable
-    func inset(amount: Int) -> ConstraintDescriptionEditable
-    func inset(amount: UInt) -> ConstraintDescriptionEditable
-    func inset(amount: EdgeInsets) -> ConstraintDescriptionEditable
+    public func offset(amount: FloatConvertible) -> ConstraintDescriptionEditable {
+        return ConstraintDescriptionEditable(self.backing.offset(amount))
+    }
+    public func offset(amount: CGPoint) -> ConstraintDescriptionEditable {
+        return ConstraintDescriptionEditable(self.backing.offset(amount))
+    }
+    public func offset(amount: CGSize) -> ConstraintDescriptionEditable {
+        return ConstraintDescriptionEditable(self.backing.offset(amount))
+    }
+    public func offset(amount: EdgeInsets) -> ConstraintDescriptionEditable {
+        return ConstraintDescriptionEditable(self.backing.offset(amount))
+    }
+    
+    public func inset(amount: FloatConvertible) -> ConstraintDescriptionEditable {
+        return ConstraintDescriptionEditable(self.backing.inset(amount))
+    }
+    public func inset(amount: EdgeInsets) -> ConstraintDescriptionEditable {
+        return ConstraintDescriptionEditable(self.backing.inset(amount))
+    }
 }
 
 /**
     Used to expose relation APIs
 */
-public protocol ConstraintDescriptionRelatable: class {
-    
-    func equalTo(other: ConstraintItem) -> ConstraintDescriptionEditable
-    func equalTo(other: View) -> ConstraintDescriptionEditable
-    @available(iOS 7.0, *)
-    func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable
-    @available(iOS 9.0, OSX 10.11, *)
-    func equalTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
-    func equalTo(other: Float) -> ConstraintDescriptionEditable
-    func equalTo(other: Double) -> ConstraintDescriptionEditable
-    func equalTo(other: CGFloat) -> ConstraintDescriptionEditable
-    func equalTo(other: Int) -> ConstraintDescriptionEditable
-    func equalTo(other: UInt) -> ConstraintDescriptionEditable
-    func equalTo(other: CGSize) -> ConstraintDescriptionEditable
-    func equalTo(other: CGPoint) -> ConstraintDescriptionEditable
-    func equalTo(other: EdgeInsets) -> ConstraintDescriptionEditable
-    
-    func lessThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
-    @available(iOS 7.0, *)
-    func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
-    @available(iOS 9.0, OSX 10.11, *)
-    func lessThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: Int) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: UInt) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable
-    func lessThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable
-    
-    func greaterThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
-    @available(iOS 7.0, *)
-    func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
-    @available(iOS 9.0, OSX 10.11, *)
-    func greaterThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: Int) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: UInt) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable
-    func greaterThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable
+public class ConstraintDescriptionRelatable {
 
+    private let backing: ConstraintDescription
+    
+    init(_ backing: ConstraintDescription) {
+        self.backing = backing
+    }
+    
+    public func equalTo(other: RelationTarget, file: String = __FILE__, line: UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation: .Equal, location: location))
+    }
+    public func equalTo(other: LayoutSupport, file: String = __FILE__, line: UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation: .Equal, location: location))
+    }
+    
+    public func lessThanOrEqualTo(other: RelationTarget, file: String = __FILE__, line: UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation: .LessThanOrEqualTo, location: location))
+    }
+    public func lessThanOrEqualTo(other: LayoutSupport, file: String = __FILE__, line: UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation: .LessThanOrEqualTo, location: location))
+    }
+    
+    public func greaterThanOrEqualTo(other: RelationTarget, file: String = __FILE__, line: UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation: .GreaterThanOrEqualTo, location: location))
+    }
+    public func greaterThanOrEqualTo(other: LayoutSupport, file: String = __FILE__, line: UInt = __LINE__) -> ConstraintDescriptionEditable {
+        let location = SourceLocation(file: file, line: line)
+        return ConstraintDescriptionEditable(self.backing.constrainTo(other, relation: .GreaterThanOrEqualTo, location: location))
+    }
 }
 
 /**
     Used to expose chaining APIs
 */
-public protocol ConstraintDescriptionExtendable: ConstraintDescriptionRelatable {
+public class ConstraintDescriptionExtendable: ConstraintDescriptionRelatable {
     
-    var left: ConstraintDescriptionExtendable { get }
-    var top: ConstraintDescriptionExtendable { get }
-    var bottom: ConstraintDescriptionExtendable { get }
-    var right: ConstraintDescriptionExtendable { get }
-    var leading: ConstraintDescriptionExtendable { get }
-    var trailing: ConstraintDescriptionExtendable { get }
-    var width: ConstraintDescriptionExtendable { get }
-    var height: ConstraintDescriptionExtendable { get }
-    var centerX: ConstraintDescriptionExtendable { get }
-    var centerY: ConstraintDescriptionExtendable { get }
-    var baseline: ConstraintDescriptionExtendable { get }
+    public var left: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.left)
+    }
+    public var top: ConstraintDescriptionExtendable  {
+        return ConstraintDescriptionExtendable(self.backing.top)
+    }
+    public var bottom: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.bottom)
+    }
+    public var right: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.right)
+    }
+    public var leading: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.leading)
+    }
+    public var trailing: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.trailing)
+    }
+    public var width: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.width)
+    }
+    public var height: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.height)
+    }
+    public var centerX: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.centerX)
+    }
+    public var centerY: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.centerY)
+    }
+    public var baseline: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.baseline)
+    }
     
     @available(iOS 8.0, *)
-    var firstBaseline: ConstraintDescriptionExtendable { get }
+    public var firstBaseline: ConstraintDescriptionExtendable  {
+        return ConstraintDescriptionExtendable(self.backing.firstBaseline)
+    }
     @available(iOS 8.0, *)
-    var leftMargin: ConstraintDescriptionExtendable { get }
+    public var leftMargin: ConstraintDescriptionExtendable  {
+        return ConstraintDescriptionExtendable(self.backing.leftMargin)
+    }
     @available(iOS 8.0, *)
-    var rightMargin: ConstraintDescriptionExtendable { get }
+    public var rightMargin: ConstraintDescriptionExtendable  {
+        return ConstraintDescriptionExtendable(self.backing.rightMargin)
+    }
     @available(iOS 8.0, *)
-    var topMargin: ConstraintDescriptionExtendable { get }
+    public var topMargin: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.topMargin)
+    }
     @available(iOS 8.0, *)
-    var bottomMargin: ConstraintDescriptionExtendable { get }
+    public var bottomMargin: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.bottomMargin)
+    }
     @available(iOS 8.0, *)
-    var leadingMargin: ConstraintDescriptionExtendable { get }
+    public var leadingMargin: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.leadingMargin)
+    }
     @available(iOS 8.0, *)
-    var trailingMargin: ConstraintDescriptionExtendable { get }
+    public var trailingMargin: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.trailingMargin)
+    }
     @available(iOS 8.0, *)
-    var centerXWithinMargins: ConstraintDescriptionExtendable { get }
+    public var centerXWithinMargins: ConstraintDescriptionExtendable  {
+        return ConstraintDescriptionExtendable(self.backing.centerXWithinMargins)
+    }
     @available(iOS 8.0, *)
-    var centerYWithinMargins: ConstraintDescriptionExtendable { get }
+    public var centerYWithinMargins: ConstraintDescriptionExtendable {
+        return ConstraintDescriptionExtendable(self.backing.centerYWithinMargins)
+    }
 }
 
 /**
     Used to internally manage building constraint
  */
-internal class ConstraintDescription: ConstraintDescriptionExtendable, ConstraintDescriptionEditable, ConstraintDescriptionFinalizable {
+internal class ConstraintDescription {
     
-    internal var left: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Left) }
-    internal var top: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Top) }
-    internal var right: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Right) }
-    internal var bottom: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Bottom) }
-    internal var leading: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Leading) }
-    internal var trailing: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Trailing) }
-    internal var width: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Width) }
-    internal var height: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Height) }
-    internal var centerX: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.CenterX) }
-    internal var centerY: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.CenterY) }
-    internal var baseline: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Baseline) }
+    private var location: SourceLocation? = nil
+    
+    private var left: ConstraintDescription { return self.addConstraint(ConstraintAttributes.Left) }
+    private var top: ConstraintDescription { return self.addConstraint(ConstraintAttributes.Top) }
+    private var right: ConstraintDescription { return self.addConstraint(ConstraintAttributes.Right) }
+    private var bottom: ConstraintDescription { return self.addConstraint(ConstraintAttributes.Bottom) }
+    private var leading: ConstraintDescription { return self.addConstraint(ConstraintAttributes.Leading) }
+    private var trailing: ConstraintDescription { return self.addConstraint(ConstraintAttributes.Trailing) }
+    private var width: ConstraintDescription { return self.addConstraint(ConstraintAttributes.Width) }
+    private var height: ConstraintDescription { return self.addConstraint(ConstraintAttributes.Height) }
+    private var centerX: ConstraintDescription { return self.addConstraint(ConstraintAttributes.CenterX) }
+    private var centerY: ConstraintDescription { return self.addConstraint(ConstraintAttributes.CenterY) }
+    private var baseline: ConstraintDescription { return self.addConstraint(ConstraintAttributes.Baseline) }
     
     @available(iOS 8.0, *)
-    internal var firstBaseline: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.FirstBaseline) }
+    private var firstBaseline: ConstraintDescription { return self.addConstraint(ConstraintAttributes.FirstBaseline) }
     @available(iOS 8.0, *)
-    internal var leftMargin: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.LeftMargin) }
+    private var leftMargin: ConstraintDescription { return self.addConstraint(ConstraintAttributes.LeftMargin) }
     @available(iOS 8.0, *)
-    internal var rightMargin: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.RightMargin) }
+    private var rightMargin: ConstraintDescription { return self.addConstraint(ConstraintAttributes.RightMargin) }
     @available(iOS 8.0, *)
-    internal var topMargin: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.TopMargin) }
+    private var topMargin: ConstraintDescription { return self.addConstraint(ConstraintAttributes.TopMargin) }
     @available(iOS 8.0, *)
-    internal var bottomMargin: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.BottomMargin) }
+    private var bottomMargin: ConstraintDescription { return self.addConstraint(ConstraintAttributes.BottomMargin) }
     @available(iOS 8.0, *)
-    internal var leadingMargin: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.LeadingMargin) }
+    private var leadingMargin: ConstraintDescription { return self.addConstraint(ConstraintAttributes.LeadingMargin) }
     @available(iOS 8.0, *)
-    internal var trailingMargin: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.TrailingMargin) }
+    private var trailingMargin: ConstraintDescription { return self.addConstraint(ConstraintAttributes.TrailingMargin) }
     @available(iOS 8.0, *)
-    internal var centerXWithinMargins: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.CenterXWithinMargins) }
+    private var centerXWithinMargins: ConstraintDescription { return self.addConstraint(ConstraintAttributes.CenterXWithinMargins) }
     @available(iOS 8.0, *)
-    internal var centerYWithinMargins: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.CenterYWithinMargins) }
+    private var centerYWithinMargins: ConstraintDescription { return self.addConstraint(ConstraintAttributes.CenterYWithinMargins) }
     
     // MARK: initializer
     
@@ -218,259 +342,69 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
         self.toItem = ConstraintItem(object: nil, attributes: ConstraintAttributes.None)
     }
     
-    // MARK: equalTo
-    
-    internal func equalTo(other: ConstraintItem) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .Equal)
-    }
-    internal func equalTo(other: View) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .Equal)
-    }
-    @available(iOS 7.0, *)
-    internal func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .Equal)
-    }
-    @available(iOS 9.0, OSX 10.11, *)
-    internal func equalTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .Equal)
-    }
-    internal func equalTo(other: Float) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .Equal)
-    }
-    internal func equalTo(other: Double) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .Equal)
-    }
-    internal func equalTo(other: CGFloat) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .Equal)
-    }
-    internal func equalTo(other: Int) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .Equal)
-    }
-    internal func equalTo(other: UInt) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .Equal)
-    }
-    internal func equalTo(other: CGSize) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .Equal)
-    }
-    internal func equalTo(other: CGPoint) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .Equal)
-    }
-    internal func equalTo(other: EdgeInsets) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .Equal)
-    }
-    
-    // MARK: lessThanOrEqualTo
-    
-    internal func lessThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: View) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    @available(iOS 7.0, *)
-    internal func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    @available(iOS 9.0, OSX 10.11, *)
-    internal func lessThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: Int) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: UInt) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    internal func lessThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    
-    // MARK: greaterThanOrEqualTo
-    
-    internal func greaterThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
-    }
-    @available(iOS 7.0, *)
-    internal func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
-    }
-    @available(iOS 9.0, OSX 10.11, *)
-    internal func greaterThanOrEqualTo(other: NSLayoutAnchor) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .LessThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: Float) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: Double) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: CGFloat) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: Int) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: UInt) -> ConstraintDescriptionEditable {
-        return self.constrainTo(Float(other), relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: CGSize) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: CGPoint) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
-    }
-    internal func greaterThanOrEqualTo(other: EdgeInsets) -> ConstraintDescriptionEditable {
-        return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
-    }
-    
     // MARK: multiplier
     
-    internal func multipliedBy(amount: Float) -> ConstraintDescriptionEditable {
-        self.multiplier = amount
+    private func multipliedBy(amount: FloatConvertible) -> ConstraintDescription {
+        self.multiplier = amount.floatValue
         return self
-    }
-    internal func multipliedBy(amount: Double) -> ConstraintDescriptionEditable {
-        return self.multipliedBy(Float(amount))
-    }
-    internal func multipliedBy(amount: CGFloat) -> ConstraintDescriptionEditable {
-        return self.multipliedBy(Float(amount))
-    }
-    internal func multipliedBy(amount: Int) -> ConstraintDescriptionEditable {
-        return self.multipliedBy(Float(amount))
-    }
-    internal func multipliedBy(amount: UInt) -> ConstraintDescriptionEditable {
-        return self.multipliedBy(Float(amount))
     }
     
-    internal func dividedBy(amount: Float) -> ConstraintDescriptionEditable {
-        self.multiplier = 1.0 / amount;
+    private func dividedBy(amount: FloatConvertible) -> ConstraintDescription {
+        self.multiplier = 1.0 / amount.floatValue;
         return self
-    }
-    internal func dividedBy(amount: Double) -> ConstraintDescriptionEditable {
-        return self.dividedBy(Float(amount))
-    }
-    internal func dividedBy(amount: CGFloat) -> ConstraintDescriptionEditable {
-        return self.dividedBy(Float(amount))
-    }
-    internal func dividedBy(amount: Int) -> ConstraintDescriptionEditable {
-        return self.dividedBy(Float(amount))
-    }
-    internal func dividedBy(amount: UInt) -> ConstraintDescriptionEditable {
-        return self.dividedBy(Float(amount))
     }
     
     // MARK: offset
     
-    internal func offset(amount: Float) -> ConstraintDescriptionEditable {
+    private func offset(amount: FloatConvertible) -> ConstraintDescription {
+        self.constant = amount.floatValue
+        return self
+    }
+    private func offset(amount: CGPoint) -> ConstraintDescription {
         self.constant = amount
         return self
     }
-    internal func offset(amount: Double) -> ConstraintDescriptionEditable {
-        return self.offset(Float(amount))
-    }
-    internal func offset(amount: CGFloat) -> ConstraintDescriptionEditable {
-        return self.offset(Float(amount))
-    }
-    internal func offset(amount: Int) -> ConstraintDescriptionEditable {
-        return self.offset(Float(amount))
-    }
-    internal func offset(amount: UInt) -> ConstraintDescriptionEditable {
-        return self.offset(Float(amount))
-    }
-    internal func offset(amount: CGPoint) -> ConstraintDescriptionEditable {
+    private func offset(amount: CGSize) -> ConstraintDescription {
         self.constant = amount
         return self
     }
-    internal func offset(amount: CGSize) -> ConstraintDescriptionEditable {
-        self.constant = amount
-        return self
-    }
-    internal func offset(amount: EdgeInsets) -> ConstraintDescriptionEditable {
+    private func offset(amount: EdgeInsets) -> ConstraintDescription {
         self.constant = amount
         return self
     }
     
     // MARK: inset
     
-    internal func inset(amount: Float) -> ConstraintDescriptionEditable {
-        let value = CGFloat(amount)
+    private func inset(amount: FloatConvertible) -> ConstraintDescription {
+        let value = CGFloat(amount.floatValue)
         self.constant = EdgeInsets(top: value, left: value, bottom: -value, right: -value)
         return self
     }
-    internal func inset(amount: Double) -> ConstraintDescriptionEditable {
-        let value = CGFloat(amount)
-        self.constant = EdgeInsets(top: value, left: value, bottom: -value, right: -value)
-        return self
-    }
-    internal func inset(amount: CGFloat) -> ConstraintDescriptionEditable {
-        self.constant = EdgeInsets(top: amount, left: amount, bottom: -amount, right: -amount)
-        return self
-    }
-    internal func inset(amount: Int) -> ConstraintDescriptionEditable {
-        let value = CGFloat(amount)
-        self.constant = EdgeInsets(top: value, left: value, bottom: -value, right: -value)
-        return self
-    }
-    internal func inset(amount: UInt) -> ConstraintDescriptionEditable {
-        let value = CGFloat(amount)
-        self.constant = EdgeInsets(top: value, left: value, bottom: -value, right: -value)
-        return self
-    }
-    internal func inset(amount: EdgeInsets) -> ConstraintDescriptionEditable {
+    private func inset(amount: EdgeInsets) -> ConstraintDescription {
         self.constant = EdgeInsets(top: amount.top, left: amount.left, bottom: -amount.bottom, right: -amount.right)
         return self
     }
     
     // MARK: priority
     
-    internal func priority(priority: Float) -> ConstraintDescriptionFinalizable {
-        self.priority = priority
+    private func priority(priority: FloatConvertible) -> ConstraintDescription {
+        self.priority = priority.floatValue
         return self
     }
-    internal func priority(priority: Double) -> ConstraintDescriptionFinalizable {
-        return self.priority(Float(priority))
-    }
-    internal func priority(priority: CGFloat) -> ConstraintDescriptionFinalizable {
-        return self.priority(Float(priority))
-    }
-    func priority(priority: UInt) -> ConstraintDescriptionFinalizable {
-        return self.priority(Float(priority))
-    }
-    internal func priority(priority: Int) -> ConstraintDescriptionFinalizable {
-        return self.priority(Float(priority))
-    }
-    internal func priorityRequired() -> ConstraintDescriptionFinalizable {
+    private func priorityRequired() -> ConstraintDescription {
         return self.priority(1000.0)
     }
-    internal func priorityHigh() -> ConstraintDescriptionFinalizable {
+    private func priorityHigh() -> ConstraintDescription {
         return self.priority(750.0)
     }
-    internal func priorityMedium() -> ConstraintDescriptionFinalizable {
+    private func priorityMedium() -> ConstraintDescription {
         #if os(iOS) || os(tvOS)
         return self.priority(500.0)
         #else
         return self.priority(501.0)
         #endif
     }
-    internal func priorityLow() -> ConstraintDescriptionFinalizable {
+    private func priorityLow() -> ConstraintDescription {
         return self.priority(250.0)
     }
     
@@ -487,7 +421,9 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
                 relation: self.relation!,
                 constant: self.constant,
                 multiplier: self.multiplier,
-                priority: self.priority)
+                priority: self.priority,
+                location: self.location
+            )
         }
         return self.concreteConstraint!
     }
@@ -539,59 +475,35 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
         return self
     }
     
-    private func constrainTo(other: ConstraintItem, relation: ConstraintRelation) -> ConstraintDescription {
-        if other.attributes != ConstraintAttributes.None {
-            let toLayoutAttributes = other.attributes.layoutAttributes
+    private func constrainTo(other: RelationTarget, relation: ConstraintRelation, location: SourceLocation) -> ConstraintDescription {
+        
+        self.location = location
+        
+        if let constant = other as? FloatConvertible {
+            self.constant = constant.floatValue
+        }
+        
+        let item = other.constraintItem
+        
+        if item.attributes != ConstraintAttributes.None {
+            let toLayoutAttributes = item.attributes.layoutAttributes
             if toLayoutAttributes.count > 1 {
                 let fromLayoutAttributes = self.fromItem.attributes.layoutAttributes
                 if toLayoutAttributes != fromLayoutAttributes {
                     NSException(name: "Invalid Constraint", reason: "Cannot constrain to multiple non identical attributes", userInfo: nil).raise()
                     return self
                 }
-                other.attributes = ConstraintAttributes.None
+                item.attributes = ConstraintAttributes.None
             }
         }
-        self.toItem = other
+        self.toItem = item
         self.relation = relation
         return self
     }
     
-    private func constrainTo(other: View, relation: ConstraintRelation) -> ConstraintDescription {
-        return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
-    }
-    
     @available(iOS 7.0, *)
-    private func constrainTo(other: LayoutSupport, relation: ConstraintRelation) -> ConstraintDescription {
-        return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
+    private func constrainTo(other: LayoutSupport, relation: ConstraintRelation, location: SourceLocation) -> ConstraintDescription {
+        return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation, location: location)
     }
     
-    @available(iOS 9.0, OSX 10.11, *)
-    private func constrainTo(other: NSLayoutAnchor, relation: ConstraintRelation) -> ConstraintDescription {
-        return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
-    }
-    
-    private func constrainTo(other: Float, relation: ConstraintRelation) -> ConstraintDescription {
-        self.constant = other
-        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
-    }
-    
-    private func constrainTo(other: Double, relation: ConstraintRelation) -> ConstraintDescription {
-        self.constant = other
-        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
-    }
-    
-    private func constrainTo(other: CGSize, relation: ConstraintRelation) -> ConstraintDescription {
-        self.constant = other
-        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
-    }
-    
-    private func constrainTo(other: CGPoint, relation: ConstraintRelation) -> ConstraintDescription {
-        self.constant = other
-        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
-    }
-    
-    private func constrainTo(other: EdgeInsets, relation: ConstraintRelation) -> ConstraintDescription {
-        self.constant = other
-        return constrainTo(ConstraintItem(object: nil, attributes: ConstraintAttributes.None), relation: relation)
-    }
 }

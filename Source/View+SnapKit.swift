@@ -128,7 +128,7 @@ public extension View {
         :returns: the constraints made
     */
     public func snp_prepareConstraints(file: String = __FILE__, line: UInt = __LINE__, @noescape closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
-        return ConstraintMaker.prepareConstraints(view: self, file: file, line: line, closure: closure)
+        return ConstraintMaker.prepareConstraints(view: self, location: SourceLocation(file: file, line: line), closure: closure)
     }
     
     /**
@@ -137,7 +137,7 @@ public extension View {
         :param: closure that will be passed the `ConstraintMaker` to make the constraints with
     */
     public func snp_makeConstraints(file: String = __FILE__, line: UInt = __LINE__, @noescape closure: (make: ConstraintMaker) -> Void) -> Void {
-        ConstraintMaker.makeConstraints(view: self, file: file, line: line, closure: closure)
+        ConstraintMaker.makeConstraints(view: self, location: SourceLocation(file: file, line: line), closure: closure)
     }
     
     /**
@@ -148,7 +148,7 @@ public extension View {
         :param: closure that will be passed the `ConstraintMaker` to update the constraints with
     */
     public func snp_updateConstraints(file: String = __FILE__, line: UInt = __LINE__, @noescape closure: (make: ConstraintMaker) -> Void) -> Void {
-        ConstraintMaker.updateConstraints(view: self, file: file, line: line, closure: closure)
+        ConstraintMaker.updateConstraints(view: self, location: SourceLocation(file: file, line: line), closure: closure)
     }
     
     /**
@@ -157,7 +157,7 @@ public extension View {
         :param: closure that will be passed the `ConstraintMaker` to remake the constraints with
     */
     public func snp_remakeConstraints(file: String = __FILE__, line: UInt = __LINE__, @noescape closure: (make: ConstraintMaker) -> Void) -> Void {
-        ConstraintMaker.remakeConstraints(view: self, file: file, line: line, closure: closure)
+        ConstraintMaker.remakeConstraints(view: self, location: SourceLocation(file: file, line: line), closure: closure)
     }
     
     /**

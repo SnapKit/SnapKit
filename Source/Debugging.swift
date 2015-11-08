@@ -101,11 +101,11 @@ public extension LayoutConstraint {
     }
     
     internal var snp_makerFile: String? {
-        return self.snp_constraint?.makerFile
+        return self.snp_constraint?.makerLocation.file
     }
     
     internal var snp_makerLine: UInt? {
-        return self.snp_constraint?.makerLine
+        return self.snp_constraint?.makerLocation.line
     }
     
 }
