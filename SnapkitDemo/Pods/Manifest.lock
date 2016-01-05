@@ -1,0 +1,10 @@
+PODS:
+  - SnapKit (0.16.0)
+
+DEPENDENCIES:
+  - SnapKit (~> 0.16.0)
+
+SPEC CHECKSUMS:
+  SnapKit: ddac6b339d571f9d80dbb733585b172ee9eed3cb
+
+COCOAPODS: 0.39.0
