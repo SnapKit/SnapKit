@@ -1,7 +1,7 @@
 CHANGELOG
 =======
 
-# 0.19.0 - January 21 2015
+# 0.19.0 - January 21 2016
 
 * Improved `.insets()` for `width` and `height` #183
 * Added Carthage tvOS support #179
