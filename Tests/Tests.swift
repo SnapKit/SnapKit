@@ -227,4 +227,26 @@ class SnapKitTests: XCTestCase {
         
     }
     
+    func testSizeConstraints() {
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp_makeConstraints { (make) -> Void in
+            make.size.equalTo(CGSizeMake(50, 50))
+            make.left.top.equalTo(self.container)
+        }
+        
+        XCTAssertEqual(view.snp_constraints.count, 2, "Should have 2 constraints")
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
+        
+        
+        let constraints = view.snp_constraints as! [NSLayoutConstraint]
+        
+        XCTAssertEqual(constraints[0].firstAttribute, NSLayoutAttribute.Width, "Should be width")
+        XCTAssertEqual(constraints[1].firstAttribute, NSLayoutAttribute.Height, "Should be height")
+        XCTAssertEqual(constraints[0].constant, 50, "Should be 50")
+        XCTAssertEqual(constraints[1].constant, 50, "Should be 50")
+    }
+    
 }
