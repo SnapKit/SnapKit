@@ -1,4 +1,4 @@
-<img src="http://snapkit.io/images/banner.png" alt="" />
+<img src="http://snapkit.io/images/banner.png?v=1" alt="" />
 
 SnapKit is a DSL to make Auto Layout easy on both iOS and OS X.
 
@@ -25,7 +25,6 @@ class MyViewController: UIViewController {
 
 }
 ```
-
 
 ## Resources
 
