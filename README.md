@@ -12,12 +12,12 @@ import SnapKit
 class MyViewController: UIViewController {
 
     lazy var box = UIView()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.view.addSubview(box)
-        box.snp_makeConstraints { (make) -> Void in
+        box.snp.makeConstraints { (make) -> Void in
            make.width.height.equalTo(50)
            make.center.equalTo(self.view)
         }
