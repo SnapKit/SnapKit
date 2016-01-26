@@ -34,9 +34,6 @@ public class LayoutConstraint: NSLayoutConstraint {
     
     internal var snp_constraint: Constraint? = nil
     
-    public var snp_location: SourceLocation? {
-        return snp_constraint?.location
-    }
 }
 
 internal func ==(left: LayoutConstraint, right: LayoutConstraint) -> Bool {
