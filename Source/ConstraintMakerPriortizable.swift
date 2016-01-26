@@ -28,22 +28,31 @@
 #endif
 
 
-public class LayoutConstraint: NSLayoutConstraint {
+public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
     
-    internal var constraint: Constraint? = nil
-    public var label: String? = nil
-    
-}
-
-internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
-    guard lhs.firstItem === rhs.firstItem &&
-          lhs.secondItem === rhs.secondItem &&
-          lhs.firstAttribute == rhs.firstAttribute &&
-          lhs.secondAttribute == rhs.secondAttribute &&
-          lhs.relation == rhs.relation &&
-          lhs.priority == rhs.priority &&
-          lhs.multiplier == rhs.multiplier else {
-        return false
+    public func priority(amount: ConstraintPriorityTarget) -> ConstraintMakerFinalizable {
+        self.description.priority = amount
+        return self
     }
-    return true
+    
+    public func priorityRequired() -> ConstraintMakerFinalizable {
+        return self.priority(1000)
+    }
+    
+    public func priorityHigh() -> ConstraintMakerFinalizable {
+        return self.priority(750)
+    }
+    
+    public func priorityMedium() -> ConstraintMakerFinalizable {
+        #if os(iOS) || os(tvOS)
+            return self.priority(500)
+        #else
+            return self.priority(501)
+        #endif
+    }
+    
+    public func priorityLow() -> ConstraintMakerFinalizable {
+        return self.priority(250)
+    }
+    
 }

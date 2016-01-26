@@ -1,7 +1,7 @@
 //
 //  SnapKit
 //
-//  Copyright (c) 2011-2015 SnapKit Team - https://github.com/SnapKit
+//  Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,24 +22,35 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS)
-import UIKit
+    import UIKit
 
-/**
-    Used to expose public API on view controllers
-*/
-public extension UIViewController {
-    
-    /// top layout guide top
-    public var snp_topLayoutGuideTop: ConstraintItem { return ConstraintItem(object: self.topLayoutGuide, attributes: ConstraintAttributes.Top) }
-    
-    /// top layout guide bottom
-    public var snp_topLayoutGuideBottom: ConstraintItem { return ConstraintItem(object: self.topLayoutGuide, attributes: ConstraintAttributes.Bottom) }
-    
-    /// bottom layout guide top
-    public var snp_bottomLayoutGuideTop: ConstraintItem { return ConstraintItem(object: self.bottomLayoutGuide, attributes: ConstraintAttributes.Top) }
-    
-    /// bottom layout guide bottom
-    public var snp_bottomLayoutGuideBottom: ConstraintItem { return ConstraintItem(object: self.bottomLayoutGuide, attributes: ConstraintAttributes.Bottom) }
-    
-}
+
+    public extension ConstraintViewController {
+        
+        @available(iOS, deprecated=0.20.0, message="Please use newer snp.* syntax.")
+        public var topLayoutGuideTop: ConstraintItem {
+            return self.snp.topLayoutGuideTop
+        }
+        
+        @available(iOS, deprecated=0.20.0, message="Please use newer snp.* syntax.")
+        public var topLayoutGuideBottom: ConstraintItem {
+            return self.snp.topLayoutGuideBottom
+        }
+        
+        @available(iOS, deprecated=0.20.0, message="Please use newer snp.* syntax.")
+        public var bottomLayoutGuideTop: ConstraintItem {
+            return self.snp.bottomLayoutGuideTop
+        }
+        
+        @available(iOS, deprecated=0.20.0, message="Please use newer snp.* syntax.")
+        public var bottomLayoutGuideBottom: ConstraintItem {
+            return self.snp.bottomLayoutGuideBottom
+        }
+        
+        public var snp: ConstraintViewControllerDSL {
+            return ConstraintViewControllerDSL(viewController: self)
+        }
+        
+    }
+
 #endif

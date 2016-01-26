@@ -28,22 +28,52 @@
 #endif
 
 
-public class LayoutConstraint: NSLayoutConstraint {
+public protocol ConstraintMultiplierTarget {
     
-    internal var constraint: Constraint? = nil
-    public var label: String? = nil
+    var constraintMultiplierTargetValue: CGFloat { get }
     
 }
 
-internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
-    guard lhs.firstItem === rhs.firstItem &&
-          lhs.secondItem === rhs.secondItem &&
-          lhs.firstAttribute == rhs.firstAttribute &&
-          lhs.secondAttribute == rhs.secondAttribute &&
-          lhs.relation == rhs.relation &&
-          lhs.priority == rhs.priority &&
-          lhs.multiplier == rhs.multiplier else {
-        return false
+extension Int: ConstraintMultiplierTarget {
+    
+    public var constraintMultiplierTargetValue: CGFloat {
+        return CGFloat(self)
     }
-    return true
+    
+}
+
+extension UInt: ConstraintMultiplierTarget {
+    
+    public var constraintMultiplierTargetValue: CGFloat {
+        return CGFloat(self)
+    }
+    
+}
+
+extension Float: ConstraintMultiplierTarget {
+    
+    public var constraintMultiplierTargetValue: CGFloat {
+        return CGFloat(self)
+    }
+    
+}
+
+extension Double: ConstraintMultiplierTarget {
+    
+    public var constraintMultiplierTargetValue: CGFloat {
+        return CGFloat(self)
+    }
+    
+}
+
+extension CGFloat: ConstraintMultiplierTarget {
+    
+    public var constraintMultiplierTargetValue: CGFloat {
+        return self
+    }
+    
+}
+
+internal func ==(lhs: ConstraintMultiplierTarget, rhs: ConstraintMultiplierTarget) -> Bool {
+    return lhs.constraintMultiplierTargetValue == rhs.constraintMultiplierTargetValue
 }

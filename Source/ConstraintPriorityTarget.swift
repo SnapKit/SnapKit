@@ -28,22 +28,52 @@
 #endif
 
 
-public class LayoutConstraint: NSLayoutConstraint {
+public protocol ConstraintPriorityTarget {
     
-    internal var constraint: Constraint? = nil
-    public var label: String? = nil
+    var constraintPriorityTargetValue: Float { get }
     
 }
 
-internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
-    guard lhs.firstItem === rhs.firstItem &&
-          lhs.secondItem === rhs.secondItem &&
-          lhs.firstAttribute == rhs.firstAttribute &&
-          lhs.secondAttribute == rhs.secondAttribute &&
-          lhs.relation == rhs.relation &&
-          lhs.priority == rhs.priority &&
-          lhs.multiplier == rhs.multiplier else {
-        return false
+extension Int: ConstraintPriorityTarget {
+    
+    public var constraintPriorityTargetValue: Float {
+        return Float(self)
     }
-    return true
+    
+}
+
+extension UInt: ConstraintPriorityTarget {
+    
+    public var constraintPriorityTargetValue: Float {
+        return Float(self)
+    }
+    
+}
+
+extension Float: ConstraintPriorityTarget {
+    
+    public var constraintPriorityTargetValue: Float {
+        return self
+    }
+    
+}
+
+extension Double: ConstraintPriorityTarget {
+    
+    public var constraintPriorityTargetValue: Float {
+        return Float(self)
+    }
+    
+}
+
+extension CGFloat: ConstraintPriorityTarget {
+    
+    public var constraintPriorityTargetValue: Float {
+        return Float(self)
+    }
+    
+}
+
+internal func ==(lhs: ConstraintPriorityTarget, rhs: ConstraintPriorityTarget) -> Bool {
+    return lhs.constraintPriorityTargetValue == rhs.constraintPriorityTargetValue
 }

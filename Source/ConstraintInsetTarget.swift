@@ -28,22 +28,23 @@
 #endif
 
 
-public class LayoutConstraint: NSLayoutConstraint {
-    
-    internal var constraint: Constraint? = nil
-    public var label: String? = nil
-    
+public protocol ConstraintInsetTarget: ConstraintConstantTarget {
 }
 
-internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
-    guard lhs.firstItem === rhs.firstItem &&
-          lhs.secondItem === rhs.secondItem &&
-          lhs.firstAttribute == rhs.firstAttribute &&
-          lhs.secondAttribute == rhs.secondAttribute &&
-          lhs.relation == rhs.relation &&
-          lhs.priority == rhs.priority &&
-          lhs.multiplier == rhs.multiplier else {
-        return false
-    }
-    return true
+extension Int: ConstraintInsetTarget {
+}
+
+extension UInt: ConstraintInsetTarget {
+}
+
+extension Float: ConstraintInsetTarget {
+}
+
+extension Double: ConstraintInsetTarget {
+}
+
+extension CGFloat: ConstraintInsetTarget {
+}
+
+extension ConstraintInsets: ConstraintInsetTarget {
 }

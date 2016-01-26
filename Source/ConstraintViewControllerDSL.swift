@@ -23,27 +23,36 @@
 
 #if os(iOS) || os(tvOS)
     import UIKit
-#else
-    import AppKit
-#endif
 
 
-public class LayoutConstraint: NSLayoutConstraint {
-    
-    internal var constraint: Constraint? = nil
-    public var label: String? = nil
-    
-}
-
-internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
-    guard lhs.firstItem === rhs.firstItem &&
-          lhs.secondItem === rhs.secondItem &&
-          lhs.firstAttribute == rhs.firstAttribute &&
-          lhs.secondAttribute == rhs.secondAttribute &&
-          lhs.relation == rhs.relation &&
-          lhs.priority == rhs.priority &&
-          lhs.multiplier == rhs.multiplier else {
-        return false
+    public struct ConstraintViewControllerDSL {
+        
+        @available(iOS 7.0, *)
+        public var topLayoutGuideTop: ConstraintItem {
+            return ConstraintItem(target: self.viewController.topLayoutGuide, attributes: ConstraintAttributes.Top)
+        }
+        
+        @available(iOS 7.0, *)
+        public var topLayoutGuideBottom: ConstraintItem {
+            return ConstraintItem(target: self.viewController.topLayoutGuide, attributes: ConstraintAttributes.Bottom)
+        }
+        
+        @available(iOS 7.0, *)
+        public var bottomLayoutGuideTop: ConstraintItem {
+            return ConstraintItem(target: self.viewController.bottomLayoutGuide, attributes: ConstraintAttributes.Top)
+        }
+        
+        @available(iOS 7.0, *)
+        public var bottomLayoutGuideBottom: ConstraintItem {
+            return ConstraintItem(target: self.viewController.bottomLayoutGuide, attributes: ConstraintAttributes.Bottom)
+        }
+        
+        internal let viewController: ConstraintViewController
+        
+        internal init(viewController: ConstraintViewController) {
+            self.viewController = viewController
+        }
+        
     }
-    return true
-}
+
+#endif

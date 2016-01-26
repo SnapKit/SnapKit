@@ -1,7 +1,7 @@
 //
 //  SnapKit
 //
-//  Copyright (c) 2011-2015 SnapKit Team - https://github.com/SnapKit
+//  Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,47 +22,44 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS)
-import UIKit
+    import UIKit
 #else
-import AppKit
+    import AppKit
 #endif
 
-/**
-    Used to assist in building a constraint
-*/
-public class ConstraintItem {
+
+public class ConstraintItem: Equatable {
     
-    internal init(object: AnyObject?, attributes: ConstraintAttributes) {
-        self.object = object
+    internal weak var target: AnyObject?
+    internal let attributes: ConstraintAttributes
+    
+    internal init(target: AnyObject?, attributes: ConstraintAttributes) {
+        self.target = target
         self.attributes = attributes
     }
     
-    internal weak var object: AnyObject?
-    internal var attributes: ConstraintAttributes
-    
-    internal var view: View? {
-        return self.object as? View
+    internal var view: ConstraintView? {
+        return self.target as? ConstraintView
     }
     
-    @available(iOS 7.0, *)
-    internal var layoutSupport: LayoutSupport? {
-        return self.object as? LayoutSupport
+    internal var layoutSupport: ConstraintLayoutSupport? {
+        return self.target as? ConstraintLayoutSupport
     }
+    
 }
 
-
-internal func ==(left: ConstraintItem, right: ConstraintItem) -> Bool {
-    if left.object == nil {
-        return false
+public func ==(lhs: ConstraintItem, rhs: ConstraintItem) -> Bool {
+    // pointer equality
+    guard lhs !== rhs else {
+        return true
     }
-    if right.object == nil {
-        return false
+    
+    // must both have valid targets and identical attributes
+    guard let target1 = lhs.target,
+          let target2 = rhs.target
+          where target1 === target2 && lhs.attributes == rhs.attributes else {
+            return false
     }
-    if left.object !== right.object {
-        return false
-    }
-    if left.attributes != right.attributes {
-        return false
-    }
+    
     return true
 }

@@ -23,27 +23,8 @@
 
 #if os(iOS) || os(tvOS)
     import UIKit
+    internal typealias ConstraintLayoutSupport = UILayoutSupport
 #else
     import AppKit
+    internal class ConstraintLayoutSupport { }
 #endif
-
-
-public class LayoutConstraint: NSLayoutConstraint {
-    
-    internal var constraint: Constraint? = nil
-    public var label: String? = nil
-    
-}
-
-internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
-    guard lhs.firstItem === rhs.firstItem &&
-          lhs.secondItem === rhs.secondItem &&
-          lhs.firstAttribute == rhs.firstAttribute &&
-          lhs.secondAttribute == rhs.secondAttribute &&
-          lhs.relation == rhs.relation &&
-          lhs.priority == rhs.priority &&
-          lhs.multiplier == rhs.multiplier else {
-        return false
-    }
-    return true
-}
