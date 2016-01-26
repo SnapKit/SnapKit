@@ -1,9 +1,20 @@
 CHANGELOG
 =======
 
-# 0.19.0 - January 21 2015
+# 0.20.0-alpha1 - January 26 2016
 
-* Improved `.insets()` for `width` and `height` #183
+** SnapKit 0.20.0 ** is a complete re-write to take advantage of modern Swift as well as
+clean up the API. As such please use with caution and check your apps thoroughly
+
+* All APIs are now accessed via `.snp.*` rather than `.snp_*`. For example you now do `view.snp.makeConstraints {…}`
+* Debugging output has been improved to show exact file/line number from which the broken constraint was created. This is an improvement on existing functionality that showed only the file/line number for the make closure.
+* `.inset()` will no longer take `CGPoint` or `CGSize` as input
+* `.offset()` will no longer take `CGPoint`, `CGSize`, `EdgeInsets` as input
+* Exceptions thrown during constraint creation have been replaced with `fatalError` with better output.
+
+# 0.19.0 - January 21 2016
+
+* Improved `.inset()` for `width` and `height` #183
 * Added Carthage tvOS support #179
 * Added Package.swift #175
 * Codesign is set to Distribution on Release #181
