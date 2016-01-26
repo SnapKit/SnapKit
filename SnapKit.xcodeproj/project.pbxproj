@@ -23,6 +23,7 @@
 		537DCEA91C35CE3E00B5B899 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB35F1AC0C95C006BBC11 /* ConstraintAttributes.swift */; };
 		537DCEB41C35D90A00B5B899 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537DCE921C35CC8800B5B899 /* SnapKit.framework */; };
 		537DCEBA1C35DA9700B5B899 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB36A1AC0C95C006BBC11 /* Tests.swift */; };
+		EE235FCF1C57936D00C08960 /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235FCE1C57936D00C08960 /* SourceLocation.swift */; };
 		EE4910981B19A26000A54F1F /* ViewController+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4910971B19A26000A54F1F /* ViewController+SnapKit.swift */; };
 		EE4910991B19A40200A54F1F /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBCC9D819CC627D0083B827 /* SnapKit.framework */; };
 		EE94F6091AC0F10A008767FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE94F6081AC0F10A008767FF /* UIKit.framework */; };
@@ -70,6 +71,7 @@
 		537DCE921C35CC8800B5B899 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		537DCE9A1C35CD4100B5B899 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		537DCEAF1C35D90A00B5B899 /* SnapKit tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SnapKit tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE235FCE1C57936D00C08960 /* SourceLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLocation.swift; sourceTree = "<group>"; };
 		EE4910971B19A26000A54F1F /* ViewController+SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+SnapKit.swift"; sourceTree = "<group>"; };
 		EE94F6081AC0F10A008767FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EE94F60A1AC0F10F008767FF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -183,6 +185,7 @@
 			children = (
 				EECDB3661AC0C95C006BBC11 /* SnapKit.h */,
 				EEFCF32E1AD926AE00A425FA /* SnapKit.swift */,
+				EE235FCE1C57936D00C08960 /* SourceLocation.swift */,
 				EECDB35E1AC0C95C006BBC11 /* Constraint.swift */,
 				EEFCF3311AD9432400A425FA /* ConstraintDescription.swift */,
 				EECDB3611AC0C95C006BBC11 /* ConstraintMaker.swift */,
@@ -493,6 +496,7 @@
 				EECDB3711AC0C9A6006BBC11 /* EdgeInsets.swift in Sources */,
 				EE4910981B19A26000A54F1F /* ViewController+SnapKit.swift in Sources */,
 				EECDB36F1AC0C9A6006BBC11 /* ConstraintMaker.swift in Sources */,
+				EE235FCF1C57936D00C08960 /* SourceLocation.swift in Sources */,
 				EECDB36D1AC0C9A6006BBC11 /* ConstraintAttributes.swift in Sources */,
 				EECDB3721AC0C9A6006BBC11 /* LayoutConstraint.swift in Sources */,
 				EECDB36E1AC0C9A6006BBC11 /* ConstraintItem.swift in Sources */,
