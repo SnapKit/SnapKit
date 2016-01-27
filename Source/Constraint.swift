@@ -61,6 +61,11 @@ public class Constraint {
     internal var makerFile: String = "Unknown"
     internal var makerLine: UInt = 0
     
+    public var layoutConstraint: LayoutConstraint? {
+        get {
+            fatalError("Must be implemented by Concrete subclass.")
+        }
+    }
 }
 
 /**
@@ -194,6 +199,15 @@ internal class ConcreteConstraint: Constraint {
     }
     
     private var installInfo: ConcreteConstraintInstallInfo? = nil
+    
+    override var layoutConstraint: LayoutConstraint? {
+        get {
+            if let constraints = self.installInfo?.view?.constraints {
+                return constraints.filter { (($0 as? LayoutConstraint)?.snp_constraint === self) }.first as? LayoutConstraint
+            }
+            return nil
+        }
+    }
     
     internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float) {
         self.fromItem = fromItem
