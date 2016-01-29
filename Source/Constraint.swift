@@ -61,6 +61,11 @@ public class Constraint {
     internal var makerFile: String = "Unknown"
     internal var makerLine: UInt = 0
     
+    public var layoutConstraint: LayoutConstraint? {
+        get {
+            fatalError("Must be implemented by Concrete subclass.")
+        }
+    }
 }
 
 /**
@@ -192,19 +197,33 @@ internal class ConcreteConstraint: Constraint {
             }
         }
     }
+    private var verticalSizeClasses: [UIUserInterfaceSizeClass]
+    private var horizontalSizeClasses: [UIUserInterfaceSizeClass]
     
     private var installInfo: ConcreteConstraintInstallInfo? = nil
     
-    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float) {
+    override var layoutConstraint: LayoutConstraint? {
+        get {
+            if let constraints = self.installInfo?.view?.constraints {
+                return constraints.filter { (($0 as? LayoutConstraint)?.snp_constraint === self) }.first as? LayoutConstraint
+            }
+            return nil
+        }
+    }
+    
+    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float, verticalSizeClasses: [UIUserInterfaceSizeClass], horizontalSizeClasses: [UIUserInterfaceSizeClass]) {
         self.fromItem = fromItem
         self.toItem = toItem
         self.relation = relation
         self.constant = constant
         self.multiplier = multiplier
         self.priority = priority
+        self.verticalSizeClasses = verticalSizeClasses
+        self.horizontalSizeClasses = horizontalSizeClasses
     }
     
     internal func installOnView(updateExisting updateExisting: Bool = false, file: String? = nil, line: UInt? = nil) -> [LayoutConstraint] {
+        
         var installOnView: View? = nil
         if self.toItem.view != nil {
             installOnView = closestCommonSuperviewFromView(self.fromItem.view, toView: self.toItem.view)
@@ -231,6 +250,12 @@ internal class ConcreteConstraint: Constraint {
                 return []
             }
             return self.installInfo?.layoutConstraints.allObjects as? [LayoutConstraint] ?? []
+        }
+        
+        // check installOnView's traitCollection
+        guard self.verticalSizeClasses.contains(installOnView!.traitCollection.verticalSizeClass) &&
+            self.horizontalSizeClasses.contains(installOnView!.traitCollection.horizontalSizeClass) else {
+                return []
         }
         
         var newLayoutConstraints = [LayoutConstraint]()
