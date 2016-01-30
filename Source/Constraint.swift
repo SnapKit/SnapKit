@@ -509,9 +509,14 @@ private func closestCommonSuperviewFromView(fromView: View?, toView: View?) -> V
 }
 
 private func ==(left: ConcreteConstraint, right: ConcreteConstraint) -> Bool {
+    let sameVerticalClasses = left.verticalSizeClasses.filter { right.verticalSizeClasses.contains($0) }.count > 0
+    let sameHorizontalClasses = left.horizontalSizeClasses.filter { right.horizontalSizeClasses.contains($0) }.count > 0
+    
     return (left.fromItem == right.fromItem &&
             left.toItem == right.toItem &&
             left.relation == right.relation &&
             left.multiplier == right.multiplier &&
-            left.priority == right.priority)
+            left.priority == right.priority &&
+            sameHorizontalClasses &&
+            sameVerticalClasses)
 }
