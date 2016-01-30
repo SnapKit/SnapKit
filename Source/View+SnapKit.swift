@@ -178,6 +178,58 @@ public extension View {
             objc_setAssociatedObject(self, &installedLayoutConstraintsKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
+    
+    internal var snp_constraints: [Constraint] {
+        get {
+            if let constraints = objc_getAssociatedObject(self, &constraintsKey) as? [Constraint] {
+                return constraints
+            }
+            return []
+        }
+        set {
+            objc_setAssociatedObject(self, &constraintsKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
 }
 
 private var installedLayoutConstraintsKey = ""
+private var constraintsKey = ""
+
+public extension UIView {
+    
+    public override class func initialize() {
+        struct Static {
+            static var token: dispatch_once_t = 0
+        }
+        
+        if self !== UIView.self {
+            return
+        }
+        
+        dispatch_once(&Static.token) {
+            
+            let originalSelector = Selector("traitCollectionDidChange:")
+            let swizzledSelector = Selector("snp_traitCollectionDidChange:")
+            let originalMethod = class_getInstanceMethod(self, originalSelector)
+            let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
+            let added = class_addMethod(self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
+            
+            if (added) {
+                class_replaceMethod(self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
+            }
+            else {
+                method_exchangeImplementations(originalMethod, swizzledMethod)
+            }
+            
+        }
+    }
+    
+    func snp_traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        self.snp_traitCollectionDidChange(previousTraitCollection)
+        for constraint in self.snp_constraints {
+            constraint.uninstall()
+            constraint.install()
+        }
+    }
+    
+}

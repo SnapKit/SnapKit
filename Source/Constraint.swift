@@ -361,6 +361,11 @@ internal class ConcreteConstraint: Constraint {
         // store the layout constraints against the layout from view
         layoutFrom!.snp_installedLayoutConstraints += newLayoutConstraints
         
+        let constraintsLikeThis = installOnView!.snp_constraints.filter { $0 === self }
+        if constraintsLikeThis.count == 0 {
+            installOnView?.snp_constraints.append(self)
+        }
+        
         // return the new constraints
         return newLayoutConstraints
     }
