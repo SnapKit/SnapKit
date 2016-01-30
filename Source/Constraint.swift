@@ -388,6 +388,8 @@ internal class ConcreteConstraint: Constraint {
                     
                     // remove the constraints from the from item view
                     if let fromView = self.fromItem.view {
+                        let constraints = fromView.snp_constraints.filter { $0 !== self }
+                        fromView.snp_constraints = constraints
                         fromView.snp_installedLayoutConstraints = fromView.snp_installedLayoutConstraints.filter {
                             return !installedLayoutConstraints.contains($0)
                         }
