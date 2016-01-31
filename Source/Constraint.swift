@@ -243,11 +243,21 @@ internal class ConcreteConstraint: Constraint {
             installOnView?.snp_constraints.append(self)
         }
         
-        // check installOnView's traitCollection
-        guard self.verticalSizeClass.equalTo(installOnView!.traitCollection.verticalSizeClass) &&
-            self.horizontalSizeClass.equalTo(installOnView!.traitCollection.horizontalSizeClass) else {
-                return []
+        #if SNAPKIT_DEPLOYMENT_LEGACY && os(iOS)
+        if #available(iOS 8.0, *) {
+            // check installOnView's traitCollection
+            guard self.verticalSizeClass.equalTo(installOnView!.traitCollection.verticalSizeClass) &&
+                self.horizontalSizeClass.equalTo(installOnView!.traitCollection.horizontalSizeClass) else {
+                    return []
+            }
         }
+        #elseif os(iOS)
+            // check installOnView's traitCollection
+            guard self.verticalSizeClass.equalTo(installOnView!.traitCollection.verticalSizeClass) &&
+                self.horizontalSizeClass.equalTo(installOnView!.traitCollection.horizontalSizeClass) else {
+                    return []
+            }
+        #endif
         
         var newLayoutConstraints = [LayoutConstraint]()
         let layoutFromAttributes = self.fromItem.attributes.layoutAttributes
