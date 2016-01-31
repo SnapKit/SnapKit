@@ -21,14 +21,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
+import UIKit
 
 public enum SizeClass {
     
     case Any
     case Compact
     case Regular
-    
+
+    @available(iOS 8.0, *)
     internal func userInterfaceSizeClasses() -> [UIUserInterfaceSizeClass] {
         switch self {
         case .Any:
@@ -40,6 +41,7 @@ public enum SizeClass {
         }
     }
     
+    @available(iOS 8.0, *)
     internal func equalTo(userInterfaceSizeClass: UIUserInterfaceSizeClass) -> Bool {
         return self.userInterfaceSizeClasses().contains(userInterfaceSizeClass)
     }
