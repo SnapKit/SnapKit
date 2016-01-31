@@ -191,20 +191,20 @@ internal class ConcreteConstraint: Constraint {
             }
         }
     }
-    private var verticalSizeClasses: [UIUserInterfaceSizeClass]
-    private var horizontalSizeClasses: [UIUserInterfaceSizeClass]
+    private var verticalSizeClass: SizeClass
+    private var horizontalSizeClass: SizeClass
     
     private var installInfo: ConcreteConstraintInstallInfo? = nil
     
-    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float, verticalSizeClasses: [UIUserInterfaceSizeClass], horizontalSizeClasses: [UIUserInterfaceSizeClass]) {
+    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float, verticalSizeClass: SizeClass, horizontalSizeClass: SizeClass) {
         self.fromItem = fromItem
         self.toItem = toItem
         self.relation = relation
         self.constant = constant
         self.multiplier = multiplier
         self.priority = priority
-        self.verticalSizeClasses = verticalSizeClasses
-        self.horizontalSizeClasses = horizontalSizeClasses
+        self.verticalSizeClass = verticalSizeClass
+        self.horizontalSizeClass = horizontalSizeClass
     }
     
     internal func installOnView(updateExisting updateExisting: Bool = false, file: String? = nil, line: UInt? = nil) -> [LayoutConstraint] {
@@ -237,9 +237,15 @@ internal class ConcreteConstraint: Constraint {
             return self.installInfo?.layoutConstraints.allObjects as? [LayoutConstraint] ?? []
         }
         
+        // store the current constraint if it hasn't been done yet
+        let constraintsLikeThis = installOnView!.snp_constraints.filter { $0 === self }
+        if constraintsLikeThis.count == 0 {
+            installOnView?.snp_constraints.append(self)
+        }
+        
         // check installOnView's traitCollection
-        guard self.verticalSizeClasses.contains(installOnView!.traitCollection.verticalSizeClass) &&
-            self.horizontalSizeClasses.contains(installOnView!.traitCollection.horizontalSizeClass) else {
+        guard self.verticalSizeClass.equalTo(installOnView!.traitCollection.verticalSizeClass) &&
+            self.horizontalSizeClass.equalTo(installOnView!.traitCollection.horizontalSizeClass) else {
                 return []
         }
         
@@ -345,11 +351,6 @@ internal class ConcreteConstraint: Constraint {
         
         // store the layout constraints against the layout from view
         layoutFrom!.snp_installedLayoutConstraints += newLayoutConstraints
-        
-        let constraintsLikeThis = installOnView!.snp_constraints.filter { $0 === self }
-        if constraintsLikeThis.count == 0 {
-            installOnView?.snp_constraints.append(self)
-        }
         
         // return the new constraints
         return newLayoutConstraints
@@ -509,14 +510,12 @@ private func closestCommonSuperviewFromView(fromView: View?, toView: View?) -> V
 }
 
 private func ==(left: ConcreteConstraint, right: ConcreteConstraint) -> Bool {
-    let sameVerticalClasses = left.verticalSizeClasses.filter { right.verticalSizeClasses.contains($0) }.count > 0
-    let sameHorizontalClasses = left.horizontalSizeClasses.filter { right.horizontalSizeClasses.contains($0) }.count > 0
     
     return (left.fromItem == right.fromItem &&
             left.toItem == right.toItem &&
             left.relation == right.relation &&
             left.multiplier == right.multiplier &&
             left.priority == right.priority &&
-            sameHorizontalClasses &&
-            sameVerticalClasses)
+            left.verticalSizeClass == right.verticalSizeClass &&
+            left.horizontalSizeClass == right.horizontalSizeClass)
 }

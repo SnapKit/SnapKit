@@ -86,9 +86,9 @@ public protocol ConstraintDescriptionEditable: ConstraintDescriptionPriortizable
     func inset(amount: EdgeInsets) -> ConstraintDescriptionEditable
     
     @available(iOS 8.0, *)
-    func forHorizontalSizeClasses(horizontalSizeClasses: [UIUserInterfaceSizeClass]) -> ConstraintDescriptionEditable
+    func horizontalSizeClass(sizeClass: SizeClass) -> ConstraintDescriptionEditable
     @available(iOS 8.0, *)
-    func forVerticalSizeClasses(verticalSizeClasses: [UIUserInterfaceSizeClass]) -> ConstraintDescriptionEditable
+    func verticalSizeClass(sizeClass: SizeClass) -> ConstraintDescriptionEditable
 }
 
 /**
@@ -447,14 +447,14 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     // MARK: Size classes
 
     @available(iOS 8.0, *)
-    func forHorizontalSizeClasses(horizontalSizeClasses: [UIUserInterfaceSizeClass]) -> ConstraintDescriptionEditable {
-        self.horizontalSizeClasses = horizontalSizeClasses
+    func horizontalSizeClass(sizeClass: SizeClass) -> ConstraintDescriptionEditable {
+        self.horizontalSizeClass = sizeClass
         return self
     }
     
     @available(iOS 8.0, *)
-    func forVerticalSizeClasses(verticalSizeClasses: [UIUserInterfaceSizeClass]) -> ConstraintDescriptionEditable {
-        self.verticalSizeClasses = verticalSizeClasses
+    func verticalSizeClass(sizeClass: SizeClass) -> ConstraintDescriptionEditable {
+        self.verticalSizeClass = sizeClass
         return self
     }
     
@@ -507,8 +507,8 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
                 constant: self.constant,
                 multiplier: self.multiplier,
                 priority: self.priority,
-                verticalSizeClasses: self.verticalSizeClasses,
-                horizontalSizeClasses: self.horizontalSizeClasses)
+                verticalSizeClass: self.verticalSizeClass,
+                horizontalSizeClass: self.horizontalSizeClass)
         }
         return self.concreteConstraint!
     }
@@ -551,14 +551,14 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
             }
         }
     }
-    private var verticalSizeClasses: [UIUserInterfaceSizeClass] = [.Unspecified, .Compact, .Regular] {
+    private var verticalSizeClass: SizeClass = .Any {
         willSet {
             if self.concreteConstraint != nil {
                 fatalError("Attempting to modify a ConstraintDescription after its constraint has been created.")
             }
         }
     }
-    private var horizontalSizeClasses: [UIUserInterfaceSizeClass] = [.Unspecified, .Compact, .Regular] {
+    private var horizontalSizeClass: SizeClass = .Any {
         willSet {
             if self.concreteConstraint != nil {
                 fatalError("Attempting to modify a ConstraintDescription after its constraint has been created.")
