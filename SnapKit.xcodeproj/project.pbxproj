@@ -24,6 +24,8 @@
 		537DCEB41C35D90A00B5B899 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537DCE921C35CC8800B5B899 /* SnapKit.framework */; };
 		537DCEBA1C35DA9700B5B899 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB36A1AC0C95C006BBC11 /* Tests.swift */; };
 		C1151E641C5E654300CC9CC2 /* SizeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1151E631C5E654300CC9CC2 /* SizeClass.swift */; };
+		C1151E651C5E665400CC9CC2 /* SizeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1151E631C5E654300CC9CC2 /* SizeClass.swift */; };
+		C1151E661C5E665500CC9CC2 /* SizeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1151E631C5E654300CC9CC2 /* SizeClass.swift */; };
 		EE4910981B19A26000A54F1F /* ViewController+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4910971B19A26000A54F1F /* ViewController+SnapKit.swift */; };
 		EE4910991B19A40200A54F1F /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBCC9D819CC627D0083B827 /* SnapKit.framework */; };
 		EE94F6091AC0F10A008767FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE94F6081AC0F10A008767FF /* UIKit.framework */; };
@@ -469,6 +471,7 @@
 				537DCEA41C35CE1500B5B899 /* ViewController+SnapKit.swift in Sources */,
 				537DCE9E1C35CDAA00B5B899 /* Debugging.swift in Sources */,
 				537DCEA11C35CE0000B5B899 /* ConstraintDescription.swift in Sources */,
+				C1151E651C5E665400CC9CC2 /* SizeClass.swift in Sources */,
 				537DCEA91C35CE3E00B5B899 /* ConstraintAttributes.swift in Sources */,
 				537DCEA31C35CE0900B5B899 /* View+SnapKit.swift in Sources */,
 				537DCEA21C35CE0500B5B899 /* ConstraintMaker.swift in Sources */,
@@ -522,6 +525,7 @@
 				EEFCF3331AD9432400A425FA /* ConstraintDescription.swift in Sources */,
 				EECDB39C1AC0CBFF006BBC11 /* View+SnapKit.swift in Sources */,
 				EECDB39A1AC0CBFF006BBC11 /* EdgeInsets.swift in Sources */,
+				C1151E661C5E665500CC9CC2 /* SizeClass.swift in Sources */,
 				EECDB3981AC0CBFF006BBC11 /* ConstraintMaker.swift in Sources */,
 				EECDB3961AC0CBFF006BBC11 /* ConstraintAttributes.swift in Sources */,
 				EECDB39B1AC0CBFF006BBC11 /* LayoutConstraint.swift in Sources */,
