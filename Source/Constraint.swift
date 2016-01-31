@@ -243,8 +243,13 @@ internal class ConcreteConstraint: Constraint {
             installOnView?.snp_constraints.append(self)
         }
         
+        // we'd need to DRY this code
         #if SNAPKIT_DEPLOYMENT_LEGACY && os(iOS)
         if #available(iOS 8.0, *) {
+            if installOnView!.snp_doesContainListenerView() == false && (self.horizontalSizeClass != .Any || self.verticalSizeClass != .Any) {
+                installOnView!.addSubview(ListenerView())
+            }
+            
             // check installOnView's traitCollection
             guard self.verticalSizeClass.equalTo(installOnView!.traitCollection.verticalSizeClass) &&
                 self.horizontalSizeClass.equalTo(installOnView!.traitCollection.horizontalSizeClass) else {
@@ -252,6 +257,10 @@ internal class ConcreteConstraint: Constraint {
             }
         }
         #elseif os(iOS)
+            if installOnView!.snp_doesContainListenerView() == false {
+                installOnView!.addSubview(ListenerView())
+            }
+            
             // check installOnView's traitCollection
             guard self.verticalSizeClass.equalTo(installOnView!.traitCollection.verticalSizeClass) &&
                 self.horizontalSizeClass.equalTo(installOnView!.traitCollection.horizontalSizeClass) else {
