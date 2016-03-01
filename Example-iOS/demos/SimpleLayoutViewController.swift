@@ -18,12 +18,19 @@ class SimpleLayoutViewController: UIViewController {
         return view
     }()
     
+    let redView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .redColor()
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.whiteColor()
         
         view.addSubview(blackView)
+        view.addSubview(redView)
         
         view.setNeedsUpdateConstraints()
     }
@@ -34,6 +41,11 @@ class SimpleLayoutViewController: UIViewController {
             
             blackView.snp_makeConstraints(closure: { (make) -> Void in
                 make.center.equalTo(view)
+                make.size.equalTo(CGSizeMake(100.0, 100.0))
+            })
+            
+            redView.snp_makeConstraints(closure: { (make) -> Void in
+                make.top.equalTo(blackView.snp_bottom).offset(20.0)
                 make.size.equalTo(CGSizeMake(100.0, 100.0))
             })
             
