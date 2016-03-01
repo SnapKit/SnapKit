@@ -36,6 +36,12 @@ class SimpleLayoutViewController: UIViewController {
         return view
     }()
     
+    let greenView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .greenColor()
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,6 +51,7 @@ class SimpleLayoutViewController: UIViewController {
         view.addSubview(redView)
         view.addSubview(yellowView)
         view.addSubview(blueView)
+        view.addSubview(greenView)
         
         view.setNeedsUpdateConstraints()
     }
@@ -71,8 +78,14 @@ class SimpleLayoutViewController: UIViewController {
             })
             
             blueView.snp_makeConstraints(closure: { (make) -> Void in
-                make.bottom.equalTo(blackView.snp_top).offset(0.0)
+                make.bottom.equalTo(blackView.snp_top).offset(-20.0)
                 make.left.equalTo(blackView.snp_right).offset(20.0)
+                make.size.equalTo(CGSizeMake(100.0, 100.0))
+            })
+            
+            greenView.snp_makeConstraints(closure: { (make) -> Void in
+                make.bottom.equalTo(blackView.snp_top).offset(-20.0)
+                make.right.equalTo(blackView.snp_left).offset(-20.0)
                 make.size.equalTo(CGSizeMake(100.0, 100.0))
             })
             
