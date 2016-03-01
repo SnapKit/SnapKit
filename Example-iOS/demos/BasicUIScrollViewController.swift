@@ -32,7 +32,7 @@ class BasicUIScrollViewController: UIViewController {
         
         view.addSubview(scrollView)
         
-        contentView.backgroundColor = UIColor.redColor()
+        contentView.backgroundColor = UIColor.lightGrayColor()
         scrollView.addSubview(contentView)
         contentView.addSubview(label)
         
@@ -42,6 +42,7 @@ class BasicUIScrollViewController: UIViewController {
     override func updateViewConstraints() {
         
         if (!didSetupConstraints) {
+            
             scrollView.snp_makeConstraints { (make) -> Void in
                 make.edges.equalTo(view).inset(UIEdgeInsetsZero)
             }

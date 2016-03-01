@@ -12,7 +12,7 @@ import SnapKit
 class ListViewController: UITableViewController {
 
     let kCellIdentifier = "CellIdentifier"
-    let demos = ["Basic UIScrollView"]
+    let demos = ["Simple Layout", "Basic UIScrollView"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,9 @@ class ListViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 {
+            let viewController = SimpleLayoutViewController()
+            navigationController?.pushViewController(viewController, animated: true)
+        } else if indexPath.row == 1 {
             let viewController = BasicUIScrollViewController()
             navigationController?.pushViewController(viewController, animated: true)
         }
