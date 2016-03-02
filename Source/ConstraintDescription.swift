@@ -84,6 +84,11 @@ public protocol ConstraintDescriptionEditable: ConstraintDescriptionPriortizable
     func inset(amount: Int) -> ConstraintDescriptionEditable
     func inset(amount: UInt) -> ConstraintDescriptionEditable
     func inset(amount: EdgeInsets) -> ConstraintDescriptionEditable
+    
+    @available(iOS 8.0, *)
+    func horizontalSizeClass(sizeClass: SizeClass) -> ConstraintDescriptionEditable
+    @available(iOS 8.0, *)
+    func verticalSizeClass(sizeClass: SizeClass) -> ConstraintDescriptionEditable
 }
 
 /**
@@ -439,6 +444,20 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
         return self
     }
     
+    // MARK: Size classes
+
+    @available(iOS 8.0, *)
+    func horizontalSizeClass(sizeClass: SizeClass) -> ConstraintDescriptionEditable {
+        self.horizontalSizeClass = sizeClass
+        return self
+    }
+    
+    @available(iOS 8.0, *)
+    func verticalSizeClass(sizeClass: SizeClass) -> ConstraintDescriptionEditable {
+        self.verticalSizeClass = sizeClass
+        return self
+    }
+    
     // MARK: priority
     
     internal func priority(priority: Float) -> ConstraintDescriptionFinalizable {
@@ -487,7 +506,9 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
                 relation: self.relation!,
                 constant: self.constant,
                 multiplier: self.multiplier,
-                priority: self.priority)
+                priority: self.priority,
+                verticalSizeClass: self.verticalSizeClass,
+                horizontalSizeClass: self.horizontalSizeClass)
         }
         return self.concreteConstraint!
     }
@@ -524,6 +545,20 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
         }
     }
     private var priority: Float = 1000.0 {
+        willSet {
+            if self.concreteConstraint != nil {
+                fatalError("Attempting to modify a ConstraintDescription after its constraint has been created.")
+            }
+        }
+    }
+    private var verticalSizeClass: SizeClass = .Any {
+        willSet {
+            if self.concreteConstraint != nil {
+                fatalError("Attempting to modify a ConstraintDescription after its constraint has been created.")
+            }
+        }
+    }
+    private var horizontalSizeClass: SizeClass = .Any {
         willSet {
             if self.concreteConstraint != nil {
                 fatalError("Attempting to modify a ConstraintDescription after its constraint has been created.")

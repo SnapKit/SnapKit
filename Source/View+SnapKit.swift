@@ -164,6 +164,9 @@ public extension View {
         Removes all previously made constraints.
     */
     public func snp_removeConstraints() {
+        #if os(iOS)
+        self.snp_removeListenerView()
+        #endif
         ConstraintMaker.removeConstraints(view: self)
     }
     
@@ -178,6 +181,19 @@ public extension View {
             objc_setAssociatedObject(self, &installedLayoutConstraintsKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
+    
+    internal var snp_constraints: [Constraint] {
+        get {
+            if let constraints = objc_getAssociatedObject(self, &constraintsKey) as? [Constraint] {
+                return constraints
+            }
+            return []
+        }
+        set {
+            objc_setAssociatedObject(self, &constraintsKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
 }
 
 private var installedLayoutConstraintsKey = ""
+private var constraintsKey = ""

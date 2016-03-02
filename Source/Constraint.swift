@@ -60,7 +60,6 @@ public class Constraint {
     
     internal var makerFile: String = "Unknown"
     internal var makerLine: UInt = 0
-    
 }
 
 /**
@@ -192,19 +191,24 @@ internal class ConcreteConstraint: Constraint {
             }
         }
     }
+    private var verticalSizeClass: SizeClass
+    private var horizontalSizeClass: SizeClass
     
     private var installInfo: ConcreteConstraintInstallInfo? = nil
     
-    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float) {
+    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float, verticalSizeClass: SizeClass, horizontalSizeClass: SizeClass) {
         self.fromItem = fromItem
         self.toItem = toItem
         self.relation = relation
         self.constant = constant
         self.multiplier = multiplier
         self.priority = priority
+        self.verticalSizeClass = verticalSizeClass
+        self.horizontalSizeClass = horizontalSizeClass
     }
     
     internal func installOnView(updateExisting updateExisting: Bool = false, file: String? = nil, line: UInt? = nil) -> [LayoutConstraint] {
+        
         var installOnView: View? = nil
         if self.toItem.view != nil {
             installOnView = closestCommonSuperviewFromView(self.fromItem.view, toView: self.toItem.view)
@@ -232,6 +236,30 @@ internal class ConcreteConstraint: Constraint {
             }
             return self.installInfo?.layoutConstraints.allObjects as? [LayoutConstraint] ?? []
         }
+        
+        // store the current constraint if it hasn't been done yet
+        let constraintsLikeThis = installOnView!.snp_constraints.filter { $0 === self }
+        if constraintsLikeThis.count == 0 {
+            installOnView?.snp_constraints.append(self)
+        }
+        
+        #if SNAPKIT_DEPLOYMENT_LEGACY && os(iOS)
+        if #available(iOS 8.0, *) {
+            // install listener view if needed
+            self.addListenerViewToView(installOnView!)
+            // check installOnView's traitCollection
+            if self.shouldInstallConstraintInView(installOnView!) == false {
+                return []
+            }
+        }
+        #elseif os(iOS)
+            // install listener view if needed
+            self.addListenerViewToView(installOnView!)
+            // check installOnView's traitCollection
+            if self.shouldInstallConstraintInView(installOnView!) == false {
+                return []
+            }
+        #endif
         
         var newLayoutConstraints = [LayoutConstraint]()
         let layoutFromAttributes = self.fromItem.attributes.layoutAttributes
@@ -358,6 +386,8 @@ internal class ConcreteConstraint: Constraint {
                     
                     // remove the constraints from the from item view
                     if let fromView = self.fromItem.view {
+                        let constraints = fromView.snp_constraints.filter { $0 !== self }
+                        fromView.snp_constraints = constraints
                         fromView.snp_installedLayoutConstraints = fromView.snp_installedLayoutConstraints.filter {
                             return !installedLayoutConstraints.contains($0)
                         }
@@ -366,6 +396,17 @@ internal class ConcreteConstraint: Constraint {
                 
         }
         self.installInfo = nil
+    }
+    
+    func addListenerViewToView(view: UIView) {
+        if view.snp_doesContainListenerView() == false && (self.horizontalSizeClass != .Any || self.verticalSizeClass != .Any) {
+            view.addSubview(ListenerView())
+        }
+    }
+    
+    func shouldInstallConstraintInView(view: UIView) -> Bool {
+        return  self.verticalSizeClass.equalTo(view.traitCollection.verticalSizeClass) &&
+            self.horizontalSizeClass.equalTo(view.traitCollection.horizontalSizeClass)
     }
     
 }
@@ -492,9 +533,12 @@ private func closestCommonSuperviewFromView(fromView: View?, toView: View?) -> V
 }
 
 private func ==(left: ConcreteConstraint, right: ConcreteConstraint) -> Bool {
+    
     return (left.fromItem == right.fromItem &&
             left.toItem == right.toItem &&
             left.relation == right.relation &&
             left.multiplier == right.multiplier &&
-            left.priority == right.priority)
+            left.priority == right.priority &&
+            left.verticalSizeClass == right.verticalSizeClass &&
+            left.horizontalSizeClass == right.horizontalSizeClass)
 }
