@@ -34,7 +34,7 @@ public protocol ConstraintDescriptionFinalizable: class {
     
     var constraint: Constraint { get }
     
-    func identifiedAs(identifier: String) -> ConstraintDescriptionFinalizable
+    func labeled(label: String) -> ConstraintDescriptionFinalizable
     
 }
 
@@ -193,7 +193,7 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal var centerX: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.CenterX) }
     internal var centerY: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.CenterY) }
     internal var baseline: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.Baseline) }
-    internal var identifier: String?
+    internal var label: String?
     
     @available(iOS 8.0, *)
     internal var firstBaseline: ConstraintDescriptionExtendable { return self.addConstraint(ConstraintAttributes.FirstBaseline) }
@@ -491,13 +491,13 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
                 constant: self.constant,
                 multiplier: self.multiplier,
                 priority: self.priority,
-                identifier: self.identifier)
+                label: self.label)
         }
         return self.concreteConstraint!
     }
     
-    func identifiedAs(identifier: String) -> ConstraintDescriptionFinalizable {
-        self.identifier = identifier
+    func labeled(label: String) -> ConstraintDescriptionFinalizable {
+        self.label = label
         return self
     }
     

@@ -255,7 +255,7 @@ class SnapKitTests: XCTestCase {
         self.container.addSubview(view)
         
         view.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.container.snp_top).identifiedAs(identifier)
+            make.top.equalTo(self.container.snp_top).labeled(identifier)
         }
         
         let constraints = container.snp_constraints as! [NSLayoutConstraint]
