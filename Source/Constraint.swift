@@ -193,15 +193,18 @@ internal class ConcreteConstraint: Constraint {
         }
     }
     
+    private let identifier: String?
+    
     private var installInfo: ConcreteConstraintInstallInfo? = nil
     
-    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float) {
+    internal init(fromItem: ConstraintItem, toItem: ConstraintItem, relation: ConstraintRelation, constant: Any, multiplier: Float, priority: Float, identifier: String? = nil) {
         self.fromItem = fromItem
         self.toItem = toItem
         self.relation = relation
         self.constant = constant
         self.multiplier = multiplier
         self.priority = priority
+        self.identifier = identifier
     }
     
     internal func installOnView(updateExisting updateExisting: Bool = false, file: String? = nil, line: UInt? = nil) -> [LayoutConstraint] {
@@ -269,6 +272,7 @@ internal class ConcreteConstraint: Constraint {
                 attribute: layoutToAttribute,
                 multiplier: CGFloat(self.multiplier),
                 constant: layoutConstant)
+            layoutConstraint.identifier = self.identifier
             
             // set priority
             layoutConstraint.priority = self.priority
