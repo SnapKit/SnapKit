@@ -1,6 +1,11 @@
 CHANGELOG
 =======
 
+# 0.20.0 - March 25 2016
+
+* Swift 2.2 Support
+* Added a `labeled("Hello")` to constraint chain to label your constraints for debugging output.
+
 # 0.19.1 - January 26 2016
 
 * Rebased from 0.16.0 with only desired commits to resolve many unexpected issues
