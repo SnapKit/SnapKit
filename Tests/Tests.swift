@@ -249,4 +249,17 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(constraints[1].constant, 50, "Should be 50")
     }
     
+    func testConstraintIdentifier() {
+        let identifier = "Test-Identifier"
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.container.snp_top).labeled(identifier)
+        }
+        
+        let constraints = container.snp_constraints as! [NSLayoutConstraint]
+        XCTAssertEqual(constraints[0].identifier, identifier, "Identifier should be 'Test'")
+    }
+    
 }
