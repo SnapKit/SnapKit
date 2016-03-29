@@ -28,11 +28,11 @@ import AppKit
 #endif
 
 /**
-    Used to allow adding a snp_label to a View for debugging purposes
+    Used to allow adding a label to a View for debugging purposes
 */
 public extension View {
     
-    public var snp_label: String? {
+    @objc(snp_label) public var label: String? {
         get {
             return objc_getAssociatedObject(self, &labelKey) as? String
         }
@@ -44,11 +44,11 @@ public extension View {
 }
 
 /**
-    Used to allow adding a snp_label to a LayoutConstraint for debugging purposes
+    Used to allow adding a label to a LayoutConstraint for debugging purposes
 */
 public extension LayoutConstraint {
     
-    public var snp_label: String? {
+    @objc(snp_label) public var label: String? {
         get {
             return objc_getAssociatedObject(self, &labelKey) as? String
         }
@@ -64,17 +64,17 @@ public extension LayoutConstraint {
         
         description += " \(descriptionForObject(self.firstItem))"
         if self.firstAttribute != .NotAnAttribute {
-            description += ".\(self.firstAttribute.snp_description)"
+            description += ".\(self.firstAttribute.description)"
         }
         
-        description += " \(self.relation.snp_description)"
+        description += " \(self.relation.description)"
         
         if let secondItem: AnyObject = self.secondItem {
             description += " \(descriptionForObject(secondItem))"
         }
         
         if self.secondAttribute != .NotAnAttribute {
-            description += ".\(self.secondAttribute.snp_description)"
+            description += ".\(self.secondAttribute.description)"
         }
         
         if self.multiplier != 1.0 {
@@ -100,12 +100,12 @@ public extension LayoutConstraint {
         return description
     }
     
-    internal var snp_makerFile: String? {
-        return self.snp_constraint?.makerFile
+    @objc(snp_makerFile) internal var makerFile: String? {
+        return self.constraint?.makerFile
     }
     
-    internal var snp_makerLine: UInt? {
-        return self.snp_constraint?.makerLine
+    internal var makerLine: UInt? {
+        return self.constraint?.makerLine
     }
     
 }
@@ -119,14 +119,14 @@ private func descriptionForObject(object: AnyObject) -> String {
     desc += object.dynamicType.description()
     
     if let object = object as? View {
-        desc += ":\(object.snp_label ?? pointerDescription)"
+        desc += ":\(object.label ?? pointerDescription)"
     } else if let object = object as? LayoutConstraint {
-        desc += ":\(object.snp_label ?? pointerDescription)"
+        desc += ":\(object.label ?? pointerDescription)"
     } else {
         desc += ":\(pointerDescription)"
     }
     
-    if let object = object as? LayoutConstraint, let file = object.snp_makerFile, let line = object.snp_makerLine {
+    if let object = object as? LayoutConstraint, let file = object.makerFile, let line = object.makerLine {
         desc += "@\(file)#\(line)"
     }
     
@@ -136,7 +136,7 @@ private func descriptionForObject(object: AnyObject) -> String {
 
 private extension NSLayoutRelation {
     
-    private var snp_description: String {
+    private var description: String {
         switch self {
         case .Equal:                return "=="
         case .GreaterThanOrEqual:   return ">="
@@ -148,7 +148,7 @@ private extension NSLayoutRelation {
 
 private extension NSLayoutAttribute {
     
-    private var snp_description: String {
+    private var description: String {
         #if os(iOS) || os(tvOS)
         switch self {
         case .NotAnAttribute:       return "notAnAttribute"

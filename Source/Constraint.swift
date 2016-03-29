@@ -178,7 +178,7 @@ internal class ConcreteConstraint: Constraint {
             if let installInfo = self.installInfo {
                 for layoutConstraint in installInfo.layoutConstraints.allObjects as! [LayoutConstraint] {
                     let attribute = (layoutConstraint.secondAttribute == .NotAnAttribute) ? layoutConstraint.firstAttribute : layoutConstraint.secondAttribute
-                    layoutConstraint.constant = attribute.snp_constantForValue(self.constant)
+                    layoutConstraint.constant = attribute.constantForValue(self.constant)
                 }
             }
         }
@@ -251,7 +251,7 @@ internal class ConcreteConstraint: Constraint {
             let layoutToAttribute = (layoutToAttributes.count > 0) ? layoutToAttributes[0] : layoutFromAttribute
             
             // get layout constant
-            let layoutConstant: CGFloat = layoutToAttribute.snp_constantForValue(self.constant)
+            let layoutConstant: CGFloat = layoutToAttribute.constantForValue(self.constant)
             
             // get layout to
             #if os(iOS) || os(tvOS)
@@ -278,7 +278,7 @@ internal class ConcreteConstraint: Constraint {
             layoutConstraint.priority = self.priority
             
             // set constraint
-            layoutConstraint.snp_constraint = self
+            layoutConstraint.constraint = self
             
             newLayoutConstraints.append(layoutConstraint)
         }
@@ -286,7 +286,7 @@ internal class ConcreteConstraint: Constraint {
         // special logic for updating
         if updateExisting {
             // get existing constraints for this view
-            let existingLayoutConstraints = layoutFrom!.snp_installedLayoutConstraints.reverse()
+            let existingLayoutConstraints = layoutFrom!.installedLayoutConstraints.reverse()
             
             // array that will contain only new layout constraints to keep
             var newLayoutConstraintsToKeep = [LayoutConstraint]()
@@ -338,7 +338,7 @@ internal class ConcreteConstraint: Constraint {
         }
         
         // store the layout constraints against the layout from view
-        layoutFrom!.snp_installedLayoutConstraints += newLayoutConstraints
+        layoutFrom!.installedLayoutConstraints += newLayoutConstraints
         
         // return the new constraints
         return newLayoutConstraints
@@ -362,7 +362,7 @@ internal class ConcreteConstraint: Constraint {
                     
                     // remove the constraints from the from item view
                     if let fromView = self.fromItem.view {
-                        fromView.snp_installedLayoutConstraints = fromView.snp_installedLayoutConstraints.filter {
+                        fromView.installedLayoutConstraints = fromView.installedLayoutConstraints.filter {
                             return !installedLayoutConstraints.contains($0)
                         }
                     }
@@ -383,7 +383,7 @@ private struct ConcreteConstraintInstallInfo {
 
 private extension NSLayoutAttribute {
     
-    private func snp_constantForValue(value: Any?) -> CGFloat {
+    private func constantForValue(value: Any?) -> CGFloat {
         // Float
         if let float = value as? Float {
             return CGFloat(float)
