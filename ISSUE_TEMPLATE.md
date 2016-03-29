@@ -2,10 +2,16 @@
 
 * [ ] I have looked at the [Documentation](http://snapkit.io/docs)
 * [ ] I have read the [F.A.Q.](http://snapkit.io/faq)
-* Platform is (iOS, OS X etc…): 
-* Platform version is: 
-* SnapKit version is: 
-* Integration method is (carthage, cocoapods etc…): 
 
-### Issue
+### Issue Info
+
+ Info                    | Value                               |
+-------------------------|-------------------------------------|
+ Platform                | e.g. ios/osx/tvos
+ Platform Version        | e.g. 8.0
+ SnapKit Version         | e.g. 0.19.0
+ Integration Method      | e.g. carthage/cocoapods/manually
+ 
+
+### Issue Description
 
