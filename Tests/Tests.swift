@@ -262,4 +262,33 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(constraints[0].identifier, identifier, "Identifier should be 'Test'")
     }
     
+    func testSuperviewConstraints() {
+        let view = View()
+        
+        container.addSubview(view)
+        
+        view.snp_makeConstraints { (make) -> Void in
+            make.top.equalToSuperview().inset(10)
+            make.bottom.equalToSuperview().inset(10)
+        }
+        
+        XCTAssertEqual(container.snp_constraints.count, 2, "Should have 2 constraints")
+        
+        let constraints = container.snp_constraints as! [NSLayoutConstraint]
+        
+        XCTAssertEqual(constraints[0].firstAttribute, NSLayoutAttribute.Top, "Should be top")
+        XCTAssertEqual(constraints[1].firstAttribute, NSLayoutAttribute.Bottom, "Should be bottom")
+        
+        XCTAssertEqual(constraints[0].secondAttribute, NSLayoutAttribute.Top, "Should be top")
+        XCTAssertEqual(constraints[1].secondAttribute, NSLayoutAttribute.Bottom, "Should be bottom")
+        
+        XCTAssertEqual(constraints[0].firstItem as? UIView, view, "Should be added subview")
+        XCTAssertEqual(constraints[1].firstItem as? UIView, view, "Should be added subview")
+        
+        XCTAssertEqual(constraints[0].secondItem as? UIView, container, "Should be containerView")
+        XCTAssertEqual(constraints[1].secondItem as? UIView, container, "Should be containerView")
+        
+        XCTAssertEqual(constraints[0].constant, 10, "Should be 10")
+        XCTAssertEqual(constraints[1].constant, -10, "Should be 10")
+    }
 }

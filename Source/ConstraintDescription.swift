@@ -95,6 +95,7 @@ public protocol ConstraintDescriptionRelatable: class {
     
     func equalTo(other: ConstraintItem) -> ConstraintDescriptionEditable
     func equalTo(other: View) -> ConstraintDescriptionEditable
+    func equalToSuperview() -> ConstraintDescriptionEditable
     @available(iOS 7.0, *)
     func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable
     @available(iOS 9.0, OSX 10.11, *)
@@ -110,6 +111,7 @@ public protocol ConstraintDescriptionRelatable: class {
     
     func lessThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable
     func lessThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
+    func lessThanOrEqualToSuperview() -> ConstraintDescriptionEditable
     @available(iOS 7.0, *)
     func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
     @available(iOS 9.0, OSX 10.11, *)
@@ -125,6 +127,7 @@ public protocol ConstraintDescriptionRelatable: class {
     
     func greaterThanOrEqualTo(other: ConstraintItem) -> ConstraintDescriptionEditable
     func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionEditable
+    func greaterThanOrEqualToSuperview() -> ConstraintDescriptionEditable
     @available(iOS 7.0, *)
     func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable
     @available(iOS 9.0, OSX 10.11, *)
@@ -229,6 +232,13 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func equalTo(other: View) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
+    internal func equalToSuperview() -> ConstraintDescriptionEditable {
+        guard let superview = fromItem.view?.superview else {
+            fatalError("equalToSuperview() requires the view have a superview before being set.")
+        }
+        
+        return self.equalTo(superview)
+    }
     @available(iOS 7.0, *)
     internal func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
@@ -270,6 +280,13 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func lessThanOrEqualTo(other: View) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
     }
+    internal func lessThanOrEqualToSuperview() -> ConstraintDescriptionEditable {
+        guard let superview = fromItem.view?.superview else {
+            fatalError("lessThanOrEqualToSuperview() requires the view have a superview before being set.")
+        }
+        
+        return self.lessThanOrEqualTo(superview)
+    }
     @available(iOS 7.0, *)
     internal func lessThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .LessThanOrEqualTo)
@@ -310,6 +327,13 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     }
     internal func greaterThanOrEqualTo(other: View) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .GreaterThanOrEqualTo)
+    }
+    internal func greaterThanOrEqualToSuperview() ->  ConstraintDescriptionEditable {
+        guard let superview = fromItem.view?.superview else {
+            fatalError("greaterThanOrEqualToSuperview() requires the view have a superview before being set.")
+        }
+        
+        return self.greaterThanOrEqualTo(superview)
     }
     @available(iOS 7.0, *)
     internal func greaterThanOrEqualTo(other: LayoutSupport) -> ConstraintDescriptionEditable {
