@@ -282,11 +282,11 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(constraints[0].secondAttribute, NSLayoutAttribute.Top, "Should be top")
         XCTAssertEqual(constraints[1].secondAttribute, NSLayoutAttribute.Bottom, "Should be bottom")
         
-        XCTAssertEqual(constraints[0].firstItem as? UIView, view, "Should be added subview")
-        XCTAssertEqual(constraints[1].firstItem as? UIView, view, "Should be added subview")
+        XCTAssertEqual(constraints[0].firstItem as? View, view, "Should be added subview")
+        XCTAssertEqual(constraints[1].firstItem as? View, view, "Should be added subview")
         
-        XCTAssertEqual(constraints[0].secondItem as? UIView, container, "Should be containerView")
-        XCTAssertEqual(constraints[1].secondItem as? UIView, container, "Should be containerView")
+        XCTAssertEqual(constraints[0].secondItem as? View, container, "Should be containerView")
+        XCTAssertEqual(constraints[1].secondItem as? View, container, "Should be containerView")
         
         XCTAssertEqual(constraints[0].constant, 10, "Should be 10")
         XCTAssertEqual(constraints[1].constant, -10, "Should be 10")
