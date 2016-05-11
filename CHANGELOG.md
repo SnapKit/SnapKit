@@ -1,6 +1,11 @@
 CHANGELOG
 =======
 
+# 0.21.0 - May 11 2016
+
+* Added `equalToSuperview()` convenience
+* Enabled app extension API for tvOS and OSX
+
 # 0.20.0 - March 25 2016
 
 * Swift 2.2 Support
