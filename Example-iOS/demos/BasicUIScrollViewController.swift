@@ -43,16 +43,16 @@ class BasicUIScrollViewController: UIViewController {
         
         if (!didSetupConstraints) {
             
-            scrollView.snp_makeConstraints { (make) -> Void in
+            scrollView.snp_makeConstraints { make in
                 make.edges.equalTo(view).inset(UIEdgeInsetsZero)
             }
             
-            contentView.snp_makeConstraints { (make) -> Void in
+            contentView.snp_makeConstraints { make in
                 make.edges.equalTo(scrollView).inset(UIEdgeInsetsZero)
                 make.width.equalTo(scrollView)
             }
             
-            label.snp_makeConstraints { (make) -> Void in
+            label.snp_makeConstraints { make in
                 make.top.equalTo(contentView).inset(20)
                 make.leading.equalTo(contentView).inset(20)
                 make.trailing.equalTo(contentView).inset(20)
