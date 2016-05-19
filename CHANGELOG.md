@@ -1,7 +1,7 @@
 CHANGELOG
 =======
 
-# 0.20.0-alpha1 - January 26 2016
+# 0.30.0.beta1 - May 19 2016
 
 ** SnapKit 0.20.0 ** is a complete re-write to take advantage of modern Swift as well as
 clean up the API. As such please use with caution and check your apps thoroughly
@@ -12,9 +12,23 @@ clean up the API. As such please use with caution and check your apps thoroughly
 * `.offset()` will no longer take `CGPoint`, `CGSize`, `EdgeInsets` as input
 * Exceptions thrown during constraint creation have been replaced with `fatalError` with better output.
 
+# 0.21.0 - May 11 2016
+
+* Added `equalToSuperview()` convenience
+* Enabled app extension API for tvOS and OSX
+
+# 0.20.0 - March 25 2016
+
+* Swift 2.2 Support
+* Added a `labeled("Hello")` to constraint chain to label your constraints for debugging output.
+
+# 0.19.1 - January 26 2016
+
+* Rebased from 0.16.0 with only desired commits to resolve many unexpected issues
+
 # 0.19.0 - January 21 2016
 
-* Improved `.inset()` for `width` and `height` #183
+* Improved `.insets()` for `width` and `height` #183
 * Added Carthage tvOS support #179
 * Added Package.swift #175
 * Codesign is set to Distribution on Release #181
