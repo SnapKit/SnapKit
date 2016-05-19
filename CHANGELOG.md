@@ -3,7 +3,7 @@ CHANGELOG
 
 # 0.30.0.beta1 - May 19 2016
 
-** SnapKit 0.20.0 ** is a complete re-write to take advantage of modern Swift as well as
+** SnapKit 0.30.0 ** is a complete re-write to take advantage of modern Swift as well as
 clean up the API. As such please use with caution and check your apps thoroughly
 
 * All APIs are now accessed via `.snp.*` rather than `.snp_*`. For example you now do `view.snp.makeConstraints {…}`
