@@ -291,4 +291,27 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(constraints[0].constant, 10, "Should be 10")
         XCTAssertEqual(constraints[1].constant, -10, "Should be 10")
     }
+
+    func testNativeConstraints() {
+        let view = View()
+        
+        container.addSubview(view)
+        
+        var topNativeConstraints: [LayoutConstraint]!
+        var topNativeConstraint: LayoutConstraint?
+        var sizeNativeConstraints: [LayoutConstraint]!
+        view.snp_makeConstraints { (make) -> Void in
+            let topConstraint = make.top.equalToSuperview().inset(10).constraint
+            topNativeConstraints = topConstraint.nativeConstraints()
+            topNativeConstraint = topConstraint.nativeConstraints().first
+            let sizeConstraints = make.size.equalTo(50).constraint
+            sizeNativeConstraints = sizeConstraints.nativeConstraints()
+        }
+
+        XCTAssertEqual(topNativeConstraints.count, 1, "make.top should creates one native constraint")
+        XCTAssertEqual(topNativeConstraint?.constant, 10, "topNativeConstraint.constant is set to 10")
+        XCTAssertEqual(sizeNativeConstraints.count, 2, "make.tosize should create two native constraint")
+        XCTAssertEqual(sizeNativeConstraints[0].constant, 50, "sizeNativeConstraints should set size[0] to 50")
+        XCTAssertEqual(sizeNativeConstraints[1].constant, 50, "sizeNativeConstraints should set size[1] to 50")
+    }
 }
