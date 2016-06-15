@@ -73,7 +73,3 @@ extension CGFloat: ConstraintMultiplierTarget {
     }
     
 }
-
-internal func ==(lhs: ConstraintMultiplierTarget, rhs: ConstraintMultiplierTarget) -> Bool {
-    return lhs.constraintMultiplierTargetValue == rhs.constraintMultiplierTargetValue
-}

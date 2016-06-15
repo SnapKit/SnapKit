@@ -73,7 +73,3 @@ extension CGFloat: ConstraintPriorityTarget {
     }
     
 }
-
-internal func ==(lhs: ConstraintPriorityTarget, rhs: ConstraintPriorityTarget) -> Bool {
-    return lhs.constraintPriorityTargetValue == rhs.constraintPriorityTargetValue
-}

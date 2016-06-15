@@ -28,7 +28,7 @@
 #endif
 
 
-internal struct ConstraintAttributes: OptionSetType, BooleanType {
+internal struct ConstraintAttributes: OptionSet, Boolean {
     
     internal init(rawValue: UInt) {
         self.rawValue = rawValue
@@ -46,8 +46,8 @@ internal struct ConstraintAttributes: OptionSetType, BooleanType {
     internal var boolValue: Bool { return self.rawValue != 0 }
     
     internal func toRaw() -> UInt { return self.rawValue }
-    internal static func fromRaw(raw: UInt) -> ConstraintAttributes? { return self.init(raw) }
-    internal static func fromMask(raw: UInt) -> ConstraintAttributes { return self.init(raw) }
+    internal static func fromRaw(_ raw: UInt) -> ConstraintAttributes? { return self.init(raw) }
+    internal static func fromMask(_ raw: UInt) -> ConstraintAttributes { return self.init(raw) }
     
     // normal
     
@@ -98,37 +98,37 @@ internal struct ConstraintAttributes: OptionSetType, BooleanType {
     internal var layoutAttributes:[NSLayoutAttribute] {
         var attrs = [NSLayoutAttribute]()
         if (self.contains(ConstraintAttributes.Left)) {
-            attrs.append(.Left)
+            attrs.append(.left)
         }
         if (self.contains(ConstraintAttributes.Top)) {
-            attrs.append(.Top)
+            attrs.append(.top)
         }
         if (self.contains(ConstraintAttributes.Right)) {
-            attrs.append(.Right)
+            attrs.append(.right)
         }
         if (self.contains(ConstraintAttributes.Bottom)) {
-            attrs.append(.Bottom)
+            attrs.append(.bottom)
         }
         if (self.contains(ConstraintAttributes.Leading)) {
-            attrs.append(.Leading)
+            attrs.append(.leading)
         }
         if (self.contains(ConstraintAttributes.Trailing)) {
-            attrs.append(.Trailing)
+            attrs.append(.trailing)
         }
         if (self.contains(ConstraintAttributes.Width)) {
-            attrs.append(.Width)
+            attrs.append(.width)
         }
         if (self.contains(ConstraintAttributes.Height)) {
-            attrs.append(.Height)
+            attrs.append(.height)
         }
         if (self.contains(ConstraintAttributes.CenterX)) {
-            attrs.append(.CenterX)
+            attrs.append(.centerX)
         }
         if (self.contains(ConstraintAttributes.CenterY)) {
-            attrs.append(.CenterY)
+            attrs.append(.centerY)
         }
         if (self.contains(ConstraintAttributes.Baseline)) {
-            attrs.append(.Baseline)
+            attrs.append(.lastBaseline)
         }
         
         #if os(iOS) || os(tvOS)
@@ -138,31 +138,31 @@ internal struct ConstraintAttributes: OptionSetType, BooleanType {
                 }
             #endif
             if (self.contains(ConstraintAttributes.FirstBaseline)) {
-                attrs.append(.FirstBaseline)
+                attrs.append(.firstBaseline)
             }
             if (self.contains(ConstraintAttributes.LeftMargin)) {
-                attrs.append(.LeftMargin)
+                attrs.append(.leftMargin)
             }
             if (self.contains(ConstraintAttributes.RightMargin)) {
-                attrs.append(.RightMargin)
+                attrs.append(.rightMargin)
             }
             if (self.contains(ConstraintAttributes.TopMargin)) {
-                attrs.append(.TopMargin)
+                attrs.append(.topMargin)
             }
             if (self.contains(ConstraintAttributes.BottomMargin)) {
-                attrs.append(.BottomMargin)
+                attrs.append(.bottomMargin)
             }
             if (self.contains(ConstraintAttributes.LeadingMargin)) {
-                attrs.append(.LeadingMargin)
+                attrs.append(.leadingMargin)
             }
             if (self.contains(ConstraintAttributes.TrailingMargin)) {
-                attrs.append(.TrailingMargin)
+                attrs.append(.trailingMargin)
             }
             if (self.contains(ConstraintAttributes.CenterXWithinMargins)) {
-                attrs.append(.CenterXWithinMargins)
+                attrs.append(.centerXWithinMargins)
             }
             if (self.contains(ConstraintAttributes.CenterYWithinMargins)) {
-                attrs.append(.CenterYWithinMargins)
+                attrs.append(.centerYWithinMargins)
             }
         #endif
         
@@ -174,12 +174,12 @@ internal func + (left: ConstraintAttributes, right: ConstraintAttributes) -> Con
     return left.union(right)
 }
 
-internal func +=(inout left: ConstraintAttributes, right: ConstraintAttributes) {
-    left.unionInPlace(right)
+internal func +=(left: inout ConstraintAttributes, right: ConstraintAttributes) {
+    left.formUnion(right)
 }
 
-internal func -=(inout left: ConstraintAttributes, right: ConstraintAttributes) {
-    left.subtractInPlace(right)
+internal func -=(left: inout ConstraintAttributes, right: ConstraintAttributes) {
+    left.subtract(right)
 }
 
 internal func ==(left: ConstraintAttributes, right: ConstraintAttributes) -> Bool {

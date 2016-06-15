@@ -141,19 +141,19 @@ public struct ConstraintViewDSL {
         return ConstraintItem(target: self.view, attributes: ConstraintAttributes.CenterWithinMargins)
     }
     
-    public func prepareConstraints(@noescape closure closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
+    public func prepareConstraints(closure: @noescape (make: ConstraintMaker) -> Void) -> [Constraint] {
         return ConstraintMaker.prepareConstraints(view: self.view, closure: closure)
     }
     
-    public func makeConstraints(@noescape closure closure: (make: ConstraintMaker) -> Void) {
+    public func makeConstraints(closure: @noescape (make: ConstraintMaker) -> Void) {
         ConstraintMaker.makeConstraints(view: self.view, closure: closure)
     }
     
-    public func remakeConstraints(@noescape closure closure: (make: ConstraintMaker) -> Void) {
+    public func remakeConstraints(closure: @noescape (make: ConstraintMaker) -> Void) {
         ConstraintMaker.remakeConstraints(view: self.view, closure: closure)
     }
     
-    public func updateConstraints(@noescape closure closure: (make: ConstraintMaker) -> Void) {
+    public func updateConstraints(closure: @noescape (make: ConstraintMaker) -> Void) {
         ConstraintMaker.updateConstraints(view: self.view, closure: closure)
     }
     
@@ -180,13 +180,13 @@ public struct ConstraintViewDSL {
         return objc_getAssociatedObject(self.view, &installedLayoutConstraintsKey) as? [LayoutConstraint] ?? []
     }
     
-    internal func appendInstalledLayoutConstraints(layoutConstraints: [LayoutConstraint]) {
+    internal func appendInstalledLayoutConstraints(_ layoutConstraints: [LayoutConstraint]) {
         var newValue = self.installedLayoutConstraints
         newValue += layoutConstraints
         objc_setAssociatedObject(self.view, &installedLayoutConstraintsKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
     
-    internal func removeInstalledLayoutConstraints(layoutConstraints: [LayoutConstraint]) {
+    internal func removeInstalledLayoutConstraints(_ layoutConstraints: [LayoutConstraint]) {
         let newValue = self.installedLayoutConstraints.filter { !layoutConstraints.contains($0) }
         objc_setAssociatedObject(self.view, &installedLayoutConstraintsKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }

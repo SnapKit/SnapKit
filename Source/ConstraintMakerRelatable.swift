@@ -36,7 +36,7 @@ public class ConstraintMakerRelatable {
         self.description = description
     }
     
-    internal func relatedTo(other: ConstraintRelatableTarget, relation: ConstraintRelation, file: String, line: UInt) -> ConstraintMakerEditable {
+    internal func relatedTo(_ other: ConstraintRelatableTarget, relation: ConstraintRelation, file: String, line: UInt) -> ConstraintMakerEditable {
         let related: ConstraintItem
         let constant: ConstraintConstantTarget
         
@@ -67,16 +67,16 @@ public class ConstraintMakerRelatable {
         return editable
     }
     
-    public func equalTo(other: ConstraintRelatableTarget, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
-        return self.relatedTo(other, relation: .Equal, file: file, line: line)
+    public func equalTo(_ other: ConstraintRelatableTarget, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        return self.relatedTo(other, relation: .equal, file: file, line: line)
     }
     
-    public func lessThanOrEqualTo(other: ConstraintRelatableTarget, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
-        return self.relatedTo(other, relation: .LessThanOrEqual, file: file, line: line)
+    public func lessThanOrEqualTo(_ other: ConstraintRelatableTarget, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        return self.relatedTo(other, relation: .lessThanOrEqual, file: file, line: line)
     }
     
-    public func greaterThanOrEqualTo(other: ConstraintRelatableTarget, _ file: String = #file, line: UInt = #line) -> ConstraintMakerEditable {
-        return self.relatedTo(other, relation: .GreaterThanOrEqual, file: file, line: line)
+    public func greaterThanOrEqualTo(_ other: ConstraintRelatableTarget, _ file: String = #file, line: UInt = #line) -> ConstraintMakerEditable {
+        return self.relatedTo(other, relation: .greaterThanOrEqual, file: file, line: line)
     }
     
 }

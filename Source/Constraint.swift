@@ -80,7 +80,7 @@ public class Constraint {
     
     // MARK: Internal
     
-    internal func installIfNeeded(updateExisting updateExisting: Bool = false) -> [NSLayoutConstraint] {
+    internal func installIfNeeded(updateExisting: Bool = false) -> [NSLayoutConstraint] {
         let installOnView: ConstraintView?
         
         if let view = self.to.view {
@@ -88,7 +88,7 @@ public class Constraint {
                 fatalError("Cannot Install Constraint. No common superview. (\(self.sourceLocation.0), \(self.sourceLocation.1))")
             }
             installOnView = closestSuperview
-        } else if self.from.attributes.isSubsetOf(ConstraintAttributes.Width + ConstraintAttributes.Height) {
+        } else if self.from.attributes.isSubset(of: ConstraintAttributes.Width + ConstraintAttributes.Height) {
             installOnView = self.from.view
         } else {
             guard let superview = self.from.view?.superview else {
@@ -128,7 +128,7 @@ public class Constraint {
             #else
                 var layoutTo: AnyObject? = self.to.view
             #endif
-            if layoutTo == nil && layoutToAttribute != .Width && layoutToAttribute != .Height {
+            if layoutTo == nil && layoutToAttribute != .width && layoutToAttribute != .height {
                 layoutTo = installOnView
             }
             
@@ -157,7 +157,7 @@ public class Constraint {
         if updateExisting {
             
             // get existing constraints for this view
-            let existingLayoutConstraints = layoutFrom.snp.installedLayoutConstraints.reverse()
+            let existingLayoutConstraints = layoutFrom.snp.installedLayoutConstraints.reversed()
             
             // array that will contain only new layout constraints to keep
             var newLayoutConstraintsToKeep = [LayoutConstraint]()
@@ -197,15 +197,15 @@ public class Constraint {
                 installOnView?.addConstraints(newLayoutConstraints)
             }
         #else
-            NSLayoutConstraint.activateConstraints(newLayoutConstraints)
+            NSLayoutConstraint.activate(newLayoutConstraints)
         #endif
         
         // set install info
-        self.installInfo = ConstraintInstallInfo(view: installOnView, layoutConstraints: NSHashTable.weakObjectsHashTable())
+        self.installInfo = ConstraintInstallInfo(view: installOnView, layoutConstraints: HashTable.weakObjects())
         
         // store which layout constraints are installed for this constraint
         for layoutConstraint in newLayoutConstraints {
-            self.installInfo!.layoutConstraints.addObject(layoutConstraint)
+            self.installInfo!.layoutConstraints.add(layoutConstraint)
         }
         
         // store the layout constraints against the layout from view
@@ -231,7 +231,7 @@ public class Constraint {
                 installedOnView.removeConstraints(installedLayoutConstraints)
             }
         #else
-            NSLayoutConstraint.deactivateConstraints(installedLayoutConstraints)
+            NSLayoutConstraint.deactivate(installedLayoutConstraints)
         #endif
         
         // remove the constraints from the from item view
@@ -255,7 +255,7 @@ public class Constraint {
             return
         }
         
-        NSLayoutConstraint.activateConstraints(layoutConstraints)
+        NSLayoutConstraint.activate(layoutConstraints)
     }
     
     internal func deactivateIfNeeded() {
@@ -270,7 +270,7 @@ public class Constraint {
                 return
         }
         
-        NSLayoutConstraint.deactivateConstraints(layoutConstraints)
+        NSLayoutConstraint.deactivate(layoutConstraints)
     }
     
 }
@@ -278,16 +278,16 @@ public class Constraint {
 private final class ConstraintInstallInfo {
     
     private weak var view: ConstraintView? = nil
-    private let layoutConstraints: NSHashTable
+    private let layoutConstraints: HashTable<AnyObject>
     
-    private init(view: ConstraintView?, layoutConstraints: NSHashTable) {
+    private init(view: ConstraintView?, layoutConstraints: HashTable<AnyObject>) {
         self.view = view
         self.layoutConstraints = layoutConstraints
     }
     
 }
 
-private func closestCommonSuperviewFromView(fromView: ConstraintView?, toView: ConstraintView?) -> ConstraintView? {
+private func closestCommonSuperviewFromView(_ fromView: ConstraintView?, toView: ConstraintView?) -> ConstraintView? {
     var views = Set<ConstraintView>()
     var fromView = fromView
     var toView = toView
@@ -315,6 +315,6 @@ private func ==(lhs: Constraint, rhs: Constraint) -> Bool {
     return (lhs.from == rhs.from &&
             lhs.to == rhs.to &&
             lhs.relation == rhs.relation &&
-            lhs.multiplier == rhs.multiplier &&
-            lhs.priority == rhs.priority)
+            lhs.multiplier.constraintMultiplierTargetValue == rhs.multiplier.constraintMultiplierTargetValue &&
+            lhs.priority.constraintPriorityTargetValue == rhs.priority.constraintPriorityTargetValue)
 }

@@ -27,22 +27,22 @@
 
     public extension ConstraintViewController {
         
-        @available(iOS, deprecated=0.30.0, message="Please use newer snp.* syntax.")
+        @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
         public var topLayoutGuideTop: ConstraintItem {
             return self.snp.topLayoutGuideTop
         }
         
-        @available(iOS, deprecated=0.30.0, message="Please use newer snp.* syntax.")
+        @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
         public var topLayoutGuideBottom: ConstraintItem {
             return self.snp.topLayoutGuideBottom
         }
         
-        @available(iOS, deprecated=0.30.0, message="Please use newer snp.* syntax.")
+        @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
         public var bottomLayoutGuideTop: ConstraintItem {
             return self.snp.bottomLayoutGuideTop
         }
         
-        @available(iOS, deprecated=0.30.0, message="Please use newer snp.* syntax.")
+        @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
         public var bottomLayoutGuideBottom: ConstraintItem {
             return self.snp.bottomLayoutGuideBottom
         }

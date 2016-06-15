@@ -129,13 +129,13 @@ public class ConstraintMaker {
         self.view.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    internal func makeExtendableWithAttributes(attributes: ConstraintAttributes) -> ConstraintMakerExtendable {
+    internal func makeExtendableWithAttributes(_ attributes: ConstraintAttributes) -> ConstraintMakerExtendable {
         let description = ConstraintDescription(view: self.view, attributes: attributes)
         self.descriptions.append(description)
         return ConstraintMakerExtendable(description)
     }
     
-    internal static func prepareConstraints(view view: ConstraintView, @noescape closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
+    internal static func prepareConstraints(view: ConstraintView, @noescape closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
         let maker = ConstraintMaker(view: view)
         closure(make: maker)
         let constraints = maker.descriptions
@@ -145,7 +145,7 @@ public class ConstraintMaker {
         return constraints
     }
     
-    internal static func makeConstraints(view view: ConstraintView, @noescape closure: (make: ConstraintMaker) -> Void) {
+    internal static func makeConstraints(view: ConstraintView, @noescape closure: (make: ConstraintMaker) -> Void) {
         let maker = ConstraintMaker(view: view)
         closure(make: maker)
         let constraints = maker.descriptions
@@ -157,12 +157,12 @@ public class ConstraintMaker {
         }
     }
     
-    internal static func remakeConstraints(view view: ConstraintView, @noescape closure: (make: ConstraintMaker) -> Void) {
+    internal static func remakeConstraints(view: ConstraintView, @noescape closure: (make: ConstraintMaker) -> Void) {
         self.removeConstraints(view: view)
         self.makeConstraints(view: view, closure: closure)
     }
     
-    internal static func updateConstraints(view view: ConstraintView, @noescape closure: (make: ConstraintMaker) -> Void) {
+    internal static func updateConstraints(view: ConstraintView, @noescape closure: (make: ConstraintMaker) -> Void) {
         let maker = ConstraintMaker(view: view)
         closure(make: maker)
         let constraints = maker.descriptions
@@ -174,7 +174,7 @@ public class ConstraintMaker {
         }
     }
     
-    internal static func removeConstraints(view view: ConstraintView) {
+    internal static func removeConstraints(view: ConstraintView) {
         
     }
     

@@ -29,19 +29,19 @@
 
 
 internal enum ConstraintRelation: Int {
-    case Equal = 1
-    case LessThanOrEqual
-    case GreaterThanOrEqual
+    case equal = 1
+    case lessThanOrEqual
+    case greaterThanOrEqual
     
     internal var layoutRelation: NSLayoutRelation {
         get {
             switch(self) {
-            case .Equal:
-                return .Equal
-            case .LessThanOrEqual:
-                return .LessThanOrEqual
-            case .GreaterThanOrEqual:
-                return .GreaterThanOrEqual
+            case .equal:
+                return .equal
+            case .lessThanOrEqual:
+                return .lessThanOrEqual
+            case .greaterThanOrEqual:
+                return .greaterThanOrEqual
             }
         }
     }

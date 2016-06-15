@@ -30,7 +30,7 @@
 
 public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
     
-    public func priority(amount: ConstraintPriorityTarget) -> ConstraintMakerFinalizable {
+    public func priority(_ amount: ConstraintPriorityTarget) -> ConstraintMakerFinalizable {
         self.description.priority = amount
         return self
     }

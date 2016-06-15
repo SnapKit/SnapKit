@@ -30,21 +30,21 @@
 
 public class ConstraintMakerEditable: ConstraintMakerPriortizable {
 
-    public func multipliedBy(amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
+    public func multipliedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
         self.description.multiplier = amount
         return self
     }
     
-    public func dividedBy(amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
+    public func dividedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
         return self.multipliedBy(1.0 / amount.constraintMultiplierTargetValue)
     }
     
-    public func offset(amount: ConstraintOffsetTarget) -> ConstraintMakerEditable {
+    public func offset(_ amount: ConstraintOffsetTarget) -> ConstraintMakerEditable {
         self.description.constant = amount
         return self
     }
     
-    public func inset(amount: ConstraintInsetTarget) -> ConstraintMakerEditable {
+    public func inset(_ amount: ConstraintInsetTarget) -> ConstraintMakerEditable {
         let insets: ConstraintInsets
         
         if let amount = amount as? ConstraintInsets {
