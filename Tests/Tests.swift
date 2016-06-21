@@ -302,10 +302,10 @@ class SnapKitTests: XCTestCase {
         var sizeNativeConstraints: [LayoutConstraint]!
         view.snp_makeConstraints { (make) -> Void in
             let topConstraint = make.top.equalToSuperview().inset(10).constraint
-            topNativeConstraints = topConstraint.nativeConstraints()
-            topNativeConstraint = topConstraint.nativeConstraints().first
+            topNativeConstraints = topConstraint.layoutConstraints
+            topNativeConstraint = topConstraint.layoutConstraints.first
             let sizeConstraints = make.size.equalTo(50).constraint
-            sizeNativeConstraints = sizeConstraints.nativeConstraints()
+            sizeNativeConstraints = sizeConstraints.layoutConstraints
         }
 
         XCTAssertEqual(topNativeConstraints.count, 1, "make.top should creates one native constraint")

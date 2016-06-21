@@ -58,7 +58,7 @@ public class Constraint {
     public func updatePriorityMedium() -> Void { fatalError("Must be implemented by Concrete subclass.") }
     public func updatePriorityLow() -> Void { fatalError("Must be implemented by Concrete subclass.") }
 
-    public func nativeConstraints() -> [LayoutConstraint] { fatalError("Must be implemented by Concrete subclass.") }
+    public var layoutConstraints: [LayoutConstraint] { fatalError("Must be implemented by Concrete subclass.") }
     
     internal var makerFile: String = "Unknown"
     internal var makerLine: UInt = 0
@@ -199,7 +199,7 @@ internal class ConcreteConstraint: Constraint {
     
     private var installInfo: ConcreteConstraintInstallInfo? = nil
     
-    internal override func nativeConstraints() -> [LayoutConstraint] {
+    override var layoutConstraints: [LayoutConstraint] {
         if installInfo == nil {
             install()
         }
