@@ -79,7 +79,7 @@ extension ConstraintConstantTarget {
                 switch layoutAttribute {
                 case .Left, .Right, .Leading, .Trailing, .CenterX, .LeftMargin, .RightMargin, .LeadingMargin, .TrailingMargin, .CenterXWithinMargins:
                     return value.x
-                case .Top, .Bottom, .CenterY, .TopMargin, .BottomMargin, .CenterYWithinMargins, .Baseline, .FirstBaseline:
+                case .Top, .Bottom, .CenterY, .TopMargin, .BottomMargin, .CenterYWithinMargins, .LastBaseline, .FirstBaseline:
                     return value.y
                 case .Width, .Height, .NotAnAttribute:
                     return 0.0
@@ -88,7 +88,7 @@ extension ConstraintConstantTarget {
                 switch layoutAttribute {
                 case .Left, .Right, .Leading, .Trailing, .CenterX:
                     return value.x
-                case .Top, .Bottom, .CenterY, .Baseline, .FirstBaseline:
+                case .Top, .Bottom, .CenterY, .LastBaseline, .FirstBaseline:
                     return value.y
                 case .Width, .Height, .NotAnAttribute:
                     return 0.0
@@ -101,7 +101,7 @@ extension ConstraintConstantTarget {
                 switch layoutAttribute {
                 case .Left, .LeftMargin, .CenterX, .CenterXWithinMargins:
                     return value.left
-                case .Top, .TopMargin, .CenterY, .CenterYWithinMargins, .Baseline, .FirstBaseline:
+                case .Top, .TopMargin, .CenterY, .CenterYWithinMargins, .LastBaseline, .FirstBaseline:
                     return value.top
                 case .Right, .RightMargin:
                     return value.right
@@ -122,7 +122,7 @@ extension ConstraintConstantTarget {
                 switch layoutAttribute {
                 case .Left, .CenterX:
                     return value.left
-                case .Top, .CenterY, .Baseline, .FirstBaseline:
+                case .Top, .CenterY, .LastBaseline, .FirstBaseline:
                     return value.top
                 case .Right:
                     return value.right

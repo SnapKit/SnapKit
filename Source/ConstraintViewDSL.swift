@@ -70,8 +70,9 @@ public struct ConstraintViewDSL {
         return ConstraintItem(target: self.view, attributes: ConstraintAttributes.CenterY)
     }
     
-    public var baseline: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Baseline)
+    @available(iOS 8.0, *)
+    public var lastBaseline: ConstraintItem {
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.LastBaseline)
     }
     
     @available(iOS 8.0, *)

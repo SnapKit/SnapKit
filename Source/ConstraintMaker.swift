@@ -60,8 +60,10 @@ public class ConstraintMaker {
     public var centerY: ConstraintMakerExtendable {
         return self.makeExtendableWithAttributes(ConstraintAttributes.CenterY)
     }
-    public var baseline: ConstraintMakerExtendable {
-        return self.makeExtendableWithAttributes(ConstraintAttributes.Baseline)
+    
+    @available(iOS 8.0, *)
+    public var lastBaseline: ConstraintMakerExtendable {
+        return self.makeExtendableWithAttributes(ConstraintAttributes.LastBaseline)
     }
     
     @available(iOS 8.0, *)

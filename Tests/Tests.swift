@@ -36,9 +36,9 @@ class SnapKitTests: XCTestCase {
         
         vc.view.addSubview(self.container)
         
-        self.container.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(vc.snp_topLayoutGuideBottom)
-            make.bottom.equalTo(vc.snp_bottomLayoutGuideTop)
+        self.container.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(vc.snp.topLayoutGuideBottom)
+            make.bottom.equalTo(vc.snp.bottomLayoutGuideTop)
         }
         
         XCTAssertEqual(vc.view.snp_constraints.count, 6, "Should have 6 constraints installed")
@@ -51,15 +51,15 @@ class SnapKitTests: XCTestCase {
         self.container.addSubview(v1)
         self.container.addSubview(v2)
         
-        v1.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(v2.snp_top).offset(50)
-            make.left.equalTo(v2.snp_top).offset(50)
+        v1.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(v2.snp.top).offset(50)
+            make.left.equalTo(v2.snp.top).offset(50)
             return
         }
         
         XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints installed")
         
-        v2.snp_makeConstraints { (make) -> Void in
+        v2.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(v1)
             return
         }
@@ -74,16 +74,16 @@ class SnapKitTests: XCTestCase {
         self.container.addSubview(v1)
         self.container.addSubview(v2)
         
-        v1.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(v2.snp_top).offset(50)
-            make.left.equalTo(v2.snp_top).offset(50)
+        v1.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(v2.snp.top).offset(50)
+            make.left.equalTo(v2.snp.top).offset(50)
             return
         }
         
         XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints installed")
         
-        v1.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(v2.snp_top).offset(15)
+        v1.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(v2.snp.top).offset(15)
             return
         }
         
@@ -97,15 +97,15 @@ class SnapKitTests: XCTestCase {
         self.container.addSubview(v1)
         self.container.addSubview(v2)
         
-        v1.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(v2.snp_top).offset(50)
-            make.left.equalTo(v2.snp_top).offset(50)
+        v1.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(v2.snp.top).offset(50)
+            make.left.equalTo(v2.snp.top).offset(50)
             return
         }
         
         XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints installed")
         
-        v1.snp_remakeConstraints { (make) -> Void in
+        v1.snp.remakeConstraints { (make) -> Void in
             make.edges.equalTo(v2)
             return
         }
@@ -120,15 +120,15 @@ class SnapKitTests: XCTestCase {
         self.container.addSubview(v1)
         self.container.addSubview(v2)
         
-        v1.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(v2.snp_top).offset(50)
-            make.left.equalTo(v2.snp_top).offset(50)
+        v1.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(v2.snp.top).offset(50)
+            make.left.equalTo(v2.snp.top).offset(50)
             return
         }
         
         XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints installed")
         
-        v1.snp_removeConstraints()
+        v1.snp.removeConstraints()
         
         XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints installed")
         
@@ -140,7 +140,7 @@ class SnapKitTests: XCTestCase {
         self.container.addSubview(v1)
         self.container.addSubview(v2)
         
-        let constraints = v1.snp_prepareConstraints { (make) -> Void in
+        let constraints = v1.snp.prepareConstraints { (make) -> Void in
             make.edges.equalTo(v2)
             return
         }
@@ -167,7 +167,7 @@ class SnapKitTests: XCTestCase {
         self.container.addSubview(v1)
         self.container.addSubview(v2)
         
-        let constraints = v1.snp_prepareConstraints { (make) -> Void in
+        let constraints = v1.snp.prepareConstraints { (make) -> Void in
             make.edges.equalTo(v2)
             return
         }
@@ -197,9 +197,9 @@ class SnapKitTests: XCTestCase {
         var c1: Constraint? = nil
         var c2: Constraint? = nil
         
-        v1.snp_prepareConstraints { (make) -> Void in
-            c1 = make.top.equalTo(v2.snp_top).offset(50).constraint
-            c2 = make.left.equalTo(v2.snp_top).offset(50).constraint
+        v1.snp.prepareConstraints { (make) -> Void in
+            c1 = make.top.equalTo(v2.snp.top).offset(50).constraint
+            c2 = make.left.equalTo(v2.snp.top).offset(50).constraint
             return
         }
         
@@ -231,7 +231,7 @@ class SnapKitTests: XCTestCase {
         let view = View()
         self.container.addSubview(view)
         
-        view.snp_makeConstraints { (make) -> Void in
+        view.snp.makeConstraints { (make) -> Void in
             make.size.equalTo(CGSizeMake(50, 50))
             make.left.top.equalTo(self.container)
         }
@@ -255,7 +255,7 @@ class SnapKitTests: XCTestCase {
         self.container.addSubview(view)
         
         view.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.container.snp_top).labeled(identifier)
+            make.top.equalTo(self.container.snp.top).labeled(identifier)
         }
         
         let constraints = container.snp_constraints as! [NSLayoutConstraint]
@@ -267,9 +267,10 @@ class SnapKitTests: XCTestCase {
         
         container.addSubview(view)
         
-        view.snp_makeConstraints { (make) -> Void in
-            make.top.equalToSuperview().inset(10)
-            make.bottom.equalToSuperview().inset(10)
+        view.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(.Superview).inset(10)
+            make.top.equalTo(.Superview).inset(10)
+            make.bottom.equalTo(.Superview).inset(10)
         }
         
         XCTAssertEqual(container.snp_constraints.count, 2, "Should have 2 constraints")

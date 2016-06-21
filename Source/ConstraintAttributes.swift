@@ -62,8 +62,9 @@ internal struct ConstraintAttributes: OptionSetType, BooleanType {
     internal static var Height: ConstraintAttributes { return self.init(128) }
     internal static var CenterX: ConstraintAttributes { return self.init(256) }
     internal static var CenterY: ConstraintAttributes { return self.init(512) }
-    internal static var Baseline: ConstraintAttributes { return self.init(1024) }
     
+    @available(iOS 8.0, *)
+    internal static var LastBaseline: ConstraintAttributes { return self.init(1024) }
     @available(iOS 8.0, *)
     internal static var FirstBaseline: ConstraintAttributes { return self.init(2048) }
     @available(iOS 8.0, *)
@@ -126,9 +127,6 @@ internal struct ConstraintAttributes: OptionSetType, BooleanType {
         }
         if (self.contains(ConstraintAttributes.CenterY)) {
             attrs.append(.CenterY)
-        }
-        if (self.contains(ConstraintAttributes.Baseline)) {
-            attrs.append(.Baseline)
         }
         
         #if os(iOS) || os(tvOS)

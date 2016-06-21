@@ -31,6 +31,10 @@
 public protocol ConstraintRelatableTarget {
 }
 
+public enum ConstraintRelatableTargetShortcut: ConstraintRelatableTarget {
+    case Superview
+}
+
 extension Int: ConstraintRelatableTarget {
 }
 

@@ -34,6 +34,7 @@ public class ConstraintDescription {
     internal var attributes: ConstraintAttributes
     internal var relation: ConstraintRelation? = nil
     internal var sourceLocation: (String, UInt)? = nil
+    internal var label: String? = nil
     internal var related: ConstraintItem? = nil
     internal var multiplier: ConstraintMultiplierTarget = 1.0
     internal var constant: ConstraintConstantTarget = 0.0

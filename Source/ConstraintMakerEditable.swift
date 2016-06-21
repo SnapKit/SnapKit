@@ -68,4 +68,9 @@ public class ConstraintMakerEditable: ConstraintMakerPriortizable {
         return self
     }
     
+    public func labeled(label: String) -> ConstraintMakerEditable {
+        self.description.label = label
+        return self
+    }
+    
 }

@@ -81,7 +81,7 @@ public class ConstraintMakerExtendable: ConstraintMakerRelatable {
     }
     
     public var baseline: ConstraintMakerExtendable {
-        self.description.attributes += ConstraintAttributes.Baseline
+        self.description.attributes += ConstraintAttributes.LastBaseline
         return self
     }
     

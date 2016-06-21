@@ -61,7 +61,7 @@ public extension ConstraintView {
     public var snp_centerY: ConstraintItem { return self.snp.centerY }
     
     @available(*, deprecated=0.30.0, message="Please use newer snp.* syntax.")
-    public var snp_baseline: ConstraintItem { return self.snp.baseline }
+    public var snp_lastBaseline: ConstraintItem { return self.snp.lastBaseline }
     
     @available(iOS, deprecated=0.30.0, message="Please use newer snp.* syntax.")
     public var snp_firstBaseline: ConstraintItem { return self.snp.firstBaseline }
