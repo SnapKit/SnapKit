@@ -1,6 +1,10 @@
 CHANGELOG
 =======
 
+# 0.21.1 - June 20 2016
+
+* Added support for Swift 2.3
+
 # 0.21.0 - May 11 2016
 
 * Added `equalToSuperview()` convenience
