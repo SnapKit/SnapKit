@@ -62,7 +62,10 @@ public extension LayoutConstraint {
         
         description += descriptionForObject(self)
         
-        description += " \(descriptionForObject(self.firstItem))"
+        if let firstItem: AnyObject = self.firstItem {
+            description += " \(descriptionForObject(firstItem))"
+        }
+        
         if self.firstAttribute != .NotAnAttribute {
             description += ".\(self.firstAttribute.snp_description)"
         }
@@ -162,7 +165,7 @@ private extension NSLayoutAttribute {
         case .Height:               return "height"
         case .CenterX:              return "centerX"
         case .CenterY:              return "centerY"
-        case .Baseline:             return "baseline"
+        case .LastBaseline:             return "baseline"
         case .FirstBaseline:        return "firstBaseline"
         case .TopMargin:            return "topMargin"
         case .LeftMargin:           return "leftMargin"
@@ -186,7 +189,7 @@ private extension NSLayoutAttribute {
         case .Height:               return "height"
         case .CenterX:              return "centerX"
         case .CenterY:              return "centerY"
-        case .Baseline:             return "baseline"
+        case .LastBaseline:             return "baseline"
         default:                    return "default"
         }
         #endif

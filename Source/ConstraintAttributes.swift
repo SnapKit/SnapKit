@@ -130,7 +130,11 @@ internal struct ConstraintAttributes: OptionSetType, BooleanType {
             attrs.append(.CenterY)
         }
         if (self.contains(ConstraintAttributes.Baseline)) {
+            #if swift(>=2.3)
+            attrs.append(.LastBaseline)
+            #else
             attrs.append(.Baseline)
+            #endif
         }
         
         #if os(iOS) || os(tvOS)
