@@ -67,14 +67,17 @@ public class ConstraintMakerRelatable {
         return editable
     }
     
+    @discardableResult
     public func equalTo(_ other: ConstraintRelatableTarget, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
         return self.relatedTo(other, relation: .equal, file: file, line: line)
     }
     
+    @discardableResult
     public func lessThanOrEqualTo(_ other: ConstraintRelatableTarget, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
         return self.relatedTo(other, relation: .lessThanOrEqual, file: file, line: line)
     }
     
+    @discardableResult
     public func greaterThanOrEqualTo(_ other: ConstraintRelatableTarget, _ file: String = #file, line: UInt = #line) -> ConstraintMakerEditable {
         return self.relatedTo(other, relation: .greaterThanOrEqual, file: file, line: line)
     }
