@@ -141,19 +141,19 @@ public struct ConstraintViewDSL {
         return ConstraintItem(target: self.view, attributes: ConstraintAttributes.CenterWithinMargins)
     }
     
-    public func prepareConstraints(closure: @noescape (make: ConstraintMaker) -> Void) -> [Constraint] {
+    public func prepareConstraints(_ closure: @noescape (make: ConstraintMaker) -> Void) -> [Constraint] {
         return ConstraintMaker.prepareConstraints(view: self.view, closure: closure)
     }
     
-    public func makeConstraints(closure: @noescape (make: ConstraintMaker) -> Void) {
+    public func makeConstraints(_ closure: @noescape (make: ConstraintMaker) -> Void) {
         ConstraintMaker.makeConstraints(view: self.view, closure: closure)
     }
     
-    public func remakeConstraints(closure: @noescape (make: ConstraintMaker) -> Void) {
+    public func remakeConstraints(_ closure: @noescape (make: ConstraintMaker) -> Void) {
         ConstraintMaker.remakeConstraints(view: self.view, closure: closure)
     }
     
-    public func updateConstraints(closure: @noescape (make: ConstraintMaker) -> Void) {
+    public func updateConstraints(_ closure: @noescape (make: ConstraintMaker) -> Void) {
         ConstraintMaker.updateConstraints(view: self.view, closure: closure)
     }
     
