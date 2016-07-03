@@ -126,7 +126,7 @@ public class ConstraintMaker {
     
     internal let file: String
     internal let line: UInt
-    internal let view: View
+    public let view: View
     internal var constraintDescriptions = [ConstraintDescription]()
     
     internal func makeConstraintDescription(attributes: ConstraintAttributes) -> ConstraintDescription {
