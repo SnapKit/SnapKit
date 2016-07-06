@@ -106,23 +106,23 @@ public extension ConstraintView {
     public var snp_centerWithinMargins: ConstraintItem { return self.snp.centerWithinMargins }
     
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
-    public func snp_prepareConstraints(@noescape closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
-        return self.snp.prepareConstraints(closure: closure)
+    public func snp_prepareConstraints(_ closure: @noescape(make: ConstraintMaker) -> Void) -> [Constraint] {
+        return self.snp.prepareConstraints(closure)
     }
     
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
-    public func snp_makeConstraints(@noescape closure: (make: ConstraintMaker) -> Void) {
-        self.snp.makeConstraints(closure: closure)
+    public func snp_makeConstraints(_ closure: @noescape(make: ConstraintMaker) -> Void) {
+        self.snp.makeConstraints(closure)
     }
     
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
-    public func snp_remakeConstraints(@noescape closure: (make: ConstraintMaker) -> Void) {
-        self.snp.remakeConstraints(closure: closure)
+    public func snp_remakeConstraints(_ closure: @noescape(make: ConstraintMaker) -> Void) {
+        self.snp.remakeConstraints(closure)
     }
     
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
-    public func snp_updateConstraints(@noescape closure: (make: ConstraintMaker) -> Void) {
-        self.snp.updateConstraints(closure: closure)
+    public func snp_updateConstraints(_ closure: @noescape(make: ConstraintMaker) -> Void) {
+        self.snp.updateConstraints(closure)
     }
     
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")

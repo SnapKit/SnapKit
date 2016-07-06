@@ -30,19 +30,23 @@
 
 public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
     
+    @discardableResult
     public func priority(_ amount: ConstraintPriorityTarget) -> ConstraintMakerFinalizable {
         self.description.priority = amount
         return self
     }
     
+    @discardableResult
     public func priorityRequired() -> ConstraintMakerFinalizable {
         return self.priority(1000)
     }
     
+    @discardableResult
     public func priorityHigh() -> ConstraintMakerFinalizable {
         return self.priority(750)
     }
     
+    @discardableResult
     public func priorityMedium() -> ConstraintMakerFinalizable {
         #if os(iOS) || os(tvOS)
             return self.priority(500)
@@ -51,6 +55,7 @@ public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
         #endif
     }
     
+    @discardableResult
     public func priorityLow() -> ConstraintMakerFinalizable {
         return self.priority(250)
     }

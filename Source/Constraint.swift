@@ -240,7 +240,7 @@ public class Constraint {
     
     internal func activateIfNeeded() {
         guard self.installInfo != nil else {
-            self.installIfNeeded()
+            let _ = self.installIfNeeded()
             return
         }
         #if SNAPKIT_DEPLOYMENT_LEGACY

@@ -135,7 +135,7 @@ public class ConstraintMaker {
         return ConstraintMakerExtendable(description)
     }
     
-    internal static func prepareConstraints(view: ConstraintView, @noescape closure: (make: ConstraintMaker) -> Void) -> [Constraint] {
+    internal static func prepareConstraints(view: ConstraintView, closure: @noescape(make: ConstraintMaker) -> Void) -> [Constraint] {
         let maker = ConstraintMaker(view: view)
         closure(make: maker)
         let constraints = maker.descriptions
@@ -145,7 +145,7 @@ public class ConstraintMaker {
         return constraints
     }
     
-    internal static func makeConstraints(view: ConstraintView, @noescape closure: (make: ConstraintMaker) -> Void) {
+    internal static func makeConstraints(view: ConstraintView, closure: @noescape(make: ConstraintMaker) -> Void) {
         let maker = ConstraintMaker(view: view)
         closure(make: maker)
         let constraints = maker.descriptions
@@ -153,16 +153,16 @@ public class ConstraintMaker {
             .filter { $0 != nil }
             .map { $0! }
         for constraint in constraints {
-            constraint.installIfNeeded()
+            let _ = constraint.installIfNeeded()
         }
     }
     
-    internal static func remakeConstraints(view: ConstraintView, @noescape closure: (make: ConstraintMaker) -> Void) {
+    internal static func remakeConstraints(view: ConstraintView, closure: @noescape(make: ConstraintMaker) -> Void) {
         self.removeConstraints(view: view)
         self.makeConstraints(view: view, closure: closure)
     }
     
-    internal static func updateConstraints(view: ConstraintView, @noescape closure: (make: ConstraintMaker) -> Void) {
+    internal static func updateConstraints(view: ConstraintView, closure: @noescape(make: ConstraintMaker) -> Void) {
         let maker = ConstraintMaker(view: view)
         closure(make: maker)
         let constraints = maker.descriptions
@@ -170,7 +170,7 @@ public class ConstraintMaker {
             .filter { $0 != nil }
             .map { $0! }
         for constraint in constraints {
-            constraint.installIfNeeded(updateExisting: true)
+            let _ = constraint.installIfNeeded(updateExisting: true)
         }
     }
     

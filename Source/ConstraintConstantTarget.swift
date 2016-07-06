@@ -86,11 +86,11 @@ extension ConstraintConstantTarget {
                 }
             #else
                 switch layoutAttribute {
-                case .Left, .Right, .Leading, .Trailing, .CenterX:
+                case .left, .right, .leading, .trailing, .centerX:
                     return value.x
-                case .Top, .Bottom, .CenterY, .Baseline, .FirstBaseline:
+                case .top, .bottom, .centerY, .lastBaseline, .firstBaseline:
                     return value.y
-                case .Width, .Height, .NotAnAttribute:
+                case .width, .height, .notAnAttribute:
                     return 0.0
                 }
             #endif
@@ -120,23 +120,23 @@ extension ConstraintConstantTarget {
                 }
             #else
                 switch layoutAttribute {
-                case .Left, .CenterX:
+                case .left, .centerX:
                     return value.left
-                case .Top, .CenterY, .Baseline, .FirstBaseline:
+                case .top, .centerY, .lastBaseline, .firstBaseline:
                     return value.top
-                case .Right:
+                case .right:
                     return value.right
-                case .Bottom:
+                case .bottom:
                     return value.bottom
-                case .Leading:
-                    return (ConstraintConfig.interfaceLayoutDirection == .LeftToRight) ? value.left : -value.right
-                case .Trailing:
-                    return (ConstraintConfig.interfaceLayoutDirection == .LeftToRight) ? value.right : -value.left
-                case .Width:
+                case .leading:
+                    return (ConstraintConfig.interfaceLayoutDirection == .leftToRight) ? value.left : -value.right
+                case .trailing:
+                    return (ConstraintConfig.interfaceLayoutDirection == .leftToRight) ? value.right : -value.left
+                case .width:
                     return -value.left + value.right
-                case .Height:
+                case .height:
                     return -value.top + value.bottom
-                case .NotAnAttribute:
+                case .notAnAttribute:
                     return 0.0
                 }
             #endif

@@ -34,14 +34,17 @@ public extension LayoutConstraint {
         
         description += descriptionForObject(self)
         
-        description += " \(descriptionForObject(self.firstItem))"
+        if let firstItem = conditionalOptional(from: self.firstItem) {
+            description += " \(descriptionForObject(firstItem))"
+        }
+        
         if self.firstAttribute != .notAnAttribute {
             description += ".\(descriptionForAttribute(self.firstAttribute))"
         }
         
         description += " \(descriptionForRelation(self.relation))"
         
-        if let secondItem: AnyObject = self.secondItem {
+        if let secondItem = self.secondItem {
             description += " \(descriptionForObject(secondItem))"
         }
         
@@ -96,7 +99,7 @@ private func descriptionForAttribute(_ attribute: NSLayoutAttribute) -> String {
         case .height:               return "height"
         case .centerX:              return "centerX"
         case .centerY:              return "centerY"
-        case .lastBaseline:             return "baseline"
+        case .lastBaseline:         return "lastBaseline"
         case .firstBaseline:        return "firstBaseline"
         case .topMargin:            return "topMargin"
         case .leftMargin:           return "leftMargin"
@@ -109,21 +112,29 @@ private func descriptionForAttribute(_ attribute: NSLayoutAttribute) -> String {
         }
     #else
         switch attribute {
-        case .NotAnAttribute:       return "notAnAttribute"
-        case .Top:                  return "top"
-        case .Left:                 return "left"
-        case .Bottom:               return "bottom"
-        case .Right:                return "right"
-        case .Leading:              return "leading"
-        case .Trailing:             return "trailing"
-        case .Width:                return "width"
-        case .Height:               return "height"
-        case .CenterX:              return "centerX"
-        case .CenterY:              return "centerY"
-        case .Baseline:             return "baseline"
-        default:                    return "default"
+        case .notAnAttribute:       return "notAnAttribute"
+        case .top:                  return "top"
+        case .left:                 return "left"
+        case .bottom:               return "bottom"
+        case .right:                return "right"
+        case .leading:              return "leading"
+        case .trailing:             return "trailing"
+        case .width:                return "width"
+        case .height:               return "height"
+        case .centerX:              return "centerX"
+        case .centerY:              return "centerY"
+        case .lastBaseline:         return "lastBaseline"
+        case .firstBaseline:        return "firstBaseline"
         }
     #endif
+}
+
+private func conditionalOptional<T>(from object: Optional<T>) -> Optional<T> {
+    return object
+}
+
+private func conditionalOptional<T>(from object: T) -> Optional<T> {
+    return Optional.some(object)
 }
 
 private func descriptionForObject(_ object: AnyObject) -> String {
