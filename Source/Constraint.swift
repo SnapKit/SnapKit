@@ -220,14 +220,14 @@ public class Constraint {
         }
         
         guard let installedLayoutConstraints = self.installInfo?.layoutConstraints.allObjects as? [LayoutConstraint]
-              where installedLayoutConstraints.count > 0 else {
-            return
+            where installedLayoutConstraints.count > 0 else {
+                return
         }
         
         #if SNAPKIT_DEPLOYMENT_LEGACY && !os(OSX)
             if #available(iOS 8.0, *) {
-                NSLayoutConstraint.deactivateConstraints(installedLayoutConstraints)
-            } else if let installedOnView = installInfo.view {
+                NSLayoutConstraint.deactivate(installedLayoutConstraints)
+            } else if let installedOnView = installInfo?.view {
                 installedOnView.removeConstraints(installedLayoutConstraints)
             }
         #else
