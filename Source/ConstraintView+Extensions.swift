@@ -63,30 +63,39 @@ public extension ConstraintView {
     @available(*, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
     public var snp_baseline: ConstraintItem { return self.snp.baseline }
     
+    @available(iOS 8.0, *)
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
     public var snp_firstBaseline: ConstraintItem { return self.snp.firstBaseline }
     
+    @available(iOS 8.0, *)
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
     public var snp_leftMargin: ConstraintItem { return self.snp.leftMargin }
     
+    @available(iOS 8.0, *)
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
     public var snp_topMargin: ConstraintItem { return self.snp.topMargin }
     
+    @available(iOS 8.0, *)
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
     public var snp_rightMargin: ConstraintItem { return self.snp.rightMargin }
     
+    @available(iOS 8.0, *)
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
     public var snp_bottomMargin: ConstraintItem { return self.snp.bottomMargin }
     
+    @available(iOS 8.0, *)
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
     public var snp_leadingMargin: ConstraintItem { return self.snp.leadingMargin }
     
+    @available(iOS 8.0, *)
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
     public var snp_trailingMargin: ConstraintItem { return self.snp.trailingMargin }
     
+    @available(iOS 8.0, *)
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
     public var snp_centerXWithinMargins: ConstraintItem { return self.snp.centerXWithinMargins }
     
+    @available(iOS 8.0, *)
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
     public var snp_centerYWithinMargins: ConstraintItem { return self.snp.centerYWithinMargins }
     
@@ -99,9 +108,11 @@ public extension ConstraintView {
     @available(*, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
     public var snp_center: ConstraintItem { return self.snp.center }
     
+    @available(iOS 8.0, *)
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
     public var snp_margins: ConstraintItem { return self.snp.margins }
     
+    @available(iOS 8.0, *)
     @available(iOS, deprecated:0.30.0, message:"Please use newer snp.* syntax.")
     public var snp_centerWithinMargins: ConstraintItem { return self.snp.centerWithinMargins }
     
