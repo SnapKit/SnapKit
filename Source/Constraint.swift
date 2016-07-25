@@ -219,8 +219,8 @@ public class Constraint {
             self.installInfo = nil
         }
         
-        guard let installedLayoutConstraints = self.installInfo?.layoutConstraints.allObjects as? [LayoutConstraint]
-              where installedLayoutConstraints.count > 0 else {
+        guard let installedLayoutConstraints = self.installInfo?.layoutConstraints.allObjects as? [LayoutConstraint],
+            installedLayoutConstraints.count > 0 else {
             return
         }
         
@@ -250,8 +250,8 @@ public class Constraint {
             }
         #endif
         
-        guard let layoutConstraints = self.installInfo?.layoutConstraints.allObjects as? [LayoutConstraint]
-            where layoutConstraints.count > 0 else {
+        guard let layoutConstraints = self.installInfo?.layoutConstraints.allObjects as? [LayoutConstraint],
+            layoutConstraints.count > 0 else {
             return
         }
         
@@ -265,8 +265,8 @@ public class Constraint {
             }
         #endif
         
-        guard let layoutConstraints = self.installInfo?.layoutConstraints.allObjects as? [LayoutConstraint]
-            where layoutConstraints.count > 0 else {
+        guard let layoutConstraints = self.installInfo?.layoutConstraints.allObjects as? [LayoutConstraint],
+            layoutConstraints.count > 0 else {
                 return
         }
         
