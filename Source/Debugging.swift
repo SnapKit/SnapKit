@@ -62,7 +62,7 @@ public extension LayoutConstraint {
             if self.constant > 0.0 {
                 description += " + \(self.constant)"
             } else if self.constant < 0.0 {
-                description += " - \(CGFloat.abs(self.constant))"
+                description += " - \(abs(self.constant))"
             }
         }
         
