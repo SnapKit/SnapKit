@@ -104,6 +104,27 @@ public class Constraint {
         return self
     }
     
+    @available(*, deprecated:0.40.0, message:"Use update(offset: ConstraintOffsetTarget) instead.")
+    public func updateOffset(amount: ConstraintOffsetTarget) -> Void { self.update(offset: amount) }
+    
+    @available(*, deprecated:0.40.0, message:"Use update(inset: ConstraintInsetTarget) instead.")
+    public func updateInsets(amount: ConstraintInsetTarget) -> Void { self.update(inset: amount) }
+    
+    @available(*, deprecated:0.40.0, message:"Use update(priority: ConstraintPriorityTarget) instead.")
+    public func updatePriority(amount: ConstraintPriorityTarget) -> Void { self.update(priority: amount) }
+    
+    @available(*, obsoleted:0.40.0, message:"Use update(priority: ConstraintPriorityTarget) instead.")
+    public func updatePriorityRequired() -> Void {}
+    
+    @available(*, obsoleted:0.40.0, message:"Use update(priority: ConstraintPriorityTarget) instead.")
+    public func updatePriorityHigh() -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    
+    @available(*, obsoleted:0.40.0, message:"Use update(priority: ConstraintPriorityTarget) instead.")
+    public func updatePriorityMedium() -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    
+    @available(*, obsoleted:0.40.0, message:"Use update(priority: ConstraintPriorityTarget) instead.")
+    public func updatePriorityLow() -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    
     // MARK: Internal
     
     internal func updateConstantAndPriorityIfNeeded() {
