@@ -176,6 +176,42 @@ public struct ConstraintViewDSL {
         }
     }
     
+    public var contentHuggingHorizontalPriority: Float {
+        get {
+            return self.view.contentHuggingPriority(for: .horizontal)
+        }
+        set {
+            self.view.setContentHuggingPriority(newValue, for: .horizontal)
+        }
+    }
+    
+    public var contentHuggingVerticalPriority: Float {
+        get {
+            return self.view.contentHuggingPriority(for: .vertical)
+        }
+        set {
+            self.view.setContentHuggingPriority(newValue, for: .vertical)
+        }
+    }
+    
+    public var contentCompressionResistanceHorizontalPriority: Float {
+        get {
+            return self.view.contentCompressionResistancePriority(for: .horizontal)
+        }
+        set {
+            self.view.setContentHuggingPriority(newValue, for: .horizontal)
+        }
+    }
+    
+    public var contentCompressionResistanceVerticalPriority: Float {
+        get {
+            return self.view.contentCompressionResistancePriority(for: .vertical)
+        }
+        set {
+            self.view.setContentCompressionResistancePriority(newValue, for: .vertical)
+        }
+    }
+    
     internal let view: ConstraintView
     
     internal init(view: ConstraintView) {
