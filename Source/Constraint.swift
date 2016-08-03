@@ -36,8 +36,16 @@ public class Constraint {
     private let to: ConstraintItem
     private let relation: ConstraintRelation
     private let multiplier: ConstraintMultiplierTarget
-    private var constant: ConstraintConstantTarget
-    private var priority: ConstraintPriorityTarget
+    private var constant: ConstraintConstantTarget {
+        didSet {
+            self.updateConstantAndPriorityIfNeeded()
+        }
+    }
+    private var priority: ConstraintPriorityTarget {
+        didSet {
+          self.updateConstantAndPriorityIfNeeded()
+        }
+    }
     private var installInfo: ConstraintInstallInfo? = nil
     
     // MARK: Initialization
@@ -78,7 +86,36 @@ public class Constraint {
         self.deactivateIfNeeded()
     }
     
+    @discardableResult
+    public func update(offset: ConstraintOffsetTarget) -> Constraint {
+        self.constant = offset.constraintOffsetTargetValue
+        return self
+    }
+    
+    @discardableResult
+    public func update(inset: ConstraintInsetTarget) -> Constraint {
+        self.constant = inset.constraintInsetTargetValue
+        return self
+    }
+    
+    @discardableResult
+    public func update(priority: ConstraintPriorityTarget) -> Constraint {
+        self.priority = priority.constraintPriorityTargetValue
+        return self
+    }
+    
     // MARK: Internal
+    
+    internal func updateConstantAndPriorityIfNeeded() {
+        guard let installInfo = self.installInfo else {
+            return
+        }
+        for layoutConstraint in installInfo.layoutConstraints.allObjects as! [LayoutConstraint] {
+            let attribute = (layoutConstraint.secondAttribute == .notAnAttribute) ? layoutConstraint.firstAttribute : layoutConstraint.secondAttribute
+            layoutConstraint.constant = self.constant.constraintConstantTargetValueFor(layoutAttribute: attribute)
+            layoutConstraint.priority = self.priority.constraintPriorityTargetValue
+        }
+    }
     
     internal func installIfNeeded(updateExisting: Bool = false) -> [NSLayoutConstraint] {
         let installOnView: ConstraintView?
@@ -120,7 +157,7 @@ public class Constraint {
             let layoutToAttribute = (layoutToAttributes.count > 0) ? layoutToAttributes[0] : layoutFromAttribute
             
             // get layout constant
-            let layoutConstant: CGFloat = self.constant.layoutConstantForLayoutAttribute(layoutToAttribute)
+            let layoutConstant: CGFloat = self.constant.constraintConstantTargetValueFor(layoutAttribute: layoutToAttribute)
             
             // get layout to
             #if os(iOS) || os(tvOS)

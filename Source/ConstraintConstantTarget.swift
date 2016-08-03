@@ -42,7 +42,11 @@ extension ConstraintInsets: ConstraintConstantTarget {
 
 extension ConstraintConstantTarget {
     
-    internal func layoutConstantForLayoutAttribute(_ layoutAttribute: NSLayoutAttribute) -> CGFloat {
+    internal func constraintConstantTargetValueFor(layoutAttribute: NSLayoutAttribute) -> CGFloat {
+        if let value = self as? CGFloat {
+            return value
+        }
+        
         if let value = self as? Float {
             return CGFloat(value)
         }
@@ -59,10 +63,6 @@ extension ConstraintConstantTarget {
             return CGFloat(value)
         }
         
-        if let value = self as? CGFloat {
-            return value
-        }
-        
         if let value = self as? CGSize {
             if layoutAttribute == .width {
                 return value.width
@@ -72,7 +72,6 @@ extension ConstraintConstantTarget {
                 return 0.0
             }
         }
-        
         
         if let value = self as? CGPoint {
             #if os(iOS) || os(tvOS)

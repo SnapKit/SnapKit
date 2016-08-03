@@ -43,32 +43,13 @@ public class ConstraintMakerEditable: ConstraintMakerPriortizable {
     
     @discardableResult
     public func offset(_ amount: ConstraintOffsetTarget) -> ConstraintMakerEditable {
-        self.description.constant = amount
+        self.description.constant = amount.constraintOffsetTargetValue
         return self
     }
     
     @discardableResult
     public func inset(_ amount: ConstraintInsetTarget) -> ConstraintMakerEditable {
-        let insets: ConstraintInsets
-        
-        if let amount = amount as? ConstraintInsets {
-            insets = amount
-        } else if let amount = amount as? Float {
-            insets = ConstraintInsets(top: CGFloat(amount), left: CGFloat(amount), bottom: CGFloat(amount), right: CGFloat(amount))
-        } else if let amount = amount as? Double {
-            insets = ConstraintInsets(top: CGFloat(amount), left: CGFloat(amount), bottom: CGFloat(amount), right: CGFloat(amount))
-        } else if let amount = amount as? CGFloat {
-            insets = ConstraintInsets(top: amount, left: amount, bottom: amount, right: amount)
-        } else if let amount = amount as? Int {
-            insets = ConstraintInsets(top: CGFloat(amount), left: CGFloat(amount), bottom: CGFloat(amount), right: CGFloat(amount))
-        } else if let amount = amount as? UInt {
-            insets = ConstraintInsets(top: CGFloat(amount), left: CGFloat(amount), bottom: CGFloat(amount), right: CGFloat(amount))
-        } else {
-            insets = ConstraintInsets(top: 0, left: 0, bottom: 0, right: 0)
-        }
-        
-        self.description.constant = ConstraintInsets(top: insets.top, left: insets.left, bottom: -insets.bottom, right: -insets.right)
-        
+        self.description.constant = amount.constraintInsetTargetValue
         return self
     }
     
