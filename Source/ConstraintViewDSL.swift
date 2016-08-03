@@ -70,16 +70,17 @@ public struct ConstraintViewDSL {
         return ConstraintItem(target: self.view, attributes: ConstraintAttributes.CenterY)
     }
     
-    @available(iOS, deprecated:0.30.0, message:"Please use migrated .lastBaseline")
+    @available(*, deprecated:0.40.0, message:"Please use migrated .lastBaseline")
     public var baseline: ConstraintItem {
         return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Baseline)
     }
     
+    @available(iOS 8.0, OSX 10.11, *)
     public var lastBaseline: ConstraintItem {
         return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Baseline)
     }
     
-    @available(iOS 8.0, *)
+    @available(iOS 8.0, OSX 10.11, *)
     public var firstBaseline: ConstraintItem {
         return ConstraintItem(target: self.view, attributes: ConstraintAttributes.FirstBaseline)
     }

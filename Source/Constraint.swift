@@ -192,7 +192,7 @@ public class Constraint {
         // add constraints
         #if SNAPKIT_DEPLOYMENT_LEGACY && (os(iOS) || os(tvOS))
             if #available(iOS 8.0, *) {
-                NSLayoutConstraint.activateConstraints(newLayoutConstraints)
+                NSLayoutConstraint.activate(newLayoutConstraints)
             } else {
                 installOnView?.addConstraints(newLayoutConstraints)
             }
@@ -226,8 +226,8 @@ public class Constraint {
         
         #if SNAPKIT_DEPLOYMENT_LEGACY && !os(OSX)
             if #available(iOS 8.0, *) {
-                NSLayoutConstraint.deactivateConstraints(installedLayoutConstraints)
-            } else if let installedOnView = installInfo.view {
+                NSLayoutConstraint.deactivate(installedLayoutConstraints)
+            } else if let installedOnView = installInfo?.view {
                 installedOnView.removeConstraints(installedLayoutConstraints)
             }
         #else
@@ -240,12 +240,12 @@ public class Constraint {
     
     internal func activateIfNeeded() {
         guard self.installInfo != nil else {
-            let _ = self.installIfNeeded()
+            _ = self.installIfNeeded()
             return
         }
         #if SNAPKIT_DEPLOYMENT_LEGACY
             guard #available(iOS 8.0, OSX 10.10, *) else {
-                self.installIfNeeded()
+                _ = self.installIfNeeded()
                 return
             }
         #endif
