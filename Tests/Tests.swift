@@ -74,8 +74,6 @@ class SnapKitTests: XCTestCase {
         self.container.addSubview(v1)
         self.container.addSubview(v2)
         
-        print(v1)
-        
         v1.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(v2.snp.top).offset(50)
             make.left.equalTo(v2.snp.top).offset(50)
@@ -224,6 +222,25 @@ class SnapKitTests: XCTestCase {
         
     }
     
+    func testEdgeConstraints() {
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(self.container).offset(50.0)
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+        
+        
+        let constraints = self.container.snp_constraints as! [NSLayoutConstraint]
+        
+        XCTAssertEqual(constraints[0].constant, 50, "Should be 50")
+        XCTAssertEqual(constraints[1].constant, 50, "Should be 50")
+        XCTAssertEqual(constraints[2].constant, 50, "Should be 50")
+        XCTAssertEqual(constraints[3].constant, 50, "Should be 50")
+    }
+    
     func testSizeConstraints() {
         let view = View()
         self.container.addSubview(view)
@@ -242,6 +259,23 @@ class SnapKitTests: XCTestCase {
         
         XCTAssertEqual(constraints[0].firstAttribute.rawValue, NSLayoutAttribute.width.rawValue, "Should be width")
         XCTAssertEqual(constraints[1].firstAttribute.rawValue, NSLayoutAttribute.height.rawValue, "Should be height")
+        XCTAssertEqual(constraints[0].constant, 50, "Should be 50")
+        XCTAssertEqual(constraints[1].constant, 50, "Should be 50")
+    }
+    
+    func testCenterConstraints() {
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp.makeConstraints { (make) -> Void in
+            make.center.equalTo(self.container).offset(50.0)
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
+        
+        
+        let constraints = self.container.snp_constraints as! [NSLayoutConstraint]
+        
         XCTAssertEqual(constraints[0].constant, 50, "Should be 50")
         XCTAssertEqual(constraints[1].constant, 50, "Should be 50")
     }
