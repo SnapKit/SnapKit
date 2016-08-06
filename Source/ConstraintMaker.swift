@@ -124,6 +124,9 @@ public class ConstraintMaker {
     public var size: ConstraintMakerExtendable {
         return self.makeExtendableWithAttributes(.size)
     }
+    public var center: ConstraintMakerExtendable {
+        return self.makeExtendableWithAttributes(.center)
+    }
     
     @available(iOS 8.0, *)
     public var margins: ConstraintMakerExtendable {
