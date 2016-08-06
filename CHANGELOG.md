@@ -1,16 +1,27 @@
 CHANGELOG
 =======
 
-# 0.30.0.beta1 - May 19 2016
+# 0.40.0.beta - WIP
 
-** SnapKit 0.30.0 ** is a complete re-write to take advantage of modern Swift as well as
+** SnapKit 0.50.0 ** is a complete re-write to take advantage of modern Swift 3.0 as well as
 clean up the API. As such please use with caution and check your apps thoroughly
 
-* All APIs are now accessed via `.snp.*` rather than `.snp_*`. For example you now do `view.snp.makeConstraints {…}`
-* Debugging output has been improved to show exact file/line number from which the broken constraint was created. This is an improvement on existing functionality that showed only the file/line number for the make closure.
+### Breaking
+
+* iOS 7.0 support has been removed
+* DSL is now accessed through `.snp.*` rather than `.snp_*`. For example `view.snp.makeConstraints { }`
+* Constraints are now updated through `update(offset:)`, `update(inset:)` and `update(priority:)`
 * `.inset()` will no longer take `CGPoint` or `CGSize` as input
 * `.offset()` will no longer take `CGPoint`, `CGSize`, `EdgeInsets` as input
-* Exceptions thrown during constraint creation have been replaced with `fatalError` with better output.
+* `updateConstraints` will no longer allow creating new constraints unless there are no existing constraints for the view. If it does generate new constraints it will throw a fatal error.
+
+### Enhancements
+
+* Debugging output has been improved to show exact file/line number from which the broken constraint was created
+* Exceptions thrown during constraint creation have been replaced with `fatalError` with better output
+* Constraints are now installed through `NSLayoutConstraint.activate` and what view they are added to is now deferred to UIKit
+* Added `var contentHugging<Axis>Priority: CGFloat` to `make`
+* Added `var contentCompressionResistance<Axis>Priority: CGFloat` to `make`
 
 # 0.21.0 - May 11 2016
 
