@@ -27,24 +27,24 @@
 
     public struct ConstraintViewControllerDSL {
         
-        @available(iOS 7.0, *)
+        @available(iOS 8.0, *)
         public var topLayoutGuideTop: ConstraintItem {
-            return ConstraintItem(target: self.viewController.topLayoutGuide, attributes: ConstraintAttributes.Top)
+            return ConstraintItem(target: self.viewController.topLayoutGuide, attributes: ConstraintAttributes.top)
         }
         
-        @available(iOS 7.0, *)
+        @available(iOS 8.0, *)
         public var topLayoutGuideBottom: ConstraintItem {
-            return ConstraintItem(target: self.viewController.topLayoutGuide, attributes: ConstraintAttributes.Bottom)
+            return ConstraintItem(target: self.viewController.topLayoutGuide, attributes: ConstraintAttributes.bottom)
         }
         
-        @available(iOS 7.0, *)
+        @available(iOS 8.0, *)
         public var bottomLayoutGuideTop: ConstraintItem {
-            return ConstraintItem(target: self.viewController.bottomLayoutGuide, attributes: ConstraintAttributes.Top)
+            return ConstraintItem(target: self.viewController.bottomLayoutGuide, attributes: ConstraintAttributes.top)
         }
         
-        @available(iOS 7.0, *)
+        @available(iOS 8.0, *)
         public var bottomLayoutGuideBottom: ConstraintItem {
-            return ConstraintItem(target: self.viewController.bottomLayoutGuide, attributes: ConstraintAttributes.Bottom)
+            return ConstraintItem(target: self.viewController.bottomLayoutGuide, attributes: ConstraintAttributes.bottom)
         }
         
         internal let viewController: ConstraintViewController

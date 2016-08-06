@@ -30,8 +30,16 @@
 
 public class LayoutConstraint: NSLayoutConstraint {
     
-    internal var constraint: Constraint? = nil
-    public var label: String? = nil
+    public var label: String? {
+        get {
+            return self.identifier
+        }
+        set {
+            self.identifier = newValue
+        }
+    }
+    
+    internal var constraint: Constraint! = nil
     
 }
 

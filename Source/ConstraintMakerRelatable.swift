@@ -41,7 +41,7 @@ public class ConstraintMakerRelatable {
         let constant: ConstraintConstantTarget
         
         if let other = other as? ConstraintItem {
-            guard other.attributes == ConstraintAttributes.None ||
+            guard other.attributes == ConstraintAttributes.none ||
                   other.attributes.layoutAttributes.count <= 1 ||
                   other.attributes.layoutAttributes == self.description.attributes.layoutAttributes else {
                 fatalError("Cannot constraint to multiple non identical attributes. (\(file), \(line))");
@@ -50,10 +50,10 @@ public class ConstraintMakerRelatable {
             related = other
             constant = 0.0
         } else if let other = other as? ConstraintView {
-            related = ConstraintItem(target: other, attributes: ConstraintAttributes.None)
+            related = ConstraintItem(target: other, attributes: ConstraintAttributes.none)
             constant = 0.0
         } else if let other = other as? ConstraintConstantTarget {
-            related = ConstraintItem(target: nil, attributes: ConstraintAttributes.None)
+            related = ConstraintItem(target: nil, attributes: ConstraintAttributes.none)
             constant = other
         } else {
             fatalError("Invalid constraint. (\(file), \(line))")

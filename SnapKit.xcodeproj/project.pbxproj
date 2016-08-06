@@ -507,6 +507,7 @@
 					EEBCC9E119CC627D0083B827 = {
 						CreatedOnToolsVersion = 6.0;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					EECDB3791AC0C9D4006BBC11 = {
 						CreatedOnToolsVersion = 6.2;
@@ -945,7 +946,8 @@
 		EEBCC9EC19CC627E0083B827 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.snapkit.$(PRODUCT_NAME:rfc1034identifier)";
@@ -957,7 +959,8 @@
 		EEBCC9ED19CC627E0083B827 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.snapkit.$(PRODUCT_NAME:rfc1034identifier)";

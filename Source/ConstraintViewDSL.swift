@@ -31,122 +31,123 @@
 public struct ConstraintViewDSL {
     
     public var left: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Left)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.left)
     }
     
     public var top: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Top)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.top)
     }
     
     public var right: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Right)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.right)
     }
     
     public var bottom: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Bottom)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.bottom)
     }
     
     public var leading: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Leading)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.leading)
     }
     
     public var trailing: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Trailing)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.trailing)
     }
     
     public var width: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Width)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.width)
     }
     
     public var height: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Height)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.height)
     }
     
     public var centerX: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.CenterX)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.centerX)
     }
     
     public var centerY: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.CenterY)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.centerY)
     }
     
-    @available(*, deprecated:0.40.0, message:"Please use migrated .lastBaseline")
+    @available(*, deprecated:0.40.0, message:"Use .lastBaseline instead")
     public var baseline: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Baseline)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.lastBaseline)
     }
     
     @available(iOS 8.0, OSX 10.11, *)
     public var lastBaseline: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Baseline)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.lastBaseline)
     }
     
     @available(iOS 8.0, OSX 10.11, *)
     public var firstBaseline: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.FirstBaseline)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.firstBaseline)
     }
     
     @available(iOS 8.0, *)
     public var leftMargin: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.LeftMargin)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.leftMargin)
     }
     
     @available(iOS 8.0, *)
     public var topMargin: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.TopMargin)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.topMargin)
     }
     
     @available(iOS 8.0, *)
     public var rightMargin: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.RightMargin)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.rightMargin)
     }
     
     @available(iOS 8.0, *)
     public var bottomMargin: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.BottomMargin)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.bottomMargin)
     }
     
     @available(iOS 8.0, *)
     public var leadingMargin: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.LeadingMargin)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.leadingMargin)
     }
     
     @available(iOS 8.0, *)
     public var trailingMargin: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.TrailingMargin)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.trailingMargin)
     }
     
     @available(iOS 8.0, *)
     public var centerXWithinMargins: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.CenterXWithinMargins)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.centerXWithinMargins)
     }
     
     @available(iOS 8.0, *)
     public var centerYWithinMargins: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.CenterYWithinMargins)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.centerYWithinMargins)
     }
     
     public var edges: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Edges)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.edges)
     }
     
     public var size: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Size)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.size)
     }
     
     public var center: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Center)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.center)
     }
     
     @available(iOS 8.0, *)
     public var margins: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.Margins)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.margins)
     }
     
     @available(iOS 8.0, *)
     public var centerWithinMargins: ConstraintItem {
-        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.CenterWithinMargins)
+        return ConstraintItem(target: self.view, attributes: ConstraintAttributes.centerWithinMargins)
     }
     
+    @discardableResult
     public func prepareConstraints(_ closure: @noescape (make: ConstraintMaker) -> Void) -> [Constraint] {
         return ConstraintMaker.prepareConstraints(view: self.view, closure: closure)
     }
@@ -216,23 +217,23 @@ public struct ConstraintViewDSL {
     
     internal init(view: ConstraintView) {
         self.view = view
+        
     }
     
-    internal var installedLayoutConstraints: [LayoutConstraint] {
-        return objc_getAssociatedObject(self.view, &installedLayoutConstraintsKey) as? [LayoutConstraint] ?? []
+    internal var layoutConstraints: [LayoutConstraint] {
+        return objc_getAssociatedObject(self.view, &layoutConstraintsKey) as? [LayoutConstraint] ?? []
     }
     
-    internal func appendInstalledLayoutConstraints(_ layoutConstraints: [LayoutConstraint]) {
-        var newValue = self.installedLayoutConstraints
-        newValue += layoutConstraints
-        objc_setAssociatedObject(self.view, &installedLayoutConstraintsKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    internal func add(layoutConstraints: [LayoutConstraint]) {
+        let merged = self.layoutConstraints + layoutConstraints
+        objc_setAssociatedObject(self.view, &layoutConstraintsKey, merged, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
     
-    internal func removeInstalledLayoutConstraints(_ layoutConstraints: [LayoutConstraint]) {
-        let newValue = self.installedLayoutConstraints.filter { !layoutConstraints.contains($0) }
-        objc_setAssociatedObject(self.view, &installedLayoutConstraintsKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    internal func remove(layoutConstraints: [LayoutConstraint]) {
+        let merged = self.layoutConstraints.filter { !layoutConstraints.contains($0) }
+        objc_setAssociatedObject(self.view, &layoutConstraintsKey, merged, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
+    
 }
-
 private var labelKey: UInt8 = 0
-private var installedLayoutConstraintsKey: UInt8 = 0
+private var layoutConstraintsKey: UInt8 = 0
