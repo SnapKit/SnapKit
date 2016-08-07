@@ -64,6 +64,7 @@ public extension ConstraintView {
     public var snp_baseline: ConstraintItem { return self.snp.baseline }
     
     @available(*, deprecated:0.40.0, message:"Use newer snp.* syntax.")
+    @available(iOS 8.0, OSX 10.11, *)
     public var snp_lastBaseline: ConstraintItem { return self.snp.lastBaseline }
     
     @available(iOS, deprecated:0.40.0, message:"Use newer snp.* syntax.")
