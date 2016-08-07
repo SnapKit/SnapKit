@@ -1,6 +1,11 @@
 CHANGELOG
 =======
 
+# 0.22.0 - August 8 2016
+
+* Added `layoutConstraint` getter to `Constraint` to get the underlying NSLayoutConstraints created by a constraint
+* Updated support for Swift 2.3 and Xcode 8 Beta 3
+
 # 0.21.1 - June 20 2016
 
 * Added support for Swift 2.3
