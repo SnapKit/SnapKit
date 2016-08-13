@@ -188,6 +188,19 @@ public class ConstraintMaker {
         }
     }
     
+    internal class func updateAnimatorConstraints(view view: View, file: String = "Unknown", line: UInt = 0, @noescape closure: (make: ConstraintMaker) -> Void) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        let maker = ConstraintMaker(view: view, file: file, line: line)
+        closure(make: maker)
+        
+        let constraints = maker.constraintDescriptions.map{ $0.constraint as! ConcreteConstraint}
+        for constraint in constraints {
+            constraint.makerFile = maker.file
+            constraint.makerLine = maker.line
+            constraint.installOnView(updateExisting: true, forAnimator: true)
+        }
+    }
+    
     internal class func removeConstraints(view view: View) {
         for existingLayoutConstraint in view.snp_installedLayoutConstraints {
             existingLayoutConstraint.snp_constraint?.uninstall()
