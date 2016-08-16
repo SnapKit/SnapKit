@@ -207,18 +207,18 @@ public class Constraint {
     }
 }
 
-extension Constraint: Hashable {
-    
-    public var hashValue: Int {
-        return self.layoutConstraints.hashValue
-    }
-    
-}
-
-public func ==(lhs: Constraint, rhs: Constraint) -> Bool {
-    return (lhs.from == rhs.from &&
-            lhs.to == rhs.to &&
-            lhs.relation == rhs.relation &&
-            lhs.multiplier.constraintMultiplierTargetValue == rhs.multiplier.constraintMultiplierTargetValue &&
-            lhs.priority.constraintPriorityTargetValue == rhs.priority.constraintPriorityTargetValue)
-}
+//extension Constraint: Hashable {
+//    
+//    public var hashValue: Int {
+//        return self.layoutConstraints.hashValue
+//    }
+//    
+//}
+//
+//public func ==(lhs: Constraint, rhs: Constraint) -> Bool {
+//    return (lhs.from == rhs.from &&
+//            lhs.to == rhs.to &&
+//            lhs.relation == rhs.relation &&
+//            lhs.multiplier.constraintMultiplierTargetValue == rhs.multiplier.constraintMultiplierTargetValue &&
+//            lhs.priority.constraintPriorityTargetValue == rhs.priority.constraintPriorityTargetValue)
+//}
