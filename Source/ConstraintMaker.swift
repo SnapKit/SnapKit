@@ -152,9 +152,9 @@ public class ConstraintMaker {
         return ConstraintMakerExtendable(description)
     }
     
-    internal static func prepareConstraints(view: ConstraintView, closure: @noescape(make: ConstraintMaker) -> Void) -> [Constraint] {
+    internal static func prepareConstraints(view: ConstraintView, closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
         let maker = ConstraintMaker(view: view)
-        closure(make: maker)
+        closure(maker)
         let constraints = maker.descriptions
             .map { $0.constraint }
             .filter { $0 != nil }
@@ -162,9 +162,9 @@ public class ConstraintMaker {
         return constraints
     }
     
-    internal static func makeConstraints(view: ConstraintView, closure: @noescape(make: ConstraintMaker) -> Void) {
+    internal static func makeConstraints(view: ConstraintView, closure: (_ make: ConstraintMaker) -> Void) {
         let maker = ConstraintMaker(view: view)
-        closure(make: maker)
+        closure(maker)
         let constraints = maker.descriptions
             .map { $0.constraint }
             .filter { $0 != nil }
@@ -174,14 +174,14 @@ public class ConstraintMaker {
         }
     }
     
-    internal static func remakeConstraints(view: ConstraintView, closure: @noescape(make: ConstraintMaker) -> Void) {
+    internal static func remakeConstraints(view: ConstraintView, closure: (_ make: ConstraintMaker) -> Void) {
         self.removeConstraints(view: view)
         self.makeConstraints(view: view, closure: closure)
     }
     
-    internal static func updateConstraints(view: ConstraintView, closure: @noescape(make: ConstraintMaker) -> Void) {
+    internal static func updateConstraints(view: ConstraintView, closure: (_ make: ConstraintMaker) -> Void) {
         let maker = ConstraintMaker(view: view)
-        closure(make: maker)
+        closure(maker)
         let constraints = maker.descriptions
             .map { $0.constraint }
             .filter { $0 != nil }

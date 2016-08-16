@@ -121,22 +121,22 @@ public extension ConstraintView {
     public var snp_centerWithinMargins: ConstraintItem { return self.snp.centerWithinMargins }
     
     @available(*, deprecated:0.40.0, message:"Use newer snp.* syntax.")
-    public func snp_prepareConstraints(_ closure: @noescape(make: ConstraintMaker) -> Void) -> [Constraint] {
+    public func snp_prepareConstraints(_ closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
         return self.snp.prepareConstraints(closure)
     }
     
     @available(*, deprecated:0.40.0, message:"Use newer snp.* syntax.")
-    public func snp_makeConstraints(_ closure: @noescape(make: ConstraintMaker) -> Void) {
+    public func snp_makeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
         self.snp.makeConstraints(closure)
     }
     
     @available(*, deprecated:0.40.0, message:"Use newer snp.* syntax.")
-    public func snp_remakeConstraints(_ closure: @noescape(make: ConstraintMaker) -> Void) {
+    public func snp_remakeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
         self.snp.remakeConstraints(closure)
     }
     
     @available(*, deprecated:0.40.0, message:"Use newer snp.* syntax.")
-    public func snp_updateConstraints(_ closure: @noescape(make: ConstraintMaker) -> Void) {
+    public func snp_updateConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
         self.snp.updateConstraints(closure)
     }
     

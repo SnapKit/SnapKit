@@ -138,10 +138,10 @@ private func conditionalOptional<T>(from object: T) -> Optional<T> {
 }
 
 private func descriptionForObject(_ object: AnyObject) -> String {
-    let pointerDescription = NSString(format: "%p", UInt(ObjectIdentifier(object)))
+    let pointerDescription = String(format: "%p", UInt(bitPattern: ObjectIdentifier(object)))
     var desc = ""
     
-    desc += object.dynamicType.description()
+    desc += type(of: object).description()
     
     if let object = object as? ConstraintView {
         desc += ":\(object.snp.label ?? pointerDescription)"

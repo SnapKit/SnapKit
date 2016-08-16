@@ -148,19 +148,19 @@ public struct ConstraintViewDSL {
     }
     
     @discardableResult
-    public func prepareConstraints(_ closure: @noescape (make: ConstraintMaker) -> Void) -> [Constraint] {
+    public func prepareConstraints(_ closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
         return ConstraintMaker.prepareConstraints(view: self.view, closure: closure)
     }
     
-    public func makeConstraints(_ closure: @noescape (make: ConstraintMaker) -> Void) {
+    public func makeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
         ConstraintMaker.makeConstraints(view: self.view, closure: closure)
     }
     
-    public func remakeConstraints(_ closure: @noescape (make: ConstraintMaker) -> Void) {
+    public func remakeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
         ConstraintMaker.remakeConstraints(view: self.view, closure: closure)
     }
     
-    public func updateConstraints(_ closure: @noescape (make: ConstraintMaker) -> Void) {
+    public func updateConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
         ConstraintMaker.updateConstraints(view: self.view, closure: closure)
     }
     
