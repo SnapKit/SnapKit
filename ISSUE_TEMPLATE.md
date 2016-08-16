@@ -1,5 +1,6 @@
 ### New Issue Checklist
 
+* [x] I accept that if I do not fill out this issue template my issue will be immediately closed with no response
 * [ ] I have looked at the [Documentation](http://snapkit.io/docs)
 * [ ] I have read the [F.A.Q.](http://snapkit.io/faq)
 
