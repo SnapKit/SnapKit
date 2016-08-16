@@ -68,6 +68,28 @@ class SnapKitTests: XCTestCase {
         
     }
     
+    func testMakeImpliedSuperviewConstraints() {
+        let v1 = View()
+        let v2 = View()
+        self.container.addSubview(v1)
+        self.container.addSubview(v2)
+        
+        v1.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(50.0)
+            make.left.equalTo(50.0)
+            return
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints installed")
+        
+        v2.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(v1)
+            return
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 6, "Should have 6 constraints installed")
+    }
+    
     func testUpdateConstraints() {
         let v1 = View()
         let v2 = View()
