@@ -87,10 +87,15 @@ public class Constraint {
             
             // get layout to
             #if os(iOS) || os(tvOS)
-                let layoutTo: AnyObject? = self.to.view ?? self.to.layoutSupport
+                var layoutTo: AnyObject? = self.to.view ?? self.to.layoutSupport
             #else
-                let layoutTo: AnyObject? = self.to.view
+                var layoutTo: AnyObject? = self.to.view
             #endif
+            
+            // use superview if possible
+            if layoutTo == nil && layoutToAttribute != .width && layoutToAttribute != .height {
+                layoutTo = layoutFrom.superview
+            }
             
             // create layout constraint
             let layoutConstraint = LayoutConstraint(
@@ -206,19 +211,3 @@ public class Constraint {
         view.snp.remove(layoutConstraints: layoutConstraints)
     }
 }
-
-//extension Constraint: Hashable {
-//    
-//    public var hashValue: Int {
-//        return self.layoutConstraints.hashValue
-//    }
-//    
-//}
-//
-//public func ==(lhs: Constraint, rhs: Constraint) -> Bool {
-//    return (lhs.from == rhs.from &&
-//            lhs.to == rhs.to &&
-//            lhs.relation == rhs.relation &&
-//            lhs.multiplier.constraintMultiplierTargetValue == rhs.multiplier.constraintMultiplierTargetValue &&
-//            lhs.priority.constraintPriorityTargetValue == rhs.priority.constraintPriorityTargetValue)
-//}
