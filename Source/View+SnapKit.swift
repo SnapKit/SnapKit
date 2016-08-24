@@ -167,6 +167,17 @@ public extension View {
         ConstraintMaker.removeConstraints(view: self)
     }
     
+    /**
+     Makes edge constraints with a `ConstraintMaker` to align view edges, and installs them along side any previous made constraints.
+     
+     - parameter secondView whose edges will be aligned with the first view
+     */
+    public func snp_alignEdges(file: String = #file, line: UInt = #line, other: View) {
+        ConstraintMaker.makeConstraints(view: self, file: file, line: line) { (make) in
+            make.edges.equalTo(other)
+        }
+    }
+    
     internal var snp_installedLayoutConstraints: [LayoutConstraint] {
         get {
             if let constraints = objc_getAssociatedObject(self, &installedLayoutConstraintsKey) as? [LayoutConstraint] {
