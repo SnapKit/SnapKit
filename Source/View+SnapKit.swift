@@ -172,9 +172,9 @@ public extension View {
      
      - parameter secondView whose edges will be aligned with the first view
      */
-    public func snp_alignEdges(file: String = #file, line: UInt = #line, secondView: View) {
+    public func snp_alignEdges(file: String = #file, line: UInt = #line, other: View) {
         ConstraintMaker.makeConstraints(view: self, file: file, line: line) { (make) in
-            make.edges.equalTo(secondView)
+            make.edges.equalTo(other)
         }
     }
     
