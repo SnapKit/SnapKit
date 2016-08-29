@@ -95,6 +95,10 @@ public protocol ConstraintDescriptionRelatable: class {
     
     func equalTo(other: ConstraintItem) -> ConstraintDescriptionEditable
     func equalTo(other: View) -> ConstraintDescriptionEditable
+    #if os(iOS) || os(tvOS)
+    @available(iOS 9.0, *)
+    func equalTo(other: UILayoutGuide) -> ConstraintDescriptionEditable
+    #endif
     func equalToSuperview() -> ConstraintDescriptionEditable
     @available(iOS 7.0, *)
     func equalTo(other: LayoutSupport) -> ConstraintDescriptionEditable
@@ -232,6 +236,14 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     internal func equalTo(other: View) -> ConstraintDescriptionEditable {
         return self.constrainTo(other, relation: .Equal)
     }
+    
+    #if os(iOS) || os(tvOS)
+    @available(iOS 9.0, *)
+    internal func equalTo(other: UILayoutGuide) -> ConstraintDescriptionEditable {
+        return self.constrainTo(other, relation: .Equal)
+    }
+    #endif
+    
     internal func equalToSuperview() -> ConstraintDescriptionEditable {
         guard let superview = fromItem.view?.superview else {
             fatalError("equalToSuperview() requires the view have a superview before being set.")
@@ -597,6 +609,13 @@ internal class ConstraintDescription: ConstraintDescriptionExtendable, Constrain
     private func constrainTo(other: LayoutSupport, relation: ConstraintRelation) -> ConstraintDescription {
         return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
     }
+    
+    #if os(iOS) || os(tvOS)
+    @available(iOS 9.0, *)
+    private func constrainTo(other: UILayoutGuide, relation: ConstraintRelation) -> ConstraintDescription {
+        return constrainTo(ConstraintItem(object: other, attributes: ConstraintAttributes.None), relation: relation)
+    }
+    #endif
     
     @available(iOS 9.0, OSX 10.11, *)
     private func constrainTo(other: NSLayoutAnchor, relation: ConstraintRelation) -> ConstraintDescription {

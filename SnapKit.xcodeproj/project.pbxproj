@@ -31,6 +31,7 @@
 		56A0DC221C859F15005973AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0DC211C859F15005973AB /* AppDelegate.swift */; };
 		56A0DC321C85A2C1005973AB /* BasicUIScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0DC311C85A2C1005973AB /* BasicUIScrollViewController.swift */; };
 		56A0DC341C85AFBF005973AB /* SimpleLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0DC331C85AFBF005973AB /* SimpleLayoutViewController.swift */; };
+		6BA7C9EA1D7472B3006586BC /* LayoutGuide+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7C9E91D7472B3006586BC /* LayoutGuide+SnapKit.swift */; };
 		EE4910981B19A26000A54F1F /* ViewController+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4910971B19A26000A54F1F /* ViewController+SnapKit.swift */; };
 		EE4910991B19A40200A54F1F /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBCC9D819CC627D0083B827 /* SnapKit.framework */; };
 		EE94F6091AC0F10A008767FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE94F6081AC0F10A008767FF /* UIKit.framework */; };
@@ -107,6 +108,7 @@
 		56A0DC211C859F15005973AB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56A0DC311C85A2C1005973AB /* BasicUIScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicUIScrollViewController.swift; sourceTree = "<group>"; };
 		56A0DC331C85AFBF005973AB /* SimpleLayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleLayoutViewController.swift; sourceTree = "<group>"; };
+		6BA7C9E91D7472B3006586BC /* LayoutGuide+SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LayoutGuide+SnapKit.swift"; sourceTree = "<group>"; };
 		EE4910971B19A26000A54F1F /* ViewController+SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+SnapKit.swift"; sourceTree = "<group>"; };
 		EE94F6081AC0F10A008767FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EE94F60A1AC0F10F008767FF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -251,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				EECDB3661AC0C95C006BBC11 /* SnapKit.h */,
+				6BA7C9E91D7472B3006586BC /* LayoutGuide+SnapKit.swift */,
 				EEFCF32E1AD926AE00A425FA /* SnapKit.swift */,
 				EECDB35E1AC0C95C006BBC11 /* Constraint.swift */,
 				EEFCF3311AD9432400A425FA /* ConstraintDescription.swift */,
@@ -604,6 +607,7 @@
 			files = (
 				EECDB36C1AC0C9A6006BBC11 /* Constraint.swift in Sources */,
 				EEFCF32F1AD926AE00A425FA /* SnapKit.swift in Sources */,
+				6BA7C9EA1D7472B3006586BC /* LayoutGuide+SnapKit.swift in Sources */,
 				EEFCF32C1AD910B900A425FA /* Debugging.swift in Sources */,
 				EECDB3701AC0C9A6006BBC11 /* ConstraintRelation.swift in Sources */,
 				EEFCF3321AD9432400A425FA /* ConstraintDescription.swift in Sources */,

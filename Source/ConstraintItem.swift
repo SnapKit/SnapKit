@@ -48,6 +48,13 @@ public class ConstraintItem {
     internal var layoutSupport: LayoutSupport? {
         return self.object as? LayoutSupport
     }
+    
+    #if os(iOS) || os(tvOS)
+    @available(iOS 9.0, *)
+    internal var layoutguide: UILayoutGuide? {
+        return self.object as? UILayoutGuide
+    }
+    #endif
 }
 
 
