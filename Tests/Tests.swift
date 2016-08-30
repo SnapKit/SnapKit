@@ -29,6 +29,24 @@ class SnapKitTests: XCTestCase {
         super.tearDown()
     }
     
+    @available(iOS 9.0, *)
+    func testReadableLayoutGuide() {
+        #if os(iOS) || os(tvOS)
+            let view = UIView(frame: CGRectMake(0, 0, 300, 300))
+            
+            view.addSubview(self.container)
+            
+            let guide = view.readableContentGuide
+            
+            self.container.snp_makeConstraints { (make) -> Void in
+                make.top.equalTo(guide)
+                make.bottom.equalTo(guide)
+            }
+            print(view.snp_constraints)
+            XCTAssertEqual(view.snp_constraints.count, 12, "Should have 12 constraints installed")
+        #endif
+    }
+    
     func testLayoutGuideConstraints() {
         #if os(iOS) || os(tvOS)
         let vc = UIViewController()
