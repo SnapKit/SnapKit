@@ -276,11 +276,15 @@ class SnapKitTests: XCTestCase {
         
         XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
         
-        
         let constraints = view.snp_constraints as! [NSLayoutConstraint]
-        
-        XCTAssertEqual(constraints[0].firstAttribute.rawValue, NSLayoutAttribute.width.rawValue, "Should be width")
-        XCTAssertEqual(constraints[1].firstAttribute.rawValue, NSLayoutAttribute.height.rawValue, "Should be height")
+
+        // no guarantee which order the constraints are in, but we should test their couple
+        let widthHeight = (NSLayoutAttribute.width.rawValue, NSLayoutAttribute.height.rawValue)
+        let heightWidth = (widthHeight.1, widthHeight.0)
+        let firstSecond = (constraints[0].firstAttribute.rawValue, constraints[1].firstAttribute.rawValue)
+
+        // constraint values are correct in either width, height or height, width order
+        XCTAssertTrue(firstSecond == widthHeight || firstSecond == heightWidth, "2 contraint values should match")
         XCTAssertEqual(constraints[0].constant, 50, "Should be 50")
         XCTAssertEqual(constraints[1].constant, 50, "Should be 50")
     }
