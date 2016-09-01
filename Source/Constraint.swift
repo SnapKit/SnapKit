@@ -80,7 +80,42 @@ public class Constraint {
         
         for layoutFromAttribute in layoutFromAttributes {
             // get layout to attribute
-            let layoutToAttribute = (layoutToAttributes.count > 0) ? layoutToAttributes[0] : layoutFromAttribute
+            let layoutToAttribute: NSLayoutAttribute
+            if layoutToAttributes.count > 1 {
+                if self.from.attributes == .edges && self.to.attributes == .margins {
+                    switch layoutFromAttribute {
+                    case .left:
+                        layoutToAttribute = .leftMargin
+                    case .right:
+                        layoutToAttribute = .rightMargin
+                    case .top:
+                        layoutToAttribute = .topMargin
+                    case .bottom:
+                        layoutToAttribute = .bottomMargin
+                    default:
+                        fatalError()
+                    }
+                } else if self.from.attributes == .margins && self.to.attributes == .edges {
+                    switch layoutFromAttribute {
+                    case .leftMargin:
+                        layoutToAttribute = .left
+                    case .rightMargin:
+                        layoutToAttribute = .right
+                    case .topMargin:
+                        layoutToAttribute = .top
+                    case .bottomMargin:
+                        layoutToAttribute = .bottom
+                    default:
+                        fatalError()
+                    }
+                } else {
+                    layoutToAttribute = layoutToAttributes[0]
+                }
+            } else if layoutToAttributes.count == 1 {
+                layoutToAttribute = layoutToAttributes[0]
+            } else {
+                layoutToAttribute = layoutFromAttribute
+            }
             
             // get layout constant
             let layoutConstant: CGFloat = self.constant.constraintConstantTargetValueFor(layoutAttribute: layoutToAttribute)

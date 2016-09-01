@@ -43,7 +43,9 @@ public class ConstraintMakerRelatable {
         if let other = other as? ConstraintItem {
             guard other.attributes == ConstraintAttributes.none ||
                   other.attributes.layoutAttributes.count <= 1 ||
-                  other.attributes.layoutAttributes == self.description.attributes.layoutAttributes else {
+                  other.attributes.layoutAttributes == self.description.attributes.layoutAttributes ||
+                  other.attributes == .edges && self.description.attributes == .margins ||
+                  other.attributes == .margins && self.description.attributes == .edges else {
                 fatalError("Cannot constraint to multiple non identical attributes. (\(file), \(line))");
             }
             

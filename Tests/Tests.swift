@@ -418,4 +418,44 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(constraints[0].identifier, identifier, "Identifier should be 'Test'")
     }
     
+    func testEdgesToMargins() {
+        var fromAttributes = Set<NSLayoutAttribute>()
+        var toAttributes = Set<NSLayoutAttribute>()
+        
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp.remakeConstraints { (make) -> Void in
+            make.edges.equalTo(self.container.snp.margins)
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+        
+        for constraint in (container.snp_constraints as! [NSLayoutConstraint]) {
+            fromAttributes.insert(constraint.firstAttribute)
+            toAttributes.insert(constraint.secondAttribute)
+        }
+        
+        XCTAssert(fromAttributes == [.top, .left, .bottom, .right])
+        XCTAssert(toAttributes == [.topMargin, .leftMargin, .bottomMargin, .rightMargin])
+        
+        fromAttributes.removeAll()
+        toAttributes.removeAll()
+        
+        view.snp.remakeConstraints { (make) -> Void in
+            make.margins.equalTo(self.container.snp.edges)
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+        
+        for constraint in (container.snp_constraints as! [NSLayoutConstraint]) {
+            fromAttributes.insert(constraint.firstAttribute)
+            toAttributes.insert(constraint.secondAttribute)
+        }
+        
+        XCTAssert(toAttributes == [.top, .left, .bottom, .right])
+        XCTAssert(fromAttributes == [.topMargin, .leftMargin, .bottomMargin, .rightMargin])
+        
+    }
+    
 }
