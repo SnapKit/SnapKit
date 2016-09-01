@@ -29,15 +29,15 @@
 
 
 @available(iOS 8.0, *)
-public struct UILayoutSupportDSL: ConstraintDSL {
+public struct ConstraintLayoutSupportDSL: ConstraintDSL {
     
     public var target: AnyObject? {
         return self.support
     }
     
-    internal let support: UILayoutSupport
+    internal let support: ConstraintLayoutSupport
     
-    internal init(support: UILayoutSupport) {
+    internal init(support: ConstraintLayoutSupport) {
         self.support = support
         
     }

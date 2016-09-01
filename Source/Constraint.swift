@@ -81,41 +81,49 @@ public class Constraint {
         for layoutFromAttribute in layoutFromAttributes {
             // get layout to attribute
             let layoutToAttribute: NSLayoutAttribute
-            if layoutToAttributes.count > 1 {
-                if self.from.attributes == .edges && self.to.attributes == .margins {
-                    switch layoutFromAttribute {
-                    case .left:
-                        layoutToAttribute = .leftMargin
-                    case .right:
-                        layoutToAttribute = .rightMargin
-                    case .top:
-                        layoutToAttribute = .topMargin
-                    case .bottom:
-                        layoutToAttribute = .bottomMargin
-                    default:
-                        fatalError()
+            #if os(iOS) || os(tvOS)
+                if layoutToAttributes.count > 1 {
+                    if self.from.attributes == .edges && self.to.attributes == .margins {
+                        switch layoutFromAttribute {
+                        case .left:
+                            layoutToAttribute = .leftMargin
+                        case .right:
+                            layoutToAttribute = .rightMargin
+                        case .top:
+                            layoutToAttribute = .topMargin
+                        case .bottom:
+                            layoutToAttribute = .bottomMargin
+                        default:
+                            fatalError()
+                        }
+                    } else if self.from.attributes == .margins && self.to.attributes == .edges {
+                        switch layoutFromAttribute {
+                        case .leftMargin:
+                            layoutToAttribute = .left
+                        case .rightMargin:
+                            layoutToAttribute = .right
+                        case .topMargin:
+                            layoutToAttribute = .top
+                        case .bottomMargin:
+                            layoutToAttribute = .bottom
+                        default:
+                            fatalError()
+                        }
+                    } else {
+                        layoutToAttribute = layoutToAttributes[0]
                     }
-                } else if self.from.attributes == .margins && self.to.attributes == .edges {
-                    switch layoutFromAttribute {
-                    case .leftMargin:
-                        layoutToAttribute = .left
-                    case .rightMargin:
-                        layoutToAttribute = .right
-                    case .topMargin:
-                        layoutToAttribute = .top
-                    case .bottomMargin:
-                        layoutToAttribute = .bottom
-                    default:
-                        fatalError()
-                    }
-                } else {
+                } else if layoutToAttributes.count == 1 {
                     layoutToAttribute = layoutToAttributes[0]
+                } else {
+                    layoutToAttribute = layoutFromAttribute
                 }
-            } else if layoutToAttributes.count == 1 {
-                layoutToAttribute = layoutToAttributes[0]
-            } else {
-                layoutToAttribute = layoutFromAttribute
-            }
+            #else
+                if layoutToAttributes.count > 0 {
+                    layoutToAttribute = layoutToAttributes[0]
+                } else {
+                    layoutToAttribute = layoutFromAttribute
+                }
+            #endif
             
             // get layout constant
             let layoutConstant: CGFloat = self.constant.constraintConstantTargetValueFor(layoutAttribute: layoutToAttribute)

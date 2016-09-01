@@ -29,24 +29,6 @@ class SnapKitTests: XCTestCase {
         super.tearDown()
     }
     
-    func testLayoutGuideConstraints() {
-        #if os(iOS) || os(tvOS)
-            let vc = UIViewController()
-            vc.view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-            
-            vc.view.addSubview(self.container)
-            
-            self.container.snp.makeConstraints { (make) -> Void in
-                make.top.equalTo(vc.topLayoutGuide.snp.bottom)
-                make.bottom.equalTo(vc.bottomLayoutGuide.snp.top)
-            }
-            
-            print(vc.view.snp_constraints)
-            
-            XCTAssertEqual(vc.view.snp_constraints.count, 6, "Should have 6 constraints installed")
-        #endif
-    }
-    
     func testMakeConstraints() {
         let v1 = View()
         let v2 = View()
@@ -324,12 +306,12 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(constraints[3].constant, -50, "Should be -50")
     }
     
-    func testUIEdgeInsetsAsImpliedEqualToConstraints() {
+    func testConstraintInsetsAsImpliedEqualToConstraints() {
         let view = View()
         self.container.addSubview(view)
         
         view.snp.makeConstraints { (make) -> Void in
-            make.edges.equalTo(UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25))
+            make.edges.equalTo(ConstraintInsets(top: 25, left: 25, bottom: 25, right: 25))
         }
         
         XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
@@ -343,12 +325,12 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(constraints[3].constant, -25, "Should be -25")
     }
     
-    func testUIEdgeInsetsAsConstraintsConstant() {
+    func testConstraintInsetsAsConstraintsConstant() {
         let view = View()
         self.container.addSubview(view)
         
         view.snp.makeConstraints { (make) -> Void in
-            make.edges.equalTo(self.container).inset(UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25))
+            make.edges.equalTo(self.container).inset(ConstraintInsets(top: 25, left: 25, bottom: 25, right: 25))
         }
         
         XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
@@ -418,6 +400,7 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(constraints[0].identifier, identifier, "Identifier should be 'Test'")
     }
     
+    #if os(iOS) || os(tvOS)
     func testEdgesToMargins() {
         var fromAttributes = Set<NSLayoutAttribute>()
         var toAttributes = Set<NSLayoutAttribute>()
@@ -457,5 +440,22 @@ class SnapKitTests: XCTestCase {
         XCTAssert(fromAttributes == [.topMargin, .leftMargin, .bottomMargin, .rightMargin])
         
     }
+    
+    func testLayoutGuideConstraints() {
+        let vc = UIViewController()
+        vc.view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+        
+        vc.view.addSubview(self.container)
+        
+        self.container.snp.makeConstraints { (make) -> Void in
+        make.top.equalTo(vc.topLayoutGuide.snp.bottom)
+        make.bottom.equalTo(vc.bottomLayoutGuide.snp.top)
+        }
+        
+        print(vc.view.snp_constraints)
+        
+        XCTAssertEqual(vc.view.snp_constraints.count, 6, "Should have 6 constraints installed")
+    }
+    #endif
     
 }

@@ -29,15 +29,15 @@
 
 
 @available(iOS 9.0, *)
-public struct UILayoutGuideDSL: ConstraintAttributesDSL {
+public struct ConstraintLayoutGuideDSL: ConstraintAttributesDSL {
     
     public var target: AnyObject? {
         return self.guide
     }
     
-    internal let guide: UILayoutGuide
+    internal let guide: ConstraintLayoutGuide
     
-    internal init(guide: UILayoutGuide) {
+    internal init(guide: ConstraintLayoutGuide) {
         self.guide = guide
         
     }

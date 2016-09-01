@@ -27,10 +27,10 @@
 
     
 @available(iOS 8.0, *)
-public extension UILayoutSupport {
+public extension ConstraintLayoutSupport {
     
-    public var snp: UILayoutSupportDSL {
-        return UILayoutSupportDSL(support: self)
+    public var snp: ConstraintLayoutSupportDSL {
+        return ConstraintLayoutSupportDSL(support: self)
     }
     
 }

@@ -124,17 +124,17 @@ extension ConstraintConstantTarget {
                 case .top, .centerY, .lastBaseline, .firstBaseline:
                     return value.top
                 case .right:
-                    return value.right
+                    return -value.right
                 case .bottom:
-                    return value.bottom
+                    return -value.bottom
                 case .leading:
                     return (ConstraintConfig.interfaceLayoutDirection == .leftToRight) ? value.left : -value.right
                 case .trailing:
                     return (ConstraintConfig.interfaceLayoutDirection == .leftToRight) ? value.right : -value.left
                 case .width:
-                    return -value.left + value.right
+                    return -(value.left + value.right)
                 case .height:
-                    return -value.top + value.bottom
+                    return -(value.top + value.bottom)
                 case .notAnAttribute:
                     return 0.0
                 }
