@@ -115,6 +115,7 @@ class SnapKitTests: XCTestCase {
         
     }
     
+    
     func testRemakeConstraints() {
         let v1 = View()
         let v2 = View()
@@ -263,6 +264,94 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(constraints[1].constant, 50, "Should be 50")
         XCTAssertEqual(constraints[2].constant, 50, "Should be 50")
         XCTAssertEqual(constraints[3].constant, 50, "Should be 50")
+    }
+    
+    func testUpdateReferencedConstraints() {
+        let v1 = View()
+        let v2 = View()
+        self.container.addSubview(v1)
+        self.container.addSubview(v2)
+        
+        var c1: Constraint! = nil
+        var c2: Constraint! = nil
+        
+        v1.snp.makeConstraints { (make) -> Void in
+            c1 = make.top.equalTo(v2.snp.top).offset(50).constraint
+            c2 = make.left.equalTo(v2.snp.top).offset(25).constraint
+            return
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
+        
+        let before = (self.container.snp_constraints as! [NSLayoutConstraint]).sorted { $0.constant > $1.constant }
+        
+        XCTAssertEqual(before[0].constant, 50, "Should be 50")
+        XCTAssertEqual(before[1].constant, 25, "Should be 25")
+        
+        c1.update(offset: 15)
+        c2.update(offset: 20)
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
+        
+        XCTAssertEqual(before[0].constant, 15, "Should be 15")
+        XCTAssertEqual(before[1].constant, 20, "Should be 20")
+        
+    }
+    
+    func testInsetsAsConstraintsConstant() {
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(self.container).inset(50.0)
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+        
+        let constraints = (self.container.snp_constraints as! [NSLayoutConstraint]).sorted { $0.constant > $1.constant }
+        
+        XCTAssertEqual(constraints[0].constant, 50, "Should be 50")
+        XCTAssertEqual(constraints[1].constant, 50, "Should be 50")
+        XCTAssertEqual(constraints[2].constant, -50, "Should be -50")
+        XCTAssertEqual(constraints[3].constant, -50, "Should be -50")
+    }
+    
+    func testUIEdgeInsetsAsImpliedEqualToConstraints() {
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25))
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+        
+        
+        let constraints = (self.container.snp_constraints as! [NSLayoutConstraint]).sorted { $0.constant > $1.constant }
+        
+        XCTAssertEqual(constraints[0].constant, 25, "Should be 25")
+        XCTAssertEqual(constraints[1].constant, 25, "Should be 25")
+        XCTAssertEqual(constraints[2].constant, -25, "Should be -25")
+        XCTAssertEqual(constraints[3].constant, -25, "Should be -25")
+    }
+    
+    func testUIEdgeInsetsAsConstraintsConstant() {
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(self.container).inset(UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25))
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+        
+        
+        let constraints = (self.container.snp_constraints as! [NSLayoutConstraint]).sorted { $0.constant > $1.constant }
+        
+        XCTAssertEqual(constraints[0].constant, 25, "Should be 25")
+        XCTAssertEqual(constraints[1].constant, 25, "Should be 25")
+        XCTAssertEqual(constraints[2].constant, -25, "Should be -25")
+        XCTAssertEqual(constraints[3].constant, -25, "Should be -25")
     }
     
     func testSizeConstraints() {
