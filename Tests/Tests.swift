@@ -276,25 +276,33 @@ class SnapKitTests: XCTestCase {
         var c2: Constraint! = nil
         
         v1.snp.makeConstraints { (make) -> Void in
-            c1 = make.top.equalTo(v2.snp.top).offset(50).constraint
-            c2 = make.left.equalTo(v2.snp.top).offset(25).constraint
+            c1 = make.top.equalTo(v2).offset(50).constraint
+            c2 = make.bottom.equalTo(v2).offset(25).constraint
             return
         }
         
         XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
         
-        let before = (self.container.snp_constraints as! [NSLayoutConstraint]).sorted { $0.constant > $1.constant }
+        let constraints = (self.container.snp_constraints as! [NSLayoutConstraint]).sorted { $0.constant > $1.constant }
         
-        XCTAssertEqual(before[0].constant, 50, "Should be 50")
-        XCTAssertEqual(before[1].constant, 25, "Should be 25")
+        XCTAssertEqual(constraints[0].constant, 50, "Should be 50")
+        XCTAssertEqual(constraints[1].constant, 25, "Should be 25")
         
         c1.update(offset: 15)
         c2.update(offset: 20)
         
         XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
         
-        XCTAssertEqual(before[0].constant, 15, "Should be 15")
-        XCTAssertEqual(before[1].constant, 20, "Should be 20")
+        XCTAssertEqual(constraints[0].constant, 15, "Should be 15")
+        XCTAssertEqual(constraints[1].constant, 20, "Should be 20")
+        
+        c1.update(inset: 15)
+        c2.update(inset: 20)
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
+        
+        XCTAssertEqual(constraints[0].constant, 15, "Should be 15")
+        XCTAssertEqual(constraints[1].constant, -20, "Should be -20")
         
     }
     
