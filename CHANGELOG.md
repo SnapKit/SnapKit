@@ -14,6 +14,7 @@ clean up the API. As such please use with caution and check your apps thoroughly
 * `.inset()` will no longer take `CGPoint` or `CGSize` as input
 * `.offset()` will no longer take `CGPoint`, `CGSize`, `EdgeInsets` as input
 * `updateConstraints` will no longer allow creating new constraints unless there are no existing constraints for the view. If it does generate new constraints it will throw a fatal error.
+* `UIEdgeInsets` are now have their right and bottom value inverted for more natural results such as `make.edges.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)).inset()`
 
 ### Enhancements
 
@@ -23,6 +24,7 @@ clean up the API. As such please use with caution and check your apps thoroughly
 * Added `var contentHugging<Axis>Priority: CGFloat` to `make`
 * Added `var contentCompressionResistance<Axis>Priority: CGFloat` to `make`
 * Added support for `UILayoutGuide` via `make.left.equalTo(guide.snp.top)`
+* Added support for constraining edges to margins or vice versa via `make.edges.equalTo(other.snp.margins)`
 
 # 0.21.0 - May 11 2016
 
