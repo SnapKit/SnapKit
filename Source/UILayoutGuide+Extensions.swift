@@ -23,8 +23,14 @@
 
 #if os(iOS) || os(tvOS)
     import UIKit
-    internal typealias ConstraintLayoutSupport = UILayoutSupport
-#else
-    import AppKit
-    internal class ConstraintLayoutSupport { }
 #endif
+    
+    
+@available(iOS 9.0, *)
+public extension UILayoutGuide {
+    
+    public var snp: UILayoutGuideDSL {
+        return UILayoutGuideDSL(guide: self)
+    }
+    
+}

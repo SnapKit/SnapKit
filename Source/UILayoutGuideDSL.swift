@@ -23,34 +23,23 @@
 
 #if os(iOS) || os(tvOS)
     import UIKit
+#else
+    import AppKit
+#endif
 
 
-    public extension ConstraintViewController {
-        
-        @available(iOS, deprecated:0.40.0, message:"Use newer snp.* syntax.")
-        public var topLayoutGuideTop: ConstraintItem {
-            return self.snp.topLayoutGuideTop
-        }
-        
-        @available(iOS, deprecated:0.40.0, message:"Use newer snp.* syntax.")
-        public var topLayoutGuideBottom: ConstraintItem {
-            return self.snp.topLayoutGuideBottom
-        }
-        
-        @available(iOS, deprecated:0.40.0, message:"Use newer snp.* syntax.")
-        public var bottomLayoutGuideTop: ConstraintItem {
-            return self.snp.bottomLayoutGuideTop
-        }
-        
-        @available(iOS, deprecated:0.40.0, message:"Use newer snp.* syntax.")
-        public var bottomLayoutGuideBottom: ConstraintItem {
-            return self.snp.bottomLayoutGuideBottom
-        }
-        
-        public var snp: ConstraintViewControllerDSL {
-            return ConstraintViewControllerDSL(viewController: self)
-        }
+@available(iOS 9.0, *)
+public struct UILayoutGuideDSL: ConstraintAttributesDSL {
+    
+    public var target: AnyObject? {
+        return self.guide
+    }
+    
+    internal let guide: UILayoutGuide
+    
+    internal init(guide: UILayoutGuide) {
+        self.guide = guide
         
     }
-
-#endif
+    
+}

@@ -86,11 +86,7 @@ public class Constraint {
             let layoutConstant: CGFloat = self.constant.constraintConstantTargetValueFor(layoutAttribute: layoutToAttribute)
             
             // get layout to
-            #if os(iOS) || os(tvOS)
-                var layoutTo: AnyObject? = self.to.view ?? self.to.layoutSupport
-            #else
-                var layoutTo: AnyObject? = self.to.view
-            #endif
+            var layoutTo: AnyObject? = self.to.target
             
             // use superview if possible
             if layoutTo == nil && layoutToAttribute != .width && layoutToAttribute != .height {

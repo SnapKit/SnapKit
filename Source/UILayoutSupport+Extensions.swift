@@ -23,13 +23,14 @@
 
 #if os(iOS) || os(tvOS)
     import UIKit
-#else
-    import AppKit
 #endif
 
-
-#if os(iOS) || os(tvOS)
-    public typealias ConstraintViewController = UIViewController
-#else
-    public typealias ConstraintViewController = NSViewController
-#endif
+    
+@available(iOS 8.0, *)
+public extension UILayoutSupport {
+    
+    public var snp: UILayoutSupportDSL {
+        return UILayoutSupportDSL(support: self)
+    }
+    
+}

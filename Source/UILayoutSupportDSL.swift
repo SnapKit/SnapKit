@@ -23,36 +23,34 @@
 
 #if os(iOS) || os(tvOS)
     import UIKit
+#else
+    import AppKit
+#endif
 
 
-    public struct ConstraintViewControllerDSL {
-        
-        @available(iOS 8.0, *)
-        public var topLayoutGuideTop: ConstraintItem {
-            return ConstraintItem(target: self.viewController.topLayoutGuide, attributes: ConstraintAttributes.top)
-        }
-        
-        @available(iOS 8.0, *)
-        public var topLayoutGuideBottom: ConstraintItem {
-            return ConstraintItem(target: self.viewController.topLayoutGuide, attributes: ConstraintAttributes.bottom)
-        }
-        
-        @available(iOS 8.0, *)
-        public var bottomLayoutGuideTop: ConstraintItem {
-            return ConstraintItem(target: self.viewController.bottomLayoutGuide, attributes: ConstraintAttributes.top)
-        }
-        
-        @available(iOS 8.0, *)
-        public var bottomLayoutGuideBottom: ConstraintItem {
-            return ConstraintItem(target: self.viewController.bottomLayoutGuide, attributes: ConstraintAttributes.bottom)
-        }
-        
-        internal let viewController: ConstraintViewController
-        
-        internal init(viewController: ConstraintViewController) {
-            self.viewController = viewController
-        }
+@available(iOS 8.0, *)
+public struct UILayoutSupportDSL: ConstraintDSL {
+    
+    public var target: AnyObject? {
+        return self.support
+    }
+    
+    internal let support: UILayoutSupport
+    
+    internal init(support: UILayoutSupport) {
+        self.support = support
         
     }
-
-#endif
+    
+    public var top: ConstraintItem {
+        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.top)
+    }
+    
+    public var bottom: ConstraintItem {
+        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.bottom)
+    }
+    
+    public var height: ConstraintItem {
+        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.height)
+    }
+}

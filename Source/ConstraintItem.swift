@@ -42,10 +42,6 @@ public class ConstraintItem: Equatable {
         return self.target as? ConstraintView
     }
     
-    internal var layoutSupport: ConstraintLayoutSupport? {
-        return self.target as? ConstraintLayoutSupport
-    }
-    
 }
 
 public func ==(lhs: ConstraintItem, rhs: ConstraintItem) -> Bool {
