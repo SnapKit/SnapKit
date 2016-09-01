@@ -22,6 +22,7 @@ clean up the API. As such please use with caution and check your apps thoroughly
 * Constraints are now installed through `NSLayoutConstraint.activate` and what view they are added to is now deferred to UIKit
 * Added `var contentHugging<Axis>Priority: CGFloat` to `make`
 * Added `var contentCompressionResistance<Axis>Priority: CGFloat` to `make`
+* Added support for `UILayoutGuide` via `make.left.equalTo(guide.snp.top)`
 
 # 0.21.0 - May 11 2016
 
