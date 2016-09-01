@@ -39,7 +39,7 @@ public class ConstraintDescription {
     internal var multiplier: ConstraintMultiplierTarget = 1.0
     internal var constant: ConstraintConstantTarget = 0.0
     internal var priority: ConstraintPriorityTarget = 1000.0
-    internal var constraint: Constraint? {
+    internal lazy var constraint: Constraint? = {
         guard let relation = self.relation,
               let related = self.related,
               let sourceLocation = self.sourceLocation else {
@@ -57,7 +57,7 @@ public class ConstraintDescription {
             constant: self.constant,
             priority: self.priority
         )
-    }
+    }()
     
     // MARK: Initialization
     
