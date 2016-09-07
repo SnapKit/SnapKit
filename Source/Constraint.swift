@@ -220,7 +220,7 @@ internal class ConcreteConstraint: Constraint {
         self.label = label
     }
     
-    internal func installOnView(updateExisting updateExisting: Bool = false, file: String? = nil, line: UInt? = nil) -> [LayoutConstraint] {
+    internal func installOnView(updateExisting updateExisting: Bool = false, forAnimator: Bool = false, file: String? = nil, line: UInt? = nil) -> [LayoutConstraint] {
         var installOnView: View? = nil
         if self.toItem.view != nil {
             installOnView = closestCommonSuperviewFromView(self.fromItem.view, toView: self.toItem.view)
@@ -319,7 +319,16 @@ internal class ConcreteConstraint: Constraint {
                 
                 // if we have existing one lets just update the constant
                 if updateLayoutConstraint != nil {
-                    updateLayoutConstraint!.constant = layoutConstraint.constant
+                    #if os(OSX)
+                        if forAnimator {
+                            updateLayoutConstraint!.animator().constant = layoutConstraint.constant
+                        }else {
+                            updateLayoutConstraint!.constant = layoutConstraint.constant
+                        }
+                    #else
+                        updateLayoutConstraint!.constant = layoutConstraint.constant
+                    #endif
+                    
                 }
                     // otherwise add this layout constraint to new keep list
                 else {

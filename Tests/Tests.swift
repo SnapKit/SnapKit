@@ -107,6 +107,12 @@ class SnapKitTests: XCTestCase {
         
         XCTAssertEqual(self.container.snp_constraints.count, 2, "Should still have 2 constraints installed")
         
+        v1.snp_updateAnimatorConstraints { (make) -> Void in
+            make.top.equalTo(v2.snp_top).offset(20)
+            return
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should still have 2 constraints installed")
     }
     
     func testRemakeConstraints() {

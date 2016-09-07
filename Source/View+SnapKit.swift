@@ -152,6 +152,19 @@ public extension View {
     }
     
     /**
+        Updates constraints's proxy of animator with a `ConstraintMaker` that will only replace existing constraints that match.
+        New constraints only be installed but no animate.
+     
+        For constraints to match only the constant can be updated.
+     
+        - parameter closure that will be passed the `ConstraintMaker` to update the constraints with
+    */
+    @available(OSX 10.5, *)
+    public func snp_updateAnimatorConstraints(file: String = #file, line: UInt = #line, @noescape closure: (make: ConstraintMaker) -> Void) -> Void {
+        ConstraintMaker.updateAnimatorConstraints(view: self, file: file, line: line, closure: closure)
+    }
+    
+    /**
         Remakes constraints with a `ConstraintMaker` that will first remove all previously made constraints and make and install new ones.
     
         - parameter closure that will be passed the `ConstraintMaker` to remake the constraints with
