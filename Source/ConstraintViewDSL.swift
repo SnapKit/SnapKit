@@ -101,17 +101,36 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
     }
     
     internal var layoutConstraints: [LayoutConstraint] {
-        return objc_getAssociatedObject(self.view, &layoutConstraintsKey) as? [LayoutConstraint] ?? []
+        return self.layoutConstraintsHashTable.allObjects
     }
     
     internal func add(layoutConstraints: [LayoutConstraint]) {
-        let merged = self.layoutConstraints + layoutConstraints
-        objc_setAssociatedObject(self.view, &layoutConstraintsKey, merged, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        let hashTable = self.layoutConstraintsHashTable
+        for layoutConstraint in layoutConstraints {
+            hashTable.add(layoutConstraint)
+        }
+        print(hashTable, self.layoutConstraintsHashTable)
     }
     
     internal func remove(layoutConstraints: [LayoutConstraint]) {
-        let merged = self.layoutConstraints.filter { !layoutConstraints.contains($0) }
-        objc_setAssociatedObject(self.view, &layoutConstraintsKey, merged, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        let hashTable = self.layoutConstraintsHashTable
+        for layoutConstraint in layoutConstraints {
+            hashTable.remove(layoutConstraint)
+        }
+        print(hashTable, self.layoutConstraintsHashTable)
+    }
+    
+    private var layoutConstraintsHashTable: NSHashTable<LayoutConstraint> {
+        let layoutConstraints: NSHashTable<LayoutConstraint>
+        
+        if let existing = objc_getAssociatedObject(self.view, &layoutConstraintsKey) as? NSHashTable<LayoutConstraint> {
+            layoutConstraints = existing
+        } else {
+            layoutConstraints = NSHashTable<LayoutConstraint>.weakObjects()
+            objc_setAssociatedObject(self.view, &layoutConstraintsKey, layoutConstraints, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        return layoutConstraints
+        
     }
     
 }

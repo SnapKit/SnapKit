@@ -46,7 +46,7 @@ public class Constraint {
           self.updateConstantAndPriorityIfNeeded()
         }
     }
-    private let layoutConstraints: NSHashTable<LayoutConstraint>
+    private var layoutConstraints: [LayoutConstraint]
     
     // MARK: Initialization
     
@@ -66,7 +66,7 @@ public class Constraint {
         self.multiplier = multiplier
         self.constant = constant
         self.priority = priority
-        self.layoutConstraints = NSHashTable<LayoutConstraint>.weakObjects()
+        self.layoutConstraints = []
         
         // get attributes
         let layoutFromAttributes = self.from.attributes.layoutAttributes
@@ -157,7 +157,7 @@ public class Constraint {
             layoutConstraint.constraint = self
             
             // append
-            self.layoutConstraints.add(layoutConstraint)
+            self.layoutConstraints.append(layoutConstraint)
         }
     }
     
@@ -213,7 +213,7 @@ public class Constraint {
     // MARK: Internal
     
     internal func updateConstantAndPriorityIfNeeded() {
-        for layoutConstraint in self.layoutConstraints.allObjects {
+        for layoutConstraint in self.layoutConstraints {
             let attribute = (layoutConstraint.secondAttribute == .notAnAttribute) ? layoutConstraint.firstAttribute : layoutConstraint.secondAttribute
             layoutConstraint.constant = self.constant.constraintConstantTargetValueFor(layoutAttribute: attribute)
             layoutConstraint.priority = self.priority.constraintPriorityTargetValue
@@ -222,7 +222,7 @@ public class Constraint {
     
     internal func activateIfNeeded(updatingExisting: Bool = false) {
         let view = self.from.view!
-        let layoutConstraints = self.layoutConstraints.allObjects
+        let layoutConstraints = self.layoutConstraints
         let existingLayoutConstraints = view.snp.layoutConstraints
         
         if updatingExisting && existingLayoutConstraints.count > 0 {
@@ -245,7 +245,7 @@ public class Constraint {
     
     internal func deactivateIfNeeded() {
         let view = self.from.view!
-        let layoutConstraints = self.layoutConstraints.allObjects
+        let layoutConstraints = self.layoutConstraints
         NSLayoutConstraint.deactivate(layoutConstraints)
         view.snp.remove(layoutConstraints: layoutConstraints)
     }
