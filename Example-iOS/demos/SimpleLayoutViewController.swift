@@ -67,7 +67,7 @@ class SimpleLayoutViewController: UIViewController {
 
             redView.snp_makeConstraints { make in
                 make.top.equalTo(blackView.snp_bottom).offset(20.0)
-                make.left.equalTo(20.0)
+                make.right.equalTo(blackView.snp_left).offset(-20.0)
                 make.size.equalTo(CGSizeMake(100.0, 100.0))
             }
 
