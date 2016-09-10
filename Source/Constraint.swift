@@ -82,7 +82,7 @@ public class Constraint {
             // get layout to attribute
             let layoutToAttribute: NSLayoutAttribute
             #if os(iOS) || os(tvOS)
-                if layoutToAttributes.count > 1 {
+                if layoutToAttributes.count > 0 {
                     if self.from.attributes == .edges && self.to.attributes == .margins {
                         switch layoutFromAttribute {
                         case .left:
@@ -109,11 +109,11 @@ public class Constraint {
                         default:
                             fatalError()
                         }
+                    } else if self.from.attributes == self.to.attributes {
+                        layoutToAttribute = layoutFromAttribute
                     } else {
                         layoutToAttribute = layoutToAttributes[0]
                     }
-                } else if layoutToAttributes.count == 1 {
-                    layoutToAttribute = layoutToAttributes[0]
                 } else {
                     layoutToAttribute = layoutFromAttribute
                 }
