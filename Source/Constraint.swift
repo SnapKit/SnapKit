@@ -225,8 +225,7 @@ public class Constraint {
         let layoutConstraints = self.layoutConstraints
         let existingLayoutConstraints = view.snp.layoutConstraints
         
-        if updatingExisting && existingLayoutConstraints.count > 0 {
-            
+        if updatingExisting {
             for layoutConstraint in layoutConstraints {
                 let existingLayoutConstraint = existingLayoutConstraints.first { $0 == layoutConstraint }
                 guard let updateLayoutConstraint = existingLayoutConstraint else {
@@ -236,7 +235,6 @@ public class Constraint {
                 let updateLayoutAttribute = (updateLayoutConstraint.secondAttribute == .notAnAttribute) ? updateLayoutConstraint.firstAttribute : updateLayoutConstraint.secondAttribute
                 updateLayoutConstraint.constant = self.constant.constraintConstantTargetValueFor(layoutAttribute: updateLayoutAttribute)
             }
-            
         } else {
             NSLayoutConstraint.activate(layoutConstraints)
             view.snp.add(layoutConstraints: layoutConstraints)

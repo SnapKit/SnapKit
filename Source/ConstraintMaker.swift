@@ -180,6 +180,11 @@ public class ConstraintMaker {
     }
     
     internal static func updateConstraints(view: ConstraintView, closure: (_ make: ConstraintMaker) -> Void) {
+        guard view.snp.layoutConstraints.count > 0 else {
+            self.makeConstraints(view: view, closure: closure)
+            return
+        }
+        
         let maker = ConstraintMaker(view: view)
         closure(maker)
         let constraints = maker.descriptions
