@@ -473,9 +473,7 @@ class SnapKitTests: XCTestCase {
         make.top.equalTo(vc.topLayoutGuide.snp.bottom)
         make.bottom.equalTo(vc.bottomLayoutGuide.snp.top)
         }
-        
-        print(vc.view.snp_constraints)
-        
+         
         XCTAssertEqual(vc.view.snp_constraints.count, 6, "Should have 6 constraints installed")
     }
     #endif

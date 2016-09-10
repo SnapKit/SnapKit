@@ -109,7 +109,6 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
         for layoutConstraint in layoutConstraints {
             hashTable.add(layoutConstraint)
         }
-        print(hashTable, self.layoutConstraintsHashTable)
     }
     
     internal func remove(layoutConstraints: [LayoutConstraint]) {
@@ -117,7 +116,6 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
         for layoutConstraint in layoutConstraints {
             hashTable.remove(layoutConstraint)
         }
-        print(hashTable, self.layoutConstraintsHashTable)
     }
     
     private var layoutConstraintsHashTable: NSHashTable<LayoutConstraint> {
