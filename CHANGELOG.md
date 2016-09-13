@@ -9,6 +9,7 @@ clean up the API. As such please use with caution and check your apps thoroughly
 ### Breaking
 
 * iOS 7.0 support has been removed
+* `install` and `uninstall` have been removed, use `activate` and `deactivate` instead
 * DSL is now accessed through `.snp.*` rather than `.snp_*`. For example `view.snp.makeConstraints { }`
 * Constraints are now updated through `update(offset:)`, `update(inset:)` and `update(priority:)`
 * `.inset()` will no longer take `CGPoint` or `CGSize` as input
