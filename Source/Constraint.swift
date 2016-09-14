@@ -163,6 +163,16 @@ public class Constraint {
     
     // MARK: Public
     
+    @available(*, deprecated:3.0, message:"Use activate().")
+    public func install() {
+        self.activate()
+    }
+    
+    @available(*, deprecated:3.0, message:"Use deactivate().")
+    public func uninstall() {
+        self.deactivate()
+    }
+    
     public func activate() {
         self.activateIfNeeded()
     }
