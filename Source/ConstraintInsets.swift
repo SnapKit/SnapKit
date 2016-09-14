@@ -28,30 +28,8 @@
 #endif
 
 
-public class LayoutConstraint: NSLayoutConstraint {
-    
-    public var label: String? {
-        get {
-            return self.identifier
-        }
-        set {
-            self.identifier = newValue
-        }
-    }
-    
-    internal var constraint: Constraint! = nil
-    
-}
-
-internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
-    guard lhs.firstItem === rhs.firstItem &&
-          lhs.secondItem === rhs.secondItem &&
-          lhs.firstAttribute == rhs.firstAttribute &&
-          lhs.secondAttribute == rhs.secondAttribute &&
-          lhs.relation == rhs.relation &&
-          lhs.priority == rhs.priority &&
-          lhs.multiplier == rhs.multiplier else {
-        return false
-    }
-    return true
-}
+#if os(iOS) || os(tvOS)
+    public typealias ConstraintInsets = UIEdgeInsets
+#else
+    public typealias ConstraintInsets = EdgeInsets
+#endif

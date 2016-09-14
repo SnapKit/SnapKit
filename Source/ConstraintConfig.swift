@@ -1,7 +1,7 @@
 //
 //  SnapKit
 //
-//  Copyright (c) 2011-2015 SnapKit Team - https://github.com/SnapKit
+//  Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,17 +22,16 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS)
-import UIKit
-public typealias EdgeInsets = UIEdgeInsets
-public func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
-    return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
-}
-public let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    import UIKit
+    public typealias ConstraintInterfaceLayoutDirection = UIUserInterfaceLayoutDirection
 #else
-import AppKit
-public typealias EdgeInsets = NSEdgeInsets
-public func EdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
-    return EdgeInsets(top: top, left: left, bottom: bottom, right: right)
-}
-public let EdgeInsetsZero = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    import AppKit
+    public typealias ConstraintInterfaceLayoutDirection = NSUserInterfaceLayoutDirection
 #endif
+
+
+public struct ConstraintConfig {
+    
+    public static var interfaceLayoutDirection: ConstraintInterfaceLayoutDirection = .leftToRight
+    
+}

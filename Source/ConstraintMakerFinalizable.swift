@@ -1,7 +1,7 @@
 //
 //  SnapKit
 //
-//  Copyright (c) 2011-2015 SnapKit Team - https://github.com/SnapKit
+//  Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,24 +22,28 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS)
-import UIKit
+    import UIKit
+#else
+    import AppKit
+#endif
 
-/**
-    Used to expose public API on view controllers
-*/
-public extension UIViewController {
+
+public class ConstraintMakerFinalizable {
     
-    /// top layout guide top
-    public var snp_topLayoutGuideTop: ConstraintItem { return ConstraintItem(object: self.topLayoutGuide, attributes: ConstraintAttributes.Top) }
+    internal let description: ConstraintDescription
     
-    /// top layout guide bottom
-    public var snp_topLayoutGuideBottom: ConstraintItem { return ConstraintItem(object: self.topLayoutGuide, attributes: ConstraintAttributes.Bottom) }
+    internal init(_ description: ConstraintDescription) {
+        self.description = description
+    }
     
-    /// bottom layout guide top
-    public var snp_bottomLayoutGuideTop: ConstraintItem { return ConstraintItem(object: self.bottomLayoutGuide, attributes: ConstraintAttributes.Top) }
+    @discardableResult
+    public func labeled(_ label: String) -> ConstraintMakerFinalizable {
+        self.description.label = label
+        return self
+    }
     
-    /// bottom layout guide bottom
-    public var snp_bottomLayoutGuideBottom: ConstraintItem { return ConstraintItem(object: self.bottomLayoutGuide, attributes: ConstraintAttributes.Bottom) }
+    public var constraint: Constraint {
+        return self.description.constraint!
+    }
     
 }
-#endif

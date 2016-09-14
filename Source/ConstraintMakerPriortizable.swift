@@ -28,34 +28,40 @@
 #endif
 
 
-public class ConstraintItem: Equatable {
+public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
     
-    internal weak var target: AnyObject?
-    internal let attributes: ConstraintAttributes
-    
-    internal init(target: AnyObject?, attributes: ConstraintAttributes) {
-        self.target = target
-        self.attributes = attributes
+    @discardableResult
+    public func priority(_ amount: ConstraintPriorityTarget) -> ConstraintMakerFinalizable {
+        self.description.priority = amount
+        return self
     }
     
-    internal var view: ConstraintView? {
-        return self.target as? ConstraintView
+    @available(*, deprecated:0.40.0, message:"Use priority(_ amount: ConstraintPriorityTarget) instead.")
+    @discardableResult
+    public func priorityRequired() -> ConstraintMakerFinalizable {
+        return self.priority(1000)
     }
     
-}
-
-public func ==(lhs: ConstraintItem, rhs: ConstraintItem) -> Bool {
-    // pointer equality
-    guard lhs !== rhs else {
-        return true
+    @available(*, deprecated:0.40.0, message:"Use priority(_ amount: ConstraintPriorityTarget) instead.")
+    @discardableResult
+    public func priorityHigh() -> ConstraintMakerFinalizable {
+        return self.priority(750)
     }
     
-    // must both have valid targets and identical attributes
-    guard let target1 = lhs.target,
-          let target2 = rhs.target,
-          target1 === target2 && lhs.attributes == rhs.attributes else {
-            return false
+    @available(*, deprecated:0.40.0, message:"Use priority(_ amount: ConstraintPriorityTarget) instead.")
+    @discardableResult
+    public func priorityMedium() -> ConstraintMakerFinalizable {
+        #if os(iOS) || os(tvOS)
+            return self.priority(500)
+        #else
+            return self.priority(501)
+        #endif
     }
     
-    return true
+    @available(*, deprecated:0.40.0, message:"Use priority(_ amount: ConstraintPriorityTarget) instead.")
+    @discardableResult
+    public func priorityLow() -> ConstraintMakerFinalizable {
+        return self.priority(250)
+    }
+    
 }

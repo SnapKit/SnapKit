@@ -28,30 +28,18 @@
 #endif
 
 
-public class LayoutConstraint: NSLayoutConstraint {
+@available(iOS 9.0, *)
+public struct ConstraintLayoutGuideDSL: ConstraintAttributesDSL {
     
-    public var label: String? {
-        get {
-            return self.identifier
-        }
-        set {
-            self.identifier = newValue
-        }
+    public var target: AnyObject? {
+        return self.guide
     }
     
-    internal var constraint: Constraint! = nil
+    internal let guide: ConstraintLayoutGuide
     
-}
-
-internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
-    guard lhs.firstItem === rhs.firstItem &&
-          lhs.secondItem === rhs.secondItem &&
-          lhs.firstAttribute == rhs.firstAttribute &&
-          lhs.secondAttribute == rhs.secondAttribute &&
-          lhs.relation == rhs.relation &&
-          lhs.priority == rhs.priority &&
-          lhs.multiplier == rhs.multiplier else {
-        return false
+    internal init(guide: ConstraintLayoutGuide) {
+        self.guide = guide
+        
     }
-    return true
+    
 }

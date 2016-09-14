@@ -17,7 +17,7 @@ class MyViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.addSubview(box)
-        box.snp_makeConstraints { make in
+        box.snp.makeConstraints { (make) -> Void in
            make.width.height.equalTo(50)
            make.center.equalTo(self.view)
         }
@@ -30,7 +30,6 @@ class MyViewController: UIViewController {
 
 * [Documentation](http://snapkit.io/docs/)
 * [F.A.Q.](http://snapkit.io/faq/)
-* [Legacy Platforms (iOS 7.0, OS X 10.9)](http://snapkit.io/legacy-platforms/)
 
 ## License
 

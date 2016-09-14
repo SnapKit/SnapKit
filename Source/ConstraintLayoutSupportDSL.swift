@@ -28,30 +28,29 @@
 #endif
 
 
-public class LayoutConstraint: NSLayoutConstraint {
+@available(iOS 8.0, *)
+public struct ConstraintLayoutSupportDSL: ConstraintDSL {
     
-    public var label: String? {
-        get {
-            return self.identifier
-        }
-        set {
-            self.identifier = newValue
-        }
+    public var target: AnyObject? {
+        return self.support
     }
     
-    internal var constraint: Constraint! = nil
+    internal let support: ConstraintLayoutSupport
     
-}
-
-internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
-    guard lhs.firstItem === rhs.firstItem &&
-          lhs.secondItem === rhs.secondItem &&
-          lhs.firstAttribute == rhs.firstAttribute &&
-          lhs.secondAttribute == rhs.secondAttribute &&
-          lhs.relation == rhs.relation &&
-          lhs.priority == rhs.priority &&
-          lhs.multiplier == rhs.multiplier else {
-        return false
+    internal init(support: ConstraintLayoutSupport) {
+        self.support = support
+        
     }
-    return true
+    
+    public var top: ConstraintItem {
+        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.top)
+    }
+    
+    public var bottom: ConstraintItem {
+        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.bottom)
+    }
+    
+    public var height: ConstraintItem {
+        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.height)
+    }
 }

@@ -28,30 +28,29 @@
 #endif
 
 
-public class LayoutConstraint: NSLayoutConstraint {
-    
-    public var label: String? {
-        get {
-            return self.identifier
-        }
-        set {
-            self.identifier = newValue
-        }
-    }
-    
-    internal var constraint: Constraint! = nil
-    
-}
+public class ConstraintMakerEditable: ConstraintMakerPriortizable {
 
-internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
-    guard lhs.firstItem === rhs.firstItem &&
-          lhs.secondItem === rhs.secondItem &&
-          lhs.firstAttribute == rhs.firstAttribute &&
-          lhs.secondAttribute == rhs.secondAttribute &&
-          lhs.relation == rhs.relation &&
-          lhs.priority == rhs.priority &&
-          lhs.multiplier == rhs.multiplier else {
-        return false
+    @discardableResult
+    public func multipliedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
+        self.description.multiplier = amount
+        return self
     }
-    return true
+    
+    @discardableResult
+    public func dividedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
+        return self.multipliedBy(1.0 / amount.constraintMultiplierTargetValue)
+    }
+    
+    @discardableResult
+    public func offset(_ amount: ConstraintOffsetTarget) -> ConstraintMakerEditable {
+        self.description.constant = amount.constraintOffsetTargetValue
+        return self
+    }
+    
+    @discardableResult
+    public func inset(_ amount: ConstraintInsetTarget) -> ConstraintMakerEditable {
+        self.description.constant = amount.constraintInsetTargetValue
+        return self
+    }
+    
 }

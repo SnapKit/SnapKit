@@ -28,30 +28,42 @@
 #endif
 
 
-public class LayoutConstraint: NSLayoutConstraint {
-    
-    public var label: String? {
-        get {
-            return self.identifier
-        }
-        set {
-            self.identifier = newValue
-        }
-    }
-    
-    internal var constraint: Constraint! = nil
-    
+public protocol ConstraintOffsetTarget: ConstraintConstantTarget {
 }
 
-internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
-    guard lhs.firstItem === rhs.firstItem &&
-          lhs.secondItem === rhs.secondItem &&
-          lhs.firstAttribute == rhs.firstAttribute &&
-          lhs.secondAttribute == rhs.secondAttribute &&
-          lhs.relation == rhs.relation &&
-          lhs.priority == rhs.priority &&
-          lhs.multiplier == rhs.multiplier else {
-        return false
+extension Int: ConstraintOffsetTarget {
+}
+
+extension UInt: ConstraintOffsetTarget {
+}
+
+extension Float: ConstraintOffsetTarget {
+}
+
+extension Double: ConstraintOffsetTarget {
+}
+
+extension CGFloat: ConstraintOffsetTarget {
+}
+
+extension ConstraintOffsetTarget {
+    
+    internal var constraintOffsetTargetValue: CGFloat {
+        let offset: CGFloat
+        if let amount = self as? Float {
+            offset = CGFloat(amount)
+        } else if let amount = self as? Double {
+            offset = CGFloat(amount)
+        } else if let amount = self as? CGFloat {
+            offset = CGFloat(amount)
+        } else if let amount = self as? Int {
+            offset = CGFloat(amount)
+        } else if let amount = self as? UInt {
+            offset = CGFloat(amount)
+        } else {
+            offset = 0.0
+        }
+        return offset
     }
-    return true
+    
 }
