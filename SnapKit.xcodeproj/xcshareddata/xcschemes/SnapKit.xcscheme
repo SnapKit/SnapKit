@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EEBCC9E119CC627D0083B827"
+               BuildableName = "SnapKit Tests.xctest"
+               BlueprintName = "SnapKit Tests"
+               ReferencedContainer = "container:SnapKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "EEBCC9D719CC627D0083B827"
+            BuildableName = "SnapKit.framework"
+            BlueprintName = "SnapKit"
+            ReferencedContainer = "container:SnapKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
