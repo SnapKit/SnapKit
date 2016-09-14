@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "537DCE911C35CC8800B5B899"
+               BlueprintIdentifier = "EEBCC9D719CC627D0083B827"
                BuildableName = "SnapKit.framework"
-               BlueprintName = "SnapKit tvOS"
+               BlueprintName = "SnapKit"
                ReferencedContainer = "container:SnapKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,29 +26,9 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "537DCEAE1C35D90A00B5B899"
-               BuildableName = "SnapKit tvOS Tests.xctest"
-               BlueprintName = "SnapKit tvOS Tests"
-               ReferencedContainer = "container:SnapKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "537DCE911C35CC8800B5B899"
-            BuildableName = "SnapKit.framework"
-            BlueprintName = "SnapKit tvOS"
-            ReferencedContainer = "container:SnapKit.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -65,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "537DCE911C35CC8800B5B899"
+            BlueprintIdentifier = "EEBCC9D719CC627D0083B827"
             BuildableName = "SnapKit.framework"
-            BlueprintName = "SnapKit tvOS"
+            BlueprintName = "SnapKit"
             ReferencedContainer = "container:SnapKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "537DCE911C35CC8800B5B899"
+            BlueprintIdentifier = "EEBCC9D719CC627D0083B827"
             BuildableName = "SnapKit.framework"
-            BlueprintName = "SnapKit tvOS"
+            BlueprintName = "SnapKit"
             ReferencedContainer = "container:SnapKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
