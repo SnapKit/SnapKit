@@ -1,9 +1,9 @@
 CHANGELOG
 =======
 
-# 0.40.0.beta - WIP
+# SnapKit 3.0
 
-**SnapKit 0.40.0** is a complete re-write to take advantage of modern Swift 3.0 as well as
+**SnapKit 3.0** is a complete re-write to take advantage of modern Swift 3.0 as well as
 clean up the API. As such please use with caution and check your apps thoroughly
 
 ### Breaking
