@@ -36,19 +36,19 @@ public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
         return self
     }
     
-    @available(*, deprecated:0.40.0, message:"Use priority(_ amount: ConstraintPriorityTarget) instead.")
+    @available(*, deprecated:3.0, message:"Use priority(_ amount: ConstraintPriorityTarget) instead.")
     @discardableResult
     public func priorityRequired() -> ConstraintMakerFinalizable {
         return self.priority(1000)
     }
     
-    @available(*, deprecated:0.40.0, message:"Use priority(_ amount: ConstraintPriorityTarget) instead.")
+    @available(*, deprecated:3.0, message:"Use priority(_ amount: ConstraintPriorityTarget) instead.")
     @discardableResult
     public func priorityHigh() -> ConstraintMakerFinalizable {
         return self.priority(750)
     }
     
-    @available(*, deprecated:0.40.0, message:"Use priority(_ amount: ConstraintPriorityTarget) instead.")
+    @available(*, deprecated:3.0, message:"Use priority(_ amount: ConstraintPriorityTarget) instead.")
     @discardableResult
     public func priorityMedium() -> ConstraintMakerFinalizable {
         #if os(iOS) || os(tvOS)
@@ -58,7 +58,7 @@ public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
         #endif
     }
     
-    @available(*, deprecated:0.40.0, message:"Use priority(_ amount: ConstraintPriorityTarget) instead.")
+    @available(*, deprecated:3.0, message:"Use priority(_ amount: ConstraintPriorityTarget) instead.")
     @discardableResult
     public func priorityLow() -> ConstraintMakerFinalizable {
         return self.priority(250)
