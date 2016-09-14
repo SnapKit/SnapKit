@@ -155,6 +155,7 @@ class MyViewController: UIViewController {
 ## Credits
 
 - Robert Payne ([@robertjpayne](https://twitter.com/robertjpayne))
+- Many other contributors
 
 ## License
 
