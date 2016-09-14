@@ -44,7 +44,7 @@ SnapKit is a DSL to make Auto Layout easy on both iOS and OS X.
 $ gem install cocoapods
 ```
 
-> CocoaPods 1.1.0+ is required to build SnapKit 4.0.0+.
+> CocoaPods 1.1.0+ is required to build SnapKit 3.0.0+.
 
 To integrate SnapKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
