@@ -5,34 +5,45 @@ id: docs
 ---
 ## Requirements
 
-* iOS 7.0+ / OS X 10.9+
-* Swift 2.0
-* Xcode 7.0+
+- iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.0+
+- Xcode 8.0+
+- Swift 3.0+
 
-> While SnapKit supports iOS 7.0 and OS X 10.9 these are considered legacy platforms, so you must manually integrate the source files directly. Please see the [Legacy Platforms](/legacy-platforms) page for more information and steps.
+## Migration Guides
 
-## Installing
+- [SnapKit 3.0 Migration Guide](https://github.com/SnapKit/SnapKit/blob/master/Documentation/SnapKit%203.0%20Migration%20Guide.md)
 
-The first thing you’ll need to do with SnapKit is get it installed into your project. We support three different integrations:
+## Communication
 
-### Cocoapods
+- If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/snapkit). (Tag 'snapkit')
+- If you'd like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/snapkit).
+- If you **found a bug**, open an issue.
+- If you **have a feature request**, open an issue.
+- If you **want to contribute**, submit a pull request.
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
 
-CocoaPods 0.36 adds supports for Swift and embedded frameworks. You can install it with the following command:
+## Installation
+
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
 
 ```bash
 $ gem install cocoapods
 ```
 
+> CocoaPods 1.1.0+ is required to build SnapKit 3.0.0+.
+
 To integrate SnapKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '10.0'
 use_frameworks!
 
-pod 'SnapKit', '~> 0.15.0'
+target '<Your Target Name>' do
+    pod 'SnapKit', '~> 3.0'
+end
 ```
 
 Then, run the following command:
@@ -43,7 +54,7 @@ $ pod install
 
 ### Carthage
 
-Carthage is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
 
 You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
 
@@ -54,24 +65,17 @@ $ brew install carthage
 
 To integrate SnapKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-```
-github "SnapKit/SnapKit" >= 0.15.0
-```
-
-### Embedded Framework
-
-- Add SnapKit as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the following command:
-
-```bash
-$ git submodule add https://github.com/SnapKit/SnapKit.git
+```ogdl
+github "SnapKit/SnapKit" ~> 3.0
 ```
 
-- Open the `SnapKit` folder, and drag `SnapKit.xcodeproj` into the file navigator of your app project.
-- In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
-- Ensure that the deployment target of `SnapKit.framework` matches that of the application target.
-- In the tab bar at the top of that window, open the "Build Phases" panel.
-- Expand the "Target Dependencies" group, and add `SnapKit.framework`.
-- Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `SnapKit.framework`.
+Run `carthage update` to build the framework and drag the built `SnapKit.framework` into your Xcode project.
+
+### Manually
+
+If you prefer not to use either of the aforementioned dependency managers, you can integrate SnapKit into your project manually.
+
+---
 
 ## Usage
 
@@ -81,7 +85,7 @@ SnapKit is designed to be extremely easy to use. Let's say we want to layout a b
 let box = UIView()
 superview.addSubview(box)
 
-box.snp_makeConstraints { (make) -> Void in
+box.snp.makeConstraints { (make) -> Void in
     make.top.equalTo(superview).offset(20)
     make.left.equalTo(superview).offset(20)
     make.bottom.equalTo(superview).offset(-20)
@@ -95,7 +99,7 @@ Or even shorter:
 let box = UIView()
 superview.addSubview(box)
 
-box.snp_makeConstraints { (make) -> Void in
+box.snp.makeConstraints { (make) -> Void in
     make.edges.equalTo(superview).inset(UIEdgeInsetsMake(20, 20, 20, 20))
 }
 ```
@@ -119,22 +123,22 @@ These three equality constraints accept one argument which can be any of the fol
 #### 1. ViewAttribute
 
 ```
-make.centerX.lessThanOrEqualTo(view2.snp_left)
+make.centerX.lessThanOrEqualTo(view2.snp.left)
 ```
 
 ViewAttribute              |  NSLayoutAttribute
 -------------------------  |  --------------------------
-view.snp_left              |  NSLayoutAttribute.Left
-view.snp_right             |  NSLayoutAttribute.Right
-view.snp_top               |  NSLayoutAttribute.Top
-view.snp_bottom            |  NSLayoutAttribute.Bottom
-view.snp_leading           |  NSLayoutAttribute.Leading
-view.snp_trailing          |  NSLayoutAttribute.Trailing
-view.snp_width             |  NSLayoutAttribute.Width
-view.snp_height            |  NSLayoutAttribute.Height
-view.snp_centerX           |  NSLayoutAttribute.CenterX
-view.snp_centerY           |  NSLayoutAttribute.CenterY
-view.snp_baseline          |  NSLayoutAttribute.Baseline
+view.snp.left              |  NSLayoutAttribute.left
+view.snp.right             |  NSLayoutAttribute.right
+view.snp.top               |  NSLayoutAttribute.top
+view.snp.bottom            |  NSLayoutAttribute.bottom
+view.snp.leading           |  NSLayoutAttribute.leading
+view.snp.trailing          |  NSLayoutAttribute.trailing
+view.snp.width             |  NSLayoutAttribute.width
+view.snp.height            |  NSLayoutAttribute.height
+view.snp.centerX           |  NSLayoutAttribute.centerX
+view.snp.centerY           |  NSLayoutAttribute.centerY
+view.snp.lastBaseline      |  NSLayoutAttribute.lastBaseline
 
 
 #### 2. UIView/NSView
@@ -144,7 +148,7 @@ if you want view.left to be greater than or equal to label.left:
 ```
 // these two constraints are exactly the same
 make.left.greaterThanOrEqualTo(label)
-make.left.greaterThanOrEqualTo(label.snp_left)
+make.left.greaterThanOrEqualTo(label.snp.left)
 ```
 
 #### 3. Strict Checks
@@ -180,17 +184,10 @@ make.left.equalTo(view).offset(UIEdgeInsetsMake(10, 0, 10, 0))
 
 > `.prority` allows you to specify an exact priority
 
-> `.priorityHigh` equivalent to **UILayoutPriority.DefaultHigh**
-
-> `.priorityMedium` is half way between high and low
-
-> `.priorityLow` equivalent to **UILayoutPriority.DefaultLow**
-
 Priorities are can be tacked on to the end of a constraint chain like so:
 
 ```
-make.left.greaterThanOrEqualTo(label.snp_left).priorityLow()
-make.top.equalTo(label.snp_top).priority(600)
+make.top.equalTo(label.snp.top).priority(600)
 ```
 
 ### Composition, composition, composition
@@ -251,7 +248,7 @@ var topConstraint: Constraint? = nil
 ...
 
 // when making constraints
-view1.snp_makeConstraints { (make) -> Void in
+view1.snp.makeConstraints { (make) -> Void in
   self.topConstraint = make.top.equalTo(superview).offset(padding.top).constraint
   make.left.equalTo(superview).offset(padding.left)
 }
@@ -264,35 +261,35 @@ self.topConstraint.uninstall()
 self.topConstraint.updateOffset(5)
 ```
 
-### 2. snp_updateConstraints
+### 2. snp.updateConstraints
 
-Alternative if you are only updating the **constant** value of the constraint you can use the method `snp_updateConstraints` instead of `snp_makeConstraints`
+Alternative if you are only updating the **constant** value of the constraint you can use the method `snp.updateConstraints` instead of `snp.makeConstraints`
 
 ```
 // this is Apple's recommended place for adding/updating constraints
 // this method can get called multiple times in response to setNeedsUpdateConstraints
 // which can be called by UIKit internally or in your code if you need to trigger an update to your constraints
 override func updateConstraints() {
-    self.growingButton.snp_updateConstraints { (make) -> Void in
+    self.growingButton.snp.updateConstraints { (make) -> Void in
         make.center.equalTo(self);
-        make.width.equalTo(self.buttonSize.width).priorityLow()
-        make.height.equalTo(self.buttonSize.height).priorityLow()
+        make.width.equalTo(self.buttonSize.width).priority(250)
+        make.height.equalTo(self.buttonSize.height).priority(250)
         make.width.lessThanOrEqualTo(self)
         make.height.lessThanOrEqualTo(self)
     }
     
-    // according to apple super should be called at end of method
+   // according to Apple super should be called at end of method
 	 super.updateConstraints()
 }
 ```
 
-### 3. snp_remakeConstraints
+### 3. snp.remakeConstraints
 
-`snp_remakeConstraints` is similar to `snp_makeConstraints`, but will first remove all existing constraints installed by SnapKit.
+`snp.remakeConstraints` is similar to `snp.makeConstraints`, but will first remove all existing constraints installed by SnapKit.
 
 ```
 func changeButtonPosition() {
-  self.button.snp_remakeConstraints { (make) -> Void in 
+  self.button.snp.remakeConstraints { (make) -> Void in 
     make.size.equalTo(self.buttonSize)
 
     if topLeft {
@@ -304,15 +301,3 @@ func changeButtonPosition() {
   }
 }
 ```
-
-## Features
-
-* Not limited to a subset of Auto Layout. Anything NSLayoutConstraint can do SnapKit can also do.
-* Better debugging support to help find breaking constraints.
-* No crazy operator overloads.
-* Not string or dictionary based and you get the strictest compile time checks possible.
-
-## TODO
-
-* Example Projects
-* Better Debugging Support

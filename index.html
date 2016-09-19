@@ -20,7 +20,7 @@ let container = UIView()
 
 container.addSubview(box)
 
-box.snp_makeConstraints { (make) -> Void in
+box.snp.makeConstraints { (make) -> Void in
     make.size.equalTo(50)
     make.center.equalTo(container)
 }
