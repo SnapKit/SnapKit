@@ -39,7 +39,7 @@ public class LayoutConstraint: NSLayoutConstraint {
         }
     }
     
-    internal var constraint: Constraint! = nil
+    internal weak var constraint: Constraint? = nil
     
 }
 

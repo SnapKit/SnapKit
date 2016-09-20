@@ -231,9 +231,12 @@ public class Constraint {
     }
     
     internal func activateIfNeeded(updatingExisting: Bool = false) {
-        let view = self.from.view!
+        guard let view = self.from.view else {
+            print("WARNING: SnapKit failed to get from view from constraint. Activate will be a no-op.")
+            return
+        }
         let layoutConstraints = self.layoutConstraints
-        let existingLayoutConstraints = view.snp.layoutConstraints
+        let existingLayoutConstraints = view.snp.constraints.map({ $0.layoutConstraints }).reduce([]) { $0 + $1 }
         
         if updatingExisting {
             for layoutConstraint in layoutConstraints {
@@ -247,14 +250,17 @@ public class Constraint {
             }
         } else {
             NSLayoutConstraint.activate(layoutConstraints)
-            view.snp.add(layoutConstraints: layoutConstraints)
+            view.snp.add(constraints: [self])
         }
     }
     
     internal func deactivateIfNeeded() {
-        let view = self.from.view!
+        guard let view = self.from.view else {
+            print("WARNING: SnapKit failed to get from view from constraint. Deactivate will be a no-op.")
+            return
+        }
         let layoutConstraints = self.layoutConstraints
         NSLayoutConstraint.deactivate(layoutConstraints)
-        view.snp.remove(layoutConstraints: layoutConstraints)
+        view.snp.remove(constraints: [self])
     }
 }

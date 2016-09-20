@@ -180,7 +180,7 @@ public class ConstraintMaker {
     }
     
     internal static func updateConstraints(view: ConstraintView, closure: (_ make: ConstraintMaker) -> Void) {
-        guard view.snp.layoutConstraints.count > 0 else {
+        guard view.snp.constraints.count > 0 else {
             self.makeConstraints(view: view, closure: closure)
             return
         }
@@ -197,7 +197,7 @@ public class ConstraintMaker {
     }
     
     internal static func removeConstraints(view: ConstraintView) {
-        let constraints = view.snp.layoutConstraints.map { $0.constraint! }
+        let constraints = view.snp.constraints
         for constraint in constraints {
             constraint.deactivateIfNeeded()
         }

@@ -100,36 +100,36 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
         
     }
     
-    internal var layoutConstraints: [LayoutConstraint] {
-        return self.layoutConstraintsHashTable.allObjects
+    internal var constraints: [Constraint] {
+        return self.constraintsHashTable.allObjects
     }
     
-    internal func add(layoutConstraints: [LayoutConstraint]) {
-        let hashTable = self.layoutConstraintsHashTable
-        for layoutConstraint in layoutConstraints {
-            hashTable.add(layoutConstraint)
+    internal func add(constraints: [Constraint]) {
+        let hashTable = self.constraintsHashTable
+        for constraint in constraints {
+            hashTable.add(constraint)
         }
     }
     
-    internal func remove(layoutConstraints: [LayoutConstraint]) {
-        let hashTable = self.layoutConstraintsHashTable
-        for layoutConstraint in layoutConstraints {
-            hashTable.remove(layoutConstraint)
+    internal func remove(constraints: [Constraint]) {
+        let hashTable = self.constraintsHashTable
+        for constraint in constraints {
+            hashTable.remove(constraint)
         }
     }
     
-    private var layoutConstraintsHashTable: NSHashTable<LayoutConstraint> {
-        let layoutConstraints: NSHashTable<LayoutConstraint>
+    private var constraintsHashTable: NSHashTable<Constraint> {
+        let constraints: NSHashTable<Constraint>
         
-        if let existing = objc_getAssociatedObject(self.view, &layoutConstraintsKey) as? NSHashTable<LayoutConstraint> {
-            layoutConstraints = existing
+        if let existing = objc_getAssociatedObject(self.view, &constraintsKey) as? NSHashTable<Constraint> {
+            constraints = existing
         } else {
-            layoutConstraints = NSHashTable<LayoutConstraint>.weakObjects()
-            objc_setAssociatedObject(self.view, &layoutConstraintsKey, layoutConstraints, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            constraints = NSHashTable<Constraint>()
+            objc_setAssociatedObject(self.view, &constraintsKey, constraints, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
-        return layoutConstraints
+        return constraints
         
     }
     
 }
-private var layoutConstraintsKey: UInt8 = 0
+private var constraintsKey: UInt8 = 0
