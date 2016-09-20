@@ -228,7 +228,11 @@ public class Constraint {
         for layoutConstraint in self.layoutConstraints {
             let attribute = (layoutConstraint.secondAttribute == .notAnAttribute) ? layoutConstraint.firstAttribute : layoutConstraint.secondAttribute
             layoutConstraint.constant = self.constant.constraintConstantTargetValueFor(layoutAttribute: attribute)
-            layoutConstraint.priority = self.priority.constraintPriorityTargetValue
+            
+            if (layoutConstraint.priority != self.priority.constraintPriorityTargetValue) {
+                layoutConstraint.priority = self.priority.constraintPriorityTargetValue
+            }
+            
         }
     }
     
