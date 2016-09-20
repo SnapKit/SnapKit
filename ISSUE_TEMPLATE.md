@@ -2,6 +2,7 @@
 
 * [ ] I have looked at the [Documentation](http://snapkit.io/docs)
 * [ ] I have read the [F.A.Q.](http://snapkit.io/faq)
+* [ ] I have filled out this issue template.
 
 ### Issue Info
 
@@ -15,3 +16,4 @@
 
 ### Issue Description
 
+⚠️ Replace this with the description of your issue. If you do not fill out this template your issue will be closed with no comment. ⚠️
