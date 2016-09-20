@@ -118,7 +118,9 @@ public class Constraint {
                     layoutToAttribute = layoutFromAttribute
                 }
             #else
-                if layoutToAttributes.count > 0 {
+                if self.from.attributes == self.to.attributes {
+                    layoutToAttribute = layoutFromAttribute
+                } else if layoutToAttributes.count > 0 {
                     layoutToAttribute = layoutToAttributes[0]
                 } else {
                     layoutToAttribute = layoutFromAttribute
