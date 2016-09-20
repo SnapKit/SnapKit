@@ -1,7 +1,5 @@
 # Contributing
 
-## Communication
-
 - If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/snapkit). (Tag 'snapkit')
 - If you'd like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/snapkit).
 - If you **found a bug**, open an issue.
