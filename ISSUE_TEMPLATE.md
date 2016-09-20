@@ -16,4 +16,4 @@
 
 ### Issue Description
 
-⚠️ Replace this with the description of your issue. If you do not fill out this template your issue will be closed with no comment. ⚠️
+⚠️ Replace this with the description of your issue, if this template is incomplete your issue may be closed with no comment. ⚠️
