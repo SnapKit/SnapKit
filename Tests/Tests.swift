@@ -2,13 +2,21 @@
 import UIKit
 typealias View = UIView
 extension View {
-    var snp_constraints: [AnyObject] { return self.constraints }
+    var snp_constraints: [AnyObject] {
+        return self.constraints
+            .filter { $0 is LayoutConstraint }
+            .filter { $0.isActive }
+    }
 }
 #else
 import AppKit
 typealias View = NSView
 extension View {
-    var snp_constraints: [AnyObject] { return self.constraints }
+    var snp_constraints: [AnyObject] {
+        return self.constraints
+            .filter { $0 is LayoutConstraint }
+            .filter { $0.isActive }
+    }
 }
 #endif
 
@@ -128,14 +136,18 @@ class SnapKitTests: XCTestCase {
         self.container.addSubview(v2)
         
         v1.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(v2.snp.top).offset(50)
-            make.left.equalTo(v2.snp.top).offset(50)
+            make.top.equalTo(v2).offset(50)
+            make.left.equalTo(v2).offset(50)
             return
         }
         
         XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints installed")
         
+        print(self.container.snp_constraints)
+        
         v1.snp.removeConstraints()
+        
+        print(self.container.snp_constraints)
         
         XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints installed")
         
@@ -400,6 +412,28 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(constraints[0].identifier, identifier, "Identifier should be 'Test'")
     }
     
+    func testEdgesToEdges() {
+        var fromAttributes = Set<NSLayoutAttribute>()
+        var toAttributes = Set<NSLayoutAttribute>()
+        
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp.remakeConstraints { (make) -> Void in
+            make.edges.equalTo(self.container.snp.edges)
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+        
+        for constraint in (container.snp_constraints as! [NSLayoutConstraint]) {
+            fromAttributes.insert(constraint.firstAttribute)
+            toAttributes.insert(constraint.secondAttribute)
+        }
+        
+        XCTAssert(fromAttributes == [.top, .left, .bottom, .right])
+        XCTAssert(toAttributes == [.top, .left, .bottom, .right])
+    }
+    
     #if os(iOS) || os(tvOS)
     func testEdgesToMargins() {
         var fromAttributes = Set<NSLayoutAttribute>()
@@ -441,28 +475,6 @@ class SnapKitTests: XCTestCase {
         
     }
     
-    func testEdgesToEdges() {
-        var fromAttributes = Set<NSLayoutAttribute>()
-        var toAttributes = Set<NSLayoutAttribute>()
-        
-        let view = View()
-        self.container.addSubview(view)
-        
-        view.snp.remakeConstraints { (make) -> Void in
-            make.edges.equalTo(self.container.snp.edges)
-        }
-        
-        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
-        
-        for constraint in (container.snp_constraints as! [NSLayoutConstraint]) {
-            fromAttributes.insert(constraint.firstAttribute)
-            toAttributes.insert(constraint.secondAttribute)
-        }
-        
-        XCTAssert(fromAttributes == [.top, .left, .bottom, .right])
-        XCTAssert(toAttributes == [.top, .left, .bottom, .right])
-    }
-    
     func testLayoutGuideConstraints() {
         let vc = UIViewController()
         vc.view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
@@ -470,11 +482,11 @@ class SnapKitTests: XCTestCase {
         vc.view.addSubview(self.container)
         
         self.container.snp.makeConstraints { (make) -> Void in
-        make.top.equalTo(vc.topLayoutGuide.snp.bottom)
-        make.bottom.equalTo(vc.bottomLayoutGuide.snp.top)
+            make.top.equalTo(vc.topLayoutGuide.snp.bottom)
+            make.bottom.equalTo(vc.bottomLayoutGuide.snp.top)
         }
          
-        XCTAssertEqual(vc.view.snp_constraints.count, 6, "Should have 6 constraints installed")
+        XCTAssertEqual(vc.view.snp_constraints.count, 2, "Should have 2 constraints installed")
     }
     #endif
     
