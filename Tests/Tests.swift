@@ -490,4 +490,8 @@ class SnapKitTests: XCTestCase {
     }
     #endif
     
+    func testCanSetLabel() {
+        self.container.snp.setLabel("Hello World")
+    }
+    
 }
