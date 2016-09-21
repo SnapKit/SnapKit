@@ -62,6 +62,19 @@ target '<Your Target Name>' do
     pod 'SnapKit', '~> 3.0'
 end
 ```
+**:warning: If you want to use CocoaPods with Xcode 8.0 and Swift 3.0, you might need to add the following
+lines to your podfile: :warning:**
+
+```
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = '3.0'
+      config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '10.10'
+    end
+  end
+end
+```
 
 Then, run the following command:
 
