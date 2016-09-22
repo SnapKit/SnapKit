@@ -229,11 +229,9 @@ public class Constraint {
             let attribute = (layoutConstraint.secondAttribute == .notAnAttribute) ? layoutConstraint.firstAttribute : layoutConstraint.secondAttribute
             layoutConstraint.constant = self.constant.constraintConstantTargetValueFor(layoutAttribute: attribute)
             
-            guard (layoutConstraint.priority < UILayoutPriorityRequired), (self.priority.constraintPriorityTargetValue != UILayoutPriorityRequired) else {
-                fatalError("Mutating a priority from required to not on an installed constraint (or vice-versa) is not supported.")
+            if (layoutConstraint.priority < UILayoutPriorityRequired), (self.priority.constraintPriorityTargetValue != UILayoutPriorityRequired) {
+                layoutConstraint.priority = self.priority.constraintPriorityTargetValue
             }
-
-            layoutConstraint.priority = self.priority.constraintPriorityTargetValue            
         }
     }
     
