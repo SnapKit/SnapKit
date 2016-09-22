@@ -232,7 +232,7 @@ public class Constraint {
             #if os(iOS)
                 let requiredPriority: UILayoutPriority = UILayoutPriorityRequired
             #else
-                let requiredPriority: UILayoutPriority = 1000.0
+                let requiredPriority: Float = 1000.0
             #endif
             
             
