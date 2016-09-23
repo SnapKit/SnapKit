@@ -229,7 +229,7 @@ public class Constraint {
             let attribute = (layoutConstraint.secondAttribute == .notAnAttribute) ? layoutConstraint.firstAttribute : layoutConstraint.secondAttribute
             layoutConstraint.constant = self.constant.constraintConstantTargetValueFor(layoutAttribute: attribute)
             
-            #if os(iOS)
+            #if os(iOS) || os(tvOS)
                 let requiredPriority: UILayoutPriority = UILayoutPriorityRequired
             #else
                 let requiredPriority: Float = 1000.0
