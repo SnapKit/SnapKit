@@ -115,7 +115,13 @@ public class Constraint {
                         layoutToAttribute = layoutToAttributes[0]
                     }
                 } else {
-                    layoutToAttribute = layoutFromAttribute
+                    if layoutFromAttribute == .centerX {
+                        layoutToAttribute = .left
+                    } else if layoutFromAttribute == .centerY {
+                        layoutToAttribute = .top
+                    } else {
+                        layoutToAttribute = layoutFromAttribute
+                    }
                 }
             #else
                 if self.from.attributes == self.to.attributes {
