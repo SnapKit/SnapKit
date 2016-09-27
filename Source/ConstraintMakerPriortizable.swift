@@ -30,13 +30,45 @@
 
 public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
     
-    private enum ConstraintPriority: Float {
-        case low            = 250.0
-        case medium         = 500.0
-        case mediumMacOS    = 501.0
-        case high           = 750.0
-        case required       = 1000.0
+    public enum Priority: Strideable, RawRepresentable, Equatable {
+        case low
+        case medium
+        case high
+        case required
+        case custom(value: Float)
         
+        public init?(rawValue: Float) {
+            // TODO:
+            // constrain to 0<= x <= 1000 else throw an error
+            self = .custom(value: rawValue)
+        }
+        
+        public var rawValue: Float {
+            switch self {
+            case .low:
+                return 250.0
+            case .medium:
+                return 500.0
+            case .high:
+                return 750.0
+            case .required:
+                return 1000.0
+            case let .custom(value):
+                return value
+            }
+        }
+        
+        public func advanced(by n: Float) -> Priority {
+            return .custom(value: self.rawValue + n)
+        }
+        
+        public func distance(to other: Priority) -> Float {
+            return other.rawValue - self.rawValue
+        }
+        
+        public static func ==(lhs: Priority, rhs: Priority) -> Bool {
+            return lhs.rawValue == rhs.rawValue
+        }
     }
     
     @discardableResult
@@ -47,26 +79,22 @@ public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
     
     @discardableResult
     public func priorityRequired() -> ConstraintMakerFinalizable {
-        return self.priority(ConstraintPriority.required.rawValue)
+        return self.priority(Priority.required as! ConstraintPriorityTarget)
     }
     
     @discardableResult
     public func priorityHigh() -> ConstraintMakerFinalizable {
-        return self.priority(ConstraintPriority.high.rawValue)
+        return self.priority(Priority.high as! ConstraintPriorityTarget)
     }
     
     @discardableResult
     public func priorityMedium() -> ConstraintMakerFinalizable {
-        #if os(iOS) || os(tvOS)
-            return self.priority(ConstraintPriority.medium.rawValue)
-        #else
-            return self.priority(ConstraintPriority.mediumMacOS.rawValue)
-        #endif
+        return self.priority(Priority.medium as! ConstraintPriorityTarget)
     }
     
     @discardableResult
     public func priorityLow() -> ConstraintMakerFinalizable {
-        return self.priority(ConstraintPriority.low.rawValue)
+        return self.priority(Priority.low as! ConstraintPriorityTarget)
     }
     
 }
