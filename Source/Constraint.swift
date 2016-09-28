@@ -46,6 +46,7 @@ public class Constraint {
           self.updateConstantAndPriorityIfNeeded()
         }
     }
+    private var useAnimator: Bool = false
     private var layoutConstraints: [LayoutConstraint]
     
     // MARK: Initialization
@@ -183,6 +184,12 @@ public class Constraint {
         self.deactivateIfNeeded()
     }
     
+    @available(OSX 10.5, *)
+    public func animator() -> Constraint {
+        self.useAnimator = true
+        return self
+    }
+    
     @discardableResult
     public func update(offset: ConstraintOffsetTarget) -> Constraint {
         self.constant = offset.constraintOffsetTargetValue
@@ -227,7 +234,14 @@ public class Constraint {
     internal func updateConstantAndPriorityIfNeeded() {
         for layoutConstraint in self.layoutConstraints {
             let attribute = (layoutConstraint.secondAttribute == .notAnAttribute) ? layoutConstraint.firstAttribute : layoutConstraint.secondAttribute
-            layoutConstraint.constant = self.constant.constraintConstantTargetValueFor(layoutAttribute: attribute)
+            
+            #if os(iOS) || os(tvOS)
+                let updateConstraint = layoutConstraint
+            #else
+                let updateConstraint = self.useAnimator ? layoutConstraint.animator() : layoutConstraint
+            #endif
+            
+            updateConstraint.constant = self.constant.constraintConstantTargetValueFor(layoutAttribute: attribute)
             
             #if os(iOS) || os(tvOS)
                 let requiredPriority: UILayoutPriority = UILayoutPriorityRequired
@@ -236,8 +250,8 @@ public class Constraint {
             #endif
             
             
-            if (layoutConstraint.priority < requiredPriority), (self.priority.constraintPriorityTargetValue != requiredPriority) {
-                layoutConstraint.priority = self.priority.constraintPriorityTargetValue
+            if (updateConstraint.priority < requiredPriority), (self.priority.constraintPriorityTargetValue != requiredPriority) {
+                updateConstraint.priority = self.priority.constraintPriorityTargetValue
             }
         }
     }
