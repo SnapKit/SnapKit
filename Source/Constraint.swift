@@ -254,6 +254,8 @@ public class Constraint {
                 updateConstraint.priority = self.priority.constraintPriorityTargetValue
             }
         }
+        
+        self.useAnimator = false
     }
     
     internal func activateIfNeeded(updatingExisting: Bool = false) {
@@ -278,6 +280,8 @@ public class Constraint {
             NSLayoutConstraint.activate(layoutConstraints)
             view.snp.add(constraints: [self])
         }
+        
+        self.useAnimator = false
     }
     
     internal func deactivateIfNeeded() {
@@ -288,5 +292,7 @@ public class Constraint {
         let layoutConstraints = self.layoutConstraints
         NSLayoutConstraint.deactivate(layoutConstraints)
         view.snp.remove(constraints: [self])
+        
+        self.useAnimator = false
     }
 }
