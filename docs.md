@@ -182,7 +182,7 @@ make.left.equalTo(view).offset(UIEdgeInsetsMake(10, 0, 10, 0))
 
 ### Learn to prioritize
 
-> `.prority` allows you to specify an exact priority
+> `.priority` allows you to specify an exact priority
 
 Priorities are can be tacked on to the end of a constraint chain like so:
 
