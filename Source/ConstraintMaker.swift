@@ -94,6 +94,11 @@ public class ConstraintMaker {
     }
     
     @available(iOS 8.0, *)
+    public var topMargin: ConstraintMakerExtendable {
+        return self.makeExtendableWithAttributes(.topMargin)
+    }
+    
+    @available(iOS 8.0, *)
     public var bottomMargin: ConstraintMakerExtendable {
         return self.makeExtendableWithAttributes(.bottomMargin)
     }
