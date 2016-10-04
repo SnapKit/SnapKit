@@ -39,7 +39,7 @@ public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
         
         public init?(rawValue: Float) {
             // TODO:
-            // constrain to 0<= x <= 1000 else throw an error
+            // constrain to 0 <= x <= 1000
             self = .custom(value: rawValue)
         }
         
@@ -75,31 +75,4 @@ public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
     public func priority(level: Priority) -> ConstraintMakerFinalizable {
         return self.priority(level: ConstraintMakerPriortizable.Priority(rawValue: level.rawValue)!)
     }
-    
-//    @discardableResult
-//    func priority(_ amount: ConstraintPriorityTarget) -> ConstraintMakerFinalizable {
-//        self.description.priority = amount
-//        return self
-//    }
-//    
-//    @discardableResult
-//    public func priorityRequired() -> ConstraintMakerFinalizable {
-//        return self.priority(Priority.required as! ConstraintPriorityTarget)
-//    }
-//    
-//    @discardableResult
-//    public func priorityHigh() -> ConstraintMakerFinalizable {
-//        return self.priority(Priority.high as! ConstraintPriorityTarget)
-//    }
-//    
-//    @discardableResult
-//    public func priorityMedium() -> ConstraintMakerFinalizable {
-//        return self.priority(Priority.medium as! ConstraintPriorityTarget)
-//    }
-//    
-//    @discardableResult
-//    public func priorityLow() -> ConstraintMakerFinalizable {
-//        return self.priority(Priority.low as! ConstraintPriorityTarget)
-//    }
-    
 }
