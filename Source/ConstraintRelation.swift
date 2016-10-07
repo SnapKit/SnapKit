@@ -28,7 +28,7 @@
 #endif
 
 
-internal enum ConstraintRelation: Int {
+internal enum ConstraintRelation : Int {
     case equal = 1
     case lessThanOrEqual
     case greaterThanOrEqual

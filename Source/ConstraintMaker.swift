@@ -143,22 +143,22 @@ public class ConstraintMaker {
         return self.makeExtendableWithAttributes(.centerWithinMargins)
     }
     
-    private let view: ConstraintView
+    private let item: LayoutConstraintItem
     private var descriptions = [ConstraintDescription]()
     
-    internal init(view: ConstraintView) {
-        self.view = view
-        self.view.translatesAutoresizingMaskIntoConstraints = false
+    internal init(item: LayoutConstraintItem) {
+        self.item = item
+        self.item.prepare()
     }
     
     internal func makeExtendableWithAttributes(_ attributes: ConstraintAttributes) -> ConstraintMakerExtendable {
-        let description = ConstraintDescription(view: self.view, attributes: attributes)
+        let description = ConstraintDescription(item: self.item, attributes: attributes)
         self.descriptions.append(description)
         return ConstraintMakerExtendable(description)
     }
     
-    internal static func prepareConstraints(view: ConstraintView, closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
-        let maker = ConstraintMaker(view: view)
+    internal static func prepareConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
+        let maker = ConstraintMaker(item: item)
         closure(maker)
         let constraints = maker.descriptions
             .map { $0.constraint }
@@ -167,8 +167,8 @@ public class ConstraintMaker {
         return constraints
     }
     
-    internal static func makeConstraints(view: ConstraintView, closure: (_ make: ConstraintMaker) -> Void) {
-        let maker = ConstraintMaker(view: view)
+    internal static func makeConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) {
+        let maker = ConstraintMaker(item: item)
         closure(maker)
         let constraints = maker.descriptions
             .map { $0.constraint }
@@ -179,18 +179,18 @@ public class ConstraintMaker {
         }
     }
     
-    internal static func remakeConstraints(view: ConstraintView, closure: (_ make: ConstraintMaker) -> Void) {
-        self.removeConstraints(view: view)
-        self.makeConstraints(view: view, closure: closure)
+    internal static func remakeConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) {
+        self.removeConstraints(item: item)
+        self.makeConstraints(item: item, closure: closure)
     }
     
-    internal static func updateConstraints(view: ConstraintView, closure: (_ make: ConstraintMaker) -> Void) {
-        guard view.snp.constraints.count > 0 else {
-            self.makeConstraints(view: view, closure: closure)
+    internal static func updateConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) {
+        guard item.constraints.count > 0 else {
+            self.makeConstraints(item: item, closure: closure)
             return
         }
         
-        let maker = ConstraintMaker(view: view)
+        let maker = ConstraintMaker(item: item)
         closure(maker)
         let constraints = maker.descriptions
             .map { $0.constraint }
@@ -201,8 +201,8 @@ public class ConstraintMaker {
         }
     }
     
-    internal static func removeConstraints(view: ConstraintView) {
-        let constraints = view.snp.constraints
+    internal static func removeConstraints(item: LayoutConstraintItem) {
+        let constraints = item.constraints
         for constraint in constraints {
             constraint.deactivateIfNeeded()
         }

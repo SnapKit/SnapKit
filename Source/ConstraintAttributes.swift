@@ -28,7 +28,7 @@
 #endif
 
 
-internal struct ConstraintAttributes: OptionSet {
+internal struct ConstraintAttributes : OptionSet {
     
     internal init(rawValue: UInt) {
         self.rawValue = rawValue
