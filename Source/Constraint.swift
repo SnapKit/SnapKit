@@ -115,7 +115,11 @@ public class Constraint {
                         layoutToAttribute = layoutToAttributes[0]
                     }
                 } else {
-                    layoutToAttribute = layoutFromAttribute
+                    if self.to.target == nil && (layoutFromAttribute == .centerX || layoutFromAttribute == .centerY) {
+                        layoutToAttribute = layoutFromAttribute == .centerX ? .left : .top
+                    } else {
+                        layoutToAttribute = layoutFromAttribute
+                    }
                 }
             #else
                 if self.from.attributes == self.to.attributes {
@@ -228,7 +232,17 @@ public class Constraint {
         for layoutConstraint in self.layoutConstraints {
             let attribute = (layoutConstraint.secondAttribute == .notAnAttribute) ? layoutConstraint.firstAttribute : layoutConstraint.secondAttribute
             layoutConstraint.constant = self.constant.constraintConstantTargetValueFor(layoutAttribute: attribute)
-            layoutConstraint.priority = self.priority.constraintPriorityTargetValue
+            
+            #if os(iOS) || os(tvOS)
+                let requiredPriority: UILayoutPriority = UILayoutPriorityRequired
+            #else
+                let requiredPriority: Float = 1000.0
+            #endif
+            
+            
+            if (layoutConstraint.priority < requiredPriority), (self.priority.constraintPriorityTargetValue != requiredPriority) {
+                layoutConstraint.priority = self.priority.constraintPriorityTargetValue
+            }
         }
     }
     

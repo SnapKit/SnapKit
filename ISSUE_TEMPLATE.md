@@ -1,7 +1,10 @@
 ### New Issue Checklist
 
+🚫 If this template is not filled out your issue **will** be closed with no comment. 🚫
+
 * [ ] I have looked at the [Documentation](http://snapkit.io/docs)
 * [ ] I have read the [F.A.Q.](http://snapkit.io/faq)
+* [ ] I have filled out this issue template.
 
 ### Issue Info
 
@@ -15,3 +18,4 @@
 
 ### Issue Description
 
+⚠️ Replace this with the description of your issue. ⚠️ 

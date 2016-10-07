@@ -59,7 +59,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'SnapKit', '~> 3.0'
+    pod 'SnapKit', '~> 3.0.2'
 end
 ```
 
@@ -83,7 +83,7 @@ $ brew install carthage
 To integrate SnapKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "SnapKit/SnapKit" ~> 3.0
+github "SnapKit/SnapKit" ~> 3.0.2
 ```
 
 Run `carthage update` to build the framework and drag the built `SnapKit.framework` into your Xcode project.

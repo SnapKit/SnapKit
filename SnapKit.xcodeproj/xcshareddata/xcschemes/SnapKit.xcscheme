@@ -20,20 +20,6 @@
                ReferencedContainer = "container:SnapKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "537DCEAE1C35D90A00B5B899"
-               BuildableName = "SnapKit tvOS Tests.xctest"
-               BlueprintName = "SnapKit tvOS Tests"
-               ReferencedContainer = "container:SnapKit.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
