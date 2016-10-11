@@ -31,7 +31,7 @@
 public protocol LayoutConstraintItem: class {
 }
 
-@available(iOSApplicationExtension 9.0, *)
+@available(iOS 9.0, *)
 extension ConstraintLayoutGuide : LayoutConstraintItem {
 }
 
