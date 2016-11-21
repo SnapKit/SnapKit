@@ -62,8 +62,8 @@ class SnapKitTests: XCTestCase {
     
     func testGuideMakeConstraints() {
         let v1 = View()
-        if #available(iOS 9.0, *) {
-            let g1 = UILayoutGuide()
+        if #available(iOS 9.0, OSX 10.11, *) {
+            let g1 = ConstraintLayoutGuide()
             self.container.addSubview(v1)
             self.container.addLayoutGuide(g1)
             
