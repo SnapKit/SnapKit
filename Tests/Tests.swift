@@ -68,7 +68,7 @@ class SnapKitTests: XCTestCase {
             self.container.addLayoutGuide(g1)
             
             v1.snp.makeConstraints { (make) -> Void in
-                make.top.equalTo(g1.snp.top).offset(50)
+                make.top.equalTo(g1).offset(50)
                 make.left.equalTo(g1.snp.top).offset(50)
                 return
             }
@@ -85,8 +85,7 @@ class SnapKitTests: XCTestCase {
         } else {
             XCTAssertTrue(true)
         }
-        
-            }
+    }
     
     func testMakeImpliedSuperviewConstraints() {
         let v1 = View()

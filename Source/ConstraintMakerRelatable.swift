@@ -57,6 +57,9 @@ public class ConstraintMakerRelatable {
         } else if let other = other as? ConstraintConstantTarget {
             related = ConstraintItem(target: nil, attributes: ConstraintAttributes.none)
             constant = other
+        } else if #available(iOSApplicationExtension 9.0, OSXApplicationExtension 10.11, *), let other = other as? ConstraintLayoutGuide {
+            related = ConstraintItem(target: other, attributes: ConstraintAttributes.none)
+            constant = 0.0
         } else {
             fatalError("Invalid constraint. (\(file), \(line))")
         }
