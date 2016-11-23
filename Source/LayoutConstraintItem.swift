@@ -63,14 +63,14 @@ extension LayoutConstraintItem {
     }
     
     internal func add(constraints: [Constraint]) {
-        let constraintsSet = NSMutableSet()
+        let constraintsSet = self.constraintsSet
         for constraint in constraints {
             constraintsSet.add(constraint)
         }
     }
     
     internal func remove(constraints: [Constraint]) {
-        let constraintsSet = NSMutableSet()
+        let constraintsSet = self.constraintsSet
         for constraint in constraints {
             constraintsSet.remove(constraint)
         }
