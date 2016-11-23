@@ -252,11 +252,15 @@ public class Constraint {
             return
         }
         let layoutConstraints = self.layoutConstraints
-        let existingLayoutConstraints = item.constraints.map({ $0.layoutConstraints }).reduce([]) { $0 + $1 }
         
         if updatingExisting {
+            var existingLayoutConstraints: [LayoutConstraint] = []
+            for constraint in item.constraints {
+                existingLayoutConstraints += constraint.layoutConstraints
+            }
+            
             for layoutConstraint in layoutConstraints {
-                let existingLayoutConstraint = existingLayoutConstraints.first { $0 == layoutConstraint }
+                let existingLayoutConstraint = existingLayoutConstraints.first { $0.canUpdate(constraint: layoutConstraint) }
                 guard let updateLayoutConstraint = existingLayoutConstraint else {
                     fatalError("Updated constraint could not find existing matching constraint to update: \(layoutConstraint)")
                 }
