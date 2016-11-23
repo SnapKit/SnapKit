@@ -27,7 +27,8 @@
     import AppKit
 #endif
 
-public class Constraint {
+@objc(SnapKitConstraint)
+public final class Constraint : NSObject {
     
     internal let sourceLocation: (String, UInt)
     internal let label: String?
@@ -67,6 +68,7 @@ public class Constraint {
         self.constant = constant
         self.priority = priority
         self.layoutConstraints = []
+        super.init()
         
         // get attributes
         let layoutFromAttributes = self.from.attributes.layoutAttributes
@@ -260,7 +262,7 @@ public class Constraint {
             }
             
             for layoutConstraint in layoutConstraints {
-                let existingLayoutConstraint = existingLayoutConstraints.first { $0.canUpdate(constraint: layoutConstraint) }
+                let existingLayoutConstraint = existingLayoutConstraints.first { $0 == layoutConstraint }
                 guard let updateLayoutConstraint = existingLayoutConstraint else {
                     fatalError("Updated constraint could not find existing matching constraint to update: \(layoutConstraint)")
                 }
