@@ -27,8 +27,7 @@
     import AppKit
 #endif
 
-@objc(SnapKitConstraint)
-public final class Constraint : NSObject {
+public final class Constraint {
     
     internal let sourceLocation: (String, UInt)
     internal let label: String?
@@ -68,7 +67,6 @@ public final class Constraint : NSObject {
         self.constant = constant
         self.priority = priority
         self.layoutConstraints = []
-        super.init()
         
         // get attributes
         let layoutFromAttributes = self.from.attributes.layoutAttributes
