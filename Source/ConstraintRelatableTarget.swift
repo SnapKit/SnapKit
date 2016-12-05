@@ -61,7 +61,6 @@ extension ConstraintItem: ConstraintRelatableTarget {
 extension ConstraintView: ConstraintRelatableTarget {
 }
 
-@available(OSXApplicationExtension 10.11, *)
-@available(iOSApplicationExtension 9.0, *)
+@available(iOS 9.0, OSX 10.11, *)
 extension ConstraintLayoutGuide: ConstraintRelatableTarget {
 }
