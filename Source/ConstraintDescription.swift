@@ -30,7 +30,7 @@
 
 public class ConstraintDescription {
     
-    internal let view: ConstraintView
+    internal let item: LayoutConstraintItem
     internal var attributes: ConstraintAttributes
     internal var relation: ConstraintRelation? = nil
     internal var sourceLocation: (String, UInt)? = nil
@@ -45,7 +45,7 @@ public class ConstraintDescription {
               let sourceLocation = self.sourceLocation else {
             return nil
         }
-        let from = ConstraintItem(target: self.view, attributes: self.attributes)
+        let from = ConstraintItem(target: self.item, attributes: self.attributes)
         
         return Constraint(
             from: from,
@@ -61,8 +61,8 @@ public class ConstraintDescription {
     
     // MARK: Initialization
     
-    internal init(view: ConstraintView, attributes: ConstraintAttributes) {
-        self.view = view
+    internal init(item: LayoutConstraintItem, attributes: ConstraintAttributes) {
+        self.item = item
         self.attributes = attributes
     }
     

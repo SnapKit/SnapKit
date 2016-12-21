@@ -1,6 +1,6 @@
 ## SnapKit 3.0 Migration Guide
 
-SnapKit 3.0 has many breaking changes from earlier versions. You can read the [changelog](https://github.com/SnapKit/SnapKit/blob/master/CHANGELOG.md) for more details.
+SnapKit 3.0 has many breaking changes from earlier versions. You can read the [notes on releases](https://github.com/SnapKit/SnapKit/releases) for more details.
 
 1. Upgrade SnapKit installation
 2. Find all `snp_` and replace with `snp.`

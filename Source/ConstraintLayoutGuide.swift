@@ -32,5 +32,6 @@
     @available(iOS 9.0, *)
     public typealias ConstraintLayoutGuide = UILayoutGuide
 #else
-    public class ConstraintLayoutGuide {}
+    @available(OSX 10.11, *)
+    public typealias ConstraintLayoutGuide = NSLayoutGuide
 #endif

@@ -28,7 +28,7 @@
 #endif
 
 
-public class LayoutConstraint: NSLayoutConstraint {
+public class LayoutConstraint : NSLayoutConstraint {
     
     public var label: String? {
         get {

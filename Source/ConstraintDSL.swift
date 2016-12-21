@@ -49,12 +49,12 @@ extension ConstraintDSL {
 private var labelKey: UInt8 = 0
 
 
-public protocol ConstraintAttributesDSL: ConstraintDSL {
+public protocol ConstraintBasicAttributesDSL : ConstraintDSL {
 }
-extension ConstraintAttributesDSL {
+extension ConstraintBasicAttributesDSL {
     
     // MARK: Basics
-
+    
     public var left: ConstraintItem {
         return ConstraintItem(target: self.target, attributes: ConstraintAttributes.left)
     }
@@ -106,6 +106,12 @@ extension ConstraintAttributesDSL {
     public var center: ConstraintItem {
         return ConstraintItem(target: self.target, attributes: ConstraintAttributes.center)
     }
+    
+}
+
+public protocol ConstraintAttributesDSL : ConstraintBasicAttributesDSL {
+}
+extension ConstraintAttributesDSL {
     
     // MARK: Baselines
     
