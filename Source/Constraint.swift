@@ -27,7 +27,7 @@
     import AppKit
 #endif
 
-public class Constraint {
+public final class Constraint {
     
     internal let sourceLocation: (String, UInt)
     internal let label: String?
@@ -252,9 +252,13 @@ public class Constraint {
             return
         }
         let layoutConstraints = self.layoutConstraints
-        let existingLayoutConstraints = item.constraints.map({ $0.layoutConstraints }).reduce([]) { $0 + $1 }
         
         if updatingExisting {
+            var existingLayoutConstraints: [LayoutConstraint] = []
+            for constraint in item.constraints {
+                existingLayoutConstraints += constraint.layoutConstraints
+            }
+            
             for layoutConstraint in layoutConstraints {
                 let existingLayoutConstraint = existingLayoutConstraints.first { $0 == layoutConstraint }
                 guard let updateLayoutConstraint = existingLayoutConstraint else {

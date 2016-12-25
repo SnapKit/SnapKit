@@ -59,33 +59,33 @@ extension LayoutConstraintItem {
         return nil
     }
     internal var constraints: [Constraint] {
-        return self.constraintsHashTable.allObjects
+        return self.constraintsSet.allObjects as! [Constraint]
     }
     
     internal func add(constraints: [Constraint]) {
-        let hashTable = self.constraintsHashTable
+        let constraintsSet = self.constraintsSet
         for constraint in constraints {
-            hashTable.add(constraint)
+            constraintsSet.add(constraint)
         }
     }
     
     internal func remove(constraints: [Constraint]) {
-        let hashTable = self.constraintsHashTable
+        let constraintsSet = self.constraintsSet
         for constraint in constraints {
-            hashTable.remove(constraint)
+            constraintsSet.remove(constraint)
         }
     }
     
-    private var constraintsHashTable: NSHashTable<Constraint> {
-        let constraints: NSHashTable<Constraint>
+    private var constraintsSet: NSMutableSet {
+        let constraintsSet: NSMutableSet
         
-        if let existing = objc_getAssociatedObject(self, &constraintsKey) as? NSHashTable<Constraint> {
-            constraints = existing
+        if let existing = objc_getAssociatedObject(self, &constraintsKey) as? NSMutableSet {
+            constraintsSet = existing
         } else {
-            constraints = NSHashTable<Constraint>()
-            objc_setAssociatedObject(self, &constraintsKey, constraints, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            constraintsSet = NSMutableSet()
+            objc_setAssociatedObject(self, &constraintsKey, constraintsSet, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
-        return constraints
+        return constraintsSet
         
     }
     
