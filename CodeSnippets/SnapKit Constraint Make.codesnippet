@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>snp_make</string>
+	<string>snpmake</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>&lt;#view#&gt;.snp_makeConstraints { make in
+	<string>&lt;#view#&gt;.snp.makeConstraints { make in
     &lt;#code#&gt;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
