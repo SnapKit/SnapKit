@@ -160,20 +160,26 @@ public class ConstraintMaker {
     internal static func prepareConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
         let maker = ConstraintMaker(item: item)
         closure(maker)
-        let constraints = maker.descriptions
-            .map { $0.constraint }
-            .filter { $0 != nil }
-            .map { $0! }
+        var constraints: [Constraint] = []
+        for description in maker.descriptions {
+            guard let constraint = description.constraint else {
+                continue
+            }
+            constraints.append(constraint)
+        }
         return constraints
     }
     
     internal static func makeConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) {
         let maker = ConstraintMaker(item: item)
         closure(maker)
-        let constraints = maker.descriptions
-            .map { $0.constraint }
-            .filter { $0 != nil }
-            .map { $0! }
+        var constraints: [Constraint] = []
+        for description in maker.descriptions {
+            guard let constraint = description.constraint else {
+                continue
+            }
+            constraints.append(constraint)
+        }
         for constraint in constraints {
             constraint.activateIfNeeded(updatingExisting: false)
         }
@@ -192,10 +198,13 @@ public class ConstraintMaker {
         
         let maker = ConstraintMaker(item: item)
         closure(maker)
-        let constraints = maker.descriptions
-            .map { $0.constraint }
-            .filter { $0 != nil }
-            .map { $0! }
+        var constraints: [Constraint] = []
+        for description in maker.descriptions {
+            guard let constraint = description.constraint else {
+                continue
+            }
+            constraints.append(constraint)
+        }
         for constraint in constraints {
             constraint.activateIfNeeded(updatingExisting: true)
         }
