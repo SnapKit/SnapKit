@@ -242,7 +242,7 @@ public final class Constraint {
             let attribute = (layoutConstraint.secondAttribute == .notAnAttribute) ? layoutConstraint.firstAttribute : layoutConstraint.secondAttribute
             layoutConstraint.constant = self.constant.constraintConstantTargetValueFor(layoutAttribute: attribute)
 
-            let requiredPriority = ConstraintMakerPriortizable.Priority.required.rawValue
+            let requiredPriority = ConstraintPriority.required.value
             if (layoutConstraint.priority < requiredPriority), (self.priority.constraintPriorityTargetValue != requiredPriority) {
                 layoutConstraint.priority = self.priority.constraintPriorityTargetValue
             }
