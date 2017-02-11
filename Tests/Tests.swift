@@ -61,32 +61,28 @@ class SnapKitTests: XCTestCase {
     }
     
     func testGuideMakeConstraints() {
+        guard #available(iOS 9.0, OSX 10.11, *) else { return }
         let v1 = View()
-        if #available(iOS 9.0, *) {
-            let g1 = UILayoutGuide()
-            self.container.addSubview(v1)
-            self.container.addLayoutGuide(g1)
-            
-            v1.snp.makeConstraints { (make) -> Void in
-                make.top.equalTo(g1.snp.top).offset(50)
-                make.left.equalTo(g1.snp.top).offset(50)
-                return
-            }
-            
-            XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints installed")
-            
-            g1.snp.makeConstraints { (make) -> Void in
-                make.edges.equalTo(v1)
-                return
-            }
-            
-            XCTAssertEqual(self.container.snp_constraints.count, 6, "Should have 6 constraints installed")
 
-        } else {
-            XCTAssertTrue(true)
+        let g1 = ConstraintLayoutGuide()
+        self.container.addSubview(v1)
+        self.container.addLayoutGuide(g1)
+            
+        v1.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(g1).offset(50)
+            make.left.equalTo(g1.snp.top).offset(50)
+            return
+        }
+            
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints installed")
+        
+        g1.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(v1)
+            return
         }
         
-            }
+        XCTAssertEqual(self.container.snp_constraints.count, 6, "Should have 6 constraints installed")
+    }
     
     func testMakeImpliedSuperviewConstraints() {
         let v1 = View()
@@ -132,7 +128,6 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(self.container.snp_constraints.count, 2, "Should still have 2 constraints installed")
         
     }
-    
     
     func testRemakeConstraints() {
         let v1 = View()

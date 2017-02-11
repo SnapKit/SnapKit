@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>snp_remake</string>
+	<string>snpremake</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>TopLevel</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>&lt;#view#&gt;.snp_remakeConstraints { make in
+	<string>&lt;#view#&gt;.snp.remakeConstraints { make in
     &lt;#code#&gt;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>

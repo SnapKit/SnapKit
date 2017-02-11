@@ -175,25 +175,9 @@ public class ConstraintMaker {
         closure(maker)
         var constraints: [Constraint] = []
         for description in maker.descriptions {
-            
-            guard let relation = description.relation,
-                let related = description.related,
-                let sourceLocation = description.sourceLocation else {
-                    continue
+            guard let constraint = description.constraint else {
+                continue
             }
-            let from = ConstraintItem(target: description.item, attributes: description.attributes)
-            
-            let constraint = Constraint(
-                from: from,
-                to: related,
-                relation: relation,
-                sourceLocation: sourceLocation,
-                label: description.label,
-                multiplier: description.multiplier,
-                constant: description.constant,
-                priority: description.priority
-            )
-            
             constraints.append(constraint)
         }
         for constraint in constraints {
