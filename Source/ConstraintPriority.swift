@@ -28,12 +28,12 @@
 #endif
 
 
-public struct ConstraintPriority : ExpressibleByFloatLiteral {
+public struct ConstraintPriority : ExpressibleByFloatLiteral, Strideable, Equatable {
     public typealias FloatLiteralType = Float
     
-    public let value: FloatLiteralType
+    public let value: Float
     
-    public init(floatLiteral value: FloatLiteralType) {
+    public init(floatLiteral value: Float) {
         self.value = value
     }
     
@@ -60,5 +60,17 @@ public struct ConstraintPriority : ExpressibleByFloatLiteral {
     
     public static var low: ConstraintPriority {
         return 250.0
+    }
+    
+    public func advanced(by n: Float) -> ConstraintPriority {
+        return ConstraintPriority(self.value + n)
+    }
+    
+    public func distance(to other: ConstraintPriority) -> Float {
+        return other.value - self.value
+    }
+    
+    public static func ==(lhs: ConstraintPriority, rhs: ConstraintPriority) -> Bool {
+        return lhs.value == rhs.value
     }
 }
