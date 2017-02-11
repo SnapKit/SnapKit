@@ -31,8 +31,8 @@
 public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
     
     @discardableResult
-    public func priority(_ amount: ConstraintPriority, offset: Float = 0) -> ConstraintMakerFinalizable {
-        self.description.priority = amount.value + offset
+    public func priority(_ amount: ConstraintPriority) -> ConstraintMakerFinalizable {
+        self.description.priority = amount.value
         return self
     }
     

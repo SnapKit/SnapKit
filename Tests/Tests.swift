@@ -517,4 +517,27 @@ class SnapKitTests: XCTestCase {
         self.container.snp.setLabel("Hello World")
     }
     
+    func testPriorityShortcuts() {
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp.remakeConstraints { make in
+            make.left.equalTo(1000.0).priority(.required)
+        }
+        XCTAssertEqual(self.container.snp_constraints.count, 1, "Should have 1 constraint")
+        XCTAssertEqual(self.container.snp_constraints.first?.priority, ConstraintPriority.required.value)
+        
+        view.snp.remakeConstraints { make in
+            make.left.equalTo(1000.0).priority(.low)
+        }
+        XCTAssertEqual(self.container.snp_constraints.count, 1, "Should have 1 constraint")
+        XCTAssertEqual(self.container.snp_constraints.first?.priority, ConstraintPriority.low.value)
+        
+        view.snp.remakeConstraints { make in
+            make.left.equalTo(1000.0).priority(ConstraintPriority.low.value + 1)
+        }
+        XCTAssertEqual(self.container.snp_constraints.count, 1, "Should have 1 constraint")
+        XCTAssertEqual(self.container.snp_constraints.first?.priority, ConstraintPriority.low.value + 1)
+    }
+    
 }
