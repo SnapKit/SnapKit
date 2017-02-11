@@ -28,41 +28,41 @@
 #endif
 
 
-public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
+public struct ConstraintPriority : ExpressibleByFloatLiteral, Equatable {
+    public typealias FloatLiteralType = Float
     
-    @discardableResult
-    public func priority(_ amount: ConstraintPriority) -> ConstraintMakerFinalizable {
-        self.description.priority = amount.value
-        return self
+    public let value: Float
+    
+    public init(floatLiteral value: Float) {
+        self.value = value
     }
     
-    @discardableResult
-    public func priority(_ amount: ConstraintPriorityTarget) -> ConstraintMakerFinalizable {
-        self.description.priority = amount
-        return self
+    public init(_ value: Float) {
+        self.value = value
     }
     
-    @available(*, deprecated:3.0, message:"Use priority(.required) instead.")
-    @discardableResult
-    public func priorityRequired() -> ConstraintMakerFinalizable {
-        return self.priority(.required)
+    public static var required: ConstraintPriority {
+        return 1000.0
     }
     
-    @available(*, deprecated:3.0, message:"Use priority(.high) instead.")
-    @discardableResult
-    public func priorityHigh() -> ConstraintMakerFinalizable {
-        return self.priority(.high)
+    public static var high: ConstraintPriority {
+        return 750.0
     }
     
-    @available(*, deprecated:3.0, message:"Use priority(.medium) instead.")
-    @discardableResult
-    public func priorityMedium() -> ConstraintMakerFinalizable {
-        return self.priority(.medium)
+    public static var medium: ConstraintPriority {
+        #if os(OSX)
+            return 501.0
+        #else
+            return 500.0
+        #endif
+        
     }
     
-    @available(*, deprecated:3.0, message:"Use priority(.low) instead.")
-    @discardableResult
-    public func priorityLow() -> ConstraintMakerFinalizable {
-        return self.priority(.low)
+    public static var low: ConstraintPriority {
+        return 250.0
+    }
+    
+    public static func ==(lhs: ConstraintPriority, rhs: ConstraintPriority) -> Bool {
+        return lhs.value == rhs.value
     }
 }

@@ -33,6 +33,7 @@
 		EE235FC31C5785DC00C08960 /* ConstraintLayoutSupportDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235FBF1C5785DC00C08960 /* ConstraintLayoutSupportDSL.swift */; };
 		EE235FC81C5785E200C08960 /* ConstraintView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235FC61C5785E200C08960 /* ConstraintView+Extensions.swift */; };
 		EE4910991B19A40200A54F1F /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBCC9D819CC627D0083B827 /* SnapKit.framework */; };
+		EE6087751E4F133E0029CF84 /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6087741E4F133E0029CF84 /* ConstraintPriority.swift */; };
 		EE6898CB1DA7B3A100D47F33 /* LayoutConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6898CA1DA7B3A100D47F33 /* LayoutConstraintItem.swift */; };
 		EECDB3741AC0C9B6006BBC11 /* SnapKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EECDB3661AC0C95C006BBC11 /* SnapKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EECDB3931AC0CB52006BBC11 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB36A1AC0C95C006BBC11 /* Tests.swift */; };
@@ -71,6 +72,7 @@
 		EE235FBE1C5785DC00C08960 /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintViewDSL.swift; sourceTree = "<group>"; };
 		EE235FBF1C5785DC00C08960 /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
 		EE235FC61C5785E200C08960 /* ConstraintView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConstraintView+Extensions.swift"; sourceTree = "<group>"; };
+		EE6087741E4F133E0029CF84 /* ConstraintPriority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintPriority.swift; sourceTree = "<group>"; };
 		EE6898CA1DA7B3A100D47F33 /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutConstraintItem.swift; sourceTree = "<group>"; };
 		EE94F6081AC0F10A008767FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EE94F60A1AC0F10F008767FF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -187,6 +189,7 @@
 				EE235F6B1C5785C600C08960 /* ConstraintItem.swift */,
 				EE235F6C1C5785C600C08960 /* LayoutConstraint.swift */,
 				EE6898CA1DA7B3A100D47F33 /* LayoutConstraintItem.swift */,
+				EE6087741E4F133E0029CF84 /* ConstraintPriority.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				EE235FB51C5785D400C08960 /* ConstraintMakerEditable.swift in Sources */,
 				EEF68FBC1D78653000980C26 /* ConstraintLayoutGuide.swift in Sources */,
 				EE235FAC1C5785D400C08960 /* ConstraintMaker.swift in Sources */,
+				EE6087751E4F133E0029CF84 /* ConstraintPriority.swift in Sources */,
 				EE235F941C5785CE00C08960 /* ConstraintRelatableTarget.swift in Sources */,
 				EEF68FA61D784A5300980C26 /* ConstraintDSL.swift in Sources */,
 				EE235FBB1C5785D400C08960 /* ConstraintMakerExtendable.swift in Sources */,
@@ -506,6 +510,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.snapkit.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_BUNDLE_PACKAGE_TYPE = FMWK;
 				PRODUCT_NAME = SnapKit;
+				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -525,6 +530,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.snapkit.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_BUNDLE_PACKAGE_TYPE = FMWK;
 				PRODUCT_NAME = SnapKit;
+				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VERSIONING_SYSTEM = "apple-generic";
 			};

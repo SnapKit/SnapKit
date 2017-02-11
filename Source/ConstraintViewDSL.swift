@@ -74,7 +74,7 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
             return self.view.contentCompressionResistancePriority(for: .horizontal)
         }
         set {
-            self.view.setContentHuggingPriority(newValue, for: .horizontal)
+            self.view.setContentCompressionResistancePriority(newValue, for: .horizontal)
         }
     }
     
