@@ -46,7 +46,16 @@ public final class Constraint {
           self.updateConstantAndPriorityIfNeeded()
         }
     }
+  
     public var layoutConstraints: [LayoutConstraint]
+    
+    public var activated: Bool {
+        return layoutConstraints.filter{ !$0.isActive }.isEmpty
+    }
+    
+    public var deactivated: Bool {
+        return layoutConstraints.filter{ $0.isActive }.isEmpty
+    }
 
     // MARK: Initialization
 
