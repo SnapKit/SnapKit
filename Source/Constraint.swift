@@ -47,7 +47,16 @@ public final class Constraint {
         }
     }
     public var layoutConstraints: [LayoutConstraint]
-
+    
+    public var isActive: Bool {
+        for layoutConstraint in self.layoutConstraints {
+            if layoutConstraint.isActive {
+                return true
+            }
+        }
+        return false
+    }
+    
     // MARK: Initialization
 
     internal init(from: ConstraintItem,
