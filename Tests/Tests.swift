@@ -539,5 +539,10 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(self.container.snp_constraints.count, 1, "Should have 1 constraint")
         XCTAssertEqual(self.container.snp_constraints.first?.priority, ConstraintPriority.low.value + 1)
     }
-    
+
+    func testPriorityStride() {
+        let highPriority: ConstraintPriority = .high
+        let higherPriority: ConstraintPriority = .high + 1
+        XCTAssertEqual(higherPriority.value, highPriority.value + 1)
+    }
 }
