@@ -1,0 +1,7 @@
+platform :ios, '8.0'
+use_frameworks!
+
+target 'SnapkitDemo' do
+pod 'SnapKit', '~> 0.16.0'
+
+end
