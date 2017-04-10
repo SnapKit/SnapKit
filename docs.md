@@ -175,9 +175,9 @@ You can also use other primitives and structs to build your constraints, like so
 ```
 make.top.equalTo(42)
 make.height.equalTo(20)
-make.size.equalTo(CGSizeMake(50, 100))
-make.edges.equalTo(UIEdgeInsetsMake(10, 0, 10, 0))
-make.left.equalTo(view).offset(UIEdgeInsetsMake(10, 0, 10, 0))
+make.size.equalTo(CGSize(width: 50, height: 100))
+make.edges.equalTo(UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
+make.left.equalTo(view).offset(UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
 ```
 
 ### Learn to prioritize
@@ -202,7 +202,7 @@ make.edges.equalTo(view2);
 
 // make top = superview.top + 5, left = superview.left + 10,
 //      bottom = superview.bottom - 15, right = superview.right - 20
-make.edges.equalTo(superview).inset(UIEdgeInsetsMake(5, 10, 15, 20))
+make.edges.equalTo(superview).inset(UIEdgeInsets(top: 5, left: 10, bottom: 15, right: 20))
 ```
 
 #### size
@@ -211,8 +211,8 @@ make.edges.equalTo(superview).inset(UIEdgeInsetsMake(5, 10, 15, 20))
 // make width and height greater than or equal to titleLabel
 make.size.greaterThanOrEqualTo(titleLabel)
 
-// make width = superview.width + 100, height = superview.height - 50
-make.size.equalTo(superview).offset(CGSizeMake(100, -50))
+// make width = superview.width + 100, height = superview.height + 100
+make.size.equalTo(superview).offset(100)
 ```
 
 #### center
@@ -221,8 +221,8 @@ make.size.equalTo(superview).offset(CGSizeMake(100, -50))
 // make centerX and centerY = button1
 make.center.equalTo(button1)
 
-// make centerX = superview.centerX - 5, centerY = superview.centerY + 10
-make.center.equalTo(superview).offset(CGPointMake(-5, 10))
+// make centerX = superview.centerX + 5, centerY = superview.centerY + 5
+make.center.equalTo(superview).offset(5)
 ```
 
 You can chain view attributes for increased readability:
