@@ -542,7 +542,7 @@ class SnapKitTests: XCTestCase {
 
     func testPriorityStride() {
         let highPriority: ConstraintPriority = .high
-        let higherPriority: ConstraintPriority = .high + 1
+        let higherPriority: ConstraintPriority = ConstraintPriority.high.advanced(by: 1)
         XCTAssertEqual(higherPriority.value, highPriority.value + 1)
     }
 }

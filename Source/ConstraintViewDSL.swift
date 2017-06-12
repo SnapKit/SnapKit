@@ -53,37 +53,37 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
     
     public var contentHuggingHorizontalPriority: Float {
         get {
-            return self.view.contentHuggingPriority(for: .horizontal)
+            return self.view.contentHuggingPriority(for: .horizontal).rawValue
         }
         set {
-            self.view.setContentHuggingPriority(newValue, for: .horizontal)
+            self.view.setContentHuggingPriority(UILayoutPriority(rawValue: newValue), for: .horizontal)
         }
     }
     
     public var contentHuggingVerticalPriority: Float {
         get {
-            return self.view.contentHuggingPriority(for: .vertical)
+            return self.view.contentHuggingPriority(for: .vertical).rawValue
         }
         set {
-            self.view.setContentHuggingPriority(newValue, for: .vertical)
+            self.view.setContentHuggingPriority(UILayoutPriority(rawValue: newValue), for: .vertical)
         }
     }
     
     public var contentCompressionResistanceHorizontalPriority: Float {
         get {
-            return self.view.contentCompressionResistancePriority(for: .horizontal)
+            return self.view.contentCompressionResistancePriority(for: .horizontal).rawValue
         }
         set {
-            self.view.setContentCompressionResistancePriority(newValue, for: .horizontal)
+            self.view.setContentCompressionResistancePriority(UILayoutPriority(rawValue: newValue), for: .horizontal)
         }
     }
     
     public var contentCompressionResistanceVerticalPriority: Float {
         get {
-            return self.view.contentCompressionResistancePriority(for: .vertical)
+            return self.view.contentCompressionResistancePriority(for: .vertical).rawValue
         }
         set {
-            self.view.setContentCompressionResistancePriority(newValue, for: .vertical)
+            self.view.setContentCompressionResistancePriority(UILayoutPriority(rawValue: newValue), for: .vertical)
         }
     }
     
