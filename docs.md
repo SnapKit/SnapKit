@@ -301,3 +301,29 @@ func changeButtonPosition() {
   }
 }
 ```
+
+### Snap view to topLayoutGuide and bottomLayoutGuide
+ 
+ `topLayoutGuide.snp.bottom` is similar to `topLayoutGuide.bottomAnchor` and you can also use `bottomLayoutGuide.snp.top` to align view on top of UITabBar.
+ 
+ ```swift
+ import SnapKit
+ 
+ class MyViewController: UIVewController {
+     
+     lazy var tableView = UITableView()
+     
+     override func viewDidLoad() {
+         super.viewDidLoad()
+ 
+         self.view.addSubview(tableView)
+         tableView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(topLayoutGuide.snp.bottom)
+            make.left.equalTo(view)
+            make.right.equalTo(view)
+            make.bottom.equalTo(bottomLayoutGuide.snp.top)
+         }
+     }
+ 
+ }
+ ```
