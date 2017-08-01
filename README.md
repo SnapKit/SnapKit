@@ -119,6 +119,30 @@ class MyViewController: UIViewController {
 }
 ```
 
+### Snap view to topLayoutGuide and bottomLayoutGuide
+
+```swift
+import SnapKit
+
+class MyViewController: UIVewController {
+    
+    lazy var tableView = UITableView()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.view.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) -> Void in
+           make.top.equalTo(topLayoutGuide.snp.bottom)
+           make.left.equalTo(view)
+           make.right.equalTo(view)
+           make.bottom.equalTo(bottomLayoutGuide.snp.top)
+        }
+    }
+
+}
+``` 
+
 ### Resources
 
 - [Documentation](http://snapkit.io/docs/)
