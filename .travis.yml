@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode8
+osx_image: xcode9
 
 env:
   - ACTION=test  PLATFORM=Mac     DESTINATION='platform=OS X'
