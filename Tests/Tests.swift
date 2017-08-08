@@ -395,7 +395,7 @@ class SnapKitTests: XCTestCase {
         let constraints = view.snp_constraints as! [NSLayoutConstraint]
 
         // no guarantee which order the constraints are in, but we should test their couple
-        let widthHeight = (NSLayoutAttributeGeneric.width.rawValue, NSLayoutAttributeGeneric.height.rawValue)
+        let widthHeight = (LayoutAttribute.width.rawValue, LayoutAttribute.height.rawValue)
         let heightWidth = (widthHeight.1, widthHeight.0)
         let firstSecond = (constraints[0].firstAttribute.rawValue, constraints[1].firstAttribute.rawValue)
 
@@ -437,8 +437,8 @@ class SnapKitTests: XCTestCase {
     }
     
     func testEdgesToEdges() {
-        var fromAttributes = Set<NSLayoutAttributeGeneric>()
-        var toAttributes = Set<NSLayoutAttributeGeneric>()
+        var fromAttributes = Set<LayoutAttribute>()
+        var toAttributes = Set<LayoutAttribute>()
         
         let view = View()
         self.container.addSubview(view)

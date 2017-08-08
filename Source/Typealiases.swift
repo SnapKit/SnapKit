@@ -10,13 +10,13 @@ import Foundation
 
 #if os(iOS) || os(tvOS)
     import UIKit
-    typealias NSLayoutRelationGeneric = NSLayoutRelation
-    typealias NSLayoutAttributeGeneric = NSLayoutAttribute
-    typealias UILayoutPriorityGeneric = UILayoutPriority
+    typealias LayoutRelation = NSLayoutRelation
+    typealias LayoutAttribute = NSLayoutAttribute
+    typealias LayoutPriority = UILayoutPriority
 #else
     import AppKit
-    typealias NSLayoutRelationGeneric = NSLayoutConstraint.Relation
-    typealias NSLayoutAttributeGeneric = NSLayoutConstraint.Attribute
-    typealias UILayoutPriorityGeneric = NSLayoutConstraint.Priority
+    typealias LayoutRelation = NSLayoutConstraint.Relation
+    typealias LayoutAttribute = NSLayoutConstraint.Attribute
+    typealias LayoutPriority = NSLayoutConstraint.Priority
 #endif
 

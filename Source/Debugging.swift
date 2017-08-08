@@ -77,7 +77,7 @@ public extension LayoutConstraint {
     
 }
 
-private func descriptionForRelation(_ relation: NSLayoutRelationGeneric) -> String {
+private func descriptionForRelation(_ relation: LayoutRelation) -> String {
     switch relation {
     case .equal:                return "=="
     case .greaterThanOrEqual:   return ">="
@@ -85,7 +85,7 @@ private func descriptionForRelation(_ relation: NSLayoutRelationGeneric) -> Stri
     }
 }
 
-private func descriptionForAttribute(_ attribute: NSLayoutAttributeGeneric) -> String {
+private func descriptionForAttribute(_ attribute: LayoutAttribute) -> String {
     #if os(iOS) || os(tvOS)
         switch attribute {
         case .notAnAttribute:       return "notAnAttribute"
