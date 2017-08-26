@@ -395,7 +395,7 @@ class SnapKitTests: XCTestCase {
         let constraints = view.snp_constraints as! [NSLayoutConstraint]
 
         // no guarantee which order the constraints are in, but we should test their couple
-        let widthHeight = (LayoutAttribute.width.rawValue, LayoutAttribute.height.rawValue)
+        let widthHeight = (NSLayoutAttribute.width.rawValue, NSLayoutAttribute.height.rawValue)
         let heightWidth = (widthHeight.1, widthHeight.0)
         let firstSecond = (constraints[0].firstAttribute.rawValue, constraints[1].firstAttribute.rawValue)
 
@@ -416,11 +416,10 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
         
         
-        if let constraints = self.container.snp_constraints as? [NSLayoutConstraint], constraints.count > 0 {
+        let constraints = self.container.snp_constraints as! [NSLayoutConstraint]
         
-            XCTAssertEqual(constraints[0].constant, 50, "Should be 50")
-            XCTAssertEqual(constraints[1].constant, 50, "Should be 50")
-        }
+        XCTAssertEqual(constraints[0].constant, 50, "Should be 50")
+        XCTAssertEqual(constraints[1].constant, 50, "Should be 50")
     }
     
     func testConstraintIdentifier() {
@@ -437,8 +436,8 @@ class SnapKitTests: XCTestCase {
     }
     
     func testEdgesToEdges() {
-        var fromAttributes = Set<LayoutAttribute>()
-        var toAttributes = Set<LayoutAttribute>()
+        var fromAttributes = Set<NSLayoutAttribute>()
+        var toAttributes = Set<NSLayoutAttribute>()
         
         let view = View()
         self.container.addSubview(view)
@@ -543,7 +542,7 @@ class SnapKitTests: XCTestCase {
 
     func testPriorityStride() {
         let highPriority: ConstraintPriority = .high
-        let higherPriority: ConstraintPriority = ConstraintPriority.high.advanced(by: 1)
+        let higherPriority: ConstraintPriority = .high + 1
         XCTAssertEqual(higherPriority.value, highPriority.value + 1)
     }
 }
