@@ -39,10 +39,10 @@ public protocol ConstraintDSL {
 extension ConstraintDSL {
     
     public func setLabel(_ value: String?) {
-        objc_setAssociatedObject(self.target, &labelKey, value, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+        objc_setAssociatedObject(self.target as Any, &labelKey, value, .OBJC_ASSOCIATION_COPY_NONATOMIC)
     }
     public func label() -> String? {
-        return objc_getAssociatedObject(self.target, &labelKey) as? String
+        return objc_getAssociatedObject(self.target as Any, &labelKey) as? String
     }
     
 }

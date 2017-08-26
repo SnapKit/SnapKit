@@ -33,7 +33,7 @@ internal enum ConstraintRelation : Int {
     case lessThanOrEqual
     case greaterThanOrEqual
     
-    internal var layoutRelation: NSLayoutRelation {
+    internal var layoutRelation: LayoutRelation {
         get {
             switch(self) {
             case .equal:
