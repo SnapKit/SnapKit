@@ -143,6 +143,26 @@ public class ConstraintMaker {
         return self.makeExtendableWithAttributes(.centerWithinMargins)
     }
     
+    @discardableResult
+    public func under(_ other: ConstraintView, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        return top.equalTo(other.snp.bottom, file, line)
+    }
+    
+    @discardableResult
+    public func above(_ other: ConstraintView, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        return bottom.equalTo(other.snp.top, file, line)
+    }
+    
+    @discardableResult
+    public func left(of other: ConstraintView, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        return right.equalTo(other.snp.left, file, line)
+    }
+    
+    @discardableResult
+    public func right(of other: ConstraintView, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        return left.equalTo(other.snp.right, file, line)
+    }
+    
     private let item: LayoutConstraintItem
     private var descriptions = [ConstraintDescription]()
     
