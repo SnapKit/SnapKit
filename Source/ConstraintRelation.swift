@@ -33,6 +33,7 @@ internal enum ConstraintRelation : Int {
     case lessThanOrEqual
     case greaterThanOrEqual
     
+    #if os(iOS) || os(tvOS)
     internal var layoutRelation: NSLayoutRelation {
         get {
             switch(self) {
@@ -45,4 +46,18 @@ internal enum ConstraintRelation : Int {
             }
         }
     }
+    #else
+    internal var layoutRelation: NSLayoutConstraint.Relation {
+        get {
+            switch(self) {
+            case .equal:
+                return .equal
+            case .lessThanOrEqual:
+                return .lessThanOrEqual
+            case .greaterThanOrEqual:
+                return .greaterThanOrEqual
+            }
+        }
+    }
+    #endif
 }

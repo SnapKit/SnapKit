@@ -89,8 +89,8 @@ public final class Constraint {
 
         for layoutFromAttribute in layoutFromAttributes {
             // get layout to attribute
-            let layoutToAttribute: NSLayoutAttribute
             #if os(iOS) || os(tvOS)
+                let layoutToAttribute: NSLayoutAttribute
                 if layoutToAttributes.count > 0 {
                     if self.from.attributes == .edges && self.to.attributes == .margins {
                         switch layoutFromAttribute {
@@ -131,6 +131,7 @@ public final class Constraint {
                     }
                 }
             #else
+                let layoutToAttribute: NSLayoutConstraint.Attribute
                 if self.from.attributes == self.to.attributes {
                     layoutToAttribute = layoutFromAttribute
                 } else if layoutToAttributes.count > 0 {
@@ -166,7 +167,12 @@ public final class Constraint {
             layoutConstraint.label = self.label
 
             // set priority
-            layoutConstraint.priority = UILayoutPriority(rawValue: self.priority.constraintPriorityTargetValue)
+            #if os(iOS) || os(tvOS)
+                layoutConstraint.priority = UILayoutPriority(rawValue: self.priority.constraintPriorityTargetValue)
+            #else
+                layoutConstraint.priority = NSLayoutConstraint.Priority(rawValue: self.priority.constraintPriorityTargetValue)
+            #endif
+
 
             // set constraint
             layoutConstraint.constraint = self
@@ -244,7 +250,11 @@ public final class Constraint {
 
             let requiredPriority = ConstraintPriority.required.value
             if (layoutConstraint.priority.rawValue < requiredPriority), (self.priority.constraintPriorityTargetValue != requiredPriority) {
-                layoutConstraint.priority = UILayoutPriority(rawValue: self.priority.constraintPriorityTargetValue)
+                #if os(iOS) || os(tvOS)
+                    layoutConstraint.priority = UILayoutPriority(rawValue: self.priority.constraintPriorityTargetValue)
+                #else
+                    layoutConstraint.priority = NSLayoutConstraint.Priority(rawValue: self.priority.constraintPriorityTargetValue)
+                #endif
             }
         }
     }
