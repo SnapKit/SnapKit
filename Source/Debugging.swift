@@ -66,7 +66,7 @@ public extension LayoutConstraint {
             }
         }
         
-        if self.priority != 1000.0 {
+        if self.priority.rawValue != 1000.0 {
             description += " ^\(self.priority)"
         }
         
@@ -77,6 +77,7 @@ public extension LayoutConstraint {
     
 }
 
+#if os(iOS) || os(tvOS)
 private func descriptionForRelation(_ relation: NSLayoutRelation) -> String {
     switch relation {
     case .equal:                return "=="
@@ -86,7 +87,6 @@ private func descriptionForRelation(_ relation: NSLayoutRelation) -> String {
 }
 
 private func descriptionForAttribute(_ attribute: NSLayoutAttribute) -> String {
-    #if os(iOS) || os(tvOS)
         switch attribute {
         case .notAnAttribute:       return "notAnAttribute"
         case .top:                  return "top"
@@ -110,24 +110,34 @@ private func descriptionForAttribute(_ attribute: NSLayoutAttribute) -> String {
         case .centerXWithinMargins: return "centerXWithinMargins"
         case .centerYWithinMargins: return "centerYWithinMargins"
         }
-    #else
-        switch attribute {
-        case .notAnAttribute:       return "notAnAttribute"
-        case .top:                  return "top"
-        case .left:                 return "left"
-        case .bottom:               return "bottom"
-        case .right:                return "right"
-        case .leading:              return "leading"
-        case .trailing:             return "trailing"
-        case .width:                return "width"
-        case .height:               return "height"
-        case .centerX:              return "centerX"
-        case .centerY:              return "centerY"
-        case .lastBaseline:         return "lastBaseline"
-        case .firstBaseline:        return "firstBaseline"
-        }
-    #endif
 }
+#else
+private func descriptionForRelation(_ relation: NSLayoutConstraint.Relation) -> String {
+    switch relation {
+    case .equal:                return "=="
+    case .greaterThanOrEqual:   return ">="
+    case .lessThanOrEqual:      return "<="
+    }
+}
+    
+private func descriptionForAttribute(_ attribute: NSLayoutConstraint.Attribute) -> String {
+    switch attribute {
+    case .notAnAttribute:       return "notAnAttribute"
+    case .top:                  return "top"
+    case .left:                 return "left"
+    case .bottom:               return "bottom"
+    case .right:                return "right"
+    case .leading:              return "leading"
+    case .trailing:             return "trailing"
+    case .width:                return "width"
+    case .height:               return "height"
+    case .centerX:              return "centerX"
+    case .centerY:              return "centerY"
+    case .lastBaseline:         return "lastBaseline"
+    case .firstBaseline:        return "firstBaseline"
+    }
+}
+#endif
 
 private func conditionalOptional<T>(from object: Optional<T>) -> Optional<T> {
     return object

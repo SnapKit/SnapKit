@@ -102,7 +102,7 @@ internal struct ConstraintAttributes : OptionSet {
     
     @available(iOS 8.0, *)
     internal static var centerWithinMargins: ConstraintAttributes { return self.init(786432) }
-    
+    #if os(iOS) || os(tvOS)
     internal var layoutAttributes:[NSLayoutAttribute] {
         var attrs = [NSLayoutAttribute]()
         if (self.contains(ConstraintAttributes.left)) {
@@ -139,38 +139,76 @@ internal struct ConstraintAttributes : OptionSet {
             attrs.append(.lastBaseline)
         }
         
-        #if os(iOS) || os(tvOS)
-            if (self.contains(ConstraintAttributes.firstBaseline)) {
-                attrs.append(.firstBaseline)
-            }
-            if (self.contains(ConstraintAttributes.leftMargin)) {
-                attrs.append(.leftMargin)
-            }
-            if (self.contains(ConstraintAttributes.rightMargin)) {
-                attrs.append(.rightMargin)
-            }
-            if (self.contains(ConstraintAttributes.topMargin)) {
-                attrs.append(.topMargin)
-            }
-            if (self.contains(ConstraintAttributes.bottomMargin)) {
-                attrs.append(.bottomMargin)
-            }
-            if (self.contains(ConstraintAttributes.leadingMargin)) {
-                attrs.append(.leadingMargin)
-            }
-            if (self.contains(ConstraintAttributes.trailingMargin)) {
-                attrs.append(.trailingMargin)
-            }
-            if (self.contains(ConstraintAttributes.centerXWithinMargins)) {
-                attrs.append(.centerXWithinMargins)
-            }
-            if (self.contains(ConstraintAttributes.centerYWithinMargins)) {
-                attrs.append(.centerYWithinMargins)
-            }
-        #endif
+        if (self.contains(ConstraintAttributes.firstBaseline)) {
+            attrs.append(.firstBaseline)
+        }
+        if (self.contains(ConstraintAttributes.leftMargin)) {
+            attrs.append(.leftMargin)
+        }
+        if (self.contains(ConstraintAttributes.rightMargin)) {
+            attrs.append(.rightMargin)
+        }
+        if (self.contains(ConstraintAttributes.topMargin)) {
+            attrs.append(.topMargin)
+        }
+        if (self.contains(ConstraintAttributes.bottomMargin)) {
+            attrs.append(.bottomMargin)
+        }
+        if (self.contains(ConstraintAttributes.leadingMargin)) {
+            attrs.append(.leadingMargin)
+        }
+        if (self.contains(ConstraintAttributes.trailingMargin)) {
+            attrs.append(.trailingMargin)
+        }
+        if (self.contains(ConstraintAttributes.centerXWithinMargins)) {
+            attrs.append(.centerXWithinMargins)
+        }
+        if (self.contains(ConstraintAttributes.centerYWithinMargins)) {
+            attrs.append(.centerYWithinMargins)
+        }
         
         return attrs
     }
+    #else
+    internal var layoutAttributes:[NSLayoutConstraint.Attribute] {
+        var attrs = [NSLayoutConstraint.Attribute]()
+        if (self.contains(ConstraintAttributes.left)) {
+            attrs.append(.left)
+        }
+        if (self.contains(ConstraintAttributes.top)) {
+            attrs.append(.top)
+        }
+        if (self.contains(ConstraintAttributes.right)) {
+            attrs.append(.right)
+        }
+        if (self.contains(ConstraintAttributes.bottom)) {
+            attrs.append(.bottom)
+        }
+        if (self.contains(ConstraintAttributes.leading)) {
+            attrs.append(.leading)
+        }
+        if (self.contains(ConstraintAttributes.trailing)) {
+            attrs.append(.trailing)
+        }
+        if (self.contains(ConstraintAttributes.width)) {
+            attrs.append(.width)
+        }
+        if (self.contains(ConstraintAttributes.height)) {
+            attrs.append(.height)
+        }
+        if (self.contains(ConstraintAttributes.centerX)) {
+            attrs.append(.centerX)
+        }
+        if (self.contains(ConstraintAttributes.centerY)) {
+            attrs.append(.centerY)
+        }
+        if (self.contains(ConstraintAttributes.lastBaseline)) {
+            attrs.append(.lastBaseline)
+        }
+        
+        return attrs
+    }
+    #endif
 }
 
 internal func + (left: ConstraintAttributes, right: ConstraintAttributes) -> ConstraintAttributes {
