@@ -3,7 +3,3 @@ email: robertpayne@me.com
 description: Swift Auto Layout DSL for iOS and OS X
 url: "http://www.snapkit.io/"
 github_username:  SnapKit
-
-markdown: redcarpet
-redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "tables", "superscript", "with_toc_data"]
