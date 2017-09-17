@@ -6,12 +6,8 @@ id: docs
 ## Requirements
 
 - iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.0+
-- Xcode 8.0+
-- Swift 3.0+
-
-## Migration Guides
-
-- [SnapKit 3.0 Migration Guide](https://github.com/SnapKit/SnapKit/blob/master/Documentation/SnapKit%203.0%20Migration%20Guide.md)
+- Xcode 9.0+
+- Swift 4.0+
 
 ## Communication
 
@@ -32,7 +28,7 @@ id: docs
 $ gem install cocoapods
 ```
 
-> CocoaPods 1.1.0+ is required to build SnapKit 3.0.0+.
+> CocoaPods 1.1.0+ is required to build SnapKit 4.0.0+.
 
 To integrate SnapKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
@@ -42,7 +38,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'SnapKit', '~> 3.0'
+    pod 'SnapKit', '~> 4.0'
 end
 ```
 
@@ -66,7 +62,7 @@ $ brew install carthage
 To integrate SnapKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "SnapKit/SnapKit" ~> 3.0
+github "SnapKit/SnapKit" ~> 4.0
 ```
 
 Run `carthage update` to build the framework and drag the built `SnapKit.framework` into your Xcode project.
@@ -306,24 +302,47 @@ func changeButtonPosition() {
  
  `topLayoutGuide.snp.bottom` is similar to `topLayoutGuide.bottomAnchor` and you can also use `bottomLayoutGuide.snp.top` to align view on top of UITabBar.
  
- ```swift
- import SnapKit
- 
- class MyViewController: UIVewController {
-     
-     lazy var tableView = UITableView()
-     
-     override func viewDidLoad() {
-         super.viewDidLoad()
- 
-         self.view.addSubview(tableView)
-         tableView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(topLayoutGuide.snp.bottom)
-            make.left.equalTo(view)
-            make.right.equalTo(view)
-            make.bottom.equalTo(bottomLayoutGuide.snp.top)
-         }
-     }
- 
- }
- ```
+```swift
+import SnapKit
+
+class MyViewController: UIVewController {
+    
+    lazy var tableView = UITableView()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.view.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) -> Void in
+           make.top.equalTo(topLayoutGuide.snp.bottom)
+           make.left.equalTo(view)
+           make.right.equalTo(view)
+           make.bottom.equalTo(bottomLayoutGuide.snp.top)
+        }
+    }
+
+}
+```
+
+
+ ### Snap view to safe layout guide
+
+Just like `topLayoutGuide` and `bottomLayoutGuide` using iPhone X's new `safeAreaLayoutGuide` is easy:
+
+```swift
+import SnapKit
+
+class MyViewController: UIVewController {
+    
+    lazy var tableView = UITableView()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.view.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) -> Void in
+           make.top.equalTo(safeAreaLayoutGuide.snp.bottom)
+        }
+    }
+
+}
