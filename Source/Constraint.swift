@@ -89,7 +89,7 @@ public final class Constraint {
 
         for layoutFromAttribute in layoutFromAttributes {
             // get layout to attribute
-            let layoutToAttribute: NSLayoutAttribute
+            let layoutToAttribute: LayoutAttribute
             #if os(iOS) || os(tvOS)
                 if layoutToAttributes.count > 0 {
                     if self.from.attributes == .edges && self.to.attributes == .margins {
@@ -166,7 +166,7 @@ public final class Constraint {
             layoutConstraint.label = self.label
 
             // set priority
-            layoutConstraint.priority = UILayoutPriority(rawValue: self.priority.constraintPriorityTargetValue)
+            layoutConstraint.priority = LayoutPriority(rawValue: self.priority.constraintPriorityTargetValue)
 
             // set constraint
             layoutConstraint.constraint = self
@@ -244,7 +244,7 @@ public final class Constraint {
 
             let requiredPriority = ConstraintPriority.required.value
             if (layoutConstraint.priority.rawValue < requiredPriority), (self.priority.constraintPriorityTargetValue != requiredPriority) {
-                layoutConstraint.priority = UILayoutPriority(rawValue: self.priority.constraintPriorityTargetValue)
+                layoutConstraint.priority = LayoutPriority(rawValue: self.priority.constraintPriorityTargetValue)
             }
         }
     }

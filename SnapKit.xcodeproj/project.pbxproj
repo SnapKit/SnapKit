@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DBA080E1F1FAD66001CFED4 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA080D1F1FAD66001CFED4 /* Typealiases.swift */; };
 		EE235F5F1C5785BC00C08960 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235F5E1C5785BC00C08960 /* Debugging.swift */; };
 		EE235F6D1C5785C600C08960 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235F621C5785C600C08960 /* Constraint.swift */; };
 		EE235F701C5785C600C08960 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235F631C5785C600C08960 /* ConstraintDescription.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DBA080D1F1FAD66001CFED4 /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		537DCE9A1C35CD4100B5B899 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		EE235F5E1C5785BC00C08960 /* Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debugging.swift; sourceTree = "<group>"; };
 		EE235F621C5785C600C08960 /* Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				EE235F621C5785C600C08960 /* Constraint.swift */,
+				2DBA080D1F1FAD66001CFED4 /* Typealiases.swift */,
 				EE235F631C5785C600C08960 /* ConstraintDescription.swift */,
 				EE235F641C5785C600C08960 /* ConstraintInsets.swift */,
 				EE235F651C5785C600C08960 /* ConstraintConfig.swift */,
@@ -373,6 +376,7 @@
 				EEF68FA61D784A5300980C26 /* ConstraintDSL.swift in Sources */,
 				EE235FBB1C5785D400C08960 /* ConstraintMakerExtendable.swift in Sources */,
 				EE235F881C5785C600C08960 /* ConstraintItem.swift in Sources */,
+				2DBA080E1F1FAD66001CFED4 /* Typealiases.swift in Sources */,
 				EE235F9A1C5785CE00C08960 /* ConstraintPriorityTarget.swift in Sources */,
 				EEF68FC01D7865AA00980C26 /* ConstraintLayoutSupport.swift in Sources */,
 				EEF68FB01D784FB100980C26 /* ConstraintLayoutGuide+Extensions.swift in Sources */,
