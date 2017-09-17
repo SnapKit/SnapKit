@@ -179,8 +179,8 @@
 		EE235F5C1C5785A400C08960 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EE235F621C5785C600C08960 /* Constraint.swift */,
 				2DBA080D1F1FAD66001CFED4 /* Typealiases.swift */,
+				EE235F621C5785C600C08960 /* Constraint.swift */,
 				EE235F631C5785C600C08960 /* ConstraintDescription.swift */,
 				EE235F641C5785C600C08960 /* ConstraintInsets.swift */,
 				EE235F651C5785C600C08960 /* ConstraintConfig.swift */,
