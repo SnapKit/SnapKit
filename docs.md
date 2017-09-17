@@ -314,10 +314,10 @@ class MyViewController: UIVewController {
 
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) -> Void in
-           make.top.equalTo(topLayoutGuide.snp.bottom)
+           make.top.equalTo(self.topLayoutGuide.snp.bottom)
            make.left.equalTo(view)
            make.right.equalTo(view)
-           make.bottom.equalTo(bottomLayoutGuide.snp.top)
+           make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
         }
     }
 
@@ -341,7 +341,7 @@ class MyViewController: UIVewController {
 
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) -> Void in
-           make.top.equalTo(safeAreaLayoutGuide.snp.bottom)
+           make.top.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
     }
 
