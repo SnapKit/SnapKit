@@ -325,7 +325,7 @@ class MyViewController: UIVewController {
 ```
 
 
- ### Snap view to safe layout guide
+### Snap view to safe layout guide
 
 Just like `topLayoutGuide` and `bottomLayoutGuide` using iPhone X's new `safeAreaLayoutGuide` is easy:
 
