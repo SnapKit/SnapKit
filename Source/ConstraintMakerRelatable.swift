@@ -110,4 +110,41 @@ public class ConstraintMakerRelatable {
         }
         return self.relatedTo(other, relation: .greaterThanOrEqual, file: file, line: line)
     }
+
+    #if os(iOS) || os(tvOS)
+
+    @discardableResult
+    public func equalToSafeArea(_ other: ConstraintRelatableTarget, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+            if let view = other as? ConstraintView {
+                return self.relatedTo(view.safeAreaLayoutGuide, relation: .equal, file: file, line: line)
+            }
+        }
+
+        return self.relatedTo(other, relation: .equal, file: file, line: line)
+    }
+
+    @discardableResult
+    public func lessThanOrEqualToSafeArea(_ other: ConstraintRelatableTarget, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+            if let view = other as? ConstraintView {
+                return self.relatedTo(view.safeAreaLayoutGuide, relation: .lessThanOrEqual, file: file, line: line)
+            }
+        }
+
+        return self.relatedTo(other, relation: .lessThanOrEqual, file: file, line: line)
+    }
+
+    @discardableResult
+    public func greaterThanOrEqualToSafeArea(_ other: ConstraintRelatableTarget, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+            if let view = other as? ConstraintView {
+                return self.relatedTo(view.safeAreaLayoutGuide, relation: .greaterThanOrEqual, file: file, line: line)
+            }
+        }
+
+        return self.relatedTo(other, relation: .greaterThanOrEqual, file: file, line: line)
+    }
+
+    #endif
 }
