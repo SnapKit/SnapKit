@@ -100,6 +100,7 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
     
 }
 
+#if os(iOS) || os(tvOS)
 extension ConstraintViewDSL {
     // MARK: Safe Area
     
@@ -111,3 +112,4 @@ extension ConstraintViewDSL {
         return ConstraintLayoutGuideDSL(guide: self.view.safeAreaLayoutGuide)
     }
 }
+#endif
