@@ -106,7 +106,7 @@ extension ConstraintViewDSL {
     
     @available(iOS 8.0, *)
     public var safeArea: ConstraintAttributesDSL {
-        guard #available(iOS 11.0, *) else {
+        guard #available(iOS 11.0, tvOS 11.0, *) else {
             return self
         }
         return ConstraintLayoutGuideDSL(guide: self.view.safeAreaLayoutGuide)
