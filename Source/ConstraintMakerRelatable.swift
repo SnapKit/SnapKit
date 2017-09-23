@@ -37,16 +37,35 @@ public class ConstraintMakerRelatable {
     }
     
     internal func relatedTo(_ other: ConstraintRelatableTarget, relation: ConstraintRelation, file: String, line: UInt) -> ConstraintMakerEditable {
+        let (related, constant) = self.translate(other, file: file, line: line)
+        
+        let editable = ConstraintMakerEditable(self.description)
+        editable.description.sourceLocation = (file, line)
+        editable.description.relation = relation
+        editable.description.related = related
+        editable.description.constant = constant
+        return editable
+    }
+    
+    private func translate(_ relatableTarget: ConstraintRelatableTarget, file: String, line: UInt) -> (related: ConstraintItem, constant: ConstraintConstantTarget) {
         let related: ConstraintItem
         let constant: ConstraintConstantTarget
         
+        let other: ConstraintRelatableTarget
+        switch relatableTarget {
+        case let safeArea as ConstraintSafeAreaDSL:
+            other = safeArea.relatableTarget
+        default:
+            other = relatableTarget
+        }
+        
         if let other = other as? ConstraintItem {
             guard other.attributes == ConstraintAttributes.none ||
-                  other.attributes.layoutAttributes.count <= 1 ||
-                  other.attributes.layoutAttributes == self.description.attributes.layoutAttributes ||
-                  other.attributes == .edges && self.description.attributes == .margins ||
-                  other.attributes == .margins && self.description.attributes == .edges else {
-                fatalError("Cannot constraint to multiple non identical attributes. (\(file), \(line))");
+                other.attributes.layoutAttributes.count <= 1 ||
+                other.attributes.layoutAttributes == self.description.attributes.layoutAttributes ||
+                other.attributes == .edges && self.description.attributes == .margins ||
+                other.attributes == .margins && self.description.attributes == .edges else {
+                    fatalError("Cannot constraint to multiple non identical attributes. (\(file), \(line))");
             }
             
             related = other
@@ -64,12 +83,7 @@ public class ConstraintMakerRelatable {
             fatalError("Invalid constraint. (\(file), \(line))")
         }
         
-        let editable = ConstraintMakerEditable(self.description)
-        editable.description.sourceLocation = (file, line)
-        editable.description.relation = relation
-        editable.description.related = related
-        editable.description.constant = constant
-        return editable
+        return (related, constant)
     }
     
     @discardableResult

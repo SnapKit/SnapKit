@@ -27,44 +27,40 @@
     import AppKit
 #endif
 
-
-public protocol ConstraintRelatableTarget {
-}
-
-extension Int: ConstraintRelatableTarget {
-}
-
-extension UInt: ConstraintRelatableTarget {
-}
-
-extension Float: ConstraintRelatableTarget {
-}
-
-extension Double: ConstraintRelatableTarget {
-}
-
-extension CGFloat: ConstraintRelatableTarget {
-}
-
-extension CGSize: ConstraintRelatableTarget {
-}
-
-extension CGPoint: ConstraintRelatableTarget {
-}
-
-extension ConstraintInsets: ConstraintRelatableTarget {
-}
-
-extension ConstraintItem: ConstraintRelatableTarget {
-}
-
-extension ConstraintView: ConstraintRelatableTarget {
-}
-
-@available(iOS 9.0, OSX 10.11, *)
-extension ConstraintLayoutGuide: ConstraintRelatableTarget {
-}
-
-extension ConstraintSafeAreaDSL: ConstraintRelatableTarget {
+public struct ConstraintSafeAreaDSL: ConstraintAttributesDSL {
+    internal enum ConstraintType {
+        case view(ConstraintView)
+        @available(iOS 9.0, macOS 10.11, *)
+        case guide(ConstraintLayoutGuide)
+    }
+    
+    public var target: AnyObject? {
+        switch self.constraintType {
+        case .view(let view):
+            return view
+        case .guide(let guide):
+            return guide
+        }
+    }
+    
+    internal let constraintType: ConstraintType
+    internal var relatableTarget: ConstraintRelatableTarget {
+        switch self.constraintType {
+        case .view(let view):
+            return view
+        case .guide(let guide):
+            return guide
+        }
+    }
+    
+    internal init(view: ConstraintView) {
+        self.constraintType = .view(view)
+    }
+    
+    @available(iOS 9.0, macOS 10.11, *)
+    internal init(guide: ConstraintLayoutGuide) {
+        self.constraintType = .guide(guide)
+    }
+    
 }
 

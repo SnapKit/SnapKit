@@ -101,15 +101,15 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
 }
 
 #if os(iOS) || os(tvOS)
+@available(iOS 8.0, *)
 extension ConstraintViewDSL {
     // MARK: Safe Area
     
-    @available(iOS 8.0, *)
-    public var safeArea: ConstraintAttributesDSL {
+    public var safeArea: ConstraintSafeAreaDSL {
         guard #available(iOS 11.0, tvOS 11.0, *) else {
-            return self
+            return ConstraintSafeAreaDSL(view: self.view)
         }
-        return ConstraintLayoutGuideDSL(guide: self.view.safeAreaLayoutGuide)
+        return ConstraintSafeAreaDSL(guide: self.view.safeAreaLayoutGuide)
     }
 }
 #endif

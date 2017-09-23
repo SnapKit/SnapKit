@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2DBA080E1F1FAD66001CFED4 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA080D1F1FAD66001CFED4 /* Typealiases.swift */; };
+		51FD13CC1F76071500B868B8 /* ConstraintSafeAreaDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FD13CB1F76071500B868B8 /* ConstraintSafeAreaDSL.swift */; };
 		EE235F5F1C5785BC00C08960 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235F5E1C5785BC00C08960 /* Debugging.swift */; };
 		EE235F6D1C5785C600C08960 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235F621C5785C600C08960 /* Constraint.swift */; };
 		EE235F701C5785C600C08960 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235F631C5785C600C08960 /* ConstraintDescription.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		2DBA080D1F1FAD66001CFED4 /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		51FD13CB1F76071500B868B8 /* ConstraintSafeAreaDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintSafeAreaDSL.swift; sourceTree = "<group>"; };
 		537DCE9A1C35CD4100B5B899 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		EE235F5E1C5785BC00C08960 /* Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debugging.swift; sourceTree = "<group>"; };
 		EE235F621C5785C600C08960 /* Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				EE235FBE1C5785DC00C08960 /* ConstraintViewDSL.swift */,
 				EEF68F9D1D78492400980C26 /* ConstraintLayoutGuideDSL.swift */,
 				EE235FBF1C5785DC00C08960 /* ConstraintLayoutSupportDSL.swift */,
+				51FD13CB1F76071500B868B8 /* ConstraintSafeAreaDSL.swift */,
 			);
 			name = DSLs;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				EE235FC01C5785DC00C08960 /* ConstraintViewDSL.swift in Sources */,
 				EE235F5F1C5785BC00C08960 /* Debugging.swift in Sources */,
 				EE235FC31C5785DC00C08960 /* ConstraintLayoutSupportDSL.swift in Sources */,
+				51FD13CC1F76071500B868B8 /* ConstraintSafeAreaDSL.swift in Sources */,
 				EE235F7F1C5785C600C08960 /* ConstraintRelation.swift in Sources */,
 				EEF68FB41D784FBA00980C26 /* UILayoutSupport+Extensions.swift in Sources */,
 				EE235F701C5785C600C08960 /* ConstraintDescription.swift in Sources */,
