@@ -186,6 +186,12 @@ Priorities are can be tacked on to the end of a constraint chain like so:
 make.top.equalTo(label.snp.top).priority(600)
 ```
 
+You may also use priority shortcuts: `.low`, `.medium`, `.high`, `.required`.
+
+```swift
+make.top.equalTo(label.snp.top).priority(.medium)
+```
+
 ### Composition, composition, composition
 
 SnapKit also gives you a few convenience methods to create multiple constraints at the same time.
