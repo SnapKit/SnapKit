@@ -216,7 +216,7 @@ public final class Constraint {
 
     @discardableResult
     public func update(priority: ConstraintPriority) -> Constraint {
-        self.description.priority = amount.value
+        self.priority = priority.value
         return self
     }
 
