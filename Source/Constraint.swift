@@ -214,6 +214,12 @@ public final class Constraint {
         return self
     }
 
+    @discardableResult
+    public func update(priority: ConstraintPriority) -> Constraint {
+        self.priority = priority.value
+        return self
+    }
+
     @available(*, deprecated:3.0, message:"Use update(offset: ConstraintOffsetTarget) instead.")
     public func updateOffset(amount: ConstraintOffsetTarget) -> Void { self.update(offset: amount) }
 
