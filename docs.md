@@ -331,7 +331,7 @@ class MyViewController: UIVewController {
 ```
 
 
-### Snap view to safe layout guide
+### Snap view to safeAreaLayoutGuide
 
 Just like `topLayoutGuide` and `bottomLayoutGuide` using iPhone X's new `safeAreaLayoutGuide` is easy:
 
@@ -347,7 +347,7 @@ class MyViewController: UIVewController {
 
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) -> Void in
-           make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+           make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
         }
     }
 
