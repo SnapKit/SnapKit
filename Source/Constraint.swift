@@ -188,6 +188,15 @@ public final class Constraint {
         self.deactivate()
     }
 
+    public func set(isActivated: Bool) {
+        if isActivated {
+            self.activate()
+        }
+        else {
+            self.deactivate()
+        }
+    }
+
     public func activate() {
         self.activateIfNeeded()
     }
