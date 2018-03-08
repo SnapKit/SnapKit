@@ -1,3 +1,4 @@
+// swift-tools-version:4.0
 //
 //  SnapKit
 //
@@ -25,5 +26,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "SnapKit"
+    name: "SnapKit",
+    products: [
+        .library(name: "SnapKit", targets: ["SnapKit"]),
+    ],
+    targets: [
+        .target(name: "SnapKit", path: "Source"),
+        .testTarget(name: "SnapKitTests", dependencies: ["SnapKit"]),
+    ]
 )
