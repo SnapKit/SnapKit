@@ -180,7 +180,7 @@ make.left.equalTo(view).offset(UIEdgeInsets(top: 10, left: 0, bottom: 10, right:
 
 > `.priority` allows you to specify an exact priority
 
-Priorities are can be tacked on to the end of a constraint chain like so:
+Priorities can be tacked on to the end of a constraint chain like so:
 
 ```swift
 make.top.equalTo(label.snp.top).priority(600)
@@ -352,6 +352,24 @@ class MyViewController: UIVewController {
     }
 
 }
+```
+
+### Debug with ease
+> `.labeled` allows you to specify constraint labels for debug logs
+
+Labels can be tacked on to the end of a constraint chain like so:
+
+```swift
+button.snp.makeConstraints { (make) -> Void in
+  make.top.equalTo(otherView).labeled("buttonViewTopConstraint")
+}
+```
+
+Resulting `Unable to simultaneously satisfy constraints.` logs will use constraint labels to clearly identify which constraints need attention:
+
+```
+"<SnapKit.LayoutConstraint:buttonViewTopConstraint@SignUpViewController.swift#311
+UIView:0x7fd98491e4c0.leading == UIView:0x7fd983633880.leading>"
 ```
 
 <br/>
