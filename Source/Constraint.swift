@@ -49,12 +49,23 @@ public final class Constraint {
     public var layoutConstraints: [LayoutConstraint]
     
     public var isActive: Bool {
-        for layoutConstraint in self.layoutConstraints {
-            if layoutConstraint.isActive {
-                return true
+        set {
+            if newValue {
+                activate()
+            }
+            else {
+                deactivate()
             }
         }
-        return false
+        
+        get {
+            for layoutConstraint in self.layoutConstraints {
+                if layoutConstraint.isActive {
+                    return true
+                }
+            }
+            return false
+        }
     }
     
     // MARK: Initialization
@@ -186,15 +197,6 @@ public final class Constraint {
     @available(*, deprecated:3.0, message:"Use deactivate().")
     public func uninstall() {
         self.deactivate()
-    }
-
-    public func set(isActivated: Bool) {
-        if isActivated {
-            self.activate()
-        }
-        else {
-            self.deactivate()
-        }
     }
 
     public func activate() {

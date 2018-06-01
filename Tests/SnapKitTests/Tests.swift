@@ -281,18 +281,18 @@ class SnapKitTests: XCTestCase {
         
         XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints")
         
-        c1?.set(isActivated: true)
-        c2?.set(isActivated: false)
+        c1?.isActive = true
+        c2?.isActive = false
         
         XCTAssertEqual(self.container.snp_constraints.count, 1, "Should have 1 constraint")
         
-        c1?.set(isActivated: true)
-        c2?.set(isActivated: true)
+        c1?.isActive = true
+        c2?.isActive = true
         
         XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
         
-        c1?.set(isActivated: false)
-        c2?.set(isActivated: false)
+        c1?.isActive = false
+        c2?.isActive = false
         
         XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints")
         
