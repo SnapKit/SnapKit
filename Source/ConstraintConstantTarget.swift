@@ -61,7 +61,7 @@ extension ConstraintConstantTarget {
         
         if let value = self as? UInt {
             return CGFloat(value)
-        }
+        } 
         
         if let value = self as? CGSize {
             if layoutAttribute == .width {
@@ -98,10 +98,14 @@ extension ConstraintConstantTarget {
         if let value = self as? ConstraintInsets {
             #if os(iOS) || os(tvOS)
                 switch layoutAttribute {
-                case .left, .leftMargin, .centerX, .centerXWithinMargins:
+                case .left, .leftMargin:
                     return value.left
-                case .top, .topMargin, .centerY, .centerYWithinMargins, .lastBaseline, .firstBaseline:
+                case .centerX, .centerXWithinMargins:
+                    return (value.left - value.right) / 2.0
+                case .top, .topMargin, .lastBaseline, .firstBaseline:
                     return value.top
+                case .centerY, .centerYWithinMargins:
+                    return (value.top - value.bottom) / 2.0
                 case .right, .rightMargin:
                     return -value.right
                 case .bottom, .bottomMargin:
@@ -119,10 +123,14 @@ extension ConstraintConstantTarget {
                 }
             #else
                 switch layoutAttribute {
-                case .left, .centerX:
+                case .left:
                     return value.left
-                case .top, .centerY, .lastBaseline, .firstBaseline:
+                case .centerX:
+                    return (value.left - value.right) / 2.0
+                case .top, .lastBaseline, .firstBaseline:
                     return value.top
+                case .centerY:
+                    return (value.top - value.bottom) / 2.0
                 case .right:
                     return -value.right
                 case .bottom:
