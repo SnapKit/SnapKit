@@ -61,7 +61,7 @@ extension ConstraintConstantTarget {
         
         if let value = self as? UInt {
             return CGFloat(value)
-        } 
+        }
         
         if let value = self as? CGSize {
             if layoutAttribute == .width {
