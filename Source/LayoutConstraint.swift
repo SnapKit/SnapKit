@@ -39,11 +39,11 @@ public class LayoutConstraint : NSLayoutConstraint {
         }
     }
     
-    internal weak var constraint: Constraint? = nil
+    weak var constraint: Constraint? = nil
     
 }
 
-internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
+func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
     guard lhs.firstItem === rhs.firstItem &&
           lhs.secondItem === rhs.secondItem &&
           lhs.firstAttribute == rhs.firstAttribute &&

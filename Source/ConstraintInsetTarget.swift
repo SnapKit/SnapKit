@@ -51,7 +51,7 @@ extension ConstraintInsets: ConstraintInsetTarget {
 
 extension ConstraintInsetTarget {
 
-    internal var constraintInsetTargetValue: ConstraintInsets {
+    var constraintInsetTargetValue: ConstraintInsets {
         if let amount = self as? ConstraintInsets {
             return amount
         } else if let amount = self as? Float {

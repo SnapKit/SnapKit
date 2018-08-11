@@ -29,8 +29,8 @@
 
 public final class Constraint {
 
-    internal let sourceLocation: (String, UInt)
-    internal let label: String?
+    let sourceLocation: (String, UInt)
+    let label: String?
 
     private let from: ConstraintItem
     private let to: ConstraintItem
@@ -70,7 +70,7 @@ public final class Constraint {
     
     // MARK: Initialization
 
-    internal init(from: ConstraintItem,
+    init(from: ConstraintItem,
                   to: ConstraintItem,
                   relation: ConstraintRelation,
                   sourceLocation: (String, UInt),
@@ -254,7 +254,7 @@ public final class Constraint {
 
     // MARK: Internal
 
-    internal func updateConstantAndPriorityIfNeeded() {
+    func updateConstantAndPriorityIfNeeded() {
         for layoutConstraint in self.layoutConstraints {
             let attribute = (layoutConstraint.secondAttribute == .notAnAttribute) ? layoutConstraint.firstAttribute : layoutConstraint.secondAttribute
             layoutConstraint.constant = self.constant.constraintConstantTargetValueFor(layoutAttribute: attribute)
@@ -266,7 +266,7 @@ public final class Constraint {
         }
     }
 
-    internal func activateIfNeeded(updatingExisting: Bool = false) {
+    func activateIfNeeded(updatingExisting: Bool = false) {
         guard let item = self.from.layoutConstraintItem else {
             print("WARNING: SnapKit failed to get from item from constraint. Activate will be a no-op.")
             return
@@ -294,7 +294,7 @@ public final class Constraint {
         }
     }
 
-    internal func deactivateIfNeeded() {
+    func deactivateIfNeeded() {
         guard let item = self.from.layoutConstraintItem else {
             print("WARNING: SnapKit failed to get from item from constraint. Deactivate will be a no-op.")
             return

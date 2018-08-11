@@ -91,9 +91,9 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
         return self.view
     }
     
-    internal let view: ConstraintView
+    let view: ConstraintView
     
-    internal init(view: ConstraintView) {
+    init(view: ConstraintView) {
         self.view = view
         
     }
