@@ -43,14 +43,14 @@ public struct ConstraintLayoutSupportDSL: ConstraintDSL {
     }
     
     public var top: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.top)
+        return ConstraintItem(target: self.target, attributes: .top)
     }
     
     public var bottom: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.bottom)
+        return ConstraintItem(target: self.target, attributes: .bottom)
     }
     
     public var height: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.height)
+        return ConstraintItem(target: self.target, attributes: .height)
     }
 }

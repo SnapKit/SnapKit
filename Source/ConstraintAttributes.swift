@@ -110,66 +110,66 @@ struct ConstraintAttributes : OptionSet, ExpressibleByIntegerLiteral {
     
     var layoutAttributes:[LayoutAttribute] {
         var attrs = [LayoutAttribute]()
-        if (self.contains(ConstraintAttributes.left)) {
+        if (self.contains(.left)) {
             attrs.append(.left)
         }
-        if (self.contains(ConstraintAttributes.top)) {
+        if (self.contains(.top)) {
             attrs.append(.top)
         }
-        if (self.contains(ConstraintAttributes.right)) {
+        if (self.contains(.right)) {
             attrs.append(.right)
         }
-        if (self.contains(ConstraintAttributes.bottom)) {
+        if (self.contains(.bottom)) {
             attrs.append(.bottom)
         }
-        if (self.contains(ConstraintAttributes.leading)) {
+        if (self.contains(.leading)) {
             attrs.append(.leading)
         }
-        if (self.contains(ConstraintAttributes.trailing)) {
+        if (self.contains(.trailing)) {
             attrs.append(.trailing)
         }
-        if (self.contains(ConstraintAttributes.width)) {
+        if (self.contains(.width)) {
             attrs.append(.width)
         }
-        if (self.contains(ConstraintAttributes.height)) {
+        if (self.contains(.height)) {
             attrs.append(.height)
         }
-        if (self.contains(ConstraintAttributes.centerX)) {
+        if (self.contains(.centerX)) {
             attrs.append(.centerX)
         }
-        if (self.contains(ConstraintAttributes.centerY)) {
+        if (self.contains(.centerY)) {
             attrs.append(.centerY)
         }
-        if (self.contains(ConstraintAttributes.lastBaseline)) {
+        if (self.contains(.lastBaseline)) {
             attrs.append(.lastBaseline)
         }
         
         #if os(iOS) || os(tvOS)
-            if (self.contains(ConstraintAttributes.firstBaseline)) {
+            if (self.contains(.firstBaseline)) {
                 attrs.append(.firstBaseline)
             }
-            if (self.contains(ConstraintAttributes.leftMargin)) {
+            if (self.contains(.leftMargin)) {
                 attrs.append(.leftMargin)
             }
-            if (self.contains(ConstraintAttributes.rightMargin)) {
+            if (self.contains(.rightMargin)) {
                 attrs.append(.rightMargin)
             }
-            if (self.contains(ConstraintAttributes.topMargin)) {
+            if (self.contains(.topMargin)) {
                 attrs.append(.topMargin)
             }
-            if (self.contains(ConstraintAttributes.bottomMargin)) {
+            if (self.contains(.bottomMargin)) {
                 attrs.append(.bottomMargin)
             }
-            if (self.contains(ConstraintAttributes.leadingMargin)) {
+            if (self.contains(.leadingMargin)) {
                 attrs.append(.leadingMargin)
             }
-            if (self.contains(ConstraintAttributes.trailingMargin)) {
+            if (self.contains(.trailingMargin)) {
                 attrs.append(.trailingMargin)
             }
-            if (self.contains(ConstraintAttributes.centerXWithinMargins)) {
+            if (self.contains(.centerXWithinMargins)) {
                 attrs.append(.centerXWithinMargins)
             }
-            if (self.contains(ConstraintAttributes.centerYWithinMargins)) {
+            if (self.contains(.centerYWithinMargins)) {
                 attrs.append(.centerYWithinMargins)
             }
         #endif
