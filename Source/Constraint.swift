@@ -48,6 +48,7 @@ public final class Constraint {
     }
     public var layoutConstraints: [LayoutConstraint]
     
+    private var disabledAtStart = false
     public var isActive: Bool {
         set {
             if newValue {
@@ -77,7 +78,8 @@ public final class Constraint {
                   label: String?,
                   multiplier: ConstraintMultiplierTarget,
                   constant: ConstraintConstantTarget,
-                  priority: ConstraintPriorityTarget) {
+                  priority: ConstraintPriorityTarget,
+                  disabledAtStart: Bool) {
         self.from = from
         self.to = to
         self.relation = relation
@@ -87,6 +89,7 @@ public final class Constraint {
         self.constant = constant
         self.priority = priority
         self.layoutConstraints = []
+        self.disabledAtStart = disabledAtStart
 
         // get attributes
         let layoutFromAttributes = self.from.attributes.layoutAttributes
@@ -200,6 +203,7 @@ public final class Constraint {
     }
 
     public func activate() {
+        self.disabledAtStart = false
         self.activateIfNeeded()
     }
 
@@ -267,6 +271,7 @@ public final class Constraint {
     }
 
     internal func activateIfNeeded(updatingExisting: Bool = false) {
+        guard !disabledAtStart else { return }
         guard let item = self.from.layoutConstraintItem else {
             print("WARNING: SnapKit failed to get from item from constraint. Activate will be a no-op.")
             return

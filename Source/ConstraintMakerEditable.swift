@@ -53,4 +53,9 @@ public class ConstraintMakerEditable: ConstraintMakerPriortizable {
         return self
     }
     
+    @discardableResult
+    public func disabled() -> ConstraintMakerEditable {
+        self.description.disabledAtStart = true
+        return self
+    }
 }

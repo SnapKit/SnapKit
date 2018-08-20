@@ -580,4 +580,17 @@ class SnapKitTests: XCTestCase {
         let higherPriority: ConstraintPriority = ConstraintPriority.high.advanced(by: 1)
         XCTAssertEqual(higherPriority.value, highPriority.value + 1)
     }
+    
+    func testConstructionOfDisabledContraints() {
+        let view = View()
+        
+        self.container.addSubview(view)
+        view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.height.equalTo(400).disabled()
+        }
+        
+        XCTAssertEqual(container.snp_constraints.count, 4, "Container should have 4 active constraints")
+        XCTAssertEqual(view.snp_constraints.count, 0, "View should have zero active constraints")
+    }
 }
