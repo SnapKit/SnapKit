@@ -21,34 +21,26 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
-    import UIKit
-#else
-    import AppKit
-#endif
+public enum ConstraintMakerError: Error {
+    case invalidConstraint(file: String, line: UInt)
+    case missingSuperview(file: String, line: UInt)
+    case canNotConstraintToMultipleNonIdenticalAttributes(file: String, line: UInt)
 
+    var localizedDescription: String {
+        switch self {
+        case let .invalidConstraint(file, line): return "Invalid constraint. (\(file), \(line))"
+        case let .missingSuperview(file, line): return "Expected superview but found nil when attempting make constraint `equalToSuperview`. (\(file), \(line))"
+        case let .canNotConstraintToMultipleNonIdenticalAttributes(file, line): return "Cannot constraint to multiple non identical attributes. (\(file), \(line))"
+        }
+    }
+}
 
-public class ConstraintMakerFinalizable {
-    
-    internal let description: ConstraintDescription
-    
-    internal init(_ description: ConstraintDescription) {
-        self.description = description
-    }
+public class ConstraintMakerErrorHandler {
+    private init() {}
 
-    internal init(_ description: ConstraintDescription, error: ConstraintMakerError) {
-        self.description = description
-        description.error = error
+    public static let shared = ConstraintMakerErrorHandler()
+
+    public var errorHandler: ((Error) -> Void) = { (error: Error) in
+        fatalError(error.localizedDescription)
     }
-    
-    @discardableResult
-    public func labeled(_ label: String) -> ConstraintMakerFinalizable {
-        self.description.label = label
-        return self
-    }
-    
-    public var constraint: Constraint {
-        return self.description.constraint!
-    }
-    
 }

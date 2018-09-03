@@ -21,34 +21,48 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
-    import UIKit
-#else
-    import AppKit
-#endif
+import XCTest
+@testable import SnapKit
 
+class ConstraintMakerErrorTests: XCTestCase {
 
-public class ConstraintMakerFinalizable {
-    
-    internal let description: ConstraintDescription
-    
-    internal init(_ description: ConstraintDescription) {
-        self.description = description
+    var container: View!
+    var v1: View!
+
+    override func setUp() {
+        super.setUp()
+
+        container = View()
+        v1 = View()
     }
 
-    internal init(_ description: ConstraintDescription, error: ConstraintMakerError) {
-        self.description = description
-        description.error = error
+    func testEqualToSuperviewWithNoSuperview_returnsError() {
+        var editable: ConstraintMakerEditable? = nil
+        ConstraintMakerErrorHandler.shared.errorHandler = { _ in /* ignore */ }
+
+        v1.snp.makeConstraints { (make) -> Void in
+             editable = make.top.equalToSuperview()
+        }
+
+        guard let error = editable?.description.error,
+            case .missingSuperview = error else {
+            XCTFail()
+            return
+        }
     }
-    
-    @discardableResult
-    public func labeled(_ label: String) -> ConstraintMakerFinalizable {
-        self.description.label = label
-        return self
+
+    func testMakeConstraintsWithError_callsErrorHandler() {
+        var error: Error? = nil
+        ConstraintMakerErrorHandler.shared.errorHandler = { error = $0 }
+
+        v1.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview()
+        }
+
+        guard let constraintMakerError = error as? ConstraintMakerError,
+            case .missingSuperview = constraintMakerError else {
+            XCTFail()
+            return
+        }
     }
-    
-    public var constraint: Constraint {
-        return self.description.constraint!
-    }
-    
 }
