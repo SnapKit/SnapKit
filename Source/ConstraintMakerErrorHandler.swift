@@ -41,6 +41,6 @@ public class ConstraintMakerErrorHandler {
     public static let shared = ConstraintMakerErrorHandler()
 
     public var errorHandler: ((Error) -> Void) = { (error: Error) in
-        fatalError(error.localizedDescription)
+        assertionFailure(error.localizedDescription)
     }
 }

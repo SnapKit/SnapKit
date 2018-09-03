@@ -70,7 +70,7 @@ public final class Constraint {
     
     // MARK: Initialization
 
-    internal init(from: ConstraintItem,
+    internal init?(from: ConstraintItem,
                   to: ConstraintItem,
                   relation: ConstraintRelation,
                   sourceLocation: (String, UInt),
@@ -114,7 +114,8 @@ public final class Constraint {
                         case .bottom:
                             layoutToAttribute = .bottomMargin
                         default:
-                            fatalError()
+                            assertionFailure("Internal error: unsupported margin layout attribute")
+                            return nil
                         }
                     } else if self.from.attributes == .margins && self.to.attributes == .edges {
                         switch layoutFromAttribute {
@@ -127,7 +128,8 @@ public final class Constraint {
                         case .bottomMargin:
                             layoutToAttribute = .bottom
                         default:
-                            fatalError()
+                            assertionFailure("Internal error: unsupported edge layout attribute")
+                            return nil
                         }
                     } else if self.from.attributes == self.to.attributes {
                         layoutToAttribute = layoutFromAttribute
@@ -244,13 +246,13 @@ public final class Constraint {
     public func updatePriorityRequired() -> Void {}
 
     @available(*, obsoleted:3.0, message:"Use update(priority: ConstraintPriorityTarget) instead.")
-    public func updatePriorityHigh() -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updatePriorityHigh() -> Void { assertionFailure("Must be implemented by Concrete subclass.") }
 
     @available(*, obsoleted:3.0, message:"Use update(priority: ConstraintPriorityTarget) instead.")
-    public func updatePriorityMedium() -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updatePriorityMedium() -> Void { assertionFailure("Must be implemented by Concrete subclass.") }
 
     @available(*, obsoleted:3.0, message:"Use update(priority: ConstraintPriorityTarget) instead.")
-    public func updatePriorityLow() -> Void { fatalError("Must be implemented by Concrete subclass.") }
+    public func updatePriorityLow() -> Void { assertionFailure("Must be implemented by Concrete subclass.") }
 
     // MARK: Internal
 
@@ -282,7 +284,8 @@ public final class Constraint {
             for layoutConstraint in layoutConstraints {
                 let existingLayoutConstraint = existingLayoutConstraints.first { $0 == layoutConstraint }
                 guard let updateLayoutConstraint = existingLayoutConstraint else {
-                    fatalError("Updated constraint could not find existing matching constraint to update: \(layoutConstraint)")
+                    assertionFailure("Updated constraint could not find existing matching constraint to update: \(layoutConstraint)")
+                    continue
                 }
 
                 let updateLayoutAttribute = (updateLayoutConstraint.secondAttribute == .notAnAttribute) ? updateLayoutConstraint.firstAttribute : updateLayoutConstraint.secondAttribute
