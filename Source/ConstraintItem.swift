@@ -38,8 +38,9 @@ public final class ConstraintItem {
         self.attributes = attributes
     }
     
-    internal var layoutConstraintItem: LayoutConstraintItem? {
-        return self.target as? LayoutConstraintItem
+    internal var layoutConstraintItem: LayoutConstraintItem {
+        // Downcast to LayoutConstraintItem will always succeed
+        return self.target as! LayoutConstraintItem
     }
     
 }

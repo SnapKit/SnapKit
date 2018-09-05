@@ -93,7 +93,7 @@ public final class Constraint {
         let layoutToAttributes = self.to.attributes.layoutAttributes
 
         // get layout from
-        let layoutFrom = self.from.layoutConstraintItem!
+        let layoutFrom = self.from.layoutConstraintItem
 
         // get relation
         let layoutRelation = self.relation.layoutRelation
@@ -269,10 +269,7 @@ public final class Constraint {
     }
 
     internal func activateIfNeeded(updatingExisting: Bool = false) {
-        guard let item = self.from.layoutConstraintItem else {
-            print("WARNING: SnapKit failed to get from item from constraint. Activate will be a no-op.")
-            return
-        }
+        let item = self.from.layoutConstraintItem
         let layoutConstraints = self.layoutConstraints
 
         if updatingExisting {
@@ -298,10 +295,7 @@ public final class Constraint {
     }
 
     internal func deactivateIfNeeded() {
-        guard let item = self.from.layoutConstraintItem else {
-            print("WARNING: SnapKit failed to get from item from constraint. Deactivate will be a no-op.")
-            return
-        }
+        let item = self.from.layoutConstraintItem
         let layoutConstraints = self.layoutConstraints
         NSLayoutConstraint.deactivate(layoutConstraints)
         item.remove(constraints: [self])
