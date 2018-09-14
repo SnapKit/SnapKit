@@ -100,7 +100,7 @@ public final class Constraint {
 
         for layoutFromAttribute in layoutFromAttributes {
             // get layout to attribute
-            let layoutToAttribute: LayoutAttribute
+            let layoutToAttribute: NSLayoutConstraint.Attribute
             #if os(iOS) || os(tvOS)
                 if layoutToAttributes.count > 0 {
                     if self.from.attributes == .edges && self.to.attributes == .margins {
