@@ -264,6 +264,40 @@ class SnapKitTests: XCTestCase {
         
     }
     
+    func testSetIsActivatedConstraints() {
+        let v1 = View()
+        let v2 = View()
+        self.container.addSubview(v1)
+        self.container.addSubview(v2)
+        
+        var c1: Constraint? = nil
+        var c2: Constraint? = nil
+        
+        v1.snp.prepareConstraints { (make) -> Void in
+            c1 = make.top.equalTo(v2.snp.top).offset(50).constraint
+            c2 = make.left.equalTo(v2.snp.top).offset(50).constraint
+            return
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints")
+        
+        c1?.isActive = true
+        c2?.isActive = false
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 1, "Should have 1 constraint")
+        
+        c1?.isActive = true
+        c2?.isActive = true
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
+        
+        c1?.isActive = false
+        c2?.isActive = false
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints")
+        
+    }
+    
     func testEdgeConstraints() {
         let view = View()
         self.container.addSubview(view)

@@ -49,12 +49,23 @@ public final class Constraint {
     public var layoutConstraints: [LayoutConstraint]
     
     public var isActive: Bool {
-        for layoutConstraint in self.layoutConstraints {
-            if layoutConstraint.isActive {
-                return true
+        set {
+            if newValue {
+                activate()
+            }
+            else {
+                deactivate()
             }
         }
-        return false
+        
+        get {
+            for layoutConstraint in self.layoutConstraints {
+                if layoutConstraint.isActive {
+                    return true
+                }
+            }
+            return false
+        }
     }
     
     // MARK: Initialization
@@ -211,6 +222,12 @@ public final class Constraint {
     @discardableResult
     public func update(priority: ConstraintPriorityTarget) -> Constraint {
         self.priority = priority.constraintPriorityTargetValue
+        return self
+    }
+
+    @discardableResult
+    public func update(priority: ConstraintPriority) -> Constraint {
+        self.priority = priority.value
         return self
     }
 
