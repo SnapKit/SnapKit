@@ -21,42 +21,48 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
-    import UIKit
-#else
-    import AppKit
-#endif
+import XCTest
+@testable import SnapKit
 
+class ConstraintMakerErrorTests: XCTestCase {
 
-public final class ConstraintItem {
-    
-    internal weak var target: AnyObject?
-    internal let attributes: ConstraintAttributes
-    
-    internal init(target: AnyObject?, attributes: ConstraintAttributes) {
-        self.target = target
-        self.attributes = attributes
-    }
-    
-    internal var layoutConstraintItem: LayoutConstraintItem {
-        // Downcast to LayoutConstraintItem will always succeed
-        return self.target as! LayoutConstraintItem
-    }
-    
-}
+    var container: View!
+    var v1: View!
 
-public func ==(lhs: ConstraintItem, rhs: ConstraintItem) -> Bool {
-    // pointer equality
-    guard lhs !== rhs else {
-        return true
+    override func setUp() {
+        super.setUp()
+
+        container = View()
+        v1 = View()
     }
-    
-    // must both have valid targets and identical attributes
-    guard let target1 = lhs.target,
-          let target2 = rhs.target,
-          target1 === target2 && lhs.attributes == rhs.attributes else {
-            return false
+
+    func testEqualToSuperviewWithNoSuperview_returnsError() {
+        var editable: ConstraintMakerEditable? = nil
+        ConstraintMakerErrorHandler.shared.errorHandler = { _ in /* ignore */ }
+
+        v1.snp.makeConstraints { (make) -> Void in
+             editable = make.top.equalToSuperview()
+        }
+
+        guard let error = editable?.description.error,
+            case .missingSuperview = error else {
+            XCTFail()
+            return
+        }
     }
-    
-    return true
+
+    func testMakeConstraintsWithError_callsErrorHandler() {
+        var error: Error? = nil
+        ConstraintMakerErrorHandler.shared.errorHandler = { error = $0 }
+
+        v1.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview()
+        }
+
+        guard let constraintMakerError = error as? ConstraintMakerError,
+            case .missingSuperview = constraintMakerError else {
+            XCTFail()
+            return
+        }
+    }
 }

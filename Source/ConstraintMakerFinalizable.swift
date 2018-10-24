@@ -35,6 +35,11 @@ public class ConstraintMakerFinalizable {
     internal init(_ description: ConstraintDescription) {
         self.description = description
     }
+
+    internal init(_ description: ConstraintDescription, error: ConstraintMakerError) {
+        self.description = description
+        description.error = error
+    }
     
     @discardableResult
     public func labeled(_ label: String) -> ConstraintMakerFinalizable {
@@ -42,8 +47,8 @@ public class ConstraintMakerFinalizable {
         return self
     }
     
-    public var constraint: Constraint {
-        return self.description.constraint!
+    public var constraint: Constraint? {
+        return self.description.constraint
     }
     
 }

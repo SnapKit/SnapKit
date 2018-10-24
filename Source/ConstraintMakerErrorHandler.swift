@@ -21,42 +21,26 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
-    import UIKit
-#else
-    import AppKit
-#endif
+public enum ConstraintMakerError: Error {
+    case invalidConstraint(file: String, line: UInt)
+    case missingSuperview(file: String, line: UInt)
+    case canNotConstraintToMultipleNonIdenticalAttributes(file: String, line: UInt)
 
-
-public final class ConstraintItem {
-    
-    internal weak var target: AnyObject?
-    internal let attributes: ConstraintAttributes
-    
-    internal init(target: AnyObject?, attributes: ConstraintAttributes) {
-        self.target = target
-        self.attributes = attributes
+    var localizedDescription: String {
+        switch self {
+        case let .invalidConstraint(file, line): return "Invalid constraint. (\(file), \(line))"
+        case let .missingSuperview(file, line): return "Expected superview but found nil when attempting make constraint `equalToSuperview`. (\(file), \(line))"
+        case let .canNotConstraintToMultipleNonIdenticalAttributes(file, line): return "Cannot constraint to multiple non identical attributes. (\(file), \(line))"
+        }
     }
-    
-    internal var layoutConstraintItem: LayoutConstraintItem {
-        // Downcast to LayoutConstraintItem will always succeed
-        return self.target as! LayoutConstraintItem
-    }
-    
 }
 
-public func ==(lhs: ConstraintItem, rhs: ConstraintItem) -> Bool {
-    // pointer equality
-    guard lhs !== rhs else {
-        return true
+public class ConstraintMakerErrorHandler {
+    private init() {}
+
+    public static let shared = ConstraintMakerErrorHandler()
+
+    public var errorHandler: ((Error) -> Void) = { (error: Error) in
+        assertionFailure(error.localizedDescription)
     }
-    
-    // must both have valid targets and identical attributes
-    guard let target1 = lhs.target,
-          let target2 = rhs.target,
-          target1 === target2 && lhs.attributes == rhs.attributes else {
-            return false
-    }
-    
-    return true
 }

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2DBA080E1F1FAD66001CFED4 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA080D1F1FAD66001CFED4 /* Typealiases.swift */; };
+		38D2255E213D37FA00C5FFD3 /* ConstraintMakerErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2255C213D37BB00C5FFD3 /* ConstraintMakerErrorTests.swift */; };
+		38D22560213D381700C5FFD3 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2255F213D381700C5FFD3 /* TestUtils.swift */; };
+		38D22562213D735200C5FFD3 /* ConstraintMakerErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D22561213D735200C5FFD3 /* ConstraintMakerErrorHandler.swift */; };
 		EE235F5F1C5785BC00C08960 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235F5E1C5785BC00C08960 /* Debugging.swift */; };
 		EE235F6D1C5785C600C08960 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235F621C5785C600C08960 /* Constraint.swift */; };
 		EE235F701C5785C600C08960 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235F631C5785C600C08960 /* ConstraintDescription.swift */; };
@@ -48,6 +51,9 @@
 
 /* Begin PBXFileReference section */
 		2DBA080D1F1FAD66001CFED4 /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		38D2255C213D37BB00C5FFD3 /* ConstraintMakerErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintMakerErrorTests.swift; sourceTree = "<group>"; };
+		38D2255F213D381700C5FFD3 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
+		38D22561213D735200C5FFD3 /* ConstraintMakerErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintMakerErrorHandler.swift; sourceTree = "<group>"; };
 		537DCE9A1C35CD4100B5B899 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		EE235F5E1C5785BC00C08960 /* Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debugging.swift; sourceTree = "<group>"; };
 		EE235F621C5785C600C08960 /* Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
@@ -159,6 +165,7 @@
 				EE235FA91C5785D400C08960 /* ConstraintMakerEditable.swift */,
 				EE235FAA1C5785D400C08960 /* ConstraintMakerRelatable.swift */,
 				EE235FAB1C5785D400C08960 /* ConstraintMakerExtendable.swift */,
+				38D22561213D735200C5FFD3 /* ConstraintMakerErrorHandler.swift */,
 			);
 			name = Maker;
 			sourceTree = "<group>";
@@ -235,7 +242,9 @@
 			isa = PBXGroup;
 			children = (
 				EECDB3691AC0C95C006BBC11 /* Info.plist */,
+				38D2255F213D381700C5FFD3 /* TestUtils.swift */,
 				EECDB36A1AC0C95C006BBC11 /* Tests.swift */,
+				38D2255C213D37BB00C5FFD3 /* ConstraintMakerErrorTests.swift */,
 			);
 			name = Tests;
 			path = ../Tests;
@@ -378,6 +387,7 @@
 				EE235F881C5785C600C08960 /* ConstraintItem.swift in Sources */,
 				2DBA080E1F1FAD66001CFED4 /* Typealiases.swift in Sources */,
 				EE235F9A1C5785CE00C08960 /* ConstraintPriorityTarget.swift in Sources */,
+				38D22560213D381700C5FFD3 /* TestUtils.swift in Sources */,
 				EEF68FC01D7865AA00980C26 /* ConstraintLayoutSupport.swift in Sources */,
 				EEF68FB01D784FB100980C26 /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				EE235F761C5785C600C08960 /* ConstraintConfig.swift in Sources */,
@@ -394,6 +404,7 @@
 				EE235F7F1C5785C600C08960 /* ConstraintRelation.swift in Sources */,
 				EEF68FB41D784FBA00980C26 /* UILayoutSupport+Extensions.swift in Sources */,
 				EE235F701C5785C600C08960 /* ConstraintDescription.swift in Sources */,
+				38D22562213D735200C5FFD3 /* ConstraintMakerErrorHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38D2255E213D37FA00C5FFD3 /* ConstraintMakerErrorTests.swift in Sources */,
 				EECDB3931AC0CB52006BBC11 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

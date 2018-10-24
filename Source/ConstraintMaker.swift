@@ -162,9 +162,15 @@ public class ConstraintMaker {
         closure(maker)
         var constraints: [Constraint] = []
         for description in maker.descriptions {
+            if let error = description.error {
+                ConstraintMakerErrorHandler.shared.errorHandler(error)
+                continue
+            }
+
             guard let constraint = description.constraint else {
                 continue
             }
+
             constraints.append(constraint)
         }
         return constraints
