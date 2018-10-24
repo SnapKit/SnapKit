@@ -28,12 +28,12 @@
 #endif
 
 
-internal enum ConstraintRelation : Int {
+enum ConstraintRelation : Int {
     case equal = 1
     case lessThanOrEqual
     case greaterThanOrEqual
     
-    internal var layoutRelation: LayoutRelation {
+    var layoutRelation: LayoutRelation {
         get {
             switch(self) {
             case .equal:

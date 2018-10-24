@@ -42,7 +42,7 @@ extension ConstraintInsets: ConstraintConstantTarget {
 
 extension ConstraintConstantTarget {
     
-    internal func constraintConstantTargetValueFor(layoutAttribute: LayoutAttribute) -> CGFloat {
+    func constraintConstantTargetValueFor(layoutAttribute: LayoutAttribute) -> CGFloat {
         if let value = self as? CGFloat {
             return value
         }

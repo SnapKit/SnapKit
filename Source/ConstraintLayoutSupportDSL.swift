@@ -35,22 +35,22 @@ public struct ConstraintLayoutSupportDSL: ConstraintDSL {
         return self.support
     }
     
-    internal let support: ConstraintLayoutSupport
+    let support: ConstraintLayoutSupport
     
-    internal init(support: ConstraintLayoutSupport) {
+    init(support: ConstraintLayoutSupport) {
         self.support = support
         
     }
     
     public var top: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.top)
+        return ConstraintItem(target: self.target, attributes: .top)
     }
     
     public var bottom: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.bottom)
+        return ConstraintItem(target: self.target, attributes: .bottom)
     }
     
     public var height: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.height)
+        return ConstraintItem(target: self.target, attributes: .height)
     }
 }

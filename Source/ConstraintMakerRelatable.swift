@@ -30,18 +30,18 @@
 
 public class ConstraintMakerRelatable {
     
-    internal let description: ConstraintDescription
+    let description: ConstraintDescription
     
-    internal init(_ description: ConstraintDescription) {
+    init(_ description: ConstraintDescription) {
         self.description = description
     }
     
-    internal func relatedTo(_ other: ConstraintRelatableTarget, relation: ConstraintRelation, file: String, line: UInt) -> ConstraintMakerEditable {
+    func relatedTo(_ other: ConstraintRelatableTarget, relation: ConstraintRelation, file: String, line: UInt) -> ConstraintMakerEditable {
         let related: ConstraintItem
         let constant: ConstraintConstantTarget
         
         if let other = other as? ConstraintItem {
-            guard other.attributes == ConstraintAttributes.none ||
+            guard other.attributes == .none ||
                   other.attributes.layoutAttributes.count <= 1 ||
                   other.attributes.layoutAttributes == self.description.attributes.layoutAttributes ||
                   other.attributes == .edges && self.description.attributes == .margins ||
@@ -52,13 +52,13 @@ public class ConstraintMakerRelatable {
             related = other
             constant = 0.0
         } else if let other = other as? ConstraintView {
-            related = ConstraintItem(target: other, attributes: ConstraintAttributes.none)
+            related = ConstraintItem(target: other, attributes: .none)
             constant = 0.0
         } else if let other = other as? ConstraintConstantTarget {
-            related = ConstraintItem(target: nil, attributes: ConstraintAttributes.none)
+            related = ConstraintItem(target: nil, attributes: .none)
             constant = other
         } else if #available(iOS 9.0, OSX 10.11, *), let other = other as? ConstraintLayoutGuide {
-            related = ConstraintItem(target: other, attributes: ConstraintAttributes.none)
+            related = ConstraintItem(target: other, attributes: .none)
             constant = 0.0
         } else {
             fatalError("Invalid constraint. (\(file), \(line))")

@@ -56,55 +56,55 @@ extension ConstraintBasicAttributesDSL {
     // MARK: Basics
     
     public var left: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.left)
+        return ConstraintItem(target: self.target, attributes: .left)
     }
     
     public var top: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.top)
+        return ConstraintItem(target: self.target, attributes: .top)
     }
     
     public var right: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.right)
+        return ConstraintItem(target: self.target, attributes: .right)
     }
     
     public var bottom: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.bottom)
+        return ConstraintItem(target: self.target, attributes: .bottom)
     }
     
     public var leading: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.leading)
+        return ConstraintItem(target: self.target, attributes: .leading)
     }
     
     public var trailing: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.trailing)
+        return ConstraintItem(target: self.target, attributes: .trailing)
     }
     
     public var width: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.width)
+        return ConstraintItem(target: self.target, attributes: .width)
     }
     
     public var height: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.height)
+        return ConstraintItem(target: self.target, attributes: .height)
     }
     
     public var centerX: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.centerX)
+        return ConstraintItem(target: self.target, attributes: .centerX)
     }
     
     public var centerY: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.centerY)
+        return ConstraintItem(target: self.target, attributes: .centerY)
     }
     
     public var edges: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.edges)
+        return ConstraintItem(target: self.target, attributes: .edges)
     }
     
     public var size: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.size)
+        return ConstraintItem(target: self.target, attributes: .size)
     }
     
     public var center: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.center)
+        return ConstraintItem(target: self.target, attributes: .center)
     }
     
 }
@@ -117,69 +117,69 @@ extension ConstraintAttributesDSL {
     
     @available(*, deprecated:3.0, message:"Use .lastBaseline instead")
     public var baseline: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.lastBaseline)
+        return ConstraintItem(target: self.target, attributes: .lastBaseline)
     }
     
     @available(iOS 8.0, OSX 10.11, *)
     public var lastBaseline: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.lastBaseline)
+        return ConstraintItem(target: self.target, attributes: .lastBaseline)
     }
     
     @available(iOS 8.0, OSX 10.11, *)
     public var firstBaseline: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.firstBaseline)
+        return ConstraintItem(target: self.target, attributes: .firstBaseline)
     }
     
     // MARK: Margins
     
     @available(iOS 8.0, *)
     public var leftMargin: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.leftMargin)
+        return ConstraintItem(target: self.target, attributes: .leftMargin)
     }
     
     @available(iOS 8.0, *)
     public var topMargin: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.topMargin)
+        return ConstraintItem(target: self.target, attributes: .topMargin)
     }
     
     @available(iOS 8.0, *)
     public var rightMargin: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.rightMargin)
+        return ConstraintItem(target: self.target, attributes: .rightMargin)
     }
     
     @available(iOS 8.0, *)
     public var bottomMargin: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.bottomMargin)
+        return ConstraintItem(target: self.target, attributes: .bottomMargin)
     }
     
     @available(iOS 8.0, *)
     public var leadingMargin: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.leadingMargin)
+        return ConstraintItem(target: self.target, attributes: .leadingMargin)
     }
     
     @available(iOS 8.0, *)
     public var trailingMargin: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.trailingMargin)
+        return ConstraintItem(target: self.target, attributes: .trailingMargin)
     }
     
     @available(iOS 8.0, *)
     public var centerXWithinMargins: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.centerXWithinMargins)
+        return ConstraintItem(target: self.target, attributes: .centerXWithinMargins)
     }
     
     @available(iOS 8.0, *)
     public var centerYWithinMargins: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.centerYWithinMargins)
+        return ConstraintItem(target: self.target, attributes: .centerYWithinMargins)
     }
     
     @available(iOS 8.0, *)
     public var margins: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.margins)
+        return ConstraintItem(target: self.target, attributes: .margins)
     }
     
     @available(iOS 8.0, *)
     public var centerWithinMargins: ConstraintItem {
-        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.centerWithinMargins)
+        return ConstraintItem(target: self.target, attributes: .centerWithinMargins)
     }
     
 }
