@@ -26,7 +26,7 @@
 		EE235FA31C5785CE00C08960 /* ConstraintInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235F931C5785CE00C08960 /* ConstraintInsetTarget.swift */; };
 		EE235FAC1C5785D400C08960 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235FA61C5785D400C08960 /* ConstraintMaker.swift */; };
 		EE235FAF1C5785D400C08960 /* ConstraintMakerFinalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235FA71C5785D400C08960 /* ConstraintMakerFinalizable.swift */; };
-		EE235FB21C5785D400C08960 /* ConstraintMakerPriortizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235FA81C5785D400C08960 /* ConstraintMakerPriortizable.swift */; };
+		EE235FB21C5785D400C08960 /* ConstraintMakerPrioritizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235FA81C5785D400C08960 /* ConstraintMakerPrioritizable.swift */; };
 		EE235FB51C5785D400C08960 /* ConstraintMakerEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235FA91C5785D400C08960 /* ConstraintMakerEditable.swift */; };
 		EE235FB81C5785D400C08960 /* ConstraintMakerRelatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235FAA1C5785D400C08960 /* ConstraintMakerRelatable.swift */; };
 		EE235FBB1C5785D400C08960 /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235FAB1C5785D400C08960 /* ConstraintMakerExtendable.swift */; };
@@ -67,7 +67,7 @@
 		EE235F931C5785CE00C08960 /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintInsetTarget.swift; sourceTree = "<group>"; };
 		EE235FA61C5785D400C08960 /* ConstraintMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMaker.swift; sourceTree = "<group>"; };
 		EE235FA71C5785D400C08960 /* ConstraintMakerFinalizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMakerFinalizable.swift; sourceTree = "<group>"; };
-		EE235FA81C5785D400C08960 /* ConstraintMakerPriortizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMakerPriortizable.swift; sourceTree = "<group>"; };
+		EE235FA81C5785D400C08960 /* ConstraintMakerPrioritizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMakerPrioritizable.swift; sourceTree = "<group>"; };
 		EE235FA91C5785D400C08960 /* ConstraintMakerEditable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMakerEditable.swift; sourceTree = "<group>"; };
 		EE235FAA1C5785D400C08960 /* ConstraintMakerRelatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMakerRelatable.swift; sourceTree = "<group>"; };
 		EE235FAB1C5785D400C08960 /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 			children = (
 				EE235FA61C5785D400C08960 /* ConstraintMaker.swift */,
 				EE235FA71C5785D400C08960 /* ConstraintMakerFinalizable.swift */,
-				EE235FA81C5785D400C08960 /* ConstraintMakerPriortizable.swift */,
+				EE235FA81C5785D400C08960 /* ConstraintMakerPrioritizable.swift */,
 				EE235FA91C5785D400C08960 /* ConstraintMakerEditable.swift */,
 				EE235FAA1C5785D400C08960 /* ConstraintMakerRelatable.swift */,
 				EE235FAB1C5785D400C08960 /* ConstraintMakerExtendable.swift */,
@@ -384,7 +384,7 @@
 				EE235F6D1C5785C600C08960 /* Constraint.swift in Sources */,
 				EE235F791C5785C600C08960 /* ConstraintView.swift in Sources */,
 				EE6898CB1DA7B3A100D47F33 /* LayoutConstraintItem.swift in Sources */,
-				EE235FB21C5785D400C08960 /* ConstraintMakerPriortizable.swift in Sources */,
+				EE235FB21C5785D400C08960 /* ConstraintMakerPrioritizable.swift in Sources */,
 				EE235F8B1C5785C600C08960 /* LayoutConstraint.swift in Sources */,
 				EE235FA31C5785CE00C08960 /* ConstraintInsetTarget.swift in Sources */,
 				EE235F9D1C5785CE00C08960 /* ConstraintMultiplierTarget.swift in Sources */,

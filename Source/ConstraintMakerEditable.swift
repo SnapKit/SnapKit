@@ -28,7 +28,7 @@
 #endif
 
 
-public class ConstraintMakerEditable: ConstraintMakerPriortizable {
+public class ConstraintMakerEditable: ConstraintMakerPrioritizable {
 
     @discardableResult
     public func multipliedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {

@@ -28,7 +28,7 @@
 #endif
 
 
-public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
+public class ConstraintMakerPrioritizable: ConstraintMakerFinalizable {
     
     @discardableResult
     public func priority(_ amount: ConstraintPriority) -> ConstraintMakerFinalizable {
