@@ -100,11 +100,11 @@ extension ConstraintConstantTarget {
                 switch layoutAttribute {
                 case .left, .leftMargin:
                     return value.left
-                case .top, .topMargin, .lastBaseline, .firstBaseline:
+                case .top, .topMargin, .firstBaseline:
                     return value.top
                 case .right, .rightMargin:
                     return -value.right
-                case .bottom, .bottomMargin:
+                case .bottom, .bottomMargin, .lastBaseline:
                     return -value.bottom
                 case .leading, .leadingMargin:
                     return (ConstraintConfig.interfaceLayoutDirection == .leftToRight) ? value.left : value.right
@@ -125,11 +125,11 @@ extension ConstraintConstantTarget {
                 switch layoutAttribute {
                 case .left:
                     return value.left
-                case .top, .lastBaseline, .firstBaseline:
+                case .top, .firstBaseline:
                     return value.top
                 case .right:
                     return -value.right
-                case .bottom:
+                case .bottom, .lastBaseline:
                     return -value.bottom
                 case .leading:
                     return (ConstraintConfig.interfaceLayoutDirection == .leftToRight) ? value.left : value.right
