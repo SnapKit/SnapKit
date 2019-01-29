@@ -82,6 +82,7 @@ private func descriptionForRelation(_ relation: LayoutRelation) -> String {
     case .equal:                return "=="
     case .greaterThanOrEqual:   return ">="
     case .lessThanOrEqual:      return "<="
+    @unknown default:           return "!="
     }
 }
 
@@ -109,7 +110,8 @@ private func descriptionForAttribute(_ attribute: LayoutAttribute) -> String {
         case .trailingMargin:       return "trailingMargin"
         case .centerXWithinMargins: return "centerXWithinMargins"
         case .centerYWithinMargins: return "centerYWithinMargins"
-        }
+        @unknown default:           return "unknown"
+    }
     #else
         switch attribute {
         case .notAnAttribute:       return "notAnAttribute"
@@ -125,7 +127,8 @@ private func descriptionForAttribute(_ attribute: LayoutAttribute) -> String {
         case .centerY:              return "centerY"
         case .lastBaseline:         return "lastBaseline"
         case .firstBaseline:        return "firstBaseline"
-        }
+        @unknown default:           return "unknown"
+    }
     #endif
 }
 

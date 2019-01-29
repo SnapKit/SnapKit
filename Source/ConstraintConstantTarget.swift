@@ -82,7 +82,9 @@ extension ConstraintConstantTarget {
                     return value.y
                 case .width, .height, .notAnAttribute:
                     return 0.0
-                }
+                @unknown default:
+                    return 0.0
+            }
             #else
                 switch layoutAttribute {
                 case .left, .right, .leading, .trailing, .centerX:
@@ -91,7 +93,9 @@ extension ConstraintConstantTarget {
                     return value.y
                 case .width, .height, .notAnAttribute:
                     return 0.0
-                }
+                @unknown default:
+                    return 0.0
+            }
             #endif
         }
         
@@ -116,7 +120,9 @@ extension ConstraintConstantTarget {
                     return -(value.top + value.bottom)
                 case .notAnAttribute:
                     return 0.0
-                }
+                @unknown default:
+                    return 0.0
+            }
             #else
                 switch layoutAttribute {
                 case .left, .centerX:
@@ -137,7 +143,9 @@ extension ConstraintConstantTarget {
                     return -(value.top + value.bottom)
                 case .notAnAttribute:
                     return 0.0
-                }
+                @unknown default:
+                    return 0.0
+            }
             #endif
         }
         
