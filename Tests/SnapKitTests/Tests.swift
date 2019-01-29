@@ -494,8 +494,8 @@ class SnapKitTests: XCTestCase {
     
     #if os(iOS) || os(tvOS)
     func testEdgesToMargins() {
-        var fromAttributes = Set<NSLayoutAttribute>()
-        var toAttributes = Set<NSLayoutAttribute>()
+        var fromAttributes = Set<NSLayoutConstraint.Attribute>()
+        var toAttributes = Set<NSLayoutConstraint.Attribute>()
         
         let view = View()
         self.container.addSubview(view)
