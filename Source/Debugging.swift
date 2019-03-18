@@ -29,7 +29,7 @@
 
 public extension LayoutConstraint {
     
-    override public var description: String {
+    override var description: String {
         var description = "<"
         
         description += descriptionForObject(self)
@@ -82,6 +82,10 @@ private func descriptionForRelation(_ relation: LayoutRelation) -> String {
     case .equal:                return "=="
     case .greaterThanOrEqual:   return ">="
     case .lessThanOrEqual:      return "<="
+    #if swift(>=5.0)
+    @unknown default:
+        return "unknown" // If you see this, SnapKit doesn't support a recently added case in this enumeration from Objective-C. It needs to be updated to support the new case. Update your SnapKit version.
+    #endif
     }
 }
 
@@ -109,6 +113,10 @@ private func descriptionForAttribute(_ attribute: LayoutAttribute) -> String {
         case .trailingMargin:       return "trailingMargin"
         case .centerXWithinMargins: return "centerXWithinMargins"
         case .centerYWithinMargins: return "centerYWithinMargins"
+        #if swift(>=5.0)
+        @unknown default:
+            return "unknown" // If you see this, SnapKit doesn't support a recently added case in the LayoutAttribute enumeration from Objective-C. It needs to be updated to support the new case. Update your SnapKit version.
+        #endif
         }
     #else
         switch attribute {
@@ -125,6 +133,10 @@ private func descriptionForAttribute(_ attribute: LayoutAttribute) -> String {
         case .centerY:              return "centerY"
         case .lastBaseline:         return "lastBaseline"
         case .firstBaseline:        return "firstBaseline"
+        #if swift(>=5.0)
+        @unknown default:
+            return "unknown" // If you see this, SnapKit doesn't support a recently added case in the LayoutAttribute from Objective-C. It needs to be updated to support the new case. Update your SnapKit version.
+        #endif
         }
     #endif
 }
