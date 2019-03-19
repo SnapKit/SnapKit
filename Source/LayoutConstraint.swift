@@ -54,11 +54,8 @@ internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
             lhs.firstAttribute == rhs.firstAttribute &&
             lhs.secondAttribute == rhs.secondAttribute
     }
-    guard areLayoutAnchorsEqual &&
+    return areLayoutAnchorsEqual &&
         lhs.relation == rhs.relation &&
         lhs.priority == rhs.priority &&
-        lhs.multiplier == rhs.multiplier else {
-            return false
-    }
-    return true
+        lhs.multiplier == rhs.multiplier
 }
