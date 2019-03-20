@@ -310,11 +310,11 @@
 				TargetAttributes = {
 					EEBCC9D719CC627D0083B827 = {
 						CreatedOnToolsVersion = 6.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 					};
 					EEBCC9E119CC627D0083B827 = {
 						CreatedOnToolsVersion = 6.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
