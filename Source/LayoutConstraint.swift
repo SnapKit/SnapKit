@@ -44,14 +44,18 @@ public class LayoutConstraint : NSLayoutConstraint {
 }
 
 internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
-    guard lhs.firstItem === rhs.firstItem &&
-          lhs.secondItem === rhs.secondItem &&
-          lhs.firstAttribute == rhs.firstAttribute &&
-          lhs.secondAttribute == rhs.secondAttribute &&
-          lhs.relation == rhs.relation &&
-          lhs.priority == rhs.priority &&
-          lhs.multiplier == rhs.multiplier else {
-        return false
+    let areLayoutAnchorsEqual: Bool
+    if #available(iOS 10.0, OSXApplicationExtension 10.12, *) {
+        areLayoutAnchorsEqual = lhs.firstAnchor === rhs.firstAnchor &&
+            lhs.secondAnchor === rhs.secondAnchor
+    } else {
+        areLayoutAnchorsEqual = lhs.firstItem === rhs.firstItem &&
+            lhs.secondItem === rhs.secondItem &&
+            lhs.firstAttribute == rhs.firstAttribute &&
+            lhs.secondAttribute == rhs.secondAttribute
     }
-    return true
+    return areLayoutAnchorsEqual &&
+        lhs.relation == rhs.relation &&
+        lhs.priority == rhs.priority &&
+        lhs.multiplier == rhs.multiplier
 }
