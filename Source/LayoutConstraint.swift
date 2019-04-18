@@ -45,7 +45,7 @@ public class LayoutConstraint : NSLayoutConstraint {
 
 internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
     let areLayoutAnchorsEqual: Bool
-    if #available(iOS 10.0, OSXApplicationExtension 10.12, *) {
+    if #available(iOS 10.0, OSXApplicationExtension 10.12, tvOSApplicationExtension 10.0, *) {
         areLayoutAnchorsEqual = lhs.firstAnchor === rhs.firstAnchor &&
             lhs.secondAnchor === rhs.secondAnchor
     } else {
