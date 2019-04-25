@@ -23,7 +23,7 @@ SnapKit is a DSL to make Auto Layout easy on both iOS and OS X.
 ## Requirements
 
 - iOS 10.0+ / Mac OS X 10.12+ / tvOS 10.0+
-- Xcode 9.0+
+- Xcode 10.0+
 - Swift 4.0+
 
 ## Communication
