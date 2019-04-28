@@ -580,34 +580,4 @@ class SnapKitTests: XCTestCase {
         let higherPriority: ConstraintPriority = ConstraintPriority.high.advanced(by: 1)
         XCTAssertEqual(higherPriority.value, highPriority.value + 1)
     }
-    
-    func testLayoutConstraintEqual() {
-        let view1 = View()
-        let view2 = View()
-        let layoutConstraint1 = LayoutConstraint(item: view1,
-                                                 attribute: .top,
-                                                 relatedBy: .lessThanOrEqual,
-                                                 toItem: view2,
-                                                 attribute: .bottom,
-                                                 multiplier: 2,
-                                                 constant: 30)
-        let layoutConstraint2 = LayoutConstraint(item: view1,
-                                                 attribute: .top,
-                                                 relatedBy: .lessThanOrEqual,
-                                                 toItem: view2,
-                                                 attribute: .bottom,
-                                                 multiplier: 2,
-                                                 constant: 30)
-        let layoutConstraint3 = LayoutConstraint(item: view1,
-                                                 attribute: .top,
-                                                 relatedBy: .lessThanOrEqual,
-                                                 toItem: view2,
-                                                 attribute: .bottom,
-                                                 multiplier: 1,
-                                                 constant: 50)
-        XCTAssertTrue(layoutConstraint1 == layoutConstraint2)
-        XCTAssertFalse(layoutConstraint1 == layoutConstraint3)
-        XCTAssertFalse(layoutConstraint2 == layoutConstraint3)
-    }
-    
 }
