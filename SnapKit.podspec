@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/SnapKit/SnapKit'
   s.authors = { 'Robert Payne' => 'robertpayne@me.com' }
   s.social_media_url = 'http://twitter.com/robertjpayne'
-  s.source = { :git => 'https://github.com/SnapKit/SnapKit.git', :tag => '5.0.0' }
+  s.source = { :git => 'https://github.com/SnapKit/SnapKit.git', :tag => '5.0.1' }
 
   s.ios.deployment_target = '10.0'
   s.osx.deployment_target = '10.12'
