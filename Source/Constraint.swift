@@ -219,6 +219,15 @@ public final class Constraint {
         return self
     }
 
+    #if os(iOS) || os(tvOS)
+    @discardableResult
+    @available(iOS 11.0, tvOS 11.0, *)
+    public func update(inset: ConstraintDirectionalInsetTarget) -> Constraint {
+      self.constant = inset.constraintDirectionalInsetTargetValue
+      return self
+    }
+    #endif
+
     @discardableResult
     public func update(priority: ConstraintPriorityTarget) -> Constraint {
         self.priority = priority.constraintPriorityTargetValue
