@@ -492,7 +492,7 @@ class SnapKitTests: XCTestCase {
         XCTAssert(toAttributes == [.top, .left, .bottom, .right])
     }
 
-    func testDirectionalEdgesToDirectionalEdgesEdges() {
+    func testDirectionalEdgesToDirectionalEdges() {
         var fromAttributes = Set<LayoutAttribute>()
         var toAttributes = Set<LayoutAttribute>()
         
@@ -555,7 +555,7 @@ class SnapKitTests: XCTestCase {
         
     }
 
-    func testDirectionalEdgesToMargins() {
+    func testDirectionalEdgesToDirectionalMargins() {
         var fromAttributes = Set<LayoutAttribute>()
         var toAttributes = Set<LayoutAttribute>()
         
@@ -563,7 +563,7 @@ class SnapKitTests: XCTestCase {
         self.container.addSubview(view)
         
         view.snp.remakeConstraints { (make) -> Void in
-            make.directionalEdges.equalTo(self.container.snp.margins)
+            make.directionalEdges.equalTo(self.container.snp.directionalMargins)
         }
         
         XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
@@ -580,7 +580,7 @@ class SnapKitTests: XCTestCase {
         toAttributes.removeAll()
         
         view.snp.remakeConstraints { (make) -> Void in
-            make.margins.equalTo(self.container.snp.directionalEdges)
+            make.directionalMargins.equalTo(self.container.snp.directionalEdges)
         }
         
         XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")

@@ -182,6 +182,11 @@ extension ConstraintAttributesDSL {
     }
     
     @available(iOS 8.0, *)
+    public var directionalMargins: ConstraintItem {
+      return ConstraintItem(target: self.target, attributes: ConstraintAttributes.directionalMargins)
+    }
+
+    @available(iOS 8.0, *)
     public var centerWithinMargins: ConstraintItem {
         return ConstraintItem(target: self.target, attributes: ConstraintAttributes.centerWithinMargins)
     }

@@ -142,6 +142,11 @@ public class ConstraintMaker {
     }
     
     @available(iOS 8.0, *)
+    public var directionalMargins: ConstraintMakerExtendable {
+        return self.makeExtendableWithAttributes(.directionalMargins)
+    }
+
+    @available(iOS 8.0, *)
     public var centerWithinMargins: ConstraintMakerExtendable {
         return self.makeExtendableWithAttributes(.centerWithinMargins)
     }
