@@ -149,6 +149,10 @@ public class ConstraintMakerExtendable: ConstraintMakerRelatable {
         self.description.attributes += .edges
         return self
     }
+    public var directionalEdges: ConstraintMakerExtendable {
+        self.description.attributes += .directionalEdges
+        return self
+    }
     public var size: ConstraintMakerExtendable {
         self.description.attributes += .size
         return self

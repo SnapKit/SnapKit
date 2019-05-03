@@ -99,6 +99,7 @@ internal struct ConstraintAttributes : OptionSet, ExpressibleByIntegerLiteral {
     // aggregates
     
     internal static var edges: ConstraintAttributes { return 15 }
+    internal static var directionalEdges: ConstraintAttributes { return 58 }
     internal static var size: ConstraintAttributes { return 192 }
     internal static var center: ConstraintAttributes { return 768 }
     

@@ -98,7 +98,11 @@ extension ConstraintBasicAttributesDSL {
     public var edges: ConstraintItem {
         return ConstraintItem(target: self.target, attributes: ConstraintAttributes.edges)
     }
-    
+
+    public var directionalEdges: ConstraintItem {
+      return ConstraintItem(target: self.target, attributes: ConstraintAttributes.directionalEdges)
+    }
+
     public var size: ConstraintItem {
         return ConstraintItem(target: self.target, attributes: ConstraintAttributes.size)
     }
