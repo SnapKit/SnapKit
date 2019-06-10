@@ -53,4 +53,12 @@ public class ConstraintMakerEditable: ConstraintMakerPriortizable {
         return self
     }
     
+    #if os(iOS) || os(tvOS)
+    @discardableResult
+    @available(iOS 11.0, tvOS 11.0, *)
+    public func inset(_ amount: ConstraintDirectionalInsetTarget) -> ConstraintMakerEditable {
+        self.description.constant = amount.constraintDirectionalInsetTargetValue
+        return self
+    }
+    #endif
 }

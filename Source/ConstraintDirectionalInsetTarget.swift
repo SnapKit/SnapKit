@@ -22,51 +22,28 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS)
-    import UIKit
+import UIKit
 #else
-    import AppKit
+import AppKit
 #endif
-
-
-public protocol ConstraintRelatableTarget {
-}
-
-extension Int: ConstraintRelatableTarget {
-}
-
-extension UInt: ConstraintRelatableTarget {
-}
-
-extension Float: ConstraintRelatableTarget {
-}
-
-extension Double: ConstraintRelatableTarget {
-}
-
-extension CGFloat: ConstraintRelatableTarget {
-}
-
-extension CGSize: ConstraintRelatableTarget {
-}
-
-extension CGPoint: ConstraintRelatableTarget {
-}
-
-extension ConstraintInsets: ConstraintRelatableTarget {
-}
 
 #if os(iOS) || os(tvOS)
+public protocol ConstraintDirectionalInsetTarget: ConstraintConstantTarget {
+}
+
 @available(iOS 11.0, tvOS 11.0, *)
-extension ConstraintDirectionalInsets: ConstraintRelatableTarget {
+extension ConstraintDirectionalInsets: ConstraintDirectionalInsetTarget {
+}
+
+extension ConstraintDirectionalInsetTarget {
+
+  @available(iOS 11.0, tvOS 11.0, *)
+  internal var constraintDirectionalInsetTargetValue: ConstraintDirectionalInsets {
+    if let amount = self as? ConstraintDirectionalInsets {
+      return amount
+    } else {
+      return ConstraintDirectionalInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+    }
+  }
 }
 #endif
-
-extension ConstraintItem: ConstraintRelatableTarget {
-}
-
-extension ConstraintView: ConstraintRelatableTarget {
-}
-
-@available(iOS 9.0, OSX 10.11, *)
-extension ConstraintLayoutGuide: ConstraintRelatableTarget {
-}
