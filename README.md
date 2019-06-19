@@ -114,6 +114,13 @@ class MyViewController: UIViewController {
 }
 ```
 
+### Playground
+You can try SnapKit in Playground.
+
+**Note:**
+
+> To try SnapKit in playground, open `SnapKit.xcworkspace` and build SnapKit.framework for any simulator first.
+
 ### Resources
 
 - [Documentation](http://snapkit.io/docs/)
