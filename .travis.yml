@@ -1,10 +1,10 @@
 language: objective-c
-osx_image: xcode9
+osx_image: xcode10.2
 
 env:
-  - ACTION=test  PLATFORM=Mac     DESTINATION='platform=OS X'
+  - ACTION=test  PLATFORM=Mac     DESTINATION='platform=macOS'
   - ACTION=test  PLATFORM=iOS     DESTINATION='platform=iOS Simulator,name=iPhone 6S'
-  - ACTION=test  PLATFORM=tvOS    DESTINATION='platform=tvOS Simulator,name=Apple TV 1080p'
+  - ACTION=test  PLATFORM=tvOS    DESTINATION='platform=tvOS Simulator,name=Apple TV 4K (at 1080p)'
 
 script:
   - set -o pipefail && xcodebuild -scheme SnapKit -destination "$DESTINATION" $ACTION | xcpretty

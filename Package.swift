@@ -1,3 +1,4 @@
+// swift-tools-version:5.0
 //
 //  SnapKit
 //
@@ -21,16 +22,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
-    import UIKit
-#endif
 
-    
-@available(iOS 8.0, *)
-public extension ConstraintLayoutSupport {
-    
-    var snp: ConstraintLayoutSupportDSL {
-        return ConstraintLayoutSupportDSL(support: self)
-    }
-    
-}
+import PackageDescription
+
+let package = Package(
+    name: "SnapKit",
+    products: [
+        .library(name: "SnapKit", targets: ["SnapKit"]),
+    ],
+    targets: [
+        .target(name: "SnapKit", path: "Source"),
+        .testTarget(name: "SnapKitTests", dependencies: ["SnapKit"]),
+    ]
+)

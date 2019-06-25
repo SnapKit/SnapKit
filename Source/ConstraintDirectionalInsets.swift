@@ -23,14 +23,12 @@
 
 #if os(iOS) || os(tvOS)
     import UIKit
+#else
+    import AppKit
 #endif
 
-    
-@available(iOS 8.0, *)
-public extension ConstraintLayoutSupport {
-    
-    var snp: ConstraintLayoutSupportDSL {
-        return ConstraintLayoutSupportDSL(support: self)
-    }
-    
-}
+
+#if os(iOS) || os(tvOS)
+    @available(iOS 11.0, tvOS 11.0, *)
+    public typealias ConstraintDirectionalInsets = NSDirectionalEdgeInsets
+#endif

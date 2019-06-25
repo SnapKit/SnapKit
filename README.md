@@ -7,8 +7,8 @@ SnapKit is a DSL to make Auto Layout easy on both iOS and OS X.
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/SnapKit.svg)](https://cocoapods.org/pods/SnapKit)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-#### ⚠️ **To use with Swift 3.x please ensure you are using >= 3.0.0** ⚠️ 
 #### ⚠️ **To use with Swift 4.x please ensure you are using >= 4.0.0** ⚠️ 
+#### ⚠️ **To use with Swift 5.x please ensure you are using >= 5.0.0** ⚠️ 
 
 ## Contents
 
@@ -22,9 +22,9 @@ SnapKit is a DSL to make Auto Layout easy on both iOS and OS X.
 
 ## Requirements
 
-- iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.0+
-- Xcode 9.0+
-- Swift 3.0+
+- iOS 10.0+ / Mac OS X 10.12+ / tvOS 10.0+
+- Xcode 10.0+
+- Swift 4.0+
 
 ## Communication
 
@@ -55,7 +55,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'SnapKit', '~> 4.0.0'
+    pod 'SnapKit', '~> 5.0.0'
 end
 ```
 
@@ -79,7 +79,7 @@ $ brew install carthage
 To integrate SnapKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "SnapKit/SnapKit" ~> 4.0.0
+github "SnapKit/SnapKit" ~> 5.0.0
 ```
 
 Run `carthage update` to build the framework and drag the built `SnapKit.framework` into your Xcode project.
