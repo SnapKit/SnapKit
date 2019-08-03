@@ -58,7 +58,7 @@ internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
         return false
     }
     #else
-    if #available(iOS 10.0, *) {
+    if #available(iOS 10.0, tvOS 10.0, *) {
         guard lhs.firstAnchor == rhs.firstAnchor else {
             return false
         }
