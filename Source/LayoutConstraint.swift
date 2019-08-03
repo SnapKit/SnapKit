@@ -58,12 +58,14 @@ internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
         return false
     }
     #else
-    guard lhs.firstAnchor == rhs.firstAnchor else {
-        return false
-    }
-    guard ((lhs.secondAnchor == nil && rhs.secondAnchor == nil) ||
-           (lhs.secondAnchor! == rhs.secondAnchor!)) else {
-        return false
+    if #available(iOS 10.0, *) {
+        guard lhs.firstAnchor == rhs.firstAnchor else {
+            return false
+        }
+        guard ((lhs.secondAnchor == nil && rhs.secondAnchor == nil) ||
+               (lhs.secondAnchor! == rhs.secondAnchor!)) else {
+            return false
+        }
     }
     #endif
 
