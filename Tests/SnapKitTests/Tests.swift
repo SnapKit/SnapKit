@@ -575,6 +575,28 @@ class SnapKitTests: XCTestCase {
         XCTAssert(fromAttributes == [.top, .left, .bottom, .right])
         XCTAssert(toAttributes == [.top, .left, .bottom, .right])
     }
+
+    func testDirectionalEdgesToDirectionalEdges() {
+        var fromAttributes = Set<LayoutAttribute>()
+        var toAttributes = Set<LayoutAttribute>()
+        
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp.remakeConstraints { (make) -> Void in
+            make.directionalEdges.equalTo(self.container.snp.directionalEdges)
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+        
+        for constraint in (container.snp_constraints as! [NSLayoutConstraint]) {
+            fromAttributes.insert(constraint.firstAttribute)
+            toAttributes.insert(constraint.secondAttribute)
+        }
+        
+        XCTAssert(fromAttributes == [.top, .leading, .bottom, .trailing])
+        XCTAssert(toAttributes == [.top, .leading, .bottom, .trailing])
+    }
     
     #if os(iOS) || os(tvOS)
     func testEdgesToMargins() {
@@ -614,6 +636,46 @@ class SnapKitTests: XCTestCase {
         
         XCTAssert(toAttributes == [.top, .left, .bottom, .right])
         XCTAssert(fromAttributes == [.topMargin, .leftMargin, .bottomMargin, .rightMargin])
+        
+    }
+
+    func testDirectionalEdgesToDirectionalMargins() {
+        var fromAttributes = Set<LayoutAttribute>()
+        var toAttributes = Set<LayoutAttribute>()
+        
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp.remakeConstraints { (make) -> Void in
+            make.directionalEdges.equalTo(self.container.snp.directionalMargins)
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+        
+        for constraint in (container.snp_constraints as! [NSLayoutConstraint]) {
+            fromAttributes.insert(constraint.firstAttribute)
+            toAttributes.insert(constraint.secondAttribute)
+        }
+        
+        XCTAssert(fromAttributes == [.top, .leading, .bottom, .trailing])
+        XCTAssert(toAttributes == [.topMargin, .leadingMargin, .bottomMargin, .trailingMargin])
+        
+        fromAttributes.removeAll()
+        toAttributes.removeAll()
+        
+        view.snp.remakeConstraints { (make) -> Void in
+            make.directionalMargins.equalTo(self.container.snp.directionalEdges)
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+        
+        for constraint in (container.snp_constraints as! [NSLayoutConstraint]) {
+            fromAttributes.insert(constraint.firstAttribute)
+            toAttributes.insert(constraint.secondAttribute)
+        }
+        
+        XCTAssert(toAttributes == [.top, .leading, .bottom, .trailing])
+        XCTAssert(fromAttributes == [.topMargin, .leadingMargin, .bottomMargin, .trailingMargin])
         
     }
     

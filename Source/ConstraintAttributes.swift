@@ -99,12 +99,16 @@ internal struct ConstraintAttributes : OptionSet, ExpressibleByIntegerLiteral {
     // aggregates
     
     internal static var edges: ConstraintAttributes { return 15 }
+    internal static var directionalEdges: ConstraintAttributes { return 58 }
     internal static var size: ConstraintAttributes { return 192 }
     internal static var center: ConstraintAttributes { return 768 }
     
     @available(iOS 8.0, *)
     internal static var margins: ConstraintAttributes { return 61440 }
     
+    @available(iOS 8.0, *)
+    internal static var directionalMargins: ConstraintAttributes { return 245760 }
+
     @available(iOS 8.0, *)
     internal static var centerWithinMargins: ConstraintAttributes { return 786432 }
     
