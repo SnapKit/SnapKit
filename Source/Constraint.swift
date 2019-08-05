@@ -129,6 +129,32 @@ public final class Constraint {
                         default:
                             fatalError()
                         }
+                    } else if self.from.attributes == .directionalEdges && self.to.attributes == .directionalMargins {
+                      switch layoutFromAttribute {
+                      case .leading:
+                        layoutToAttribute = .leadingMargin
+                      case .trailing:
+                        layoutToAttribute = .trailingMargin
+                      case .top:
+                        layoutToAttribute = .topMargin
+                      case .bottom:
+                        layoutToAttribute = .bottomMargin
+                      default:
+                        fatalError()
+                      }
+                    } else if self.from.attributes == .directionalMargins && self.to.attributes == .directionalEdges {
+                      switch layoutFromAttribute {
+                      case .leadingMargin:
+                        layoutToAttribute = .leading
+                      case .trailingMargin:
+                        layoutToAttribute = .trailing
+                      case .topMargin:
+                        layoutToAttribute = .top
+                      case .bottomMargin:
+                        layoutToAttribute = .bottom
+                      default:
+                        fatalError()
+                      }
                     } else if self.from.attributes == self.to.attributes {
                         layoutToAttribute = layoutFromAttribute
                     } else {
