@@ -118,8 +118,7 @@ public protocol ConstraintAttributesDSL : ConstraintBasicAttributesDSL {
 extension ConstraintAttributesDSL {
     
     // MARK: Baselines
-    
-    @available(*, deprecated, message:"Use .lastBaseline instead")
+    @available(*, deprecated, renamed:"lastBaseline")
     public var baseline: ConstraintItem {
         return ConstraintItem(target: self.target, attributes: ConstraintAttributes.lastBaseline)
     }
