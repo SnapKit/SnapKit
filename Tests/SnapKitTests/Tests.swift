@@ -736,6 +736,8 @@ class SnapKitTests: XCTestCase {
     
     func testCanSetLabel() {
         self.container.snp.setLabel("Hello World")
+
+        XCTAssertEqual(self.container.snp.label(), "Hello World")
     }
     
     func testPriorityShortcuts() {
