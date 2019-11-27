@@ -28,45 +28,34 @@
 #endif
 
 
-public protocol ConstraintOffsetTarget: ConstraintConstantTarget {
+public extension RawRepresentable where Self: ConstraintConstantTarget, Self.RawValue: ConstraintConstantTarget {
 
-    var constraintOffsetTargetValue: CGFloat { get }
-
-}
-
-extension Int: ConstraintOffsetTarget {
-}
-
-extension UInt: ConstraintOffsetTarget {
-}
-
-extension Float: ConstraintOffsetTarget {
-}
-
-extension Double: ConstraintOffsetTarget {
-}
-
-extension CGFloat: ConstraintOffsetTarget {
-}
-
-extension ConstraintOffsetTarget {
-    
-    public var constraintOffsetTargetValue: CGFloat {
-        let offset: CGFloat
-        if let amount = self as? Float {
-            offset = CGFloat(amount)
-        } else if let amount = self as? Double {
-            offset = CGFloat(amount)
-        } else if let amount = self as? CGFloat {
-            offset = CGFloat(amount)
-        } else if let amount = self as? Int {
-            offset = CGFloat(amount)
-        } else if let amount = self as? UInt {
-            offset = CGFloat(amount)
-        } else {
-            offset = 0.0
-        }
-        return offset
+    public func constraintConstantTargetValueFor(layoutAttribute: LayoutAttribute) -> CGFloat {
+        return rawValue.constraintConstantTargetValueFor(layoutAttribute: layoutAttribute)
     }
-    
+
+}
+
+public extension RawRepresentable where Self: ConstraintMultiplierTarget, Self.RawValue: ConstraintMultiplierTarget {
+
+    public var constraintMultiplierTargetValue: CGFloat {
+        return rawValue.constraintMultiplierTargetValue
+    }
+
+}
+
+public extension RawRepresentable where Self: ConstraintOffsetTarget, Self.RawValue: ConstraintOffsetTarget {
+
+    public var constraintOffsetTargetValue: CGFloat {
+        return rawValue.constraintOffsetTargetValue
+    }
+
+}
+
+public extension RawRepresentable where Self: ConstraintInsetTarget, Self.RawValue: ConstraintInsetTarget {
+
+    public var constraintInsetTargetValue: ConstraintInsets {
+        return rawValue.constraintInsetTargetValue
+    }
+
 }

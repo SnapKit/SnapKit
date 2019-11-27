@@ -29,6 +29,9 @@
 
 
 public protocol ConstraintInsetTarget: ConstraintConstantTarget {
+
+    var constraintInsetTargetValue: ConstraintInsets { get }
+
 }
 
 extension Int: ConstraintInsetTarget {
@@ -51,7 +54,7 @@ extension ConstraintInsets: ConstraintInsetTarget {
 
 extension ConstraintInsetTarget {
 
-    internal var constraintInsetTargetValue: ConstraintInsets {
+    public var constraintInsetTargetValue: ConstraintInsets {
         if let amount = self as? ConstraintInsets {
             return amount
         } else if let amount = self as? Float {
