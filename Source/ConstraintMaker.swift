@@ -126,8 +126,20 @@ public class ConstraintMaker {
     public var edges: ConstraintMakerExtendable {
         return self.makeExtendableWithAttributes(.edges)
     }
+    public var horizontalEdges: ConstraintMakerExtendable {
+        return self.makeExtendableWithAttributes(.horizontalEdges)
+    }
+    public var verticalEdges: ConstraintMakerExtendable {
+        return self.makeExtendableWithAttributes(.verticalEdges)
+    }
     public var directionalEdges: ConstraintMakerExtendable {
         return self.makeExtendableWithAttributes(.directionalEdges)
+    }
+    public var directionalHorizontalEdges: ConstraintMakerExtendable {
+        return self.makeExtendableWithAttributes(.directionalHorizontalEdges)
+    }
+    public var directionalVerticalEdges: ConstraintMakerExtendable {
+        return self.makeExtendableWithAttributes(.directionalVerticalEdges)
     }
     public var size: ConstraintMakerExtendable {
         return self.makeExtendableWithAttributes(.size)

@@ -103,6 +103,22 @@ extension ConstraintBasicAttributesDSL {
       return ConstraintItem(target: self.target, attributes: ConstraintAttributes.directionalEdges)
     }
 
+    public var horizontalEdges: ConstraintItem {
+        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.horizontalEdges)
+    }
+
+    public var verticalEdges: ConstraintItem {
+        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.verticalEdges)
+    }
+
+    public var directionalHorizontalEdges: ConstraintItem {
+        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.directionalHorizontalEdges)
+    }
+
+    public var directionalVerticalEdges: ConstraintItem {
+        return ConstraintItem(target: self.target, attributes: ConstraintAttributes.directionalVerticalEdges)
+    }
+
     public var size: ConstraintItem {
         return ConstraintItem(target: self.target, attributes: ConstraintAttributes.size)
     }
