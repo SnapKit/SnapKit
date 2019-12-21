@@ -145,6 +145,32 @@ class SnapKitTests: XCTestCase {
         
         XCTAssertEqual(self.container.snp_constraints.count, 6, "Should have 6 constraints installed")
     }
+
+    func testMakeSystemSpacingBelowConstraints() {
+        let v1 = View()
+        let v2 = View()
+        self.container.addSubview(v1)
+        self.container.addSubview(v2)
+
+        v1.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview()
+        }
+
+        XCTAssertEqual(self.container.snp_constraints.count, 1, "Should have 1 constraint installed")
+
+        v2.snp.makeConstraints { make in
+            make.firstBaseline.equalToSystemSpacingBelow(v1.snp.lastBaseline)
+        }
+
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints installed")
+
+        let constraints = self.container.snp_constraints as! [NSLayoutConstraint]
+        XCTAssertEqual(constraints[1].firstItem as! View, v2)
+        XCTAssertEqual(constraints[1].firstAttribute, NSLayoutConstraint.Attribute.firstBaseline)
+        XCTAssertEqual(constraints[1].secondItem as! View, v1)
+        XCTAssertEqual(constraints[1].secondAttribute, NSLayoutConstraint.Attribute.lastBaseline)
+        XCTAssertEqual(constraints[1].constant, 8, "Should have firstBaseline constraint with standard spacing (8)")
+    }
     
     func testUpdateConstraints() {
         let v1 = View()

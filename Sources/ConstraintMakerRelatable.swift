@@ -73,6 +73,25 @@ public class ConstraintMakerRelatable {
         editable.description.constant = constant
         return editable
     }
+
+    @available(iOSApplicationExtension 11.0, *)
+    @discardableResult
+    public func equalToSystemSpacingBelow(_ other: ConstraintItem, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        let editable = ConstraintMakerEditable(self.description)
+        editable.description.sourceLocation = (file, line)
+        editable.description.relation = .equal
+        editable.description.related = other
+        editable.description.constant = LayoutConstraint.constraints(
+            withVisualFormat: "V:[topView]-[bottomView]",
+            options: .spacingBaselineToBaseline,
+            metrics: nil,
+            views: [
+                "topView": other.target as! ConstraintView,
+                "bottomView": self.description.item as! ConstraintView,
+            ]
+        )[0].constant
+        return editable
+    }
     
     @discardableResult
     public func equalTo(_ other: ConstraintRelatableTarget, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
