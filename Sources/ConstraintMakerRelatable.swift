@@ -74,7 +74,8 @@ public class ConstraintMakerRelatable {
         return editable
     }
 
-    @available(iOSApplicationExtension 11.0, *)
+    #if os(iOS) || os(tvOS)
+    @available(iOS 11.0, tvOS 11.0, *)
     @discardableResult
     public func equalToSystemSpacingBelow(_ other: ConstraintItem, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
         let editable = ConstraintMakerEditable(self.description)
@@ -92,6 +93,7 @@ public class ConstraintMakerRelatable {
         )[0].constant
         return editable
     }
+    #endif
     
     @discardableResult
     public func equalTo(_ other: ConstraintRelatableTarget, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
