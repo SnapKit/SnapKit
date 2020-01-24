@@ -102,6 +102,7 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
 
 
 #if os(iOS) || os(tvOS)
+@available(iOS 11.0, *)
 public extension ConstraintViewDSL {
     
     func toCenter() { view.snp.makeConstraints { make in make.center.equalToSuperview() } }

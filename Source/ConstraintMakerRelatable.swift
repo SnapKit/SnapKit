@@ -116,6 +116,7 @@ public class ConstraintMakerRelatable {
 
 
 #if os(iOS) || os(tvOS)
+@available(iOS 11.0, *)
 extension ConstraintMakerRelatable {
     
     @discardableResult
