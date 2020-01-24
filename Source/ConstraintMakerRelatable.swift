@@ -117,7 +117,7 @@ public class ConstraintMakerRelatable {
 
 #if os(iOS) || os(tvOS)
 @available(iOS 11.0, *)
-extension ConstraintMakerRelatable {
+public extension ConstraintMakerRelatable {
     
     @discardableResult
     func equalToSuperviewSafeArea(_ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
