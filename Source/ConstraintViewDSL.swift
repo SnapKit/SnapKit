@@ -99,3 +99,83 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
     }
     
 }
+
+
+#if os(iOS) || os(tvOS)
+public extension ConstraintViewDSL {
+    
+    func toCenter() { view.snp.makeConstraints { make in make.center.equalToSuperview() } }
+       
+       func toTopCenter(_ inset: CGFloat = 0, toSafeArea: Bool = false) {
+           view.snp.makeConstraints { make in
+               guard let superview = view.superview else { return }
+
+               make.top.centerX.equalTo(toSafeArea ? superview.safeAreaLayoutGuide : superview).inset(inset)
+           }
+       }
+
+       func toBottomCenter(_ inset: CGFloat = 0, toSafeArea: Bool = false) {
+           view.snp.makeConstraints { make in
+               guard let superview = view.superview else { return }
+
+               make.bottom.centerX.equalTo(toSafeArea ? superview.safeAreaLayoutGuide : superview).inset(inset)
+           }
+       }
+
+       func toLeftCenter(_ inset: CGFloat = 0, toSafeArea: Bool = false) {
+           view.snp.makeConstraints { make in
+               guard let superview = view.superview else { return }
+
+               make.left.centerY.equalTo(toSafeArea ? superview.safeAreaLayoutGuide : superview).inset(inset)
+           }
+       }
+
+       func toRightCenter(_ inset: CGFloat = 0, toSafeArea: Bool = false) {
+           view.snp.makeConstraints { make in
+               guard let superview = view.superview else { return }
+
+               make.right.centerY.equalTo(toSafeArea ? superview.safeAreaLayoutGuide : superview).inset(inset)
+           }
+       }
+
+       func toTopLeft(_ inset: CGFloat = 0, toSafeArea: Bool = false) {
+           view.snp.makeConstraints { make in
+               guard let superview = view.superview else { return }
+
+               make.top.left.equalTo(toSafeArea ? superview.safeAreaLayoutGuide : superview).inset(inset)
+           }
+       }
+
+       func toBottomLeft(_ inset: CGFloat = 0, toSafeArea: Bool = false) {
+           view.snp.makeConstraints { make in
+               guard let superview = view.superview else { return }
+
+               make.bottom.left.equalTo(toSafeArea ? superview.safeAreaLayoutGuide : superview).inset(inset)
+           }
+       }
+
+       func toBottomRight(_ inset: CGFloat = 0, toSafeArea: Bool = false) {
+           view.snp.makeConstraints { make in
+               guard let superview = view.superview else { return }
+
+               make.bottom.right.equalTo(toSafeArea ? superview.safeAreaLayoutGuide : superview).inset(inset)
+           }
+       }
+
+       func toTopRight(_ inset: CGFloat = 0, toSafeArea: Bool = false) {
+           view.snp.makeConstraints { make in
+               guard let superview = reflectedView.superview else { return }
+
+               make.top.right.equalTo(toSafeArea ? superview.safeAreaLayoutGuide : superview).inset(inset)
+           }
+       }
+
+       func toEdges(_ inset: CGFloat = 0, toSafeArea: Bool = false) {
+           reflectedView.snp.makeConstraints { make in
+               guard let superview = reflectedView.superview else { return }
+
+               make.edges.equalTo(toSafeArea ? superview.safeAreaLayoutGuide : superview).inset(inset)
+           }
+       }
+}
+#endif

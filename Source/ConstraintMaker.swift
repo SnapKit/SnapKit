@@ -222,3 +222,31 @@ public class ConstraintMaker {
     }
     
 }
+
+
+#if os(iOS) || os(tvOS)
+public extension ConstraintMaker {
+    
+    func aspectRatio(x: CGFloat = 1, y: CGFloat = 1) {
+        guard let reflectedItem = reflectedItem else { return }
+
+        self.width.equalTo(reflectedItem.snp.height).multipliedBy(x / y)
+    }
+    
+    func after(_ view: UIView, inset: CGFloat = 0) {
+        self.left.equalTo(view.snp.right).inset(-inset)
+    }
+    
+    func before(_ view: UIView, inset: CGFloat = 0) {
+        self.right.equalTo(view.snp.left).inset(-inset)
+    }
+    
+    func above(_ view: UIView, inset: CGFloat = 0) {
+        self.bottom.equalTo(view.snp.top).inset(-inset)
+    }
+    
+    func below(_ view: UIView, inset: CGFloat = 0) {
+        self.top.equalTo(view.snp.bottom).inset(-inset)
+    }
+}
+#endif
