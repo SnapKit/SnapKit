@@ -165,15 +165,15 @@ public extension ConstraintViewDSL {
 
        func toTopRight(_ inset: CGFloat = 0, toSafeArea: Bool = false) {
            view.snp.makeConstraints { make in
-               guard let superview = reflectedView.superview else { return }
+               guard let superview = view.superview else { return }
 
                make.top.right.equalTo(toSafeArea ? superview.safeAreaLayoutGuide : superview).inset(inset)
            }
        }
 
        func toEdges(_ inset: CGFloat = 0, toSafeArea: Bool = false) {
-           reflectedView.snp.makeConstraints { make in
-               guard let superview = reflectedView.superview else { return }
+           view.snp.makeConstraints { make in
+               guard let superview = view.superview else { return }
 
                make.edges.equalTo(toSafeArea ? superview.safeAreaLayoutGuide : superview).inset(inset)
            }

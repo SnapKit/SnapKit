@@ -228,9 +228,9 @@ public class ConstraintMaker {
 public extension ConstraintMaker {
     
     func aspectRatio(x: CGFloat = 1, y: CGFloat = 1) {
-        guard let reflectedItem = reflectedItem else { return }
+        guard let view = item as? UIView else { return }
 
-        self.width.equalTo(reflectedItem.snp.height).multipliedBy(x / y)
+        self.width.equalTo(view.snp.height).multipliedBy(x / y)
     }
     
     func after(_ view: UIView, inset: CGFloat = 0) {
