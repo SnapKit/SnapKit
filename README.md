@@ -7,8 +7,8 @@ SnapKit is a DSL to make Auto Layout easy on both iOS and OS X.
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/SnapKit.svg)](https://cocoapods.org/pods/SnapKit)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-#### ⚠️ **To use with Swift 4.x please ensure you are using >= 4.0.0** ⚠️ 
-#### ⚠️ **To use with Swift 5.x please ensure you are using >= 5.0.0** ⚠️ 
+#### ⚠️ **To use with Swift 4.x please ensure you are using >= 4.0.0** ⚠️
+#### ⚠️ **To use with Swift 5.x please ensure you are using >= 5.0.0** ⚠️
 
 ## Contents
 
@@ -105,6 +105,7 @@ class MyViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.addSubview(box)
+        box.backgroundColor = .green
         box.snp.makeConstraints { (make) -> Void in
            make.width.height.equalTo(50)
            make.center.equalTo(self.view)
@@ -113,6 +114,13 @@ class MyViewController: UIViewController {
 
 }
 ```
+
+### Playground
+You can try SnapKit in Playground.
+
+**Note:**
+
+> To try SnapKit in playground, open `SnapKit.xcworkspace` and build SnapKit.framework for any simulator first.
 
 ### Resources
 

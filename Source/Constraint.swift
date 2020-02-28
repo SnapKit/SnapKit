@@ -132,6 +132,32 @@ public final class Constraint {
                         default:
                             fatalError()
                         }
+                    } else if self.from.attributes == .directionalEdges && self.to.attributes == .directionalMargins {
+                      switch layoutFromAttribute {
+                      case .leading:
+                        layoutToAttribute = .leadingMargin
+                      case .trailing:
+                        layoutToAttribute = .trailingMargin
+                      case .top:
+                        layoutToAttribute = .topMargin
+                      case .bottom:
+                        layoutToAttribute = .bottomMargin
+                      default:
+                        fatalError()
+                      }
+                    } else if self.from.attributes == .directionalMargins && self.to.attributes == .directionalEdges {
+                      switch layoutFromAttribute {
+                      case .leadingMargin:
+                        layoutToAttribute = .leading
+                      case .trailingMargin:
+                        layoutToAttribute = .trailing
+                      case .topMargin:
+                        layoutToAttribute = .top
+                      case .bottomMargin:
+                        layoutToAttribute = .bottom
+                      default:
+                        fatalError()
+                      }
                     } else if self.from.attributes == self.to.attributes {
                         layoutToAttribute = layoutFromAttribute
                     } else {
@@ -192,12 +218,12 @@ public final class Constraint {
 
     // MARK: Public
 
-    @available(*, deprecated, message:"Use activate().")
+    @available(*, deprecated, renamed:"activate()")
     public func install() {
         self.activate()
     }
 
-    @available(*, deprecated, message:"Use deactivate().")
+    @available(*, deprecated, renamed:"deactivate()")
     public func uninstall() {
         self.deactivate()
     }
@@ -244,13 +270,13 @@ public final class Constraint {
         return self
     }
 
-    @available(*, deprecated, message:"Use update(offset: ConstraintOffsetTarget) instead.")
+    @available(*, deprecated, renamed:"update(offset:)")
     public func updateOffset(amount: ConstraintOffsetTarget) -> Void { self.update(offset: amount) }
 
-    @available(*, deprecated, message:"Use update(inset: ConstraintInsetTarget) instead.")
+    @available(*, deprecated, renamed:"update(inset:)")
     public func updateInsets(amount: ConstraintInsetTarget) -> Void { self.update(inset: amount) }
 
-    @available(*, deprecated, message:"Use update(priority: ConstraintPriorityTarget) instead.")
+    @available(*, deprecated, renamed:"update(priority:)")
     public func updatePriority(amount: ConstraintPriorityTarget) -> Void { self.update(priority: amount) }
 
     @available(*, deprecated, message:"Use update(priority: ConstraintPriorityTarget) instead.")
