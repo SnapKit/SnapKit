@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2DBA080E1F1FAD66001CFED4 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA080D1F1FAD66001CFED4 /* Typealiases.swift */; };
+		3CA7D6C224592D4D005E10C2 /* ConstraintMakerRelatable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA7D6C124592D4D005E10C2 /* ConstraintMakerRelatable+Extensions.swift */; };
 		7E1CB2AE227BB5520066B6C0 /* ConstraintDirectionalInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1CB2AD227BB5520066B6C0 /* ConstraintDirectionalInsetTarget.swift */; };
 		7E1CB2B0227BBDF70066B6C0 /* ConstraintDirectionalInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1CB2AF227BBDF70066B6C0 /* ConstraintDirectionalInsets.swift */; };
 		EE235F5F1C5785BC00C08960 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235F5E1C5785BC00C08960 /* Debugging.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		2DBA080D1F1FAD66001CFED4 /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		3CA7D6C124592D4D005E10C2 /* ConstraintMakerRelatable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConstraintMakerRelatable+Extensions.swift"; sourceTree = "<group>"; };
 		537DCE9A1C35CD4100B5B899 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		7E1CB2AD227BB5520066B6C0 /* ConstraintDirectionalInsetTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintDirectionalInsetTarget.swift; sourceTree = "<group>"; };
 		7E1CB2AF227BBDF70066B6C0 /* ConstraintDirectionalInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintDirectionalInsets.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				EE235FC61C5785E200C08960 /* ConstraintView+Extensions.swift */,
 				EEF68FAF1D784FB100980C26 /* ConstraintLayoutGuide+Extensions.swift */,
 				EEF68FB31D784FBA00980C26 /* UILayoutSupport+Extensions.swift */,
+				3CA7D6C124592D4D005E10C2 /* ConstraintMakerRelatable+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				EE235FC01C5785DC00C08960 /* ConstraintViewDSL.swift in Sources */,
 				EE235F5F1C5785BC00C08960 /* Debugging.swift in Sources */,
 				EE235FC31C5785DC00C08960 /* ConstraintLayoutSupportDSL.swift in Sources */,
+				3CA7D6C224592D4D005E10C2 /* ConstraintMakerRelatable+Extensions.swift in Sources */,
 				EE235F7F1C5785C600C08960 /* ConstraintRelation.swift in Sources */,
 				EEF68FB41D784FBA00980C26 /* UILayoutSupport+Extensions.swift in Sources */,
 				EE235F701C5785C600C08960 /* ConstraintDescription.swift in Sources */,
