@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2DBA080E1F1FAD66001CFED4 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA080D1F1FAD66001CFED4 /* Typealiases.swift */; };
+		3E3C700E24AF15200004B4F4 /* ConstraintArray+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C700D24AF15200004B4F4 /* ConstraintArray+Extensions.swift */; };
+		3E3C701024AF152A0004B4F4 /* ConstraintArrayDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C700F24AF152A0004B4F4 /* ConstraintArrayDSL.swift */; };
 		7E1CB2AE227BB5520066B6C0 /* ConstraintDirectionalInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1CB2AD227BB5520066B6C0 /* ConstraintDirectionalInsetTarget.swift */; };
 		7E1CB2B0227BBDF70066B6C0 /* ConstraintDirectionalInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1CB2AF227BBDF70066B6C0 /* ConstraintDirectionalInsets.swift */; };
 		EE235F5F1C5785BC00C08960 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE235F5E1C5785BC00C08960 /* Debugging.swift */; };
@@ -50,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		2DBA080D1F1FAD66001CFED4 /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		3E3C700D24AF15200004B4F4 /* ConstraintArray+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConstraintArray+Extensions.swift"; sourceTree = "<group>"; };
+		3E3C700F24AF152A0004B4F4 /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintArrayDSL.swift; sourceTree = "<group>"; };
 		537DCE9A1C35CD4100B5B899 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		7E1CB2AD227BB5520066B6C0 /* ConstraintDirectionalInsetTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintDirectionalInsetTarget.swift; sourceTree = "<group>"; };
 		7E1CB2AF227BBDF70066B6C0 /* ConstraintDirectionalInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintDirectionalInsets.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 		EE235F581C57858700C08960 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3E3C700D24AF15200004B4F4 /* ConstraintArray+Extensions.swift */,
 				EE235FC61C5785E200C08960 /* ConstraintView+Extensions.swift */,
 				EEF68FAF1D784FB100980C26 /* ConstraintLayoutGuide+Extensions.swift */,
 				EEF68FB31D784FBA00980C26 /* UILayoutSupport+Extensions.swift */,
@@ -146,6 +151,7 @@
 		EE235F591C57859200C08960 /* DSLs */ = {
 			isa = PBXGroup;
 			children = (
+				3E3C700F24AF152A0004B4F4 /* ConstraintArrayDSL.swift */,
 				EEF68FA51D784A5300980C26 /* ConstraintDSL.swift */,
 				EE235FBE1C5785DC00C08960 /* ConstraintViewDSL.swift */,
 				EEF68F9D1D78492400980C26 /* ConstraintLayoutGuideDSL.swift */,
@@ -388,6 +394,7 @@
 				EEF68FC01D7865AA00980C26 /* ConstraintLayoutSupport.swift in Sources */,
 				EEF68FB01D784FB100980C26 /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				EE235F761C5785C600C08960 /* ConstraintConfig.swift in Sources */,
+				3E3C700E24AF15200004B4F4 /* ConstraintArray+Extensions.swift in Sources */,
 				EE235F6D1C5785C600C08960 /* Constraint.swift in Sources */,
 				EE235F791C5785C600C08960 /* ConstraintView.swift in Sources */,
 				EE6898CB1DA7B3A100D47F33 /* LayoutConstraintItem.swift in Sources */,
@@ -401,6 +408,7 @@
 				EE235FC31C5785DC00C08960 /* ConstraintLayoutSupportDSL.swift in Sources */,
 				EE235F7F1C5785C600C08960 /* ConstraintRelation.swift in Sources */,
 				EEF68FB41D784FBA00980C26 /* UILayoutSupport+Extensions.swift in Sources */,
+				3E3C701024AF152A0004B4F4 /* ConstraintArrayDSL.swift in Sources */,
 				EE235F701C5785C600C08960 /* ConstraintDescription.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
