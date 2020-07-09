@@ -50,17 +50,18 @@ extension ConstraintOffsetTarget {
     
     internal var constraintOffsetTargetValue: CGFloat {
         let offset: CGFloat
-        if let amount = self as? Float {
+        switch self {
+        case let amount as Float:
             offset = CGFloat(amount)
-        } else if let amount = self as? Double {
+        case let amount as Double:
             offset = CGFloat(amount)
-        } else if let amount = self as? CGFloat {
+        case let amount as CGFloat:
             offset = CGFloat(amount)
-        } else if let amount = self as? Int {
+        case let amount as Int:
             offset = CGFloat(amount)
-        } else if let amount = self as? UInt {
+        case let amount as UInt:
             offset = CGFloat(amount)
-        } else {
+        default:
             offset = 0.0
         }
         return offset

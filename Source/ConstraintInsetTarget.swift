@@ -52,19 +52,20 @@ extension ConstraintInsets: ConstraintInsetTarget {
 extension ConstraintInsetTarget {
 
     internal var constraintInsetTargetValue: ConstraintInsets {
-        if let amount = self as? ConstraintInsets {
+        switch self {
+        case let amount as ConstraintInsets:
             return amount
-        } else if let amount = self as? Float {
+        case let amount as Float:
             return ConstraintInsets(top: CGFloat(amount), left: CGFloat(amount), bottom: CGFloat(amount), right: CGFloat(amount))
-        } else if let amount = self as? Double {
+        case let amount as Double:
             return ConstraintInsets(top: CGFloat(amount), left: CGFloat(amount), bottom: CGFloat(amount), right: CGFloat(amount))
-        } else if let amount = self as? CGFloat {
+        case let amount as CGFloat:
             return ConstraintInsets(top: amount, left: amount, bottom: amount, right: amount)
-        } else if let amount = self as? Int {
+        case let amount as Int:
             return ConstraintInsets(top: CGFloat(amount), left: CGFloat(amount), bottom: CGFloat(amount), right: CGFloat(amount))
-        } else if let amount = self as? UInt {
+        case let amount as UInt:
             return ConstraintInsets(top: CGFloat(amount), left: CGFloat(amount), bottom: CGFloat(amount), right: CGFloat(amount))
-        } else {
+        default:
             return ConstraintInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
