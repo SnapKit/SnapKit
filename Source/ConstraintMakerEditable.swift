@@ -53,6 +53,12 @@ public class ConstraintMakerEditable: ConstraintMakerPriortizable {
         return self
     }
     
+    @discardableResult
+    public func disabled() -> ConstraintMakerEditable {
+        self.description.disabledAtStart = true
+        return self
+    }
+
     #if os(iOS) || os(tvOS)
     @discardableResult
     @available(iOS 11.0, tvOS 11.0, *)
