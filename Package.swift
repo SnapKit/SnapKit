@@ -36,7 +36,7 @@ let package = Package(
         .library(name: "SnapKit", targets: ["SnapKit"]),
     ],
     targets: [
-        .target(name: "SnapKit", path: "Source"),
+        .target(name: "SnapKit", path: "Sources"),
         .testTarget(name: "SnapKitTests", dependencies: ["SnapKit"]),
     ],
     swiftLanguageVersions: [
