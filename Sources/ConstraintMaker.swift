@@ -163,7 +163,7 @@ public class ConstraintMaker {
         return self.makeExtendableWithAttributes(.centerWithinMargins)
     }
     
-    private let item: LayoutConstraintItem
+    public let item: LayoutConstraintItem
     private var descriptions = [ConstraintDescription]()
     
     internal init(item: LayoutConstraintItem) {
