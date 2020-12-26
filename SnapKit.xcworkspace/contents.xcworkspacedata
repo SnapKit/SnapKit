@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SnapKitPlayground.playground">
-   </FileRef>
-   <FileRef
       location = "container:SnapKit.xcodeproj">
    </FileRef>
 </Workspace>
