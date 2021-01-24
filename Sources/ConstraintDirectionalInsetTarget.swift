@@ -22,40 +22,28 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS)
-    import UIKit
+import UIKit
 #else
-    import AppKit
+import AppKit
 #endif
 
-
-public class LayoutConstraint : NSLayoutConstraint {
-    
-    public var label: String? {
-        get {
-            return self.identifier
-        }
-        set {
-            self.identifier = newValue
-        }
-    }
-    
-    internal weak var constraint: Constraint? = nil
-    
+#if os(iOS) || os(tvOS)
+public protocol ConstraintDirectionalInsetTarget: ConstraintConstantTarget {
 }
 
-internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
-    let areLayoutAnchorsEqual: Bool
-    if #available(iOS 10.0, OSXApplicationExtension 10.12, *) {
-        areLayoutAnchorsEqual = lhs.firstAnchor === rhs.firstAnchor &&
-            lhs.secondAnchor === rhs.secondAnchor
+@available(iOS 11.0, tvOS 11.0, *)
+extension ConstraintDirectionalInsets: ConstraintDirectionalInsetTarget {
+}
+
+extension ConstraintDirectionalInsetTarget {
+
+  @available(iOS 11.0, tvOS 11.0, *)
+  internal var constraintDirectionalInsetTargetValue: ConstraintDirectionalInsets {
+    if let amount = self as? ConstraintDirectionalInsets {
+      return amount
     } else {
-        areLayoutAnchorsEqual = lhs.firstItem === rhs.firstItem &&
-            lhs.secondItem === rhs.secondItem &&
-            lhs.firstAttribute == rhs.firstAttribute &&
-            lhs.secondAttribute == rhs.secondAttribute
+      return ConstraintDirectionalInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
     }
-    return areLayoutAnchorsEqual &&
-        lhs.relation == rhs.relation &&
-        lhs.priority == rhs.priority &&
-        lhs.multiplier == rhs.multiplier
+  }
 }
+#endif

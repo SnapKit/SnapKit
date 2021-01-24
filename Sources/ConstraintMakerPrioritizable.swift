@@ -27,8 +27,10 @@
     import AppKit
 #endif
 
+@available(*, deprecated, message:"Use ConstraintMakerPrioritizable instead.")
+public typealias ConstraintMakerPriortizable = ConstraintMakerPrioritizable
 
-public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
+public class ConstraintMakerPrioritizable: ConstraintMakerFinalizable {
     
     @discardableResult
     public func priority(_ amount: ConstraintPriority) -> ConstraintMakerFinalizable {

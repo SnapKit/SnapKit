@@ -1,4 +1,3 @@
-// swift-tools-version:5.0
 //
 //  SnapKit
 //
@@ -22,24 +21,52 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(iOS) || os(tvOS)
+    import UIKit
+#else
+    import AppKit
+#endif
 
-import PackageDescription
 
-let package = Package(
-    name: "SnapKit",
-    platforms: [
-        .iOS(.v10),
-        .macOS(.v10_11),
-        .tvOS(.v10)
-    ],
-    products: [
-        .library(name: "SnapKit", targets: ["SnapKit"]),
-    ],
-    targets: [
-        .target(name: "SnapKit", path: "Sources"),
-        .testTarget(name: "SnapKitTests", dependencies: ["SnapKit"]),
-    ],
-    swiftLanguageVersions: [
-        .v5
-    ]
-)
+public protocol ConstraintRelatableTarget {
+}
+
+extension Int: ConstraintRelatableTarget {
+}
+
+extension UInt: ConstraintRelatableTarget {
+}
+
+extension Float: ConstraintRelatableTarget {
+}
+
+extension Double: ConstraintRelatableTarget {
+}
+
+extension CGFloat: ConstraintRelatableTarget {
+}
+
+extension CGSize: ConstraintRelatableTarget {
+}
+
+extension CGPoint: ConstraintRelatableTarget {
+}
+
+extension ConstraintInsets: ConstraintRelatableTarget {
+}
+
+#if os(iOS) || os(tvOS)
+@available(iOS 11.0, tvOS 11.0, *)
+extension ConstraintDirectionalInsets: ConstraintRelatableTarget {
+}
+#endif
+
+extension ConstraintItem: ConstraintRelatableTarget {
+}
+
+extension ConstraintView: ConstraintRelatableTarget {
+}
+
+@available(iOS 9.0, OSX 10.11, *)
+extension ConstraintLayoutGuide: ConstraintRelatableTarget {
+}

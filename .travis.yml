@@ -1,9 +1,9 @@
 language: objective-c
-osx_image: xcode10.2
+osx_image: xcode11
 
 env:
   - ACTION=test  PLATFORM=Mac     DESTINATION='platform=macOS'
-  - ACTION=test  PLATFORM=iOS     DESTINATION='platform=iOS Simulator,name=iPhone 6S'
+  - ACTION=test  PLATFORM=iOS     DESTINATION='platform=iOS Simulator,name=iPhone 8'
   - ACTION=test  PLATFORM=tvOS    DESTINATION='platform=tvOS Simulator,name=Apple TV 4K (at 1080p)'
 
 script:
