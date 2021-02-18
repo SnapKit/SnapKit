@@ -257,7 +257,7 @@ view1.snp.makeConstraints { (make) -> Void in
 
 ...
 // then later you can call
-self.topConstraint.uninstall()
+self.topConstraint.deactivate()
 
 // or if you want to update the constraint
 self.topConstraint.updateOffset(5)
