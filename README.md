@@ -84,6 +84,20 @@ github "SnapKit/SnapKit" ~> 5.0.0
 
 Run `carthage update` to build the framework and drag the built `SnapKit.framework` into your Xcode project.
 
+### Swift Package Manager
+
+[Swift Package Manager](https://swift.org/package-manager/) is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies.
+
+> Xcode 11+ is required to build SnapKit using Swift Package Manager.
+
+To integrate SnapKit into your Xcode project using Swift Package Manager, add it to the dependencies value of your `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1"))
+]
+```
+
 ### Manually
 
 If you prefer not to use either of the aforementioned dependency managers, you can integrate SnapKit into your project manually.

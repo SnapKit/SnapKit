@@ -34,9 +34,10 @@ let package = Package(
     ],
     products: [
         .library(name: "SnapKit", targets: ["SnapKit"]),
+        .library(name: "SnapKit-Dynamic", type: .dynamic, targets: ["SnapKit"]),
     ],
     targets: [
-        .target(name: "SnapKit", path: "Source"),
+        .target(name: "SnapKit", path: "Sources"),
         .testTarget(name: "SnapKitTests", dependencies: ["SnapKit"]),
     ],
     swiftLanguageVersions: [

@@ -27,38 +27,44 @@
     import AppKit
 #endif
 
+@available(*, deprecated, message:"Use ConstraintMakerPrioritizable instead.")
+public typealias ConstraintMakerPriortizable = ConstraintMakerPrioritizable
 
-public class ConstraintMakerEditable: ConstraintMakerPriortizable {
-
+public class ConstraintMakerPrioritizable: ConstraintMakerFinalizable {
+    
     @discardableResult
-    public func multipliedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
-        self.description.multiplier = amount
+    public func priority(_ amount: ConstraintPriority) -> ConstraintMakerFinalizable {
+        self.description.priority = amount.value
         return self
     }
     
     @discardableResult
-    public func dividedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
-        return self.multipliedBy(1.0 / amount.constraintMultiplierTargetValue)
-    }
-    
-    @discardableResult
-    public func offset(_ amount: ConstraintOffsetTarget) -> ConstraintMakerEditable {
-        self.description.constant = amount.constraintOffsetTargetValue
+    public func priority(_ amount: ConstraintPriorityTarget) -> ConstraintMakerFinalizable {
+        self.description.priority = amount
         return self
     }
     
+    @available(*, deprecated, message:"Use priority(.required) instead.")
     @discardableResult
-    public func inset(_ amount: ConstraintInsetTarget) -> ConstraintMakerEditable {
-        self.description.constant = amount.constraintInsetTargetValue
-        return self
+    public func priorityRequired() -> ConstraintMakerFinalizable {
+        return self.priority(.required)
     }
     
-    #if os(iOS) || os(tvOS)
+    @available(*, deprecated, message:"Use priority(.high) instead.")
     @discardableResult
-    @available(iOS 11.0, tvOS 11.0, *)
-    public func inset(_ amount: ConstraintDirectionalInsetTarget) -> ConstraintMakerEditable {
-        self.description.constant = amount.constraintDirectionalInsetTargetValue
-        return self
+    public func priorityHigh() -> ConstraintMakerFinalizable {
+        return self.priority(.high)
     }
-    #endif
+    
+    @available(*, deprecated, message:"Use priority(.medium) instead.")
+    @discardableResult
+    public func priorityMedium() -> ConstraintMakerFinalizable {
+        return self.priority(.medium)
+    }
+    
+    @available(*, deprecated, message:"Use priority(.low) instead.")
+    @discardableResult
+    public func priorityLow() -> ConstraintMakerFinalizable {
+        return self.priority(.low)
+    }
 }
