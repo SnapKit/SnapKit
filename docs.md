@@ -96,7 +96,7 @@ let box = UIView()
 superview.addSubview(box)
 
 box.snp.makeConstraints { (make) -> Void in
-    make.edges.equalTo(superview).inset(UIEdgeInsetsMake(20, 20, 20, 20))
+    make.edges.equalTo(superview).inset(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
 }
 ```
 
@@ -104,15 +104,15 @@ Not only does this greatly shorten and increase the readability of constraints S
 
 - Determining the best common superview to install the constraints on.
 - Keeping track of the constrainted installed so they can easily be removed later.
-- Ensuring `setTranslatesAutoresizingMaskIntoConstraints(false)` is called on all appropriate views.
+- Ensuring `translatesAutoresizingMaskIntoConstraints = false` is called on all appropriate views.
 
 ### Not all things are created equal
 
-> `.equalTo` equivalent to **NSLayoutRelation.Equal**
+> `.equalTo` equivalent to **NSLayoutConstraint.Relation.equal**
 
-> `.lessThanOrEqualTo` equivalent to **NSLayoutRelation.LessThanOrEqual**
+> `.lessThanOrEqualTo` equivalent to **NSLayoutConstraint.Relation.lessThanOrEqual**
 
-> `.greaterThanOrEqualTo` equivalent to **NSLayoutRelation.GreaterThanOrEqual**
+> `.greaterThanOrEqualTo` equivalent to **NSLayoutConstraint.Relation.greaterThanOrEqual**
 
 These three equality constraints accept one argument which can be any of the following:
 
@@ -124,17 +124,17 @@ make.centerX.lessThanOrEqualTo(view2.snp.left)
 
 ViewAttribute              |  NSLayoutAttribute
 -------------------------  |  --------------------------
-view.snp.left              |  NSLayoutAttribute.left
-view.snp.right             |  NSLayoutAttribute.right
-view.snp.top               |  NSLayoutAttribute.top
-view.snp.bottom            |  NSLayoutAttribute.bottom
-view.snp.leading           |  NSLayoutAttribute.leading
-view.snp.trailing          |  NSLayoutAttribute.trailing
-view.snp.width             |  NSLayoutAttribute.width
-view.snp.height            |  NSLayoutAttribute.height
-view.snp.centerX           |  NSLayoutAttribute.centerX
-view.snp.centerY           |  NSLayoutAttribute.centerY
-view.snp.lastBaseline      |  NSLayoutAttribute.lastBaseline
+view.snp.left              | NSLayoutConstraint.Attribute.left 
+view.snp.right             | NSLayoutConstraint.Attribute.right 
+view.snp.top               | NSLayoutConstraint.Attribute.top 
+view.snp.bottom            | NSLayoutConstraint.Attribute.bottom 
+view.snp.leading           | NSLayoutConstraint.Attribute.leading 
+view.snp.trailing          | NSLayoutConstraint.Attribute.trailing 
+view.snp.width             | NSLayoutConstraint.Attribute.width 
+view.snp.height            | NSLayoutConstraint.Attribute.height 
+view.snp.centerX           | NSLayoutConstraint.Attribute.centerX 
+view.snp.centerY           | NSLayoutConstraint.Attribute.centerY 
+view.snp.lastBaseline      | NSLayoutConstraint.Attribute.lastBaseline 
 
 
 #### 2. UIView/NSView
@@ -304,36 +304,10 @@ func changeButtonPosition() {
 }
 ```
 
-### Snap view to topLayoutGuide and bottomLayoutGuide
- 
- `topLayoutGuide.snp.bottom` is similar to `topLayoutGuide.bottomAnchor` and you can also use `bottomLayoutGuide.snp.top` to align view on top of UITabBar.
- 
-```swift
-import SnapKit
-
-class MyViewController: UIVewController {
-    
-    lazy var tableView = UITableView()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.view.addSubview(tableView)
-        tableView.snp.makeConstraints { (make) -> Void in
-           make.top.equalTo(self.topLayoutGuide.snp.bottom)
-           make.left.equalTo(view)
-           make.right.equalTo(view)
-           make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
-        }
-    }
-
-}
-```
-
 
 ### Snap view to safeAreaLayoutGuide
 
-Just like `topLayoutGuide` and `bottomLayoutGuide` using iPhone X's new `safeAreaLayoutGuide` is easy:
+ `topLayoutGuide` and `bottomLayoutGuide` were deprecated in `iOS 11`. Use `safeAreaLayoutGuide`:
 
 ```swift
 import SnapKit
