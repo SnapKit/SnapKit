@@ -26,6 +26,10 @@ SnapKit is a DSL to make Auto Layout easy on both iOS and OS X.
 - Xcode 10.0+
 - Swift 4.0+
 
+## Migration Guides
+
+- [SnapKit 3.0 Migration Guide](Documentation/SnapKit%203.0%20Migration%20Guide.md)
+
 ## Communication
 
 - If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/snapkit). (Tag 'snapkit')
