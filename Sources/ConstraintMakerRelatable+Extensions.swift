@@ -31,6 +31,24 @@
 extension ConstraintMakerRelatable {
   
     @discardableResult
+    public func equalToSelf(_ keyPath: KeyPath<ConstraintViewDSL, ConstraintItem>, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        guard let view = self.description.item.view else {
+            fatalError("Expected view but found nil when attempting make constraint `equalToSelf`.")
+        }
+        return equalTo(view.snp[keyPath: keyPath], file, line)
+    }
+    
+    @discardableResult
+    public func equalToSelfWidth(_ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        return equalToSelf(\.width, file, line)
+    }
+    
+    @discardableResult
+    public func equalToSelfHeight(_ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        return equalToSelf(\.height, file, line)
+    }
+    
+    @discardableResult
     public func equalToSuperview<T: ConstraintRelatableTarget>(_ closure: (ConstraintView) -> T, _ file: String = #file, line: UInt = #line) -> ConstraintMakerEditable {
         guard let other = self.description.item.superview else {
             fatalError("Expected superview but found nil when attempting make constraint `equalToSuperview`.")
