@@ -180,14 +180,9 @@ public class ConstraintMaker {
     internal static func prepareConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
         let maker = ConstraintMaker(item: item)
         closure(maker)
-        var constraints: [Constraint] = []
-        for description in maker.descriptions {
-            guard let constraint = description.constraint else {
-                continue
-            }
-            constraints.append(constraint)
+        return maker.descriptions.compactMap(\.constraint).reduce(into: [Constraint]()) {
+            $0.append($1)
         }
-        return constraints
     }
     
     internal static func makeConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) {
