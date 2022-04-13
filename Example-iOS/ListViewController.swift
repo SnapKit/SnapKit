@@ -39,7 +39,7 @@ class ListViewController: UITableViewController {
             let viewController = SimpleLayoutViewController()
             navigationController?.pushViewController(viewController, animated: true)
         } else if indexPath.row == 1 {
-            let viewController = ViewController()
+            let viewController = BasicUIScrollViewController()
             navigationController?.pushViewController(viewController, animated: true)
         }
     }

@@ -23,53 +23,14 @@
 
 #if os(iOS) || os(tvOS)
     import UIKit
-#else
-    import AppKit
 #endif
-
-
-public protocol ConstraintPriorityTarget {
     
-    var constraintPriorityTargetValue: Float { get }
     
-}
-
-extension Int: ConstraintPriorityTarget {
+@available(iOS 9.0, OSX 10.11, *)
+public extension ConstraintLayoutGuide {
     
-    public var constraintPriorityTargetValue: Float {
-        return Float(self)
-    }
-    
-}
-
-extension UInt: ConstraintPriorityTarget {
-    
-    public var constraintPriorityTargetValue: Float {
-        return Float(self)
-    }
-    
-}
-
-extension Float: ConstraintPriorityTarget {
-    
-    public var constraintPriorityTargetValue: Float {
-        return self
-    }
-    
-}
-
-extension Double: ConstraintPriorityTarget {
-    
-    public var constraintPriorityTargetValue: Float {
-        return Float(self)
-    }
-    
-}
-
-extension CGFloat: ConstraintPriorityTarget {
-    
-    public var constraintPriorityTargetValue: Float {
-        return Float(self)
+    var snp: ConstraintLayoutGuideDSL {
+        return ConstraintLayoutGuideDSL(guide: self)
     }
     
 }

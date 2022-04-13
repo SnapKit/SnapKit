@@ -59,6 +59,46 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(self.container.snp_constraints.count, 6, "Should have 6 constraints installed")
         
     }
+
+    func testHorizontalVerticalEdges() {
+        let v1 = View()
+        self.container.addSubview(v1)
+
+        v1.snp.makeConstraints { (make) -> Void in
+            make.verticalEdges.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+            return
+        }
+
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints installed")
+
+        XCTAssertTrue(container.constraints.count == 4)
+        XCTAssertTrue(container.constraints.allSatisfy { $0.firstItem === v1 && $0.secondItem === v1.superview })
+        XCTAssertNotNil(container.constraints.first { $0.firstAttribute == .left && $0.secondAttribute == .left })
+        XCTAssertNotNil(container.constraints.first { $0.firstAttribute == .right && $0.secondAttribute == .right })
+        XCTAssertNotNil(container.constraints.first { $0.firstAttribute == .top && $0.secondAttribute == .top })
+        XCTAssertNotNil(container.constraints.first { $0.firstAttribute == .bottom && $0.secondAttribute == .bottom })
+    }
+
+    func testHorizontalVerticalDirectionalEdges() {
+        let v1 = View()
+        self.container.addSubview(v1)
+
+        v1.snp.makeConstraints { (make) -> Void in
+            make.directionalVerticalEdges.equalToSuperview()
+            make.directionalHorizontalEdges.equalToSuperview()
+            return
+        }
+
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints installed")
+
+        XCTAssertTrue(container.constraints.count == 4)
+        XCTAssertTrue(container.constraints.allSatisfy { $0.firstItem === v1 && $0.secondItem === v1.superview })
+        XCTAssertNotNil(container.constraints.first { $0.firstAttribute == .leading && $0.secondAttribute == .leading })
+        XCTAssertNotNil(container.constraints.first { $0.firstAttribute == .trailing && $0.secondAttribute == .trailing })
+        XCTAssertNotNil(container.constraints.first { $0.firstAttribute == .top && $0.secondAttribute == .top })
+        XCTAssertNotNil(container.constraints.first { $0.firstAttribute == .bottom && $0.secondAttribute == .bottom })
+    }
     
     func testGuideMakeConstraints() {
         guard #available(iOS 9.0, OSX 10.11, *) else { return }
@@ -264,6 +304,40 @@ class SnapKitTests: XCTestCase {
         
     }
     
+    func testSetIsActivatedConstraints() {
+        let v1 = View()
+        let v2 = View()
+        self.container.addSubview(v1)
+        self.container.addSubview(v2)
+        
+        var c1: Constraint? = nil
+        var c2: Constraint? = nil
+        
+        v1.snp.prepareConstraints { (make) -> Void in
+            c1 = make.top.equalTo(v2.snp.top).offset(50).constraint
+            c2 = make.left.equalTo(v2.snp.top).offset(50).constraint
+            return
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints")
+        
+        c1?.isActive = true
+        c2?.isActive = false
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 1, "Should have 1 constraint")
+        
+        c1?.isActive = true
+        c2?.isActive = true
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 2, "Should have 2 constraints")
+        
+        c1?.isActive = false
+        c2?.isActive = false
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 0, "Should have 0 constraints")
+        
+    }
+    
     func testEdgeConstraints() {
         let view = View()
         self.container.addSubview(view)
@@ -379,6 +453,90 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(constraints[3].constant, -25, "Should be -25")
     }
     
+    #if os(iOS) || os(tvOS)
+    @available(iOS 11.0, tvOS 11.0, *)
+    func testConstraintDirectionalInsetsAsImpliedEqualToConstraints() {
+        let view = View()
+        self.container.addSubview(view)
+
+        view.snp.makeConstraints { (make) -> Void in
+            make.top.leading.bottom.trailing.equalTo(self.container).inset(ConstraintDirectionalInsets(top: 25, leading: 25, bottom: 25, trailing: 25))
+        }
+
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+
+
+        let constraints = (self.container.snp_constraints as! [NSLayoutConstraint]).sorted { $0.firstAttribute.rawValue < $1.firstAttribute.rawValue }
+
+        let verify: (NSLayoutConstraint, NSLayoutConstraint.Attribute, CGFloat) -> Void = { constraint, attribute, constant in
+          XCTAssertEqual(constraint.firstAttribute, attribute, "First attribute \(constraint.firstAttribute.rawValue) is not \(attribute.rawValue)")
+          XCTAssertEqual(constraint.secondAttribute, attribute, "Second attribute \(constraint.secondAttribute.rawValue) is not \(attribute.rawValue)")
+          XCTAssertEqual(constraint.constant, constant, "Attribute \(attribute.rawValue) should have constant \(constant)")
+        }
+
+        verify(constraints[0], .top, 25)
+        verify(constraints[1], .bottom, -25)
+        verify(constraints[2], .leading, 25)
+        verify(constraints[3], .trailing, -25)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    @available(iOS 11.0, tvOS 11.0, *)
+    func testConstraintDirectionalInsetsAsConstraintsConstant() {
+        let view = View()
+        self.container.addSubview(view)
+
+        view.snp.makeConstraints { (make) -> Void in
+            make.top.leading.bottom.trailing.equalTo(self.container).inset(ConstraintDirectionalInsets(top: 25, leading: 25, bottom: 25, trailing: 25))
+        }
+
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+
+
+        let constraints = (self.container.snp_constraints as! [NSLayoutConstraint]).sorted { $0.firstAttribute.rawValue < $1.firstAttribute.rawValue }
+
+        let verify: (NSLayoutConstraint, NSLayoutConstraint.Attribute, CGFloat) -> Void = { constraint, attribute, constant in
+            XCTAssertEqual(constraint.firstAttribute, attribute, "First attribute \(constraint.firstAttribute.rawValue) is not \(attribute.rawValue)")
+            XCTAssertEqual(constraint.secondAttribute, attribute, "Second attribute \(constraint.secondAttribute.rawValue) is not \(attribute.rawValue)")
+            XCTAssertEqual(constraint.constant, constant, "Attribute \(attribute.rawValue) should have constant \(constant)")
+        }
+
+        verify(constraints[0], .top, 25)
+        verify(constraints[1], .bottom, -25)
+        verify(constraints[2], .leading, 25)
+        verify(constraints[3], .trailing, -25)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    @available(iOS 11.0, tvOS 11.0, *)
+    func testConstraintDirectionalInsetsFallBackForNonDirectionalConstraints() {
+        let view = View()
+        self.container.addSubview(view)
+
+        view.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(self.container).inset(ConstraintDirectionalInsets(top: 25, leading: 25, bottom: 25, trailing: 25))
+        }
+
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+
+
+        let constraints = (self.container.snp_constraints as! [NSLayoutConstraint]).sorted { $0.firstAttribute.rawValue < $1.firstAttribute.rawValue }
+
+        let verify: (NSLayoutConstraint, NSLayoutConstraint.Attribute, CGFloat) -> Void = { constraint, attribute, constant in
+            XCTAssertEqual(constraint.firstAttribute, attribute, "First attribute \(constraint.firstAttribute.rawValue) is not \(attribute.rawValue)")
+            XCTAssertEqual(constraint.secondAttribute, attribute, "Second attribute \(constraint.secondAttribute.rawValue) is not \(attribute.rawValue)")
+            XCTAssertEqual(constraint.constant, constant, "Attribute \(attribute.rawValue) should have constant \(constant)")
+        }
+
+        verify(constraints[0], .left, 25)
+        verify(constraints[1], .right, -25)
+        verify(constraints[2], .top, 25)
+        verify(constraints[3], .bottom, -25)
+    }
+    #endif
+
     func testSizeConstraints() {
         let view = View()
         self.container.addSubview(view)
@@ -457,11 +615,33 @@ class SnapKitTests: XCTestCase {
         XCTAssert(fromAttributes == [.top, .left, .bottom, .right])
         XCTAssert(toAttributes == [.top, .left, .bottom, .right])
     }
+
+    func testDirectionalEdgesToDirectionalEdges() {
+        var fromAttributes = Set<LayoutAttribute>()
+        var toAttributes = Set<LayoutAttribute>()
+        
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp.remakeConstraints { (make) -> Void in
+            make.directionalEdges.equalTo(self.container.snp.directionalEdges)
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+        
+        for constraint in (container.snp_constraints as! [NSLayoutConstraint]) {
+            fromAttributes.insert(constraint.firstAttribute)
+            toAttributes.insert(constraint.secondAttribute)
+        }
+        
+        XCTAssert(fromAttributes == [.top, .leading, .bottom, .trailing])
+        XCTAssert(toAttributes == [.top, .leading, .bottom, .trailing])
+    }
     
     #if os(iOS) || os(tvOS)
     func testEdgesToMargins() {
-        var fromAttributes = Set<NSLayoutAttribute>()
-        var toAttributes = Set<NSLayoutAttribute>()
+        var fromAttributes = Set<LayoutAttribute>()
+        var toAttributes = Set<LayoutAttribute>()
         
         let view = View()
         self.container.addSubview(view)
@@ -498,6 +678,46 @@ class SnapKitTests: XCTestCase {
         XCTAssert(fromAttributes == [.topMargin, .leftMargin, .bottomMargin, .rightMargin])
         
     }
+
+    func testDirectionalEdgesToDirectionalMargins() {
+        var fromAttributes = Set<LayoutAttribute>()
+        var toAttributes = Set<LayoutAttribute>()
+        
+        let view = View()
+        self.container.addSubview(view)
+        
+        view.snp.remakeConstraints { (make) -> Void in
+            make.directionalEdges.equalTo(self.container.snp.directionalMargins)
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+        
+        for constraint in (container.snp_constraints as! [NSLayoutConstraint]) {
+            fromAttributes.insert(constraint.firstAttribute)
+            toAttributes.insert(constraint.secondAttribute)
+        }
+        
+        XCTAssert(fromAttributes == [.top, .leading, .bottom, .trailing])
+        XCTAssert(toAttributes == [.topMargin, .leadingMargin, .bottomMargin, .trailingMargin])
+        
+        fromAttributes.removeAll()
+        toAttributes.removeAll()
+        
+        view.snp.remakeConstraints { (make) -> Void in
+            make.directionalMargins.equalTo(self.container.snp.directionalEdges)
+        }
+        
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+        
+        for constraint in (container.snp_constraints as! [NSLayoutConstraint]) {
+            fromAttributes.insert(constraint.firstAttribute)
+            toAttributes.insert(constraint.secondAttribute)
+        }
+        
+        XCTAssert(toAttributes == [.top, .leading, .bottom, .trailing])
+        XCTAssert(fromAttributes == [.topMargin, .leadingMargin, .bottomMargin, .trailingMargin])
+        
+    }
     
     func testLayoutGuideConstraints() {
         let vc = UIViewController()
@@ -516,6 +736,8 @@ class SnapKitTests: XCTestCase {
     
     func testCanSetLabel() {
         self.container.snp.setLabel("Hello World")
+
+        XCTAssertEqual(self.container.snp.label(), "Hello World")
     }
     
     func testPriorityShortcuts() {

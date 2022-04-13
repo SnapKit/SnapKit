@@ -1,4 +1,3 @@
-// swift-tools-version:5.0
 //
 //  SnapKit
 //
@@ -22,25 +21,22 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+import Foundation
 
-import PackageDescription
+#if os(iOS) || os(tvOS)
+    import UIKit
+#if swift(>=4.2)
+    typealias LayoutRelation = NSLayoutConstraint.Relation
+    typealias LayoutAttribute = NSLayoutConstraint.Attribute
+#else
+    typealias LayoutRelation = NSLayoutRelation
+    typealias LayoutAttribute = NSLayoutAttribute
+#endif
+    typealias LayoutPriority = UILayoutPriority
+#else
+    import AppKit
+    typealias LayoutRelation = NSLayoutConstraint.Relation
+    typealias LayoutAttribute = NSLayoutConstraint.Attribute
+    typealias LayoutPriority = NSLayoutConstraint.Priority
+#endif
 
-let package = Package(
-    name: "SnapKit",
-    platforms: [
-        .iOS(.v10),
-        .macOS(.v10_11),
-        .tvOS(.v10)
-    ],
-    products: [
-        .library(name: "SnapKit", targets: ["SnapKit"]),
-        .library(name: "SnapKit-Dynamic", type: .dynamic, targets: ["SnapKit"]),
-    ],
-    targets: [
-        .target(name: "SnapKit", path: "Sources"),
-        .testTarget(name: "SnapKitTests", dependencies: ["SnapKit"]),
-    ],
-    swiftLanguageVersions: [
-        .v5
-    ]
-)

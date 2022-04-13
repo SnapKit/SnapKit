@@ -1,3 +1,4 @@
+.build/
 project.xcworkspace
 xcuserdata
 Examples/
@@ -5,3 +6,4 @@ Examples/
 Gemfile
 Gemfile.lock
 *.sketch
+.swiftpm

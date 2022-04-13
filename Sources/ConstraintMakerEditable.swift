@@ -28,39 +28,37 @@
 #endif
 
 
-public protocol ConstraintRelatableTarget {
-}
+public class ConstraintMakerEditable: ConstraintMakerPrioritizable {
 
-extension Int: ConstraintRelatableTarget {
-}
-
-extension UInt: ConstraintRelatableTarget {
-}
-
-extension Float: ConstraintRelatableTarget {
-}
-
-extension Double: ConstraintRelatableTarget {
-}
-
-extension CGFloat: ConstraintRelatableTarget {
-}
-
-extension CGSize: ConstraintRelatableTarget {
-}
-
-extension CGPoint: ConstraintRelatableTarget {
-}
-
-extension ConstraintInsets: ConstraintRelatableTarget {
-}
-
-extension ConstraintItem: ConstraintRelatableTarget {
-}
-
-extension ConstraintView: ConstraintRelatableTarget {
-}
-
-@available(iOS 9.0, OSX 10.11, *)
-extension ConstraintLayoutGuide: ConstraintRelatableTarget {
+    @discardableResult
+    public func multipliedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
+        self.description.multiplier = amount
+        return self
+    }
+    
+    @discardableResult
+    public func dividedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
+        return self.multipliedBy(1.0 / amount.constraintMultiplierTargetValue)
+    }
+    
+    @discardableResult
+    public func offset(_ amount: ConstraintOffsetTarget) -> ConstraintMakerEditable {
+        self.description.constant = amount.constraintOffsetTargetValue
+        return self
+    }
+    
+    @discardableResult
+    public func inset(_ amount: ConstraintInsetTarget) -> ConstraintMakerEditable {
+        self.description.constant = amount.constraintInsetTargetValue
+        return self
+    }
+    
+    #if os(iOS) || os(tvOS)
+    @discardableResult
+    @available(iOS 11.0, tvOS 11.0, *)
+    public func inset(_ amount: ConstraintDirectionalInsetTarget) -> ConstraintMakerEditable {
+        self.description.constant = amount.constraintDirectionalInsetTargetValue
+        return self
+    }
+    #endif
 }
