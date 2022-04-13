@@ -71,7 +71,7 @@ table {
     width: rem-calc(539);
     height: rem-calc(128);
     margin-top: rem-calc(90);
-    @include retina-image(/SnapKit/images/logo, rem-calc(539) rem-calc(128));
+    @include retina-image(/images/logo, rem-calc(539) rem-calc(128));
     background-size: 100% 100%;
     display: inline-block;
   }
