@@ -3,3 +3,5 @@ email: robertpayne@me.com
 description: Swift Auto Layout DSL for iOS and OS X
 url: "https://snapkit.github.io/SnapKit/"
 github_username:  SnapKit
+sass:
+  style: compressed
