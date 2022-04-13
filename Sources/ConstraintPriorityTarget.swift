@@ -21,7 +21,65 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#if os(iOS) || os(tvOS)
+    import UIKit
+#else
+    import AppKit
+#endif
 
-FOUNDATION_EXPORT double SnapKitVersionNumber;
-FOUNDATION_EXPORT const unsigned char SnapKitVersionString[];
+
+public protocol ConstraintPriorityTarget {
+    
+    var constraintPriorityTargetValue: Float { get }
+    
+}
+
+extension Int: ConstraintPriorityTarget {
+    
+    public var constraintPriorityTargetValue: Float {
+        return Float(self)
+    }
+    
+}
+
+extension UInt: ConstraintPriorityTarget {
+    
+    public var constraintPriorityTargetValue: Float {
+        return Float(self)
+    }
+    
+}
+
+extension Float: ConstraintPriorityTarget {
+    
+    public var constraintPriorityTargetValue: Float {
+        return self
+    }
+    
+}
+
+extension Double: ConstraintPriorityTarget {
+    
+    public var constraintPriorityTargetValue: Float {
+        return Float(self)
+    }
+    
+}
+
+extension CGFloat: ConstraintPriorityTarget {
+    
+    public var constraintPriorityTargetValue: Float {
+        return Float(self)
+    }
+    
+}
+
+#if os(iOS) || os(tvOS)
+extension UILayoutPriority: ConstraintPriorityTarget {
+
+    public var constraintPriorityTargetValue: Float {
+        return self.rawValue
+    }
+
+}
+#endif
