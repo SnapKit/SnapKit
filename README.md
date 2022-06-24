@@ -1,6 +1,6 @@
 <img src="https://snapkit.github.io/SnapKit/images/banner.jpg" alt="" />
 
-SnapKit is a DSL to make Auto Layout easy on both iOS and OS X.
+SnapKit is a DSL to make Auto Layout easy on both iOS and macOS.
 
 [![Build Status](https://travis-ci.org/SnapKit/SnapKit.svg)](https://travis-ci.org/SnapKit/SnapKit)
 [![Platform](https://img.shields.io/cocoapods/p/SnapKit.svg?style=flat)](https://github.com/SnapKit/SnapKit)
@@ -22,7 +22,7 @@ SnapKit is a DSL to make Auto Layout easy on both iOS and OS X.
 
 ## Requirements
 
-- iOS 10.0+ / Mac OS X 10.12+ / tvOS 10.0+
+- iOS 10.0+ / macOS 10.12+ / tvOS 10.0+
 - Xcode 10.0+
 - Swift 4.0+
 
