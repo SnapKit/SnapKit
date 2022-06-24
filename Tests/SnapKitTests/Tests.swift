@@ -101,7 +101,7 @@ class SnapKitTests: XCTestCase {
     }
     
     func testGuideMakeConstraints() {
-        guard #available(iOS 9.0, OSX 10.11, *) else { return }
+        guard #available(iOS 9.0, macOS 10.11, *) else { return }
         let v1 = View()
 
         let g1 = ConstraintLayoutGuide()

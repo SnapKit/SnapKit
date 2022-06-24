@@ -28,7 +28,7 @@
 #endif
 
 
-@available(iOS 9.0, OSX 10.11, *)
+@available(iOS 9.0, macOS 10.11, *)
 public struct ConstraintLayoutGuideDSL: ConstraintAttributesDSL {
     
     @discardableResult

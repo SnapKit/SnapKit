@@ -69,7 +69,7 @@ internal struct ConstraintAttributes : OptionSet, ExpressibleByIntegerLiteral {
     internal static let centerY: ConstraintAttributes = ConstraintAttributes(UInt(1) << 9)
     internal static let lastBaseline: ConstraintAttributes = ConstraintAttributes(UInt(1) << 10)
     
-    @available(iOS 8.0, OSX 10.11, *)
+    @available(iOS 8.0, macOS 10.11, *)
     internal static let firstBaseline: ConstraintAttributes = ConstraintAttributes(UInt(1) << 11)
 
     @available(iOS 8.0, *)

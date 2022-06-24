@@ -139,12 +139,12 @@ extension ConstraintAttributesDSL {
         return ConstraintItem(target: self.target, attributes: ConstraintAttributes.lastBaseline)
     }
     
-    @available(iOS 8.0, OSX 10.11, *)
+    @available(iOS 8.0, macOS 10.11, *)
     public var lastBaseline: ConstraintItem {
         return ConstraintItem(target: self.target, attributes: ConstraintAttributes.lastBaseline)
     }
     
-    @available(iOS 8.0, OSX 10.11, *)
+    @available(iOS 8.0, macOS 10.11, *)
     public var firstBaseline: ConstraintItem {
         return ConstraintItem(target: self.target, attributes: ConstraintAttributes.firstBaseline)
     }

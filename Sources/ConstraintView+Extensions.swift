@@ -64,11 +64,11 @@ public extension ConstraintView {
     var snp_baseline: ConstraintItem { return self.snp.baseline }
     
     @available(*, deprecated, renamed:"snp.lastBaseline")
-    @available(iOS 8.0, OSX 10.11, *)
+    @available(iOS 8.0, macOS 10.11, *)
     var snp_lastBaseline: ConstraintItem { return self.snp.lastBaseline }
     
     @available(iOS, deprecated, renamed:"snp.firstBaseline")
-    @available(iOS 8.0, OSX 10.11, *)
+    @available(iOS 8.0, macOS 10.11, *)
     var snp_firstBaseline: ConstraintItem { return self.snp.firstBaseline }
     
     @available(iOS, deprecated, renamed:"snp.leftMargin")

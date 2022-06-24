@@ -31,7 +31,7 @@
 public protocol LayoutConstraintItem: AnyObject {
 }
 
-@available(iOS 9.0, OSX 10.11, *)
+@available(iOS 9.0, macOS 10.11, *)
 extension ConstraintLayoutGuide : LayoutConstraintItem {
 }
 
@@ -52,7 +52,7 @@ extension LayoutConstraintItem {
             return view.superview
         }
         
-        if #available(iOS 9.0, OSX 10.11, *), let guide = self as? ConstraintLayoutGuide {
+        if #available(iOS 9.0, macOS 10.11, *), let guide = self as? ConstraintLayoutGuide {
             return guide.owningView
         }
         

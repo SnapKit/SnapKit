@@ -49,7 +49,7 @@ public struct ConstraintPriority : ExpressibleByFloatLiteral, Equatable, Stridea
     }
     
     public static var medium: ConstraintPriority {
-        #if os(OSX)
+        #if os(macOS)
             return 501.0
         #else
             return 500.0

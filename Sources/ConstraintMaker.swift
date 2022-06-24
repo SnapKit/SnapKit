@@ -78,7 +78,7 @@ public class ConstraintMaker {
         return self.makeExtendableWithAttributes(.lastBaseline)
     }
     
-    @available(iOS 8.0, OSX 10.11, *)
+    @available(iOS 8.0, macOS 10.11, *)
     public var firstBaseline: ConstraintMakerExtendable {
         return self.makeExtendableWithAttributes(.firstBaseline)
     }
