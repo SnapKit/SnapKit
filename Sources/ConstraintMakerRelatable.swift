@@ -112,4 +112,13 @@ public class ConstraintMakerRelatable {
         }
         return self.relatedTo(other, relation: .greaterThanOrEqual, file: file, line: line)
     }
+
+    @discardableResult
+    public func equalToSuperViewOrSafeArea(of superView: UIView, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        if #available(iOS 11.0, *) {
+            return self.equalTo(superView.safeAreaLayoutGuide, file, line)
+        } else {
+            return self.equalToSuperview(file, line)
+        }
+    }
 }
