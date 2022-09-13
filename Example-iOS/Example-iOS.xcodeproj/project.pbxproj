@@ -14,6 +14,7 @@
 		44477D7225D86845009F5E40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44477D7125D86845009F5E40 /* AppDelegate.swift */; };
 		44477D7B25D86846009F5E40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44477D7A25D86846009F5E40 /* Assets.xcassets */; };
 		44477D7E25D86846009F5E40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44477D7C25D86846009F5E40 /* LaunchScreen.storyboard */; };
+		5D64AC0228D087AD00FFEC29 /* libswiftCoreGraphics.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D64AC0128D087A400FFEC29 /* libswiftCoreGraphics.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		44477D7A25D86846009F5E40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44477D7D25D86846009F5E40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44477D7F25D86846009F5E40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5D64AC0128D087A400FFEC29 /* libswiftCoreGraphics.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftCoreGraphics.tbd; path = usr/lib/swift/libswiftCoreGraphics.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D64AC0228D087AD00FFEC29 /* libswiftCoreGraphics.tbd in Frameworks */,
 				440B452B25D86C0100334F54 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,6 +46,7 @@
 		440B452725D86BDF00334F54 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D64AC0128D087A400FFEC29 /* libswiftCoreGraphics.tbd */,
 				440B452925D86BF200334F54 /* SnapKit */,
 			);
 			name = Frameworks;
@@ -300,6 +304,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/swift",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.snapkit.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -318,6 +326,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/swift",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.snapkit.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
