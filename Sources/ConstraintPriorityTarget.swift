@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
     import UIKit
 #else
     import AppKit
@@ -74,7 +74,7 @@ extension CGFloat: ConstraintPriorityTarget {
     
 }
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 extension UILayoutPriority: ConstraintPriorityTarget {
 
     public var constraintPriorityTargetValue: Float {

@@ -21,14 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
     import UIKit
 #else
     import AppKit
 #endif
 
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
     public typealias ConstraintView = UIView
 #else
     public typealias ConstraintView = NSView

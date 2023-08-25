@@ -1,4 +1,4 @@
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 import UIKit
 typealias View = UIView
 extension View {
@@ -453,7 +453,7 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(constraints[3].constant, -25, "Should be -25")
     }
     
-    #if os(iOS) || os(tvOS)
+    #if canImport(UIKit)
     @available(iOS 11.0, tvOS 11.0, *)
     func testConstraintDirectionalInsetsAsImpliedEqualToConstraints() {
         let view = View()
@@ -481,7 +481,7 @@ class SnapKitTests: XCTestCase {
     }
     #endif
 
-    #if os(iOS) || os(tvOS)
+    #if canImport(UIKit)
     @available(iOS 11.0, tvOS 11.0, *)
     func testConstraintDirectionalInsetsAsConstraintsConstant() {
         let view = View()
@@ -509,7 +509,7 @@ class SnapKitTests: XCTestCase {
     }
     #endif
 
-    #if os(iOS) || os(tvOS)
+    #if canImport(UIKit)
     @available(iOS 11.0, tvOS 11.0, *)
     func testConstraintDirectionalInsetsFallBackForNonDirectionalConstraints() {
         let view = View()
@@ -638,7 +638,7 @@ class SnapKitTests: XCTestCase {
         XCTAssert(toAttributes == [.top, .leading, .bottom, .trailing])
     }
     
-    #if os(iOS) || os(tvOS)
+    #if canImport(UIKit)
     func testEdgesToMargins() {
         var fromAttributes = Set<LayoutAttribute>()
         var toAttributes = Set<LayoutAttribute>()
