@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
     import UIKit
 #else
     import AppKit
@@ -89,7 +89,7 @@ private func descriptionForRelation(_ relation: LayoutRelation) -> String {
 }
 
 private func descriptionForAttribute(_ attribute: LayoutAttribute) -> String {
-    #if os(iOS) || os(tvOS)
+    #if canImport(UIKit)
         switch attribute {
         case .notAnAttribute:       return "notAnAttribute"
         case .top:                  return "top"

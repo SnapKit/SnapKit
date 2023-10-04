@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
     import UIKit
 #else
     import AppKit
@@ -101,7 +101,7 @@ public final class Constraint {
         for layoutFromAttribute in layoutFromAttributes {
             // get layout to attribute
             let layoutToAttribute: LayoutAttribute
-            #if os(iOS) || os(tvOS)
+            #if canImport(UIKit)
                 if layoutToAttributes.count > 0 {
                     if self.from.attributes == .edges && self.to.attributes == .margins {
                         switch layoutFromAttribute {
@@ -245,7 +245,7 @@ public final class Constraint {
         return self
     }
 
-    #if os(iOS) || os(tvOS)
+    #if canImport(UIKit)
     @discardableResult
     @available(iOS 11.0, tvOS 11.0, *)
     public func update(inset: ConstraintDirectionalInsetTarget) -> Constraint {

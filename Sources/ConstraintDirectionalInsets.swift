@@ -21,14 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
     import UIKit
 #else
     import AppKit
 #endif
 
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
     @available(iOS 11.0, tvOS 11.0, *)
     public typealias ConstraintDirectionalInsets = NSDirectionalEdgeInsets
 #endif
