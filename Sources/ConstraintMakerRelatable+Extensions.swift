@@ -27,9 +27,8 @@
     import AppKit
 #endif
 
-
 extension ConstraintMakerRelatable {
-  
+    
     @discardableResult
     public func equalToSuperview<T: ConstraintRelatableTarget>(_ closure: (ConstraintView) -> T, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
         guard let other = self.description.item.superview else {
@@ -37,7 +36,7 @@ extension ConstraintMakerRelatable {
         }
         return self.relatedTo(closure(other), relation: .equal, file: file, line: line)
     }
-  
+    
     @discardableResult
     public func lessThanOrEqualToSuperview<T: ConstraintRelatableTarget>(_ closure: (ConstraintView) -> T, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
         guard let other = self.description.item.superview else {
@@ -45,7 +44,7 @@ extension ConstraintMakerRelatable {
         }
         return self.relatedTo(closure(other), relation: .lessThanOrEqual, file: file, line: line)
     }
-  
+    
     @discardableResult
     public func greaterThanOrEqualToSuperview<T: ConstraintRelatableTarget>(_ closure: (ConstraintView) -> T, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
         guard let other = self.description.item.superview else {
@@ -53,5 +52,31 @@ extension ConstraintMakerRelatable {
         }
         return self.relatedTo(closure(other), relation: .greaterThanOrEqual, file: file, line: line)
     }
-  
+    
+    @available(*, deprecated, renamed: "equalToSuperview(_:_:)", message: "Removed the `line` argument label")
+    @discardableResult
+    public func equalToSuperview<T: ConstraintRelatableTarget>(_ closure: (ConstraintView) -> T, _ file: String = #file, line: UInt = #line) -> ConstraintMakerEditable {
+        guard let other = self.description.item.superview else {
+            fatalError("Expected superview but found nil when attempting make constraint `equalToSuperview`.")
+        }
+        return self.relatedTo(closure(other), relation: .equal, file: file, line: line)
+    }
+    
+    @available(*, deprecated, renamed: "lessThanOrEqualToSuperview(_:_:)", message: "Removed the `line` argument label")
+    @discardableResult
+    public func lessThanOrEqualToSuperview<T: ConstraintRelatableTarget>(_ closure: (ConstraintView) -> T, _ file: String = #file, line: UInt = #line) -> ConstraintMakerEditable {
+        guard let other = self.description.item.superview else {
+            fatalError("Expected superview but found nil when attempting make constraint `lessThanOrEqualToSuperview`.")
+        }
+        return self.relatedTo(closure(other), relation: .lessThanOrEqual, file: file, line: line)
+    }
+    
+    @available(*, deprecated, renamed: "greaterThanOrEqualToSuperview(_:_:)", message: "Removed the `line` argument label")
+    @discardableResult
+    public func greaterThanOrEqualToSuperview<T: ConstraintRelatableTarget>(_ closure: (ConstraintView) -> T, _ file: String = #file, line: UInt = #line) -> ConstraintMakerEditable {
+        guard let other = self.description.item.superview else {
+            fatalError("Expected superview but found nil when attempting make constraint `greaterThanOrEqualToSuperview`.")
+        }
+        return self.relatedTo(closure(other), relation: .greaterThanOrEqual, file: file, line: line)
+    }
 }

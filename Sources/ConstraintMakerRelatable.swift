@@ -112,4 +112,19 @@ public class ConstraintMakerRelatable {
         }
         return self.relatedTo(other, relation: .greaterThanOrEqual, file: file, line: line)
     }
+    
+    @available(*, deprecated, renamed: "greaterThanOrEqualTo(_:_:_:)", message: "Removed the `line` argument label")
+    @discardableResult
+    public func greaterThanOrEqualTo(_ other: ConstraintRelatableTarget, _ file: String = #file, line: UInt = #line) -> ConstraintMakerEditable {
+        return self.relatedTo(other, relation: .greaterThanOrEqual, file: file, line: line)
+    }
+    
+    @available(*, deprecated, renamed: "greaterThanOrEqualToSuperview(_:_:)", message: "Removed the `line` argument label")
+    @discardableResult
+    public func greaterThanOrEqualToSuperview(_ file: String = #file, line: UInt = #line) -> ConstraintMakerEditable {
+        guard let other = self.description.item.superview else {
+            fatalError("Expected superview but found nil when attempting make constraint `greaterThanOrEqualToSuperview`.")
+        }
+        return self.relatedTo(other, relation: .greaterThanOrEqual, file: file, line: line)
+    }
 }
