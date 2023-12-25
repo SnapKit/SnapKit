@@ -53,5 +53,31 @@ extension ConstraintMakerRelatable {
         }
         return self.relatedTo(closure(other), relation: .greaterThanOrEqual, file: file, line: line)
     }
-  
+
+    @available(iOS 11.0, *)
+    @discardableResult
+    public func equalToSuperviewSafeAreaLayoutGuide<T: ConstraintRelatableTarget>(_ closure: (ConstraintLayoutGuide) -> T, _ file: String = #file, line: UInt = #line) -> ConstraintMakerEditable {
+        guard let other = self.description.item.superview?.safeAreaLayoutGuide else {
+            fatalError("Expected superview but found nil when attempting make constraint `equalToSuperviewSafeAreaLayoutGuide`.")
+        }
+        return self.relatedTo(closure(other), relation: .equal, file: file, line: line)
+    }
+
+    @available(iOS 11.0, *)
+    @discardableResult
+    public func lessThanOrEqualToSuperviewSafeAreaLayoutGuide<T: ConstraintRelatableTarget>(_ closure: (ConstraintLayoutGuide) -> T, _ file: String = #file, line: UInt = #line) -> ConstraintMakerEditable {
+        guard let other = self.description.item.superview?.safeAreaLayoutGuide else {
+            fatalError("Expected superview but found nil when attempting make constraint `lessThanOrEqualToSuperviewSafeAreaLayoutGuide`.")
+        }
+        return self.relatedTo(closure(other), relation: .lessThanOrEqual, file: file, line: line)
+    }
+
+    @available(iOS 11.0, *)
+    @discardableResult
+    public func greaterThanOrEqualToSuperviewSafeAreaLayoutGuide<T: ConstraintRelatableTarget>(_ closure: (ConstraintLayoutGuide) -> T, _ file: String = #file, line: UInt = #line) -> ConstraintMakerEditable {
+        guard let other = self.description.item.superview?.safeAreaLayoutGuide else {
+            fatalError("Expected superview but found nil when attempting make constraint `greaterThanOrEqualToSuperviewSafeAreaLayoutGuide`.")
+        }
+        return self.relatedTo(closure(other), relation: .greaterThanOrEqual, file: file, line: line)
+    }
 }
