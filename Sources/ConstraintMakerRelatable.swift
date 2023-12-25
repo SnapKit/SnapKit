@@ -87,7 +87,7 @@ public class ConstraintMakerRelatable {
         return self.relatedTo(other, relation: .equal, file: file, line: line)
     }
 
-    @available(iOS 11.0, tvOS 11.0, macOS 11.00, *)
+    @available(iOS 11.0, tvOS 11.0, macOS 11.0, *)
     @discardableResult
     public func equalToSuperviewSafeAreaLayoutGuide(_ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
         guard let other = self.description.item.superview?.safeAreaLayoutGuide else {
@@ -109,7 +109,7 @@ public class ConstraintMakerRelatable {
         return self.relatedTo(other, relation: .lessThanOrEqual, file: file, line: line)
     }
 
-    @available(iOS 11.0, tvOS 11.0, macOS 11.00, *)
+    @available(iOS 11.0, tvOS 11.0, macOS 11.0, *)
     @discardableResult
     public func lessThanOrEqualToSuperviewSafeAreaLayoutGuide(_ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
         guard let other = self.description.item.superview?.safeAreaLayoutGuide else {
@@ -131,7 +131,7 @@ public class ConstraintMakerRelatable {
         return self.relatedTo(other, relation: .greaterThanOrEqual, file: file, line: line)
     }
 
-    @available(iOS 11.0, tvOS 11.0, macOS 11.00, *)
+    @available(iOS 11.0, tvOS 11.0, macOS 11.0, *)
     @discardableResult
     public func greaterThanOrEqualToSuperviewSafeAreaLayoutGuide(_ file: String = #file, line: UInt = #line) -> ConstraintMakerEditable {
         guard let other = self.description.item.superview?.safeAreaLayoutGuide else {
