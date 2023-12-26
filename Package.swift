@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.3
 //
 //  SnapKit
 //
@@ -37,7 +37,9 @@ let package = Package(
         .library(name: "SnapKit-Dynamic", type: .dynamic, targets: ["SnapKit"]),
     ],
     targets: [
-        .target(name: "SnapKit", path: "Sources"),
+        .target(name: "SnapKit", 
+                path: "Sources",
+                resources: [.copy("PrivacyInfo.xcprivacy")]),
         .testTarget(name: "SnapKitTests", dependencies: ["SnapKit"]),
     ],
     swiftLanguageVersions: [
