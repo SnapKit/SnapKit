@@ -20,5 +20,9 @@ Pod::Spec.new do |s|
       'LIBRARY_SEARCH_PATHS' => '$(SDKROOT)/usr/lib/swift',
   }
 
+  s.resource_bundles = {
+    'SnapKit_Privacy' => ['Sources/PrivacyInfo.xcprivacy'],
+  }
+
   s.swift_versions = ['5.0']
 end
