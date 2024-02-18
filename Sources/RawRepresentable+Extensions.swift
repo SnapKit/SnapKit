@@ -21,22 +21,41 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
-
-#if canImport(UIKit)
+#if os(iOS) || os(tvOS)
     import UIKit
-#if swift(>=4.2)
-    typealias LayoutRelation = NSLayoutConstraint.Relation
-    public typealias LayoutAttribute = NSLayoutConstraint.Attribute
-#else
-    typealias LayoutRelation = NSLayoutRelation
-    public typealias LayoutAttribute = NSLayoutAttribute
-#endif
-    typealias LayoutPriority = UILayoutPriority
 #else
     import AppKit
-    typealias LayoutRelation = NSLayoutConstraint.Relation
-    public typealias LayoutAttribute = NSLayoutConstraint.Attribute
-    typealias LayoutPriority = NSLayoutConstraint.Priority
 #endif
 
+
+public extension RawRepresentable where Self: ConstraintConstantTarget, Self.RawValue: ConstraintConstantTarget {
+
+    public func constraintConstantTargetValueFor(layoutAttribute: LayoutAttribute) -> CGFloat {
+        return rawValue.constraintConstantTargetValueFor(layoutAttribute: layoutAttribute)
+    }
+
+}
+
+public extension RawRepresentable where Self: ConstraintMultiplierTarget, Self.RawValue: ConstraintMultiplierTarget {
+
+    public var constraintMultiplierTargetValue: CGFloat {
+        return rawValue.constraintMultiplierTargetValue
+    }
+
+}
+
+public extension RawRepresentable where Self: ConstraintOffsetTarget, Self.RawValue: ConstraintOffsetTarget {
+
+    public var constraintOffsetTargetValue: CGFloat {
+        return rawValue.constraintOffsetTargetValue
+    }
+
+}
+
+public extension RawRepresentable where Self: ConstraintInsetTarget, Self.RawValue: ConstraintInsetTarget {
+
+    public var constraintInsetTargetValue: ConstraintInsets {
+        return rawValue.constraintInsetTargetValue
+    }
+
+}
