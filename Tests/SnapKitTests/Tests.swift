@@ -768,4 +768,38 @@ class SnapKitTests: XCTestCase {
         let higherPriority: ConstraintPriority = ConstraintPriority.high.advanced(by: 1)
         XCTAssertEqual(higherPriority.value, highPriority.value + 1)
     }
+
+    @available(iOS 11.0, tvOS 11.0, macOS 11.0, *)
+    func testSafeAreaLayoutGuide() {
+        let v1 = View()
+        self.container.addSubview(v1)
+
+        v1.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperviewSafeAreaLayoutGuide()
+            make.leading.lessThanOrEqualToSuperviewSafeAreaLayoutGuide()
+            make.trailing.greaterThanOrEqualToSuperviewSafeAreaLayoutGuide()
+        }
+
+        XCTAssertEqual(container.snp_constraints.count, 4, "Should have 4 constraints installed")
+        XCTAssertNotNil(container.constraints.first {
+            $0.firstAttribute == .leading &&
+            $0.secondAttribute == .leading &&
+            $0.relation == .lessThanOrEqual
+        })
+        XCTAssertNotNil(container.constraints.first {
+            $0.firstAttribute == .trailing &&
+            $0.secondAttribute == .trailing &&
+            $0.relation == .greaterThanOrEqual
+        })
+        XCTAssertNotNil(container.constraints.first {
+            $0.firstAttribute == .top &&
+            $0.secondAttribute == .top &&
+            $0.relation == .equal
+        })
+        XCTAssertNotNil(container.constraints.first {
+            $0.firstAttribute == .bottom &&
+            $0.secondAttribute == .bottom &&
+            $0.relation == .equal
+        })
+    }
 }
