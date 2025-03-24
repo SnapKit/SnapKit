@@ -22,7 +22,7 @@ SnapKit is a DSL to make Auto Layout easy on both iOS and OS X.
 
 ## Requirements
 
-- iOS 10.0+ / Mac OS X 10.12+ / tvOS 10.0+
+- iOS 12.0+ / Mac OS X 10.13+ / tvOS 10.0+
 - Xcode 10.0+
 - Swift 4.0+
 
@@ -55,11 +55,11 @@ To integrate SnapKit into your Xcode project using CocoaPods, specify it in your
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
+platform :ios, '12.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'SnapKit', '~> 5.6.0'
+    pod 'SnapKit', '~> 5.7.0'
 end
 ```
 
