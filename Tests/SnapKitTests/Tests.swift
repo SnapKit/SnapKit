@@ -768,4 +768,29 @@ class SnapKitTests: XCTestCase {
         let higherPriority: ConstraintPriority = ConstraintPriority.high.advanced(by: 1)
         XCTAssertEqual(higherPriority.value, highPriority.value + 1)
     }
+
+    func testEnumAsConstraints() {
+        let view = View()
+        self.container.addSubview(view)
+
+        view.snp.makeConstraints { make in
+            make.top.equalTo(Enum.value)
+            make.height.equalToSuperview().multipliedBy(Enum.value)
+            make.left.equalToSuperview().offset(Enum.value)
+            make.right.equalToSuperview().inset(Enum.value)
+        }
+
+        XCTAssertEqual(self.container.snp_constraints.count, 4, "Should have 4 constraints")
+
+        let constraints = (self.container.snp_constraints as! [NSLayoutConstraint]).sorted { $0.constant > $1.constant }
+
+        XCTAssertEqual(constraints[0].constant, Enum.value.rawValue, "Should be enum")
+        XCTAssertEqual(constraints[1].constant, Enum.value.rawValue, "Should be enum")
+        XCTAssertEqual(constraints[2].multiplier, Enum.value.rawValue, "Multiplier should be enum")
+        XCTAssertEqual(constraints[3].constant, -Enum.value.rawValue, "Should be negative enum")
+    }
+}
+
+private enum Enum: CGFloat, ConstraintRelatableTarget, ConstraintMultiplierTarget, ConstraintOffsetTarget, ConstraintInsetTarget {
+    case value = 50
 }

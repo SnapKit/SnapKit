@@ -29,6 +29,9 @@
 
 
 public protocol ConstraintConstantTarget {
+
+    func constraintConstantTargetValueFor(layoutAttribute: LayoutAttribute) -> CGFloat
+
 }
 
 extension CGPoint: ConstraintConstantTarget {
@@ -48,7 +51,7 @@ extension ConstraintDirectionalInsets: ConstraintConstantTarget {
 
 extension ConstraintConstantTarget {
     
-    internal func constraintConstantTargetValueFor(layoutAttribute: LayoutAttribute) -> CGFloat {
+    public func constraintConstantTargetValueFor(layoutAttribute: LayoutAttribute) -> CGFloat {
         if let value = self as? CGFloat {
             return value
         }
