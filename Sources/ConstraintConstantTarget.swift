@@ -43,17 +43,17 @@ extension CGPoint: ConstraintConstantTarget {
         nil
     }
     public func asSize() -> CGSize? {
-        return nil
+        nil
     }
     public func asPoint() -> CGPoint? {
-        return self
+        self
     }
     public func asConstraintInsets() -> ConstraintInsets? {
-        return nil
+        nil
     }
 #if canImport(UIKit)
     public func asConstraintDirectionalInsets() -> ConstraintDirectionalInsets? {
-        return nil
+        nil
     }
 #endif
 }
@@ -63,17 +63,17 @@ extension CGSize: ConstraintConstantTarget {
         nil
     }
     public func asSize() -> CGSize? {
-        return self
+        self
     }
     public func asPoint() -> CGPoint? {
-        return nil
+        nil
     }
     public func asConstraintInsets() -> ConstraintInsets? {
-        return nil
+        nil
     }
 #if canImport(UIKit)
     public func asConstraintDirectionalInsets() -> ConstraintDirectionalInsets? {
-        return nil
+        nil
     }
 #endif
 }
@@ -87,16 +87,16 @@ extension ConstraintDirectionalInsets: ConstraintConstantTarget {
         nil
     }
     public func asSize() -> CGSize? {
-        return nil
+        nil
     }
     public func asPoint() -> CGPoint? {
-        return nil
+        nil
     }
     public func asConstraintInsets() -> ConstraintInsets? {
-        return nil
+        nil
     }
     public func asConstraintDirectionalInsets() -> ConstraintDirectionalInsets? {
-        return self
+        self
     }
 }
 #endif
