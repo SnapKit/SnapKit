@@ -1,4 +1,4 @@
-// swift-tools-version:5.8
+// swift-tools-version:6.0
 //
 //  SnapKit
 //
@@ -28,9 +28,9 @@ import PackageDescription
 let package = Package(
     name: "SnapKit",
     platforms: [
-        .iOS(.v12),
-        .macOS(.v10_13),
-        .tvOS(.v12)
+        .iOS(.v14),
+        .macOS(.v12),
+        .tvOS(.v14)
     ],
     products: [
         .library(name: "SnapKit", targets: ["SnapKit"]),
@@ -40,7 +40,7 @@ let package = Package(
         .target(name: "SnapKit", path: "Sources", resources: [.copy("PrivacyInfo.xcprivacy")]),
         .testTarget(name: "SnapKitTests", dependencies: ["SnapKit"]),
     ],
-    swiftLanguageVersions: [
+    swiftLanguageModes: [
         .v5
     ]
 )
