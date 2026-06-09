@@ -82,4 +82,12 @@ extension UILayoutPriority: ConstraintPriorityTarget {
     }
 
 }
+#else
+extension NSLayoutConstraint.Priority: ConstraintPriorityTarget {
+
+    public var constraintPriorityTargetValue: Float {
+        return self.rawValue
+    }
+
+}
 #endif
