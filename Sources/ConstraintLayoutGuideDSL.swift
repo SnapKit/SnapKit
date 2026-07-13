@@ -32,19 +32,19 @@
 public struct ConstraintLayoutGuideDSL: ConstraintAttributesDSL {
     
     @discardableResult
-    public func prepareConstraints(_ closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
+    public func prepareConstraints(_ closure: (ConstraintMaker) -> Void) -> [Constraint] {
         return ConstraintMaker.prepareConstraints(item: self.guide, closure: closure)
     }
     
-    public func makeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
+    public func makeConstraints(_ closure: (ConstraintMaker) -> Void) {
         ConstraintMaker.makeConstraints(item: self.guide, closure: closure)
     }
     
-    public func remakeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
+    public func remakeConstraints(_ closure: (ConstraintMaker) -> Void) {
         ConstraintMaker.remakeConstraints(item: self.guide, closure: closure)
     }
     
-    public func updateConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
+    public func updateConstraints(_ closure: (ConstraintMaker) -> Void) {
         ConstraintMaker.updateConstraints(item: self.guide, closure: closure)
     }
     

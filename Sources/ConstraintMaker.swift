@@ -177,7 +177,7 @@ public class ConstraintMaker {
         return ConstraintMakerExtendable(description)
     }
     
-    internal static func prepareConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
+    internal static func prepareConstraints(item: LayoutConstraintItem, closure: (ConstraintMaker) -> Void) -> [Constraint] {
         let maker = ConstraintMaker(item: item)
         closure(maker)
         var constraints: [Constraint] = []
@@ -190,19 +190,19 @@ public class ConstraintMaker {
         return constraints
     }
     
-    internal static func makeConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) {
+    internal static func makeConstraints(item: LayoutConstraintItem, closure: (ConstraintMaker) -> Void) {
         let constraints = prepareConstraints(item: item, closure: closure)
         for constraint in constraints {
             constraint.activateIfNeeded(updatingExisting: false)
         }
     }
     
-    internal static func remakeConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) {
+    internal static func remakeConstraints(item: LayoutConstraintItem, closure: (ConstraintMaker) -> Void) {
         self.removeConstraints(item: item)
         self.makeConstraints(item: item, closure: closure)
     }
     
-    internal static func updateConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) {
+    internal static func updateConstraints(item: LayoutConstraintItem, closure: (ConstraintMaker) -> Void) {
         guard item.constraints.count > 0 else {
             self.makeConstraints(item: item, closure: closure)
             return
