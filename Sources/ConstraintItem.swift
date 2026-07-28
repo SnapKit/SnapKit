@@ -29,19 +29,30 @@
 
 
 public final class ConstraintItem {
-    
+
     internal weak var target: AnyObject?
     internal let attributes: ConstraintAttributes
-    
+    internal weak var _layoutConstraintItem: LayoutConstraintItem?
+
     internal init(target: AnyObject?, attributes: ConstraintAttributes) {
         self.target = target
+        self._layoutConstraintItem = nil
         self.attributes = attributes
     }
-    
-    internal var layoutConstraintItem: LayoutConstraintItem? {
-        return self.target as? LayoutConstraintItem
+
+    internal init(layoutConstraintItem: LayoutConstraintItem?, attributes: ConstraintAttributes) {
+        self._layoutConstraintItem = layoutConstraintItem
+        self.target = layoutConstraintItem
+        self.attributes = attributes
     }
-    
+
+    internal var layoutConstraintItem: LayoutConstraintItem? {
+        if let value = _layoutConstraintItem {
+            return value
+        } else {
+            return nil
+        }
+    }
 }
 
 public func ==(lhs: ConstraintItem, rhs: ConstraintItem) -> Bool {

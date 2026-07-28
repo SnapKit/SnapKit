@@ -45,8 +45,8 @@ public class ConstraintDescription {
               let sourceLocation = self.sourceLocation else {
             return nil
         }
-        let from = ConstraintItem(target: self.item, attributes: self.attributes)
-        
+        let from = ConstraintItem(layoutConstraintItem: self.item, attributes: self.attributes)
+
         return Constraint(
             from: from,
             to: related,

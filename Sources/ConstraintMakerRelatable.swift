@@ -40,7 +40,7 @@ public class ConstraintMakerRelatable {
         let related: ConstraintItem
         let constant: ConstraintConstantTarget
         
-        if let other = other as? ConstraintItem {
+        if let other = other.asConstraintItem() {
             guard other.attributes == ConstraintAttributes.none ||
                   other.attributes.layoutAttributes.count <= 1 ||
                   other.attributes.layoutAttributes == self.description.attributes.layoutAttributes ||
@@ -53,14 +53,14 @@ public class ConstraintMakerRelatable {
             
             related = other
             constant = 0.0
-        } else if let other = other as? ConstraintView {
-            related = ConstraintItem(target: other, attributes: ConstraintAttributes.none)
+        } else if let other = other.asConstraintView() {
+            related = ConstraintItem(layoutConstraintItem: other, attributes: ConstraintAttributes.none)
             constant = 0.0
-        } else if let other = other as? ConstraintConstantTarget {
-            related = ConstraintItem(target: nil, attributes: ConstraintAttributes.none)
+        } else if let other = other.asConstraintConstantTarget() {
+            related = ConstraintItem(layoutConstraintItem: nil, attributes: ConstraintAttributes.none)
             constant = other
-        } else if #available(iOS 9.0, OSX 10.11, *), let other = other as? ConstraintLayoutGuide {
-            related = ConstraintItem(target: other, attributes: ConstraintAttributes.none)
+        } else if #available(iOS 9.0, OSX 10.11, *), let other = other.asConstraintLayoutGuide() {
+            related = ConstraintItem(layoutConstraintItem: other, attributes: ConstraintAttributes.none)
             constant = 0.0
         } else {
             fatalError("Invalid constraint. (\(file), \(line))")

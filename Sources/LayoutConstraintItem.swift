@@ -29,30 +29,46 @@
 
 
 public protocol LayoutConstraintItem: AnyObject {
+    func asConstraintView() -> ConstraintView?
+    func asConstraintLayoutGuide() -> ConstraintLayoutGuide?
 }
 
 @available(iOS 9.0, OSX 10.11, *)
 extension ConstraintLayoutGuide : LayoutConstraintItem {
+    public func asConstraintView() -> ConstraintView? {
+        nil
+    }
+
+    public func asConstraintLayoutGuide() -> ConstraintLayoutGuide? {
+        self
+    }
 }
 
 extension ConstraintView : LayoutConstraintItem {
+    public func asConstraintView() -> ConstraintView? {
+        self
+    }
+
+    public func asConstraintLayoutGuide() -> ConstraintLayoutGuide? {
+        nil
+    }
 }
 
 
 extension LayoutConstraintItem {
     
     internal func prepare() {
-        if let view = self as? ConstraintView {
+        if let view = self.asConstraintView() {
             view.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     
     internal var superview: ConstraintView? {
-        if let view = self as? ConstraintView {
+        if let view = self.asConstraintView() {
             return view.superview
         }
         
-        if #available(iOS 9.0, OSX 10.11, *), let guide = self as? ConstraintLayoutGuide {
+        if #available(iOS 9.0, OSX 10.11, *), let guide = self.asConstraintLayoutGuide() {
             return guide.owningView
         }
         

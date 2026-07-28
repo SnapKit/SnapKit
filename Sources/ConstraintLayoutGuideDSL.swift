@@ -52,6 +52,10 @@ public struct ConstraintLayoutGuideDSL: ConstraintAttributesDSL {
         ConstraintMaker.removeConstraints(item: self.guide)
     }
     
+    public var layoutConstraintItem: LayoutConstraintItem? {
+        return self.guide
+    }
+
     public var target: AnyObject? {
         return self.guide
     }

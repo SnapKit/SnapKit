@@ -29,44 +29,181 @@
 
 
 public protocol ConstraintRelatableTarget {
+    func asConstraintItem() -> ConstraintItem?
+    func asConstraintView() -> ConstraintView?
+    func asConstraintConstantTarget() -> ConstraintConstantTarget?
+    func asConstraintLayoutGuide() -> ConstraintLayoutGuide?
 }
 
 extension Int: ConstraintRelatableTarget {
+    public func asConstraintItem() -> ConstraintItem? {
+        nil
+    }
+    public func asConstraintView() -> ConstraintView? {
+        nil
+    }
+    public func asConstraintConstantTarget() -> ConstraintConstantTarget? {
+        self
+    }
+    public func asConstraintLayoutGuide() -> ConstraintLayoutGuide? {
+        nil
+    }
 }
 
 extension UInt: ConstraintRelatableTarget {
+    public func asConstraintItem() -> ConstraintItem? {
+        nil
+    }
+    public func asConstraintView() -> ConstraintView? {
+        nil
+    }
+    public func asConstraintConstantTarget() -> ConstraintConstantTarget? {
+        self
+    }
+    public func asConstraintLayoutGuide() -> ConstraintLayoutGuide? {
+        nil
+    }
 }
 
 extension Float: ConstraintRelatableTarget {
+    public func asConstraintItem() -> ConstraintItem? {
+        nil
+    }
+    public func asConstraintView() -> ConstraintView? {
+        nil
+    }
+    public func asConstraintConstantTarget() -> ConstraintConstantTarget? {
+        self
+    }
+    public func asConstraintLayoutGuide() -> ConstraintLayoutGuide? {
+        nil
+    }
 }
 
 extension Double: ConstraintRelatableTarget {
+    public func asConstraintItem() -> ConstraintItem? {
+        nil
+    }
+    public func asConstraintView() -> ConstraintView? {
+        nil
+    }
+    public func asConstraintConstantTarget() -> ConstraintConstantTarget? {
+        self
+    }
+    public func asConstraintLayoutGuide() -> ConstraintLayoutGuide? {
+        nil
+    }
 }
 
 extension CGFloat: ConstraintRelatableTarget {
+    public func asConstraintItem() -> ConstraintItem? {
+        nil
+    }
+    public func asConstraintView() -> ConstraintView? {
+        nil
+    }
+    public func asConstraintConstantTarget() -> ConstraintConstantTarget? {
+        self
+    }
+    public func asConstraintLayoutGuide() -> ConstraintLayoutGuide? {
+        nil
+    }
 }
 
 extension CGSize: ConstraintRelatableTarget {
+    public func asConstraintItem() -> ConstraintItem? {
+        nil
+    }
+    public func asConstraintView() -> ConstraintView? {
+        nil
+    }
+    public func asConstraintConstantTarget() -> ConstraintConstantTarget? {
+        self
+    }
+    public func asConstraintLayoutGuide() -> ConstraintLayoutGuide? {
+        nil
+    }
 }
 
 extension CGPoint: ConstraintRelatableTarget {
+    public func asConstraintItem() -> ConstraintItem? {
+        nil
+    }
+    public func asConstraintView() -> ConstraintView? {
+        nil
+    }
+    public func asConstraintConstantTarget() -> ConstraintConstantTarget? {
+        self
+    }
+    public func asConstraintLayoutGuide() -> ConstraintLayoutGuide? {
+        nil
+    }
 }
 
 extension ConstraintInsets: ConstraintRelatableTarget {
+    public func asConstraintItem() -> ConstraintItem? {
+        nil
+    }
+    public func asConstraintView() -> ConstraintView? {
+        nil
+    }
+    public func asConstraintConstantTarget() -> ConstraintConstantTarget? {
+        self
+    }
+    public func asConstraintLayoutGuide() -> ConstraintLayoutGuide? {
+        nil
+    }
 }
 
 #if canImport(UIKit)
 @available(iOS 11.0, tvOS 11.0, *)
 extension ConstraintDirectionalInsets: ConstraintRelatableTarget {
+    public func asConstraintItem() -> ConstraintItem? {
+        nil
+    }
+    public func asConstraintView() -> ConstraintView? {
+        nil
+    }
+    public func asConstraintConstantTarget() -> ConstraintConstantTarget? {
+        self
+    }
+    public func asConstraintLayoutGuide() -> ConstraintLayoutGuide? {
+        nil
+    }
 }
 #endif
 
 extension ConstraintItem: ConstraintRelatableTarget {
+    public func asConstraintItem() -> ConstraintItem? {
+        self
+    }
+    public func asConstraintView() -> ConstraintView? {
+        nil
+    }
+    public func asConstraintConstantTarget() -> ConstraintConstantTarget? {
+        nil
+    }
+    public func asConstraintLayoutGuide() -> ConstraintLayoutGuide? {
+        nil
+    }
 }
 
 extension ConstraintView: ConstraintRelatableTarget {
+    public func asConstraintItem() -> ConstraintItem? {
+        nil
+    }
+    public func asConstraintConstantTarget() -> ConstraintConstantTarget? {
+        nil
+    }
 }
 
 @available(iOS 9.0, OSX 10.11, *)
 extension ConstraintLayoutGuide: ConstraintRelatableTarget {
+    public func asConstraintItem() -> ConstraintItem? {
+        nil
+    }
+    public func asConstraintConstantTarget() -> ConstraintConstantTarget? {
+        nil
+    }
+
 }

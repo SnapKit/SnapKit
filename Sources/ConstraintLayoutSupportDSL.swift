@@ -30,6 +30,10 @@
 
 @available(iOS 8.0, *)
 public struct ConstraintLayoutSupportDSL: ConstraintDSL {
+
+    public var layoutConstraintItem: LayoutConstraintItem? {
+        return nil
+    }
     
     public var target: AnyObject? {
         return self.support

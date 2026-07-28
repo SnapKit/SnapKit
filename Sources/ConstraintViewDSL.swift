@@ -86,7 +86,11 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
             self.view.setContentCompressionResistancePriority(LayoutPriority(rawValue: newValue), for: .vertical)
         }
     }
-    
+
+    public var layoutConstraintItem: LayoutConstraintItem? {
+        return self.view
+    }
+
     public var target: AnyObject? {
         return self.view
     }

@@ -29,6 +29,7 @@ import AppKit
 
 #if canImport(UIKit)
 public protocol ConstraintDirectionalInsetTarget: ConstraintConstantTarget {
+    func asConstraintDirectionalInsets() -> ConstraintDirectionalInsets?
 }
 
 @available(iOS 11.0, tvOS 11.0, *)
@@ -39,7 +40,7 @@ extension ConstraintDirectionalInsetTarget {
 
   @available(iOS 11.0, tvOS 11.0, *)
   internal var constraintDirectionalInsetTargetValue: ConstraintDirectionalInsets {
-    if let amount = self as? ConstraintDirectionalInsets {
+    if let amount = self.asConstraintDirectionalInsets() {
       return amount
     } else {
       return ConstraintDirectionalInsets(top: 0, leading: 0, bottom: 0, trailing: 0)

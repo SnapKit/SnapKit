@@ -32,41 +32,135 @@ public protocol ConstraintInsetTarget: ConstraintConstantTarget {
 }
 
 extension Int: ConstraintInsetTarget {
+    public func asFloat() -> CGFloat? {
+        CGFloat(self)
+    }
+    public func asSize() -> CGSize? {
+        return nil
+    }
+    public func asPoint() -> CGPoint? {
+        return nil
+    }
+    public func asConstraintInsets() -> ConstraintInsets? {
+        return nil
+    }
+#if canImport(UIKit)
+    public func asConstraintDirectionalInsets() -> ConstraintDirectionalInsets? {
+        return nil
+    }
+#endif
 }
 
 extension UInt: ConstraintInsetTarget {
+    public func asFloat() -> CGFloat? {
+        CGFloat(self)
+    }
+    public func asSize() -> CGSize? {
+        return nil
+    }
+    public func asPoint() -> CGPoint? {
+        return nil
+    }
+    public func asConstraintInsets() -> ConstraintInsets? {
+        return nil
+    }
+#if canImport(UIKit)
+    public func asConstraintDirectionalInsets() -> ConstraintDirectionalInsets? {
+        return nil
+    }
+#endif
 }
 
 extension Float: ConstraintInsetTarget {
+    public func asFloat() -> CGFloat? {
+        CGFloat(self)
+    }
+    public func asSize() -> CGSize? {
+        return nil
+    }
+    public func asPoint() -> CGPoint? {
+        return nil
+    }
+    public func asConstraintInsets() -> ConstraintInsets? {
+        return nil
+    }
+#if canImport(UIKit)
+    public func asConstraintDirectionalInsets() -> ConstraintDirectionalInsets? {
+        return nil
+    }
+#endif
 }
 
 extension Double: ConstraintInsetTarget {
+    public func asFloat() -> CGFloat? {
+        CGFloat(self)
+    }
+    public func asSize() -> CGSize? {
+        return nil
+    }
+    public func asPoint() -> CGPoint? {
+        return nil
+    }
+    public func asConstraintInsets() -> ConstraintInsets? {
+        return nil
+    }
+#if canImport(UIKit)
+    public func asConstraintDirectionalInsets() -> ConstraintDirectionalInsets? {
+        return nil
+    }
+#endif
 }
 
 extension CGFloat: ConstraintInsetTarget {
+    public func asFloat() -> CGFloat? {
+        self
+    }
+    public func asSize() -> CGSize? {
+        return nil
+    }
+    public func asPoint() -> CGPoint? {
+        return nil
+    }
+    public func asConstraintInsets() -> ConstraintInsets? {
+        return nil
+    }
+#if canImport(UIKit)
+    public func asConstraintDirectionalInsets() -> ConstraintDirectionalInsets? {
+        return nil
+    }
+#endif
 }
 
 extension ConstraintInsets: ConstraintInsetTarget {
+    public func asFloat() -> CGFloat? {
+        nil
+    }
+    public func asSize() -> CGSize? {
+        return nil
+    }
+    public func asPoint() -> CGPoint? {
+        return nil
+    }
+    public func asConstraintInsets() -> ConstraintInsets? {
+        return self
+    }
+#if canImport(UIKit)
+    public func asConstraintDirectionalInsets() -> ConstraintDirectionalInsets? {
+        return nil
+    }
+#endif
 }
 
 extension ConstraintInsetTarget {
 
     internal var constraintInsetTargetValue: ConstraintInsets {
-        if let amount = self as? ConstraintInsets {
+        if let amount = self.asConstraintInsets() {
             return amount
-        } else if let amount = self as? Float {
-            return ConstraintInsets(top: CGFloat(amount), left: CGFloat(amount), bottom: CGFloat(amount), right: CGFloat(amount))
-        } else if let amount = self as? Double {
-            return ConstraintInsets(top: CGFloat(amount), left: CGFloat(amount), bottom: CGFloat(amount), right: CGFloat(amount))
-        } else if let amount = self as? CGFloat {
+        } else if let amount = self.asFloat() {
             return ConstraintInsets(top: amount, left: amount, bottom: amount, right: amount)
-        } else if let amount = self as? Int {
-            return ConstraintInsets(top: CGFloat(amount), left: CGFloat(amount), bottom: CGFloat(amount), right: CGFloat(amount))
-        } else if let amount = self as? UInt {
-            return ConstraintInsets(top: CGFloat(amount), left: CGFloat(amount), bottom: CGFloat(amount), right: CGFloat(amount))
         } else {
             return ConstraintInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
-    
+
 }
